@@ -1,14 +1,31 @@
+spring:
+  application:
+    name: eureka
+  security:
+    user:
+      name: yugh
+      password: mac12345
+      role: admin
+
+#eureka-gateway-monitor-config 每个端口+1
 server:
-  port: 8100
+  port: 8700
 
-
-
-
-
-
-
-
-
-
-
+#注册中心
+eureka:
+  instance:
+    hostname: eureka
+  server:
+    #关闭注册中心的保护机制,踢出有问题的实例
+    enable-self-preservation: false
+    #清理任务程序被唤醒的时间间隔（毫秒）
+    eviction-interval-timer-in-ms: 60000
+  client:
+    #将自己注册到注册中心
+    register-with-eureka: false
+    #获取注册信息
+    fetch-registry: false
+    serviceUrl:
+        #主注册中心地址
+      defaultZone: http://localhost:${server.port}/eureka/
 

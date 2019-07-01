@@ -24,7 +24,6 @@
         <java.version>1.8</java.version>
         <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
         <swagger2.version>2.9.2</swagger2.version>
-        <fastjson>1.1.41</fastjson>
     </properties>
 
 
@@ -33,11 +32,6 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>${fastjson}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

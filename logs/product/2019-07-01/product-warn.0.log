@@ -1,0 +1,50 @@
+[WARN ] 2019-07-01 16:50:44 [main] o.s.c.c.c.ConfigServicePropertySourceLocator [{ConfigServicePropertySourceLocator.java} {143}] - Could not locate PropertySource: I/O error on GET request for "http://localhost:8888/product/default": Connection refused (Connection refused); nested exception is java.net.ConnectException: Connection refused (Connection refused)
+[WARN ] 2019-07-01 16:50:44 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-07-01 16:50:44 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'hystrix.stream' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-07-01 16:50:51 [main] o.s.c.c.c.ConfigServicePropertySourceLocator [{ConfigServicePropertySourceLocator.java} {143}] - Could not locate PropertySource: I/O error on GET request for "http://localhost:8888/product/default": Connection refused (Connection refused); nested exception is java.net.ConnectException: Connection refused (Connection refused)
+[WARN ] 2019-07-01 16:50:51 [Thread-7] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1303}] - Saw local status change event StatusChangeEvent [timestamp=1561971201501, current=DOWN, previous=UP]
+[WARN ] 2019-07-01 16:50:51 [DiscoveryClient-CacheRefreshExecutor-0] c.n.d.s.t.d.RetryableEurekaHttpClient [{RetryableEurekaHttpClient.java} {130}] - Request execution failed with message: java.net.ConnectException: Connection refused (Connection refused)
+[WARN ] 2019-07-01 16:50:51 [DiscoveryClient-InstanceInfoReplicator-0] c.n.d.s.t.d.RetryableEurekaHttpClient [{RetryableEurekaHttpClient.java} {130}] - Request execution failed with message: java.net.ConnectException: Connection refused (Connection refused)
+[WARN ] 2019-07-01 16:50:51 [DiscoveryClient-CacheRefreshExecutor-0] c.n.d.s.t.d.RetryableEurekaHttpClient [{RetryableEurekaHttpClient.java} {130}] - Request execution failed with message: java.net.ConnectException: Connection refused (Connection refused)
+[WARN ] 2019-07-01 16:50:51 [DiscoveryClient-InstanceInfoReplicator-0] c.n.d.s.t.d.RetryableEurekaHttpClient [{RetryableEurekaHttpClient.java} {130}] - Request execution failed with message: java.net.ConnectException: Connection refused (Connection refused)
+[WARN ] 2019-07-01 16:50:51 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {831}] - DiscoveryClient_PRODUCT/10.112.203.43:product:8704 - registration failed Cannot execute request on any known server
+com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:829)
+	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:121)
+	at com.netflix.discovery.InstanceInfoReplicator$1.run(InstanceInfoReplicator.java:101)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+[WARN ] 2019-07-01 16:50:51 [DiscoveryClient-InstanceInfoReplicator-0] c.n.discovery.InstanceInfoReplicator [{InstanceInfoReplicator.java} {125}] - There was a problem with the instance info replicator
+com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:829)
+	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:121)
+	at com.netflix.discovery.InstanceInfoReplicator$1.run(InstanceInfoReplicator.java:101)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+[WARN ] 2019-07-01 16:50:51 [DiscoveryClient-HeartbeatExecutor-0] c.n.d.s.t.d.RetryableEurekaHttpClient [{RetryableEurekaHttpClient.java} {130}] - Request execution failed with message: java.net.ConnectException: Connection refused (Connection refused)
+[WARN ] 2019-07-01 16:50:51 [Thread-7] c.n.d.s.t.d.RetryableEurekaHttpClient [{RetryableEurekaHttpClient.java} {130}] - Request execution failed with message: java.net.ConnectException: Connection refused (Connection refused)
+[WARN ] 2019-07-01 16:57:13 [main] o.s.c.c.c.ConfigServicePropertySourceLocator [{ConfigServicePropertySourceLocator.java} {143}] - Could not locate PropertySource: I/O error on GET request for "http://localhost:8888/product/default": Connection refused (Connection refused); nested exception is java.net.ConnectException: Connection refused (Connection refused)
+[WARN ] 2019-07-01 16:57:13 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-07-01 16:57:13 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'hystrix.stream' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-07-01 16:57:30 [main] o.s.c.c.c.ConfigServicePropertySourceLocator [{ConfigServicePropertySourceLocator.java} {143}] - Could not locate PropertySource: I/O error on GET request for "http://localhost:8888/product/default": Connection refused (Connection refused); nested exception is java.net.ConnectException: Connection refused (Connection refused)
+[WARN ] 2019-07-01 16:57:30 [AMQP Connection 127.0.0.1:5672] c.r.c.impl.ForgivingExceptionHandler [{ForgivingExceptionHandler.java} {115}] - An unexpected connection driver error occured (Exception message: Socket closed)

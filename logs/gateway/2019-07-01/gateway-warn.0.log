@@ -1,0 +1,254 @@
+[WARN ] 2019-07-01 12:18:31 [main] o.s.c.c.c.ConfigServicePropertySourceLocator [{ConfigServicePropertySourceLocator.java} {143}] - Could not locate PropertySource: I/O error on GET request for "http://localhost:8888/gateway/default": Connection refused (Connection refused); nested exception is java.net.ConnectException: Connection refused (Connection refused)
+[WARN ] 2019-07-01 12:18:31 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-07-01 12:18:31 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'hystrix.stream' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-07-01 12:18:31 [Thread-7] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1303}] - Saw local status change event StatusChangeEvent [timestamp=1561954788055, current=DOWN, previous=UP]
+[WARN ] 2019-07-01 12:18:31 [AsyncReporter{org.springframework.cloud.sleuth.zipkin2.sender.RestTemplateSender@6c075e9d}] o.s.c.a.AnnotationConfigApplicationContext [{AbstractApplicationContext.java} {557}] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'eurekaRibbonClientConfiguration': Unsatisfied dependency expressed through field 'eurekaConfig'; nested exception is org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'eurekaInstanceConfigBean': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+[WARN ] 2019-07-01 12:19:59 [main] o.s.c.c.c.ConfigServicePropertySourceLocator [{ConfigServicePropertySourceLocator.java} {143}] - Could not locate PropertySource: I/O error on GET request for "http://localhost:8888/gateway/default": Connection refused (Connection refused); nested exception is java.net.ConnectException: Connection refused (Connection refused)
+[WARN ] 2019-07-01 12:19:59 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-07-01 12:19:59 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'hystrix.stream' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-07-01 12:19:59 [RMI TCP Connection(2)-10.112.203.43] o.s.c.c.c.ConfigServicePropertySourceLocator [{ConfigServicePropertySourceLocator.java} {143}] - Could not locate PropertySource: I/O error on GET request for "http://localhost:8888/gateway/default": Connection refused (Connection refused); nested exception is java.net.ConnectException: Connection refused (Connection refused)
+[WARN ] 2019-07-01 12:19:59 [Thread-21] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1303}] - Saw local status change event StatusChangeEvent [timestamp=1561954844297, current=DOWN, previous=UP]
+[WARN ] 2019-07-01 12:19:59 [AsyncReporter{org.springframework.cloud.sleuth.zipkin2.sender.RestTemplateSender@43a4a9e5}] o.s.c.a.AnnotationConfigApplicationContext [{AbstractApplicationContext.java} {557}] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'eurekaRibbonClientConfiguration': Unsatisfied dependency expressed through field 'eurekaConfig'; nested exception is org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'eurekaInstanceConfigBean': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+[WARN ] 2019-07-01 12:19:59 [DiscoveryClient-0] c.n.discovery.TimedSupervisorTask [{TimedSupervisorTask.java} {88}] - task supervisor shutting down, can't accept the task
+[WARN ] 2019-07-01 12:19:59 [DiscoveryClient-InstanceInfoReplicator-0] c.n.d.s.t.d.RetryableEurekaHttpClient [{RetryableEurekaHttpClient.java} {130}] - Request execution failed with message: java.net.ConnectException: Connection refused (Connection refused)
+[WARN ] 2019-07-01 12:19:59 [Thread-21] c.n.d.s.t.d.RetryableEurekaHttpClient [{RetryableEurekaHttpClient.java} {130}] - Request execution failed with message: java.net.ConnectException: Connection refused (Connection refused)
+[WARN ] 2019-07-01 12:19:59 [DiscoveryClient-HeartbeatExecutor-0] c.n.d.s.t.d.RetryableEurekaHttpClient [{RetryableEurekaHttpClient.java} {130}] - Request execution failed with message: java.net.ConnectException: Connection refused (Connection refused)
+[WARN ] 2019-07-01 12:19:59 [DiscoveryClient-InstanceInfoReplicator-0] c.n.d.s.t.d.RetryableEurekaHttpClient [{RetryableEurekaHttpClient.java} {130}] - Request execution failed with message: java.net.ConnectException: Connection refused (Connection refused)
+[WARN ] 2019-07-01 12:19:59 [Thread-21] c.n.d.s.t.d.RetryableEurekaHttpClient [{RetryableEurekaHttpClient.java} {130}] - Request execution failed with message: java.net.ConnectException: Connection refused (Connection refused)
+[WARN ] 2019-07-01 12:19:59 [DiscoveryClient-HeartbeatExecutor-0] c.n.d.s.t.d.RetryableEurekaHttpClient [{RetryableEurekaHttpClient.java} {130}] - Request execution failed with message: java.net.ConnectException: Connection refused (Connection refused)
+[WARN ] 2019-07-01 12:19:59 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {831}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702 - registration failed Cannot execute request on any known server
+com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:829)
+	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:121)
+	at com.netflix.discovery.InstanceInfoReplicator$1.run(InstanceInfoReplicator.java:101)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+[WARN ] 2019-07-01 12:19:59 [DiscoveryClient-InstanceInfoReplicator-0] c.n.discovery.InstanceInfoReplicator [{InstanceInfoReplicator.java} {125}] - There was a problem with the instance info replicator
+com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:829)
+	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:121)
+	at com.netflix.discovery.InstanceInfoReplicator$1.run(InstanceInfoReplicator.java:101)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+[WARN ] 2019-07-01 14:32:27 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-07-01 14:32:27 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'hystrix.stream' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-07-01 14:32:27 [DiscoveryClient-0] c.n.discovery.TimedSupervisorTask [{TimedSupervisorTask.java} {71}] - task supervisor timed out
+java.util.concurrent.TimeoutException: null
+	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
+	at com.netflix.discovery.TimedSupervisorTask.run(TimedSupervisorTask.java:66)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+[WARN ] 2019-07-01 14:32:27 [Thread-7] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1303}] - Saw local status change event StatusChangeEvent [timestamp=1561963533284, current=DOWN, previous=UP]
+[WARN ] 2019-07-01 14:32:27 [DiscoveryClient-InstanceInfoReplicator-0] c.n.d.s.t.d.RetryableEurekaHttpClient [{RetryableEurekaHttpClient.java} {130}] - Request execution failed with message: java.net.ConnectException: Connection refused (Connection refused)
+[WARN ] 2019-07-01 14:32:27 [DiscoveryClient-InstanceInfoReplicator-0] c.n.d.s.t.d.RetryableEurekaHttpClient [{RetryableEurekaHttpClient.java} {130}] - Request execution failed with message: java.net.ConnectException: Connection refused (Connection refused)
+[WARN ] 2019-07-01 14:32:27 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {831}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702 - registration failed Cannot execute request on any known server
+com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:829)
+	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:121)
+	at com.netflix.discovery.InstanceInfoReplicator$1.run(InstanceInfoReplicator.java:101)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+[WARN ] 2019-07-01 14:32:27 [DiscoveryClient-InstanceInfoReplicator-0] c.n.discovery.InstanceInfoReplicator [{InstanceInfoReplicator.java} {125}] - There was a problem with the instance info replicator
+com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:829)
+	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:121)
+	at com.netflix.discovery.InstanceInfoReplicator$1.run(InstanceInfoReplicator.java:101)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+[WARN ] 2019-07-01 14:32:27 [AsyncReporter{org.springframework.cloud.sleuth.zipkin2.sender.RestTemplateSender@3daf03d8}] o.s.c.a.AnnotationConfigApplicationContext [{AbstractApplicationContext.java} {557}] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'eurekaRibbonClientConfiguration': Unsatisfied dependency expressed through field 'eurekaConfig'; nested exception is org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'eurekaInstanceConfigBean': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+[WARN ] 2019-07-01 14:32:27 [DiscoveryClient-HeartbeatExecutor-0] c.n.d.s.t.d.RetryableEurekaHttpClient [{RetryableEurekaHttpClient.java} {130}] - Request execution failed with message: java.net.ConnectException: Connection refused (Connection refused)
+[WARN ] 2019-07-01 14:32:27 [Thread-7] c.n.d.s.t.d.RetryableEurekaHttpClient [{RetryableEurekaHttpClient.java} {130}] - Request execution failed with message: java.net.ConnectException: Connection refused (Connection refused)
+[WARN ] 2019-07-01 14:49:50 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-07-01 14:49:50 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'hystrix.stream' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-07-01 14:49:50 [DiscoveryClient-1] c.n.discovery.TimedSupervisorTask [{TimedSupervisorTask.java} {71}] - task supervisor timed out
+java.util.concurrent.TimeoutException: null
+	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
+	at com.netflix.discovery.TimedSupervisorTask.run(TimedSupervisorTask.java:66)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+[WARN ] 2019-07-01 14:49:50 [DiscoveryClient-0] c.n.discovery.TimedSupervisorTask [{TimedSupervisorTask.java} {71}] - task supervisor timed out
+java.util.concurrent.TimeoutException: null
+	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
+	at com.netflix.discovery.TimedSupervisorTask.run(TimedSupervisorTask.java:66)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+[WARN ] 2019-07-01 14:49:50 [DiscoveryClient-1] c.n.discovery.TimedSupervisorTask [{TimedSupervisorTask.java} {71}] - task supervisor timed out
+java.util.concurrent.TimeoutException: null
+	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
+	at com.netflix.discovery.TimedSupervisorTask.run(TimedSupervisorTask.java:66)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+[WARN ] 2019-07-01 14:49:50 [DiscoveryClient-1] c.n.discovery.TimedSupervisorTask [{TimedSupervisorTask.java} {71}] - task supervisor timed out
+java.util.concurrent.TimeoutException: null
+	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
+	at com.netflix.discovery.TimedSupervisorTask.run(TimedSupervisorTask.java:66)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+[WARN ] 2019-07-01 14:49:50 [DiscoveryClient-1] c.n.discovery.TimedSupervisorTask [{TimedSupervisorTask.java} {71}] - task supervisor timed out
+java.util.concurrent.TimeoutException: null
+	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
+	at com.netflix.discovery.TimedSupervisorTask.run(TimedSupervisorTask.java:66)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+[WARN ] 2019-07-01 14:49:50 [DiscoveryClient-1] c.n.discovery.TimedSupervisorTask [{TimedSupervisorTask.java} {71}] - task supervisor timed out
+java.util.concurrent.TimeoutException: null
+	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
+	at com.netflix.discovery.TimedSupervisorTask.run(TimedSupervisorTask.java:66)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+[WARN ] 2019-07-01 14:49:50 [Thread-7] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1303}] - Saw local status change event StatusChangeEvent [timestamp=1561967760928, current=DOWN, previous=UP]
+[WARN ] 2019-07-01 14:49:50 [DiscoveryClient-0] c.n.discovery.TimedSupervisorTask [{TimedSupervisorTask.java} {88}] - task supervisor shutting down, can't accept the task
+[WARN ] 2019-07-01 14:49:50 [DiscoveryClient-1] c.n.discovery.TimedSupervisorTask [{TimedSupervisorTask.java} {88}] - task supervisor shutting down, can't accept the task
+[WARN ] 2019-07-01 15:57:19 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-07-01 15:57:19 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'hystrix.stream' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-07-01 15:57:19 [DiscoveryClient-0] c.n.discovery.TimedSupervisorTask [{TimedSupervisorTask.java} {71}] - task supervisor timed out
+java.util.concurrent.TimeoutException: null
+	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
+	at com.netflix.discovery.TimedSupervisorTask.run(TimedSupervisorTask.java:66)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+[WARN ] 2019-07-01 15:57:19 [Thread-19] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1303}] - Saw local status change event StatusChangeEvent [timestamp=1561968602236, current=DOWN, previous=UP]
+[WARN ] 2019-07-01 16:13:28 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-07-01 16:13:28 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'hystrix.stream' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-07-01 16:13:28 [Thread-7] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1303}] - Saw local status change event StatusChangeEvent [timestamp=1561969123991, current=DOWN, previous=UP]
+[WARN ] 2019-07-01 16:13:28 [AsyncReporter{org.springframework.cloud.sleuth.zipkin2.sender.RestTemplateSender@261de205}] o.s.c.a.AnnotationConfigApplicationContext [{AbstractApplicationContext.java} {557}] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'eurekaRibbonClientConfiguration': Unsatisfied dependency expressed through field 'eurekaConfig'; nested exception is org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'eurekaInstanceConfigBean': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+[WARN ] 2019-07-01 16:19:21 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-07-01 16:19:21 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'hystrix.stream' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-07-01 16:19:21 [Thread-20] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1303}] - Saw local status change event StatusChangeEvent [timestamp=1561969231577, current=DOWN, previous=UP]
+[WARN ] 2019-07-01 16:19:21 [AsyncReporter{org.springframework.cloud.sleuth.zipkin2.sender.RestTemplateSender@3b9ac754}] o.s.c.a.AnnotationConfigApplicationContext [{AbstractApplicationContext.java} {557}] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'eurekaRibbonClientConfiguration': Unsatisfied dependency expressed through field 'eurekaConfig'; nested exception is org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'eurekaInstanceConfigBean': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+[WARN ] 2019-07-01 16:20:44 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-07-01 16:20:44 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'hystrix.stream' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-07-01 16:22:25 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-07-01 16:22:25 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'hystrix.stream' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-07-01 16:22:25 [Thread-20] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1303}] - Saw local status change event StatusChangeEvent [timestamp=1561969798951, current=DOWN, previous=UP]
+[WARN ] 2019-07-01 16:22:25 [AsyncReporter{org.springframework.cloud.sleuth.zipkin2.sender.RestTemplateSender@1213ffbc}] o.s.c.a.AnnotationConfigApplicationContext [{AbstractApplicationContext.java} {557}] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'eurekaRibbonClientConfiguration': Unsatisfied dependency expressed through field 'eurekaConfig'; nested exception is org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'eurekaInstanceConfigBean': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+[WARN ] 2019-07-01 16:22:25 [DiscoveryClient-0] c.n.discovery.TimedSupervisorTask [{TimedSupervisorTask.java} {88}] - task supervisor shutting down, can't accept the task
+[WARN ] 2019-07-01 16:30:32 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-07-01 16:30:32 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'hystrix.stream' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-07-01 16:30:32 [http-nio-8702-exec-6] o.s.c.n.zuul.web.ZuulHandlerMapping [{ZuulHandlerMapping.java} {122}] - No routes found from RouteLocator
+[WARN ] 2019-07-01 16:30:32 [Thread-7] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1303}] - Saw local status change event StatusChangeEvent [timestamp=1561970332945, current=DOWN, previous=UP]
+[WARN ] 2019-07-01 16:30:32 [DiscoveryClient-InstanceInfoReplicator-0] c.n.d.s.t.d.RetryableEurekaHttpClient [{RetryableEurekaHttpClient.java} {130}] - Request execution failed with message: java.net.SocketException: Connection reset
+[WARN ] 2019-07-01 16:49:03 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-07-01 16:49:03 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'hystrix.stream' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-07-01 16:49:03 [Thread-22] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1303}] - Saw local status change event StatusChangeEvent [timestamp=1561971201406, current=DOWN, previous=UP]
+[WARN ] 2019-07-01 16:49:03 [AsyncReporter{org.springframework.cloud.sleuth.zipkin2.sender.RestTemplateSender@16d0e521}] o.s.c.a.AnnotationConfigApplicationContext [{AbstractApplicationContext.java} {557}] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'eurekaRibbonClientConfiguration': Unsatisfied dependency expressed through field 'eurekaConfig'; nested exception is org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'eurekaInstanceConfigBean': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+[WARN ] 2019-07-01 16:49:03 [DiscoveryClient-InstanceInfoReplicator-0] c.n.d.s.t.d.RetryableEurekaHttpClient [{RetryableEurekaHttpClient.java} {130}] - Request execution failed with message: java.net.ConnectException: Connection refused (Connection refused)
+[WARN ] 2019-07-01 16:49:03 [Thread-22] c.n.d.s.t.d.RetryableEurekaHttpClient [{RetryableEurekaHttpClient.java} {130}] - Request execution failed with message: java.net.ConnectException: Connection refused (Connection refused)
+[WARN ] 2019-07-01 16:49:03 [DiscoveryClient-InstanceInfoReplicator-0] c.n.d.s.t.d.RetryableEurekaHttpClient [{RetryableEurekaHttpClient.java} {130}] - Request execution failed with message: java.net.ConnectException: Connection refused (Connection refused)
+[WARN ] 2019-07-01 16:49:03 [Thread-22] c.n.d.s.t.d.RetryableEurekaHttpClient [{RetryableEurekaHttpClient.java} {130}] - Request execution failed with message: java.net.ConnectException: Connection refused (Connection refused)
+[WARN ] 2019-07-01 16:49:03 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {831}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702 - registration failed Cannot execute request on any known server
+com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:829)
+	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:121)
+	at com.netflix.discovery.InstanceInfoReplicator$1.run(InstanceInfoReplicator.java:101)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+[WARN ] 2019-07-01 16:49:03 [DiscoveryClient-InstanceInfoReplicator-0] c.n.discovery.InstanceInfoReplicator [{InstanceInfoReplicator.java} {125}] - There was a problem with the instance info replicator
+com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:829)
+	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:121)
+	at com.netflix.discovery.InstanceInfoReplicator$1.run(InstanceInfoReplicator.java:101)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+[WARN ] 2019-07-01 16:55:56 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-07-01 16:55:56 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'hystrix.stream' contains invalid characters, please migrate to a valid format.

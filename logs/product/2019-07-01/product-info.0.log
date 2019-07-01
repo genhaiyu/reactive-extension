@@ -1,0 +1,153 @@
+[INFO ] 2019-07-01 16:50:43 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$c1f14d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-07-01 16:50:44 [main] o.s.c.c.c.ConfigServicePropertySourceLocator [{ConfigServicePropertySourceLocator.java} {207}] - Fetching config from server at : http://localhost:8888
+[INFO ] 2019-07-01 16:50:44 [main] o.s.c.c.c.ConfigServicePropertySourceLocator [{ConfigServicePropertySourceLocator.java} {230}] - Connect Timeout Exception on Url - http://localhost:8888. Will be trying the next url if available
+[INFO ] 2019-07-01 16:50:44 [main] org.yugh.product.ProductApplication [{SpringApplication.java} {679}] - The following profiles are active: dev
+[INFO ] 2019-07-01 16:50:44 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {244}] - Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO ] 2019-07-01 16:50:44 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {126}] - Bootstrapping Spring Data repositories in DEFAULT mode.
+[INFO ] 2019-07-01 16:50:44 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {182}] - Finished Spring Data repository scanning in 10ms. Found 0 repository interfaces.
+[INFO ] 2019-07-01 16:50:44 [main] o.s.cloud.context.scope.GenericScope [{GenericScope.java} {295}] - BeanFactory id=67332c64-a9b7-372d-b16a-bf00559770cf
+[INFO ] 2019-07-01 16:50:44 [main] o.s.i.c.DefaultConfiguringBeanFactoryPostProcessor [{DefaultConfiguringBeanFactoryPostProcessor.java} {188}] - No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+[INFO ] 2019-07-01 16:50:44 [main] o.s.i.c.DefaultConfiguringBeanFactoryPostProcessor [{DefaultConfiguringBeanFactoryPostProcessor.java} {426}] - No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+[INFO ] 2019-07-01 16:50:44 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'integrationDisposableAutoCreatedBeans' of type [org.springframework.integration.config.annotation.Disposables] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-07-01 16:50:44 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'org.springframework.integration.config.IntegrationManagementConfiguration' of type [org.springframework.integration.config.IntegrationManagementConfiguration$$EnhancerBySpringCGLIB$$4f99a97f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-07-01 16:50:44 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'org.springframework.boot.autoconfigure.integration.IntegrationAutoConfiguration$IntegrationJmxConfiguration' of type [org.springframework.boot.autoconfigure.integration.IntegrationAutoConfiguration$IntegrationJmxConfiguration$$EnhancerBySpringCGLIB$$2b2bb49f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-07-01 16:50:44 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration' of type [org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration$$EnhancerBySpringCGLIB$$64135d6c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-07-01 16:50:44 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'mbeanServer' of type [com.sun.jmx.mbeanserver.JmxMBeanServer] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-07-01 16:50:44 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$c1f14d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-07-01 16:50:44 [main] o.s.b.w.e.tomcat.TomcatWebServer [{TomcatWebServer.java} {90}] - Tomcat initialized with port(s): 8704 (http)
+[INFO ] 2019-07-01 16:50:44 [main] o.a.coyote.http11.Http11NioProtocol [{DirectJDKLog.java} {173}] - Initializing ProtocolHandler ["http-nio-8704"]
+[INFO ] 2019-07-01 16:50:44 [main] o.a.catalina.core.StandardService [{DirectJDKLog.java} {173}] - Starting service [Tomcat]
+[INFO ] 2019-07-01 16:50:44 [main] o.a.catalina.core.StandardEngine [{DirectJDKLog.java} {173}] - Starting Servlet engine: [Apache Tomcat/9.0.19]
+[INFO ] 2019-07-01 16:50:44 [main] o.a.c.c.C.[Tomcat].[localhost].[/] [{DirectJDKLog.java} {173}] - Initializing Spring embedded WebApplicationContext
+[INFO ] 2019-07-01 16:50:44 [main] o.s.web.context.ContextLoader [{ServletWebServerApplicationContext.java} {296}] - Root WebApplicationContext: initialization completed in 2520 ms
+[INFO ] 2019-07-01 16:50:44 [main] c.n.c.sources.URLConfigurationSource [{URLConfigurationSource.java} {126}] - URLs to be used as dynamic configuration source: [file:/Users/yuzhilin/IdeaProjects/spring-cloud/product/target/classes/config.properties]
+[INFO ] 2019-07-01 16:50:44 [main] c.n.config.DynamicPropertyFactory [{DynamicPropertyFactory.java} {281}] - DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@b06d46d
+[INFO ] 2019-07-01 16:50:44 [main] o.s.s.c.ThreadPoolTaskScheduler [{ExecutorConfigurationSupport.java} {171}] - Initializing ExecutorService 'taskScheduler'
+[INFO ] 2019-07-01 16:50:44 [main] c.n.c.sources.URLConfigurationSource [{URLConfigurationSource.java} {126}] - URLs to be used as dynamic configuration source: [file:/Users/yuzhilin/IdeaProjects/spring-cloud/product/target/classes/config.properties]
+[INFO ] 2019-07-01 16:50:44 [main] o.s.s.c.ThreadPoolTaskExecutor [{ExecutorConfigurationSupport.java} {171}] - Initializing ExecutorService 'applicationTaskExecutor'
+[INFO ] 2019-07-01 16:50:44 [main] o.s.b.a.e.web.EndpointLinksResolver [{EndpointLinksResolver.java} {59}] - Exposing 2 endpoint(s) beneath base path '/actuator'
+[INFO ] 2019-07-01 16:50:44 [main] o.s.i.m.IntegrationMBeanExporter [{IntegrationMBeanExporter.java} {767}] - Registering MessageChannel errorChannel
+[INFO ] 2019-07-01 16:50:44 [main] o.s.i.m.IntegrationMBeanExporter [{IntegrationMBeanExporter.java} {767}] - Registering MessageChannel hystrixStreamOutput
+[INFO ] 2019-07-01 16:50:44 [main] o.s.i.m.IntegrationMBeanExporter [{IntegrationMBeanExporter.java} {767}] - Registering MessageChannel nullChannel
+[INFO ] 2019-07-01 16:50:44 [main] o.s.i.m.IntegrationMBeanExporter [{IntegrationMBeanExporter.java} {785}] - Registering MessageHandler errorLogger
+[INFO ] 2019-07-01 16:50:44 [main] o.s.i.endpoint.EventDrivenConsumer [{EventDrivenConsumer.java} {107}] - Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+[INFO ] 2019-07-01 16:50:44 [main] o.s.i.c.PublishSubscribeChannel [{AbstractSubscribableChannel.java} {64}] - Channel 'application-1.errorChannel' has 1 subscriber(s).
+[INFO ] 2019-07-01 16:50:44 [main] o.s.i.endpoint.EventDrivenConsumer [{AbstractEndpoint.java} {159}] - started _org.springframework.integration.errorLogger
+[INFO ] 2019-07-01 16:50:51 [main] o.s.c.c.c.ConfigServicePropertySourceLocator [{ConfigServicePropertySourceLocator.java} {207}] - Fetching config from server at : http://localhost:8888
+[INFO ] 2019-07-01 16:50:51 [main] o.s.c.c.c.ConfigServicePropertySourceLocator [{ConfigServicePropertySourceLocator.java} {230}] - Connect Timeout Exception on Url - http://localhost:8888. Will be trying the next url if available
+[INFO ] 2019-07-01 16:50:51 [main] o.s.a.r.c.CachingConnectionFactory [{AbstractConnectionFactory.java} {460}] - Attempting to connect to: [localhost:5672]
+[INFO ] 2019-07-01 16:50:51 [main] o.s.a.r.c.CachingConnectionFactory [{AbstractConnectionFactory.java} {496}] - Created new connection: rabbitConnectionFactory#374c3975:0/SimpleConnection@fc21ff4 [delegate=amqp://guest@127.0.0.1:5672/, localPort= 58651]
+[INFO ] 2019-07-01 16:50:51 [main] o.s.c.s.m.DirectWithAttributesChannel [{AbstractSubscribableChannel.java} {64}] - Channel 'application-1.hystrixStreamOutput' has 1 subscriber(s).
+[INFO ] 2019-07-01 16:50:51 [main] o.s.c.n.eureka.InstanceInfoFactory [{InstanceInfoFactory.java} {72}] - Setting initial instance status as: STARTING
+[INFO ] 2019-07-01 16:50:51 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {349}] - Initializing Eureka in region us-east-1
+[INFO ] 2019-07-01 16:50:51 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {70}] - Using JSON encoding codec LegacyJacksonJson
+[INFO ] 2019-07-01 16:50:51 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {71}] - Using JSON decoding codec LegacyJacksonJson
+[INFO ] 2019-07-01 16:50:51 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {80}] - Using XML encoding codec XStreamXml
+[INFO ] 2019-07-01 16:50:51 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {81}] - Using XML decoding codec XStreamXml
+[INFO ] 2019-07-01 16:50:51 [main] c.n.d.s.r.aws.ConfigClusterResolver [{ConfigClusterResolver.java} {43}] - Resolving eureka endpoints via configuration
+[INFO ] 2019-07-01 16:50:51 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {958}] - Disable delta property : false
+[INFO ] 2019-07-01 16:50:51 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {959}] - Single vip registry refresh property : null
+[INFO ] 2019-07-01 16:50:51 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {960}] - Force full registry fetch : false
+[INFO ] 2019-07-01 16:50:51 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {961}] - Application is null : false
+[INFO ] 2019-07-01 16:50:51 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {962}] - Registered Applications size is zero : true
+[INFO ] 2019-07-01 16:50:51 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {964}] - Application version is -1: true
+[INFO ] 2019-07-01 16:50:51 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1047}] - Getting all instance registry info from the eureka server
+[INFO ] 2019-07-01 16:50:51 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1056}] - The response status is 200
+[INFO ] 2019-07-01 16:50:51 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1270}] - Starting heartbeat executor: renew interval is: 30
+[INFO ] 2019-07-01 16:50:51 [main] c.n.discovery.InstanceInfoReplicator [{InstanceInfoReplicator.java} {60}] - InstanceInfoReplicator onDemand update allowed rate per min is 4
+[INFO ] 2019-07-01 16:50:51 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {449}] - Discovery Client initialized at timestamp 1561971053010 with initial instances count: 2
+[INFO ] 2019-07-01 16:50:51 [main] o.s.c.n.e.s.EurekaServiceRegistry [{EurekaServiceRegistry.java} {41}] - Registering application PRODUCT with eureka with status UP
+[INFO ] 2019-07-01 16:50:51 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1305}] - Saw local status change event StatusChangeEvent [timestamp=1561971053020, current=UP, previous=STARTING]
+[INFO ] 2019-07-01 16:50:51 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {826}] - DiscoveryClient_PRODUCT/10.112.203.43:product:8704: registering service...
+[INFO ] 2019-07-01 16:50:51 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {835}] - DiscoveryClient_PRODUCT/10.112.203.43:product:8704 - registration status: 204
+[INFO ] 2019-07-01 16:50:51 [main] o.a.coyote.http11.Http11NioProtocol [{DirectJDKLog.java} {173}] - Starting ProtocolHandler ["http-nio-8704"]
+[INFO ] 2019-07-01 16:50:51 [main] o.s.b.w.e.tomcat.TomcatWebServer [{TomcatWebServer.java} {204}] - Tomcat started on port(s): 8704 (http) with context path ''
+[INFO ] 2019-07-01 16:50:51 [main] o.s.c.n.e.s.EurekaAutoServiceRegistration [{EurekaAutoServiceRegistration.java} {143}] - Updating port to 8704
+[INFO ] 2019-07-01 16:50:51 [main] org.yugh.product.ProductApplication [{StartupInfoLogger.java} {59}] - Started ProductApplication in 9.62 seconds (JVM running for 15.305)
+[INFO ] 2019-07-01 16:50:51 [http-nio-8704-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] [{DirectJDKLog.java} {173}] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 2019-07-01 16:50:51 [http-nio-8704-exec-1] o.s.web.servlet.DispatcherServlet [{FrameworkServlet.java} {524}] - Initializing Servlet 'dispatcherServlet'
+[INFO ] 2019-07-01 16:50:51 [http-nio-8704-exec-1] o.s.web.servlet.DispatcherServlet [{FrameworkServlet.java} {546}] - Completed initialization in 27 ms
+[INFO ] 2019-07-01 16:50:51 [Thread-7] o.s.c.n.e.s.EurekaServiceRegistry [{EurekaServiceRegistry.java} {65}] - Unregistering application PRODUCT with eureka with status DOWN
+[INFO ] 2019-07-01 16:50:51 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {826}] - DiscoveryClient_PRODUCT/10.112.203.43:product:8704: registering service...
+[INFO ] 2019-07-01 16:50:51 [Thread-7] o.s.i.endpoint.EventDrivenConsumer [{EventDrivenConsumer.java} {107}] - Removing {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+[INFO ] 2019-07-01 16:50:51 [Thread-7] o.s.i.c.PublishSubscribeChannel [{AbstractSubscribableChannel.java} {64}] - Channel 'application-1.errorChannel' has 0 subscriber(s).
+[INFO ] 2019-07-01 16:50:51 [Thread-7] o.s.i.endpoint.EventDrivenConsumer [{AbstractEndpoint.java} {193}] - stopped _org.springframework.integration.errorLogger
+[INFO ] 2019-07-01 16:50:51 [Thread-7] o.s.s.c.ThreadPoolTaskExecutor [{ExecutorConfigurationSupport.java} {208}] - Shutting down ExecutorService 'applicationTaskExecutor'
+[INFO ] 2019-07-01 16:50:51 [Thread-7] o.s.s.c.ThreadPoolTaskScheduler [{ExecutorConfigurationSupport.java} {208}] - Shutting down ExecutorService 'taskScheduler'
+[INFO ] 2019-07-01 16:50:51 [Thread-7] o.s.i.m.IntegrationMBeanExporter [{IntegrationMBeanExporter.java} {495}] - Summary on shutdown: errorChannel
+[INFO ] 2019-07-01 16:50:51 [Thread-7] o.s.i.m.IntegrationMBeanExporter [{IntegrationMBeanExporter.java} {495}] - Summary on shutdown: hystrixStreamOutput
+[INFO ] 2019-07-01 16:50:51 [Thread-7] o.s.i.m.IntegrationMBeanExporter [{IntegrationMBeanExporter.java} {495}] - Summary on shutdown: nullChannel
+[INFO ] 2019-07-01 16:50:51 [Thread-7] o.s.i.m.IntegrationMBeanExporter [{IntegrationMBeanExporter.java} {498}] - Summary on shutdown: _org.springframework.integration.errorLogger.handler
+[INFO ] 2019-07-01 16:50:51 [Thread-7] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {888}] - Shutting down DiscoveryClient ...
+[INFO ] 2019-07-01 16:50:51 [Thread-7] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {922}] - Unregistering ...
+[INFO ] 2019-07-01 16:50:51 [Thread-7] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {911}] - Completed shut down of DiscoveryClient
+[INFO ] 2019-07-01 16:57:02 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$b1be5d39] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-07-01 16:57:13 [main] o.s.c.c.c.ConfigServicePropertySourceLocator [{ConfigServicePropertySourceLocator.java} {207}] - Fetching config from server at : http://localhost:8888
+[INFO ] 2019-07-01 16:57:13 [main] o.s.c.c.c.ConfigServicePropertySourceLocator [{ConfigServicePropertySourceLocator.java} {230}] - Connect Timeout Exception on Url - http://localhost:8888. Will be trying the next url if available
+[INFO ] 2019-07-01 16:57:13 [main] org.yugh.product.ProductApplication [{SpringApplication.java} {679}] - The following profiles are active: dev
+[INFO ] 2019-07-01 16:57:13 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {244}] - Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO ] 2019-07-01 16:57:13 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {126}] - Bootstrapping Spring Data repositories in DEFAULT mode.
+[INFO ] 2019-07-01 16:57:13 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {182}] - Finished Spring Data repository scanning in 5ms. Found 0 repository interfaces.
+[INFO ] 2019-07-01 16:57:13 [main] o.s.cloud.context.scope.GenericScope [{GenericScope.java} {295}] - BeanFactory id=d859b246-b571-3f33-a716-811422674aa3
+[INFO ] 2019-07-01 16:57:13 [main] o.s.i.c.DefaultConfiguringBeanFactoryPostProcessor [{DefaultConfiguringBeanFactoryPostProcessor.java} {188}] - No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+[INFO ] 2019-07-01 16:57:13 [main] o.s.i.c.DefaultConfiguringBeanFactoryPostProcessor [{DefaultConfiguringBeanFactoryPostProcessor.java} {426}] - No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+[INFO ] 2019-07-01 16:57:13 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'integrationDisposableAutoCreatedBeans' of type [org.springframework.integration.config.annotation.Disposables] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-07-01 16:57:13 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'org.springframework.integration.config.IntegrationManagementConfiguration' of type [org.springframework.integration.config.IntegrationManagementConfiguration$$EnhancerBySpringCGLIB$$96156b] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-07-01 16:57:13 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'org.springframework.boot.autoconfigure.integration.IntegrationAutoConfiguration$IntegrationJmxConfiguration' of type [org.springframework.boot.autoconfigure.integration.IntegrationAutoConfiguration$IntegrationJmxConfiguration$$EnhancerBySpringCGLIB$$dc28208b] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-07-01 16:57:13 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration' of type [org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration$$EnhancerBySpringCGLIB$$150fc958] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-07-01 16:57:13 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'mbeanServer' of type [com.sun.jmx.mbeanserver.JmxMBeanServer] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-07-01 16:57:13 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$b1be5d39] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-07-01 16:57:13 [main] o.s.b.w.e.tomcat.TomcatWebServer [{TomcatWebServer.java} {90}] - Tomcat initialized with port(s): 8704 (http)
+[INFO ] 2019-07-01 16:57:13 [main] o.a.coyote.http11.Http11NioProtocol [{DirectJDKLog.java} {173}] - Initializing ProtocolHandler ["http-nio-8704"]
+[INFO ] 2019-07-01 16:57:13 [main] o.a.catalina.core.StandardService [{DirectJDKLog.java} {173}] - Starting service [Tomcat]
+[INFO ] 2019-07-01 16:57:13 [main] o.a.catalina.core.StandardEngine [{DirectJDKLog.java} {173}] - Starting Servlet engine: [Apache Tomcat/9.0.19]
+[INFO ] 2019-07-01 16:57:13 [main] o.a.c.c.C.[Tomcat].[localhost].[/] [{DirectJDKLog.java} {173}] - Initializing Spring embedded WebApplicationContext
+[INFO ] 2019-07-01 16:57:13 [main] o.s.web.context.ContextLoader [{ServletWebServerApplicationContext.java} {296}] - Root WebApplicationContext: initialization completed in 2540 ms
+[INFO ] 2019-07-01 16:57:13 [main] c.n.c.sources.URLConfigurationSource [{URLConfigurationSource.java} {126}] - URLs to be used as dynamic configuration source: [file:/Users/yuzhilin/IdeaProjects/spring-cloud/product/target/classes/config.properties]
+[INFO ] 2019-07-01 16:57:13 [main] c.n.config.DynamicPropertyFactory [{DynamicPropertyFactory.java} {281}] - DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@6889f56f
+[INFO ] 2019-07-01 16:57:13 [main] o.s.s.c.ThreadPoolTaskScheduler [{ExecutorConfigurationSupport.java} {171}] - Initializing ExecutorService 'taskScheduler'
+[INFO ] 2019-07-01 16:57:13 [main] o.s.b.a.e.w.ServletEndpointRegistrar [{ServletEndpointRegistrar.java} {78}] - Registered '/actuator/hystrix.stream' to hystrix.stream-actuator-endpoint
+[INFO ] 2019-07-01 16:57:13 [main] c.n.c.sources.URLConfigurationSource [{URLConfigurationSource.java} {126}] - URLs to be used as dynamic configuration source: [file:/Users/yuzhilin/IdeaProjects/spring-cloud/product/target/classes/config.properties]
+[INFO ] 2019-07-01 16:57:13 [main] o.s.s.c.ThreadPoolTaskExecutor [{ExecutorConfigurationSupport.java} {171}] - Initializing ExecutorService 'applicationTaskExecutor'
+[INFO ] 2019-07-01 16:57:13 [main] o.s.b.a.e.web.EndpointLinksResolver [{EndpointLinksResolver.java} {59}] - Exposing 1 endpoint(s) beneath base path '/actuator'
+[INFO ] 2019-07-01 16:57:13 [main] o.s.i.m.IntegrationMBeanExporter [{IntegrationMBeanExporter.java} {767}] - Registering MessageChannel nullChannel
+[INFO ] 2019-07-01 16:57:13 [main] o.s.i.m.IntegrationMBeanExporter [{IntegrationMBeanExporter.java} {767}] - Registering MessageChannel hystrixStreamOutput
+[INFO ] 2019-07-01 16:57:13 [main] o.s.i.m.IntegrationMBeanExporter [{IntegrationMBeanExporter.java} {767}] - Registering MessageChannel errorChannel
+[INFO ] 2019-07-01 16:57:13 [main] o.s.i.m.IntegrationMBeanExporter [{IntegrationMBeanExporter.java} {785}] - Registering MessageHandler errorLogger
+[INFO ] 2019-07-01 16:57:13 [main] o.s.i.endpoint.EventDrivenConsumer [{EventDrivenConsumer.java} {107}] - Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+[INFO ] 2019-07-01 16:57:13 [main] o.s.i.c.PublishSubscribeChannel [{AbstractSubscribableChannel.java} {64}] - Channel 'application-1.errorChannel' has 1 subscriber(s).
+[INFO ] 2019-07-01 16:57:13 [main] o.s.i.endpoint.EventDrivenConsumer [{AbstractEndpoint.java} {159}] - started _org.springframework.integration.errorLogger
+[INFO ] 2019-07-01 16:57:30 [main] o.s.c.c.c.ConfigServicePropertySourceLocator [{ConfigServicePropertySourceLocator.java} {207}] - Fetching config from server at : http://localhost:8888
+[INFO ] 2019-07-01 16:57:30 [main] o.s.c.c.c.ConfigServicePropertySourceLocator [{ConfigServicePropertySourceLocator.java} {230}] - Connect Timeout Exception on Url - http://localhost:8888. Will be trying the next url if available
+[INFO ] 2019-07-01 16:57:30 [main] o.s.a.r.c.CachingConnectionFactory [{AbstractConnectionFactory.java} {460}] - Attempting to connect to: [localhost:5672]
+[INFO ] 2019-07-01 16:57:30 [main] o.s.c.s.m.DirectWithAttributesChannel [{AbstractSubscribableChannel.java} {64}] - Channel 'application-1.hystrixStreamOutput' has 1 subscriber(s).
+[INFO ] 2019-07-01 16:57:30 [main] o.s.c.n.eureka.InstanceInfoFactory [{InstanceInfoFactory.java} {72}] - Setting initial instance status as: STARTING
+[INFO ] 2019-07-01 16:57:30 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {349}] - Initializing Eureka in region us-east-1
+[INFO ] 2019-07-01 16:57:30 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {70}] - Using JSON encoding codec LegacyJacksonJson
+[INFO ] 2019-07-01 16:57:30 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {71}] - Using JSON decoding codec LegacyJacksonJson
+[INFO ] 2019-07-01 16:57:30 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {80}] - Using XML encoding codec XStreamXml
+[INFO ] 2019-07-01 16:57:30 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {81}] - Using XML decoding codec XStreamXml
+[INFO ] 2019-07-01 16:57:30 [main] c.n.d.s.r.aws.ConfigClusterResolver [{ConfigClusterResolver.java} {43}] - Resolving eureka endpoints via configuration
+[INFO ] 2019-07-01 16:57:30 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {958}] - Disable delta property : false
+[INFO ] 2019-07-01 16:57:30 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {959}] - Single vip registry refresh property : null
+[INFO ] 2019-07-01 16:57:30 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {960}] - Force full registry fetch : false
+[INFO ] 2019-07-01 16:57:30 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {961}] - Application is null : false
+[INFO ] 2019-07-01 16:57:30 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {962}] - Registered Applications size is zero : true
+[INFO ] 2019-07-01 16:57:30 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {964}] - Application version is -1: true
+[INFO ] 2019-07-01 16:57:30 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1047}] - Getting all instance registry info from the eureka server
+[INFO ] 2019-07-01 16:57:30 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1056}] - The response status is 200
+[INFO ] 2019-07-01 16:57:30 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1270}] - Starting heartbeat executor: renew interval is: 30
+[INFO ] 2019-07-01 16:57:30 [main] c.n.discovery.InstanceInfoReplicator [{InstanceInfoReplicator.java} {60}] - InstanceInfoReplicator onDemand update allowed rate per min is 4
+[INFO ] 2019-07-01 16:57:30 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {449}] - Discovery Client initialized at timestamp 1561971461284 with initial instances count: 1
+[INFO ] 2019-07-01 16:57:30 [main] o.s.c.n.e.s.EurekaServiceRegistry [{EurekaServiceRegistry.java} {41}] - Registering application PRODUCT with eureka with status UP
+[INFO ] 2019-07-01 16:57:30 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1305}] - Saw local status change event StatusChangeEvent [timestamp=1561971461295, current=UP, previous=STARTING]
+[INFO ] 2019-07-01 16:57:30 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {826}] - DiscoveryClient_PRODUCT/10.112.203.43:product:8704: registering service...
+[INFO ] 2019-07-01 16:57:30 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {835}] - DiscoveryClient_PRODUCT/10.112.203.43:product:8704 - registration status: 204
+[INFO ] 2019-07-01 16:57:30 [main] o.a.coyote.http11.Http11NioProtocol [{DirectJDKLog.java} {173}] - Starting ProtocolHandler ["http-nio-8704"]
+[INFO ] 2019-07-01 16:57:30 [main] o.s.b.w.e.tomcat.TomcatWebServer [{TomcatWebServer.java} {204}] - Tomcat started on port(s): 8704 (http) with context path ''
+[INFO ] 2019-07-01 16:57:30 [main] o.s.c.n.e.s.EurekaAutoServiceRegistration [{EurekaAutoServiceRegistration.java} {143}] - Updating port to 8704
+[INFO ] 2019-07-01 16:57:30 [main] org.yugh.product.ProductApplication [{StartupInfoLogger.java} {59}] - Started ProductApplication in 49.057 seconds (JVM running for 59.65)
+[INFO ] 2019-07-01 16:57:30 [http-nio-8704-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/] [{DirectJDKLog.java} {173}] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 2019-07-01 16:57:30 [http-nio-8704-exec-2] o.s.web.servlet.DispatcherServlet [{FrameworkServlet.java} {524}] - Initializing Servlet 'dispatcherServlet'
+[INFO ] 2019-07-01 16:57:30 [http-nio-8704-exec-2] o.s.web.servlet.DispatcherServlet [{FrameworkServlet.java} {546}] - Completed initialization in 27 ms
+[INFO ] 2019-07-01 16:57:30 [http-nio-8704-exec-6] o.y.p.controller.IndexController [{IndexController.java} {26}] - ========> url:/index1

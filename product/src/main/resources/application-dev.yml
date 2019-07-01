@@ -1,11 +1,11 @@
 spring:
   application:
     name: product
-  cloud:
-    config:
-      discovery:
-        enabled: true
-        service-id: config
+  #cloud:
+  #  config:
+   #   discovery:
+   #     enabled: true
+   #     service-id: config
 
 
 #eureka-gateway-monitor-config 每个端口+1
@@ -31,3 +31,4 @@ management:
     web:
       exposure:
         include: hystrix.stream
+

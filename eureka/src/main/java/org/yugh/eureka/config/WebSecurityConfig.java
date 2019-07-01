@@ -12,8 +12,8 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 
 /**
  * //
- * 1: 使用Spring Security是比较方便的，不需要重写很多自定义的拦截代码
- * 2: MVC的 WebMvcConfigurationSupport 或者 HandlerInterceptor 自定义拦截器需要手动重写，用在springboot架构上不合适
+ * 1: 使用Spring Security不需要重写很多自定义的拦截代码
+ * 2: 比如MVC的 WebMvcConfigurationSupport 或者 HandlerInterceptor
  *
  * @author: 余根海
  * @creation: 2019-06-30 19:14
@@ -56,6 +56,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.headers().cacheControl();
     }
 
+    /**
+     * 跳过静态资源防止页面异常
+     * @param web
+     */
     @Override
     public void configure(WebSecurity web) {
         web

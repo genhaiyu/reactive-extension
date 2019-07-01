@@ -1,0 +1,818 @@
+[INFO ] 2019-07-01 12:18:30 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$6036afaf] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-07-01 12:18:31 [main] o.s.c.c.c.ConfigServicePropertySourceLocator [{ConfigServicePropertySourceLocator.java} {207}] - Fetching config from server at : http://localhost:8888
+[INFO ] 2019-07-01 12:18:31 [main] o.s.c.c.c.ConfigServicePropertySourceLocator [{ConfigServicePropertySourceLocator.java} {230}] - Connect Timeout Exception on Url - http://localhost:8888. Will be trying the next url if available
+[INFO ] 2019-07-01 12:18:31 [main] org.yugh.gateway.GatewayApplication [{SpringApplication.java} {679}] - The following profiles are active: dev
+[INFO ] 2019-07-01 12:18:31 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {244}] - Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO ] 2019-07-01 12:18:31 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {126}] - Bootstrapping Spring Data repositories in DEFAULT mode.
+[INFO ] 2019-07-01 12:18:31 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {182}] - Finished Spring Data repository scanning in 13ms. Found 0 repository interfaces.
+[INFO ] 2019-07-01 12:18:31 [main] o.s.cloud.context.scope.GenericScope [{GenericScope.java} {295}] - BeanFactory id=672df5ea-a1f3-360e-b12e-18565dba665a
+[INFO ] 2019-07-01 12:18:31 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$6036afaf] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-07-01 12:18:31 [main] o.s.b.w.e.tomcat.TomcatWebServer [{TomcatWebServer.java} {90}] - Tomcat initialized with port(s): 8702 (http)
+[INFO ] 2019-07-01 12:18:31 [main] o.a.coyote.http11.Http11NioProtocol [{DirectJDKLog.java} {173}] - Initializing ProtocolHandler ["http-nio-8702"]
+[INFO ] 2019-07-01 12:18:31 [main] o.a.catalina.core.StandardService [{DirectJDKLog.java} {173}] - Starting service [Tomcat]
+[INFO ] 2019-07-01 12:18:31 [main] o.a.catalina.core.StandardEngine [{DirectJDKLog.java} {173}] - Starting Servlet engine: [Apache Tomcat/9.0.19]
+[INFO ] 2019-07-01 12:18:31 [main] o.a.c.c.C.[Tomcat].[localhost].[/] [{DirectJDKLog.java} {173}] - Initializing Spring embedded WebApplicationContext
+[INFO ] 2019-07-01 12:18:31 [main] o.s.web.context.ContextLoader [{ServletWebServerApplicationContext.java} {296}] - Root WebApplicationContext: initialization completed in 1966 ms
+[INFO ] 2019-07-01 12:18:31 [main] c.n.c.sources.URLConfigurationSource [{URLConfigurationSource.java} {126}] - URLs to be used as dynamic configuration source: [file:/Users/yuzhilin/IdeaProjects/spring-cloud/gateway/target/classes/config.properties]
+[INFO ] 2019-07-01 12:18:31 [main] c.n.config.DynamicPropertyFactory [{DynamicPropertyFactory.java} {281}] - DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@2f054f70
+[INFO ] 2019-07-01 12:18:31 [main] org.yugh.gateway.config.RedisClient [{RedisClient.java} {32}] - =============> redis run ............
+[INFO ] 2019-07-01 12:18:31 [main] c.n.c.sources.URLConfigurationSource [{URLConfigurationSource.java} {126}] - URLs to be used as dynamic configuration source: [file:/Users/yuzhilin/IdeaProjects/spring-cloud/gateway/target/classes/config.properties]
+[INFO ] 2019-07-01 12:18:31 [main] o.s.s.c.ThreadPoolTaskExecutor [{ExecutorConfigurationSupport.java} {171}] - Initializing ExecutorService 'applicationTaskExecutor'
+[INFO ] 2019-07-01 12:18:31 [main] o.s.c.n.zuul.ZuulFilterInitializer [{ZuulFilterInitializer.java} {67}] - Starting filter initializer
+[INFO ] 2019-07-01 12:18:31 [main] o.s.b.a.e.web.EndpointLinksResolver [{EndpointLinksResolver.java} {59}] - Exposing 2 endpoint(s) beneath base path '/actuator'
+[INFO ] 2019-07-01 12:18:31 [main] o.s.c.n.eureka.InstanceInfoFactory [{InstanceInfoFactory.java} {72}] - Setting initial instance status as: STARTING
+[INFO ] 2019-07-01 12:18:31 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {349}] - Initializing Eureka in region us-east-1
+[INFO ] 2019-07-01 12:18:31 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {70}] - Using JSON encoding codec LegacyJacksonJson
+[INFO ] 2019-07-01 12:18:31 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {71}] - Using JSON decoding codec LegacyJacksonJson
+[INFO ] 2019-07-01 12:18:31 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {80}] - Using XML encoding codec XStreamXml
+[INFO ] 2019-07-01 12:18:31 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {81}] - Using XML decoding codec XStreamXml
+[INFO ] 2019-07-01 12:18:31 [main] c.n.d.s.r.aws.ConfigClusterResolver [{ConfigClusterResolver.java} {43}] - Resolving eureka endpoints via configuration
+[INFO ] 2019-07-01 12:18:31 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {958}] - Disable delta property : false
+[INFO ] 2019-07-01 12:18:31 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {959}] - Single vip registry refresh property : null
+[INFO ] 2019-07-01 12:18:31 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {960}] - Force full registry fetch : false
+[INFO ] 2019-07-01 12:18:31 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {961}] - Application is null : false
+[INFO ] 2019-07-01 12:18:31 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {962}] - Registered Applications size is zero : true
+[INFO ] 2019-07-01 12:18:31 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {964}] - Application version is -1: true
+[INFO ] 2019-07-01 12:18:31 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1047}] - Getting all instance registry info from the eureka server
+[INFO ] 2019-07-01 12:18:31 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1056}] - The response status is 200
+[INFO ] 2019-07-01 12:18:31 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1270}] - Starting heartbeat executor: renew interval is: 5
+[INFO ] 2019-07-01 12:18:31 [main] c.n.discovery.InstanceInfoReplicator [{InstanceInfoReplicator.java} {60}] - InstanceInfoReplicator onDemand update allowed rate per min is 4
+[INFO ] 2019-07-01 12:18:31 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {449}] - Discovery Client initialized at timestamp 1561954717647 with initial instances count: 0
+[INFO ] 2019-07-01 12:18:31 [main] o.s.c.n.e.s.EurekaServiceRegistry [{EurekaServiceRegistry.java} {41}] - Registering application GATEWAY with eureka with status UP
+[INFO ] 2019-07-01 12:18:31 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1305}] - Saw local status change event StatusChangeEvent [timestamp=1561954717655, current=UP, previous=STARTING]
+[INFO ] 2019-07-01 12:18:31 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {826}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702: registering service...
+[INFO ] 2019-07-01 12:18:31 [main] o.a.coyote.http11.Http11NioProtocol [{DirectJDKLog.java} {173}] - Starting ProtocolHandler ["http-nio-8702"]
+[INFO ] 2019-07-01 12:18:31 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {835}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702 - registration status: 204
+[INFO ] 2019-07-01 12:18:31 [main] o.s.b.w.e.tomcat.TomcatWebServer [{TomcatWebServer.java} {204}] - Tomcat started on port(s): 8702 (http) with context path ''
+[INFO ] 2019-07-01 12:18:31 [main] o.s.c.n.e.s.EurekaAutoServiceRegistration [{EurekaAutoServiceRegistration.java} {143}] - Updating port to 8702
+[INFO ] 2019-07-01 12:18:31 [main] org.yugh.gateway.GatewayApplication [{StartupInfoLogger.java} {59}] - Started GatewayApplication in 7.267 seconds (JVM running for 13.261)
+[INFO ] 2019-07-01 12:18:31 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {958}] - Disable delta property : false
+[INFO ] 2019-07-01 12:18:31 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {959}] - Single vip registry refresh property : null
+[INFO ] 2019-07-01 12:18:31 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {960}] - Force full registry fetch : false
+[INFO ] 2019-07-01 12:18:31 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {961}] - Application is null : false
+[INFO ] 2019-07-01 12:18:31 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {962}] - Registered Applications size is zero : true
+[INFO ] 2019-07-01 12:18:31 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {964}] - Application version is -1: false
+[INFO ] 2019-07-01 12:18:31 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1047}] - Getting all instance registry info from the eureka server
+[INFO ] 2019-07-01 12:18:31 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1056}] - The response status is 200
+[INFO ] 2019-07-01 12:18:31 [Thread-7] o.s.c.n.e.s.EurekaServiceRegistry [{EurekaServiceRegistry.java} {65}] - Unregistering application GATEWAY with eureka with status DOWN
+[INFO ] 2019-07-01 12:18:31 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {826}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702: registering service...
+[INFO ] 2019-07-01 12:18:31 [Thread-7] o.s.c.n.zuul.ZuulFilterInitializer [{ZuulFilterInitializer.java} {79}] - Stopping filter initializer
+[INFO ] 2019-07-01 12:18:31 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {835}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702 - registration status: 204
+[INFO ] 2019-07-01 12:18:31 [Thread-7] o.s.s.c.ThreadPoolTaskExecutor [{ExecutorConfigurationSupport.java} {208}] - Shutting down ExecutorService 'applicationTaskExecutor'
+[INFO ] 2019-07-01 12:18:31 [Thread-7] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {888}] - Shutting down DiscoveryClient ...
+[INFO ] 2019-07-01 12:18:31 [Thread-7] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {922}] - Unregistering ...
+[INFO ] 2019-07-01 12:18:31 [Thread-7] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {924}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702 - deregister  status: 200
+[INFO ] 2019-07-01 12:18:31 [Thread-7] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {911}] - Completed shut down of DiscoveryClient
+[INFO ] 2019-07-01 12:19:59 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$bae89312] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-07-01 12:19:59 [main] o.s.c.c.c.ConfigServicePropertySourceLocator [{ConfigServicePropertySourceLocator.java} {207}] - Fetching config from server at : http://localhost:8888
+[INFO ] 2019-07-01 12:19:59 [main] o.s.c.c.c.ConfigServicePropertySourceLocator [{ConfigServicePropertySourceLocator.java} {230}] - Connect Timeout Exception on Url - http://localhost:8888. Will be trying the next url if available
+[INFO ] 2019-07-01 12:19:59 [main] org.yugh.gateway.GatewayApplication [{SpringApplication.java} {679}] - The following profiles are active: dev
+[INFO ] 2019-07-01 12:19:59 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {244}] - Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO ] 2019-07-01 12:19:59 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {126}] - Bootstrapping Spring Data repositories in DEFAULT mode.
+[INFO ] 2019-07-01 12:19:59 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {182}] - Finished Spring Data repository scanning in 9ms. Found 0 repository interfaces.
+[INFO ] 2019-07-01 12:19:59 [main] o.s.cloud.context.scope.GenericScope [{GenericScope.java} {295}] - BeanFactory id=672df5ea-a1f3-360e-b12e-18565dba665a
+[INFO ] 2019-07-01 12:19:59 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$bae89312] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-07-01 12:19:59 [main] o.s.b.w.e.tomcat.TomcatWebServer [{TomcatWebServer.java} {90}] - Tomcat initialized with port(s): 8702 (http)
+[INFO ] 2019-07-01 12:19:59 [main] o.a.coyote.http11.Http11NioProtocol [{DirectJDKLog.java} {173}] - Initializing ProtocolHandler ["http-nio-8702"]
+[INFO ] 2019-07-01 12:19:59 [main] o.a.catalina.core.StandardService [{DirectJDKLog.java} {173}] - Starting service [Tomcat]
+[INFO ] 2019-07-01 12:19:59 [main] o.a.catalina.core.StandardEngine [{DirectJDKLog.java} {173}] - Starting Servlet engine: [Apache Tomcat/9.0.19]
+[INFO ] 2019-07-01 12:19:59 [main] o.a.c.c.C.[Tomcat].[localhost].[/] [{DirectJDKLog.java} {173}] - Initializing Spring embedded WebApplicationContext
+[INFO ] 2019-07-01 12:19:59 [main] o.s.web.context.ContextLoader [{ServletWebServerApplicationContext.java} {296}] - Root WebApplicationContext: initialization completed in 1936 ms
+[INFO ] 2019-07-01 12:19:59 [main] c.n.c.sources.URLConfigurationSource [{URLConfigurationSource.java} {126}] - URLs to be used as dynamic configuration source: [file:/Users/yuzhilin/IdeaProjects/spring-cloud/gateway/target/classes/config.properties]
+[INFO ] 2019-07-01 12:19:59 [main] c.n.config.DynamicPropertyFactory [{DynamicPropertyFactory.java} {281}] - DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@30bbcf91
+[INFO ] 2019-07-01 12:19:59 [main] org.yugh.gateway.config.RedisClient [{RedisClient.java} {32}] - =============> redis run ............
+[INFO ] 2019-07-01 12:19:59 [main] c.n.c.sources.URLConfigurationSource [{URLConfigurationSource.java} {126}] - URLs to be used as dynamic configuration source: [file:/Users/yuzhilin/IdeaProjects/spring-cloud/gateway/target/classes/config.properties]
+[INFO ] 2019-07-01 12:19:59 [main] o.s.s.c.ThreadPoolTaskExecutor [{ExecutorConfigurationSupport.java} {171}] - Initializing ExecutorService 'applicationTaskExecutor'
+[INFO ] 2019-07-01 12:19:59 [main] o.s.c.n.zuul.ZuulFilterInitializer [{ZuulFilterInitializer.java} {67}] - Starting filter initializer
+[INFO ] 2019-07-01 12:19:59 [main] o.s.b.a.e.web.EndpointLinksResolver [{EndpointLinksResolver.java} {59}] - Exposing 2 endpoint(s) beneath base path '/actuator'
+[INFO ] 2019-07-01 12:19:59 [main] o.s.c.n.eureka.InstanceInfoFactory [{InstanceInfoFactory.java} {72}] - Setting initial instance status as: STARTING
+[INFO ] 2019-07-01 12:19:59 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {349}] - Initializing Eureka in region us-east-1
+[INFO ] 2019-07-01 12:19:59 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {70}] - Using JSON encoding codec LegacyJacksonJson
+[INFO ] 2019-07-01 12:19:59 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {71}] - Using JSON decoding codec LegacyJacksonJson
+[INFO ] 2019-07-01 12:19:59 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {80}] - Using XML encoding codec XStreamXml
+[INFO ] 2019-07-01 12:19:59 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {81}] - Using XML decoding codec XStreamXml
+[INFO ] 2019-07-01 12:19:59 [main] c.n.d.s.r.aws.ConfigClusterResolver [{ConfigClusterResolver.java} {43}] - Resolving eureka endpoints via configuration
+[INFO ] 2019-07-01 12:19:59 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {958}] - Disable delta property : false
+[INFO ] 2019-07-01 12:19:59 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {959}] - Single vip registry refresh property : null
+[INFO ] 2019-07-01 12:19:59 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {960}] - Force full registry fetch : false
+[INFO ] 2019-07-01 12:19:59 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {961}] - Application is null : false
+[INFO ] 2019-07-01 12:19:59 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {962}] - Registered Applications size is zero : true
+[INFO ] 2019-07-01 12:19:59 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {964}] - Application version is -1: true
+[INFO ] 2019-07-01 12:19:59 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1047}] - Getting all instance registry info from the eureka server
+[INFO ] 2019-07-01 12:19:59 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1056}] - The response status is 200
+[INFO ] 2019-07-01 12:19:59 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1270}] - Starting heartbeat executor: renew interval is: 5
+[INFO ] 2019-07-01 12:19:59 [main] c.n.discovery.InstanceInfoReplicator [{InstanceInfoReplicator.java} {60}] - InstanceInfoReplicator onDemand update allowed rate per min is 4
+[INFO ] 2019-07-01 12:19:59 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {449}] - Discovery Client initialized at timestamp 1561954805571 with initial instances count: 1
+[INFO ] 2019-07-01 12:19:59 [main] o.s.c.n.e.s.EurekaServiceRegistry [{EurekaServiceRegistry.java} {41}] - Registering application GATEWAY with eureka with status UP
+[INFO ] 2019-07-01 12:19:59 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1305}] - Saw local status change event StatusChangeEvent [timestamp=1561954805581, current=UP, previous=STARTING]
+[INFO ] 2019-07-01 12:19:59 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {826}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702: registering service...
+[INFO ] 2019-07-01 12:19:59 [main] o.a.coyote.http11.Http11NioProtocol [{DirectJDKLog.java} {173}] - Starting ProtocolHandler ["http-nio-8702"]
+[INFO ] 2019-07-01 12:19:59 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {835}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702 - registration status: 204
+[INFO ] 2019-07-01 12:19:59 [main] o.s.b.w.e.tomcat.TomcatWebServer [{TomcatWebServer.java} {204}] - Tomcat started on port(s): 8702 (http) with context path ''
+[INFO ] 2019-07-01 12:19:59 [main] o.s.c.n.e.s.EurekaAutoServiceRegistration [{EurekaAutoServiceRegistration.java} {143}] - Updating port to 8702
+[INFO ] 2019-07-01 12:19:59 [main] org.yugh.gateway.GatewayApplication [{StartupInfoLogger.java} {59}] - Started GatewayApplication in 6.946 seconds (JVM running for 12.516)
+[INFO ] 2019-07-01 12:19:59 [RMI TCP Connection(3)-10.112.203.43] o.a.c.c.C.[Tomcat].[localhost].[/] [{DirectJDKLog.java} {173}] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 2019-07-01 12:19:59 [RMI TCP Connection(3)-10.112.203.43] o.s.web.servlet.DispatcherServlet [{FrameworkServlet.java} {524}] - Initializing Servlet 'dispatcherServlet'
+[INFO ] 2019-07-01 12:19:59 [RMI TCP Connection(2)-10.112.203.43] o.s.c.c.c.ConfigServicePropertySourceLocator [{ConfigServicePropertySourceLocator.java} {207}] - Fetching config from server at : http://localhost:8888
+[INFO ] 2019-07-01 12:19:59 [RMI TCP Connection(2)-10.112.203.43] o.s.c.c.c.ConfigServicePropertySourceLocator [{ConfigServicePropertySourceLocator.java} {230}] - Connect Timeout Exception on Url - http://localhost:8888. Will be trying the next url if available
+[INFO ] 2019-07-01 12:19:59 [RMI TCP Connection(3)-10.112.203.43] o.s.web.servlet.DispatcherServlet [{FrameworkServlet.java} {546}] - Completed initialization in 19 ms
+[INFO ] 2019-07-01 12:19:59 [parallel-1] io.lettuce.core.EpollProvider [{EpollProvider.java} {68}] - Starting without optional epoll library
+[INFO ] 2019-07-01 12:19:59 [parallel-1] io.lettuce.core.KqueueProvider [{KqueueProvider.java} {70}] - Starting without optional kqueue library
+[INFO ] 2019-07-01 12:19:59 [Thread-21] o.s.c.n.e.s.EurekaServiceRegistry [{EurekaServiceRegistry.java} {65}] - Unregistering application GATEWAY with eureka with status DOWN
+[INFO ] 2019-07-01 12:19:59 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {826}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702: registering service...
+[INFO ] 2019-07-01 12:19:59 [Thread-21] o.s.c.n.zuul.ZuulFilterInitializer [{ZuulFilterInitializer.java} {79}] - Stopping filter initializer
+[INFO ] 2019-07-01 12:19:59 [Thread-21] o.s.s.c.ThreadPoolTaskExecutor [{ExecutorConfigurationSupport.java} {208}] - Shutting down ExecutorService 'applicationTaskExecutor'
+[INFO ] 2019-07-01 12:19:59 [Thread-21] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {888}] - Shutting down DiscoveryClient ...
+[INFO ] 2019-07-01 12:19:59 [Thread-21] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {922}] - Unregistering ...
+[INFO ] 2019-07-01 12:19:59 [Thread-21] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {911}] - Completed shut down of DiscoveryClient
+[INFO ] 2019-07-01 14:32:16 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$dfc6535c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-07-01 14:32:27 [main] org.yugh.gateway.GatewayApplication [{SpringApplication.java} {679}] - The following profiles are active: dev
+[INFO ] 2019-07-01 14:32:27 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {244}] - Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO ] 2019-07-01 14:32:27 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {126}] - Bootstrapping Spring Data repositories in DEFAULT mode.
+[INFO ] 2019-07-01 14:32:27 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {182}] - Finished Spring Data repository scanning in 17ms. Found 0 repository interfaces.
+[INFO ] 2019-07-01 14:32:27 [main] o.s.cloud.context.scope.GenericScope [{GenericScope.java} {295}] - BeanFactory id=8aa3238f-78d4-3b88-9c5e-5f0f93f71629
+[INFO ] 2019-07-01 14:32:27 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$dfc6535c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-07-01 14:32:27 [main] o.s.b.w.e.tomcat.TomcatWebServer [{TomcatWebServer.java} {90}] - Tomcat initialized with port(s): 8702 (http)
+[INFO ] 2019-07-01 14:32:27 [main] o.a.coyote.http11.Http11NioProtocol [{DirectJDKLog.java} {173}] - Initializing ProtocolHandler ["http-nio-8702"]
+[INFO ] 2019-07-01 14:32:27 [main] o.a.catalina.core.StandardService [{DirectJDKLog.java} {173}] - Starting service [Tomcat]
+[INFO ] 2019-07-01 14:32:27 [main] o.a.catalina.core.StandardEngine [{DirectJDKLog.java} {173}] - Starting Servlet engine: [Apache Tomcat/9.0.19]
+[INFO ] 2019-07-01 14:32:27 [main] o.a.c.c.C.[Tomcat].[localhost].[/] [{DirectJDKLog.java} {173}] - Initializing Spring embedded WebApplicationContext
+[INFO ] 2019-07-01 14:32:27 [main] o.s.web.context.ContextLoader [{ServletWebServerApplicationContext.java} {296}] - Root WebApplicationContext: initialization completed in 2049 ms
+[INFO ] 2019-07-01 14:32:27 [main] c.n.c.sources.URLConfigurationSource [{URLConfigurationSource.java} {126}] - URLs to be used as dynamic configuration source: [file:/Users/yuzhilin/IdeaProjects/spring-cloud/gateway/target/classes/config.properties]
+[INFO ] 2019-07-01 14:32:27 [main] c.n.config.DynamicPropertyFactory [{DynamicPropertyFactory.java} {281}] - DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@bb25753
+[INFO ] 2019-07-01 14:32:27 [main] org.yugh.gateway.config.RedisClient [{RedisClient.java} {32}] - =============> redis run ............
+[INFO ] 2019-07-01 14:32:27 [main] c.n.c.sources.URLConfigurationSource [{URLConfigurationSource.java} {126}] - URLs to be used as dynamic configuration source: [file:/Users/yuzhilin/IdeaProjects/spring-cloud/gateway/target/classes/config.properties]
+[INFO ] 2019-07-01 14:32:27 [main] o.s.s.c.ThreadPoolTaskExecutor [{ExecutorConfigurationSupport.java} {171}] - Initializing ExecutorService 'applicationTaskExecutor'
+[INFO ] 2019-07-01 14:32:27 [main] o.s.c.n.zuul.ZuulFilterInitializer [{ZuulFilterInitializer.java} {67}] - Starting filter initializer
+[INFO ] 2019-07-01 14:32:27 [main] o.s.b.a.e.web.EndpointLinksResolver [{EndpointLinksResolver.java} {59}] - Exposing 2 endpoint(s) beneath base path '/actuator'
+[INFO ] 2019-07-01 14:32:27 [main] o.s.c.n.eureka.InstanceInfoFactory [{InstanceInfoFactory.java} {72}] - Setting initial instance status as: STARTING
+[INFO ] 2019-07-01 14:32:27 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {349}] - Initializing Eureka in region us-east-1
+[INFO ] 2019-07-01 14:32:27 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {70}] - Using JSON encoding codec LegacyJacksonJson
+[INFO ] 2019-07-01 14:32:27 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {71}] - Using JSON decoding codec LegacyJacksonJson
+[INFO ] 2019-07-01 14:32:27 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {80}] - Using XML encoding codec XStreamXml
+[INFO ] 2019-07-01 14:32:27 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {81}] - Using XML decoding codec XStreamXml
+[INFO ] 2019-07-01 14:32:27 [main] c.n.d.s.r.aws.ConfigClusterResolver [{ConfigClusterResolver.java} {43}] - Resolving eureka endpoints via configuration
+[INFO ] 2019-07-01 14:32:27 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {958}] - Disable delta property : false
+[INFO ] 2019-07-01 14:32:27 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {959}] - Single vip registry refresh property : null
+[INFO ] 2019-07-01 14:32:27 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {960}] - Force full registry fetch : false
+[INFO ] 2019-07-01 14:32:27 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {961}] - Application is null : false
+[INFO ] 2019-07-01 14:32:27 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {962}] - Registered Applications size is zero : true
+[INFO ] 2019-07-01 14:32:27 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {964}] - Application version is -1: true
+[INFO ] 2019-07-01 14:32:27 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1047}] - Getting all instance registry info from the eureka server
+[INFO ] 2019-07-01 14:32:27 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1056}] - The response status is 200
+[INFO ] 2019-07-01 14:32:27 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1270}] - Starting heartbeat executor: renew interval is: 5
+[INFO ] 2019-07-01 14:32:27 [main] c.n.discovery.InstanceInfoReplicator [{InstanceInfoReplicator.java} {60}] - InstanceInfoReplicator onDemand update allowed rate per min is 4
+[INFO ] 2019-07-01 14:32:27 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {449}] - Discovery Client initialized at timestamp 1561962758484 with initial instances count: 0
+[INFO ] 2019-07-01 14:32:27 [main] o.s.c.n.e.s.EurekaServiceRegistry [{EurekaServiceRegistry.java} {41}] - Registering application GATEWAY with eureka with status UP
+[INFO ] 2019-07-01 14:32:27 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1305}] - Saw local status change event StatusChangeEvent [timestamp=1561962758497, current=UP, previous=STARTING]
+[INFO ] 2019-07-01 14:32:27 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {826}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702: registering service...
+[INFO ] 2019-07-01 14:32:27 [main] o.a.coyote.http11.Http11NioProtocol [{DirectJDKLog.java} {173}] - Starting ProtocolHandler ["http-nio-8702"]
+[INFO ] 2019-07-01 14:32:27 [main] o.s.b.w.e.tomcat.TomcatWebServer [{TomcatWebServer.java} {204}] - Tomcat started on port(s): 8702 (http) with context path ''
+[INFO ] 2019-07-01 14:32:27 [main] o.s.c.n.e.s.EurekaAutoServiceRegistration [{EurekaAutoServiceRegistration.java} {143}] - Updating port to 8702
+[INFO ] 2019-07-01 14:32:27 [main] org.yugh.gateway.GatewayApplication [{StartupInfoLogger.java} {59}] - Started GatewayApplication in 31.935 seconds (JVM running for 42.505)
+[INFO ] 2019-07-01 14:32:27 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {835}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702 - registration status: 204
+[INFO ] 2019-07-01 14:32:27 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {958}] - Disable delta property : false
+[INFO ] 2019-07-01 14:32:27 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {959}] - Single vip registry refresh property : null
+[INFO ] 2019-07-01 14:32:27 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {960}] - Force full registry fetch : false
+[INFO ] 2019-07-01 14:32:27 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {961}] - Application is null : false
+[INFO ] 2019-07-01 14:32:27 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {962}] - Registered Applications size is zero : true
+[INFO ] 2019-07-01 14:32:27 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {964}] - Application version is -1: false
+[INFO ] 2019-07-01 14:32:27 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1047}] - Getting all instance registry info from the eureka server
+[INFO ] 2019-07-01 14:32:27 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1056}] - The response status is 200
+[INFO ] 2019-07-01 14:32:27 [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver [{ConfigClusterResolver.java} {43}] - Resolving eureka endpoints via configuration
+[INFO ] 2019-07-01 14:32:27 [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver [{ConfigClusterResolver.java} {43}] - Resolving eureka endpoints via configuration
+[INFO ] 2019-07-01 14:32:27 [Thread-7] o.s.c.n.e.s.EurekaServiceRegistry [{EurekaServiceRegistry.java} {65}] - Unregistering application GATEWAY with eureka with status DOWN
+[INFO ] 2019-07-01 14:32:27 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {826}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702: registering service...
+[INFO ] 2019-07-01 14:32:27 [Thread-7] o.s.c.n.zuul.ZuulFilterInitializer [{ZuulFilterInitializer.java} {79}] - Stopping filter initializer
+[INFO ] 2019-07-01 14:32:27 [Thread-7] o.s.s.c.ThreadPoolTaskExecutor [{ExecutorConfigurationSupport.java} {208}] - Shutting down ExecutorService 'applicationTaskExecutor'
+[INFO ] 2019-07-01 14:32:27 [Thread-7] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {888}] - Shutting down DiscoveryClient ...
+[INFO ] 2019-07-01 14:32:27 [Thread-7] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {922}] - Unregistering ...
+[INFO ] 2019-07-01 14:32:27 [Thread-7] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {911}] - Completed shut down of DiscoveryClient
+[INFO ] 2019-07-01 14:49:50 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$7ff134f2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-07-01 14:49:50 [main] org.yugh.gateway.GatewayApplication [{SpringApplication.java} {679}] - The following profiles are active: dev
+[INFO ] 2019-07-01 14:49:50 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {244}] - Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO ] 2019-07-01 14:49:50 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {126}] - Bootstrapping Spring Data repositories in DEFAULT mode.
+[INFO ] 2019-07-01 14:49:50 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {182}] - Finished Spring Data repository scanning in 10ms. Found 0 repository interfaces.
+[INFO ] 2019-07-01 14:49:50 [main] o.s.cloud.context.scope.GenericScope [{GenericScope.java} {295}] - BeanFactory id=8aa3238f-78d4-3b88-9c5e-5f0f93f71629
+[INFO ] 2019-07-01 14:49:50 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$7ff134f2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-07-01 14:49:50 [main] o.s.b.w.e.tomcat.TomcatWebServer [{TomcatWebServer.java} {90}] - Tomcat initialized with port(s): 8702 (http)
+[INFO ] 2019-07-01 14:49:50 [main] o.a.coyote.http11.Http11NioProtocol [{DirectJDKLog.java} {173}] - Initializing ProtocolHandler ["http-nio-8702"]
+[INFO ] 2019-07-01 14:49:50 [main] o.a.catalina.core.StandardService [{DirectJDKLog.java} {173}] - Starting service [Tomcat]
+[INFO ] 2019-07-01 14:49:50 [main] o.a.catalina.core.StandardEngine [{DirectJDKLog.java} {173}] - Starting Servlet engine: [Apache Tomcat/9.0.19]
+[INFO ] 2019-07-01 14:49:50 [main] o.a.c.c.C.[Tomcat].[localhost].[/] [{DirectJDKLog.java} {173}] - Initializing Spring embedded WebApplicationContext
+[INFO ] 2019-07-01 14:49:50 [main] o.s.web.context.ContextLoader [{ServletWebServerApplicationContext.java} {296}] - Root WebApplicationContext: initialization completed in 1721 ms
+[INFO ] 2019-07-01 14:49:50 [main] c.n.c.sources.URLConfigurationSource [{URLConfigurationSource.java} {126}] - URLs to be used as dynamic configuration source: [file:/Users/yuzhilin/IdeaProjects/spring-cloud/gateway/target/classes/config.properties]
+[INFO ] 2019-07-01 14:49:50 [main] c.n.config.DynamicPropertyFactory [{DynamicPropertyFactory.java} {281}] - DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@59c500f7
+[INFO ] 2019-07-01 14:49:50 [main] org.yugh.gateway.config.RedisClient [{RedisClient.java} {32}] - =============> redis run ............
+[INFO ] 2019-07-01 14:49:50 [main] c.n.c.sources.URLConfigurationSource [{URLConfigurationSource.java} {126}] - URLs to be used as dynamic configuration source: [file:/Users/yuzhilin/IdeaProjects/spring-cloud/gateway/target/classes/config.properties]
+[INFO ] 2019-07-01 14:49:50 [main] o.s.s.c.ThreadPoolTaskExecutor [{ExecutorConfigurationSupport.java} {171}] - Initializing ExecutorService 'applicationTaskExecutor'
+[INFO ] 2019-07-01 14:49:50 [main] o.s.c.n.zuul.ZuulFilterInitializer [{ZuulFilterInitializer.java} {67}] - Starting filter initializer
+[INFO ] 2019-07-01 14:49:50 [main] o.s.b.a.e.web.EndpointLinksResolver [{EndpointLinksResolver.java} {59}] - Exposing 2 endpoint(s) beneath base path '/actuator'
+[INFO ] 2019-07-01 14:49:50 [main] o.s.c.n.eureka.InstanceInfoFactory [{InstanceInfoFactory.java} {72}] - Setting initial instance status as: STARTING
+[INFO ] 2019-07-01 14:49:50 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {349}] - Initializing Eureka in region us-east-1
+[INFO ] 2019-07-01 14:49:50 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {70}] - Using JSON encoding codec LegacyJacksonJson
+[INFO ] 2019-07-01 14:49:50 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {71}] - Using JSON decoding codec LegacyJacksonJson
+[INFO ] 2019-07-01 14:49:50 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {80}] - Using XML encoding codec XStreamXml
+[INFO ] 2019-07-01 14:49:50 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {81}] - Using XML decoding codec XStreamXml
+[INFO ] 2019-07-01 14:49:50 [main] c.n.d.s.r.aws.ConfigClusterResolver [{ConfigClusterResolver.java} {43}] - Resolving eureka endpoints via configuration
+[INFO ] 2019-07-01 14:49:50 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {958}] - Disable delta property : false
+[INFO ] 2019-07-01 14:49:50 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {959}] - Single vip registry refresh property : null
+[INFO ] 2019-07-01 14:49:50 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {960}] - Force full registry fetch : false
+[INFO ] 2019-07-01 14:49:50 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {961}] - Application is null : false
+[INFO ] 2019-07-01 14:49:50 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {962}] - Registered Applications size is zero : true
+[INFO ] 2019-07-01 14:49:50 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {964}] - Application version is -1: true
+[INFO ] 2019-07-01 14:49:50 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1047}] - Getting all instance registry info from the eureka server
+[INFO ] 2019-07-01 14:49:50 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1056}] - The response status is 200
+[INFO ] 2019-07-01 14:49:50 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1270}] - Starting heartbeat executor: renew interval is: 5
+[INFO ] 2019-07-01 14:49:50 [main] c.n.discovery.InstanceInfoReplicator [{InstanceInfoReplicator.java} {60}] - InstanceInfoReplicator onDemand update allowed rate per min is 4
+[INFO ] 2019-07-01 14:49:50 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {449}] - Discovery Client initialized at timestamp 1561963795858 with initial instances count: 1
+[INFO ] 2019-07-01 14:49:50 [main] o.s.c.n.e.s.EurekaServiceRegistry [{EurekaServiceRegistry.java} {41}] - Registering application GATEWAY with eureka with status UP
+[INFO ] 2019-07-01 14:49:50 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1305}] - Saw local status change event StatusChangeEvent [timestamp=1561963795867, current=UP, previous=STARTING]
+[INFO ] 2019-07-01 14:49:50 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {826}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702: registering service...
+[INFO ] 2019-07-01 14:49:50 [main] o.a.coyote.http11.Http11NioProtocol [{DirectJDKLog.java} {173}] - Starting ProtocolHandler ["http-nio-8702"]
+[INFO ] 2019-07-01 14:49:50 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {835}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702 - registration status: 204
+[INFO ] 2019-07-01 14:49:50 [main] o.s.b.w.e.tomcat.TomcatWebServer [{TomcatWebServer.java} {204}] - Tomcat started on port(s): 8702 (http) with context path ''
+[INFO ] 2019-07-01 14:49:50 [main] o.s.c.n.e.s.EurekaAutoServiceRegistration [{EurekaAutoServiceRegistration.java} {143}] - Updating port to 8702
+[INFO ] 2019-07-01 14:49:50 [main] org.yugh.gateway.GatewayApplication [{StartupInfoLogger.java} {59}] - Started GatewayApplication in 6.109 seconds (JVM running for 11.669)
+[INFO ] 2019-07-01 14:49:50 [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver [{ConfigClusterResolver.java} {43}] - Resolving eureka endpoints via configuration
+[INFO ] 2019-07-01 14:49:50 [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver [{ConfigClusterResolver.java} {43}] - Resolving eureka endpoints via configuration
+[INFO ] 2019-07-01 14:49:50 [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver [{ConfigClusterResolver.java} {43}] - Resolving eureka endpoints via configuration
+[INFO ] 2019-07-01 14:49:50 [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver [{ConfigClusterResolver.java} {43}] - Resolving eureka endpoints via configuration
+[INFO ] 2019-07-01 14:49:50 [http-nio-8702-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/] [{DirectJDKLog.java} {173}] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 2019-07-01 14:49:50 [http-nio-8702-exec-3] o.s.web.servlet.DispatcherServlet [{FrameworkServlet.java} {524}] - Initializing Servlet 'dispatcherServlet'
+[INFO ] 2019-07-01 14:49:50 [http-nio-8702-exec-3] o.s.web.servlet.DispatcherServlet [{FrameworkServlet.java} {546}] - Completed initialization in 15 ms
+[INFO ] 2019-07-01 14:49:50 [AsyncReporter{org.springframework.cloud.sleuth.zipkin2.sender.RestTemplateSender@52b959df}] c.n.config.ChainedDynamicProperty [{ChainedDynamicProperty.java} {115}] - Flipping property: localhost.ribbon.ActiveConnectionsLimit to use NEXT property: niws.loadbalancer.availabilityFilteringRule.activeConnectionsLimit = 2147483647
+[INFO ] 2019-07-01 14:49:50 [AsyncReporter{org.springframework.cloud.sleuth.zipkin2.sender.RestTemplateSender@52b959df}] c.n.u.c.ShutdownEnabledTimer [{ShutdownEnabledTimer.java} {58}] - Shutdown hook installed for: NFLoadBalancer-PingTimer-localhost
+[INFO ] 2019-07-01 14:49:50 [AsyncReporter{org.springframework.cloud.sleuth.zipkin2.sender.RestTemplateSender@52b959df}] c.n.loadbalancer.BaseLoadBalancer [{BaseLoadBalancer.java} {197}] - Client: localhost instantiated a LoadBalancer: DynamicServerListLoadBalancer:{NFLoadBalancer:name=localhost,current list of Servers=[],Load balancer stats=Zone stats: {},Server stats: []}ServerList:null
+[INFO ] 2019-07-01 14:49:50 [AsyncReporter{org.springframework.cloud.sleuth.zipkin2.sender.RestTemplateSender@52b959df}] c.n.l.DynamicServerListLoadBalancer [{DynamicServerListLoadBalancer.java} {222}] - Using serverListUpdater PollingServerListUpdater
+[INFO ] 2019-07-01 14:49:50 [AsyncReporter{org.springframework.cloud.sleuth.zipkin2.sender.RestTemplateSender@52b959df}] c.n.l.DynamicServerListLoadBalancer [{DynamicServerListLoadBalancer.java} {150}] - DynamicServerListLoadBalancer for client localhost initialized: DynamicServerListLoadBalancer:{NFLoadBalancer:name=localhost,current list of Servers=[],Load balancer stats=Zone stats: {},Server stats: []}ServerList:org.springframework.cloud.netflix.ribbon.eureka.DomainExtractingServerList@6eb028c
+[INFO ] 2019-07-01 14:49:50 [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver [{ConfigClusterResolver.java} {43}] - Resolving eureka endpoints via configuration
+[INFO ] 2019-07-01 14:49:50 [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver [{ConfigClusterResolver.java} {43}] - Resolving eureka endpoints via configuration
+[INFO ] 2019-07-01 14:49:50 [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver [{ConfigClusterResolver.java} {43}] - Resolving eureka endpoints via configuration
+[INFO ] 2019-07-01 14:49:50 [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver [{ConfigClusterResolver.java} {43}] - Resolving eureka endpoints via configuration
+[INFO ] 2019-07-01 14:49:50 [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver [{ConfigClusterResolver.java} {43}] - Resolving eureka endpoints via configuration
+[INFO ] 2019-07-01 14:49:50 [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver [{ConfigClusterResolver.java} {43}] - Resolving eureka endpoints via configuration
+[INFO ] 2019-07-01 14:49:50 [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver [{ConfigClusterResolver.java} {43}] - Resolving eureka endpoints via configuration
+[INFO ] 2019-07-01 14:49:50 [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver [{ConfigClusterResolver.java} {43}] - Resolving eureka endpoints via configuration
+[INFO ] 2019-07-01 14:49:50 [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver [{ConfigClusterResolver.java} {43}] - Resolving eureka endpoints via configuration
+[INFO ] 2019-07-01 14:49:50 [Thread-11] c.n.l.PollingServerListUpdater [{PollingServerListUpdater.java} {53}] - Shutting down the Executor Pool for PollingServerListUpdater
+[INFO ] 2019-07-01 14:49:50 [Thread-7] o.s.c.n.e.s.EurekaServiceRegistry [{EurekaServiceRegistry.java} {65}] - Unregistering application GATEWAY with eureka with status DOWN
+[INFO ] 2019-07-01 14:49:50 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {826}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702: registering service...
+[INFO ] 2019-07-01 14:49:50 [Thread-7] o.s.c.n.zuul.ZuulFilterInitializer [{ZuulFilterInitializer.java} {79}] - Stopping filter initializer
+[INFO ] 2019-07-01 14:49:50 [Thread-7] o.s.s.c.ThreadPoolTaskExecutor [{ExecutorConfigurationSupport.java} {208}] - Shutting down ExecutorService 'applicationTaskExecutor'
+[INFO ] 2019-07-01 14:49:50 [Thread-7] c.n.u.c.ShutdownEnabledTimer [{ShutdownEnabledTimer.java} {67}] - Shutdown hook removed for: NFLoadBalancer-PingTimer-localhost
+[INFO ] 2019-07-01 14:49:50 [Thread-7] c.n.u.c.ShutdownEnabledTimer [{ShutdownEnabledTimer.java} {72}] - Exception caught (might be ok if at shutdown)
+java.lang.IllegalStateException: Shutdown in progress
+	at java.lang.ApplicationShutdownHooks.remove(ApplicationShutdownHooks.java:82)
+	at java.lang.Runtime.removeShutdownHook(Runtime.java:239)
+	at com.netflix.util.concurrent.ShutdownEnabledTimer.cancel(ShutdownEnabledTimer.java:70)
+	at com.netflix.loadbalancer.BaseLoadBalancer.cancelPingTask(BaseLoadBalancer.java:632)
+	at com.netflix.loadbalancer.BaseLoadBalancer.shutdown(BaseLoadBalancer.java:883)
+	at com.netflix.loadbalancer.DynamicServerListLoadBalancer.shutdown(DynamicServerListLoadBalancer.java:285)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:337)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:271)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:571)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:543)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1034)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:504)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1027)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1057)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1026)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:975)
+	at org.springframework.cloud.context.named.NamedContextFactory.destroy(NamedContextFactory.java:92)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:256)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:571)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:543)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1034)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:504)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1027)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1057)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1026)
+	at org.springframework.context.support.AbstractApplicationContext$1.run(AbstractApplicationContext.java:945)
+[INFO ] 2019-07-01 14:49:50 [Thread-7] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {888}] - Shutting down DiscoveryClient ...
+[INFO ] 2019-07-01 14:49:50 [Thread-7] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {922}] - Unregistering ...
+[INFO ] 2019-07-01 15:57:19 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$ec992a79] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-07-01 15:57:19 [main] org.yugh.gateway.GatewayApplication [{SpringApplication.java} {679}] - The following profiles are active: dev
+[INFO ] 2019-07-01 15:57:19 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {244}] - Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO ] 2019-07-01 15:57:19 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {126}] - Bootstrapping Spring Data repositories in DEFAULT mode.
+[INFO ] 2019-07-01 15:57:19 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {182}] - Finished Spring Data repository scanning in 9ms. Found 0 repository interfaces.
+[INFO ] 2019-07-01 15:57:19 [main] o.s.cloud.context.scope.GenericScope [{GenericScope.java} {295}] - BeanFactory id=dbbebe1f-043f-37c8-91fa-0d2df43863df
+[INFO ] 2019-07-01 15:57:19 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$ec992a79] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-07-01 15:57:19 [main] o.s.b.w.e.tomcat.TomcatWebServer [{TomcatWebServer.java} {90}] - Tomcat initialized with port(s): 8702 (http)
+[INFO ] 2019-07-01 15:57:19 [main] o.a.coyote.http11.Http11NioProtocol [{DirectJDKLog.java} {173}] - Initializing ProtocolHandler ["http-nio-8702"]
+[INFO ] 2019-07-01 15:57:19 [main] o.a.catalina.core.StandardService [{DirectJDKLog.java} {173}] - Starting service [Tomcat]
+[INFO ] 2019-07-01 15:57:19 [main] o.a.catalina.core.StandardEngine [{DirectJDKLog.java} {173}] - Starting Servlet engine: [Apache Tomcat/9.0.19]
+[INFO ] 2019-07-01 15:57:19 [main] o.a.c.c.C.[Tomcat].[localhost].[/] [{DirectJDKLog.java} {173}] - Initializing Spring embedded WebApplicationContext
+[INFO ] 2019-07-01 15:57:19 [main] o.s.web.context.ContextLoader [{ServletWebServerApplicationContext.java} {296}] - Root WebApplicationContext: initialization completed in 1716 ms
+[INFO ] 2019-07-01 15:57:19 [main] c.n.c.sources.URLConfigurationSource [{URLConfigurationSource.java} {126}] - URLs to be used as dynamic configuration source: [file:/Users/yuzhilin/IdeaProjects/spring-cloud/gateway/target/classes/config.properties]
+[INFO ] 2019-07-01 15:57:19 [main] c.n.config.DynamicPropertyFactory [{DynamicPropertyFactory.java} {281}] - DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@5707f613
+[INFO ] 2019-07-01 15:57:19 [main] org.yugh.gateway.config.RedisClient [{RedisClient.java} {32}] - =============> redis run ............
+[INFO ] 2019-07-01 15:57:19 [main] c.n.c.sources.URLConfigurationSource [{URLConfigurationSource.java} {126}] - URLs to be used as dynamic configuration source: [file:/Users/yuzhilin/IdeaProjects/spring-cloud/gateway/target/classes/config.properties]
+[INFO ] 2019-07-01 15:57:19 [main] o.s.s.c.ThreadPoolTaskExecutor [{ExecutorConfigurationSupport.java} {171}] - Initializing ExecutorService 'applicationTaskExecutor'
+[INFO ] 2019-07-01 15:57:19 [main] o.s.c.n.zuul.ZuulFilterInitializer [{ZuulFilterInitializer.java} {67}] - Starting filter initializer
+[INFO ] 2019-07-01 15:57:19 [main] o.s.b.a.e.web.EndpointLinksResolver [{EndpointLinksResolver.java} {59}] - Exposing 2 endpoint(s) beneath base path '/actuator'
+[INFO ] 2019-07-01 15:57:19 [main] o.s.c.n.eureka.InstanceInfoFactory [{InstanceInfoFactory.java} {72}] - Setting initial instance status as: STARTING
+[INFO ] 2019-07-01 15:57:19 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {349}] - Initializing Eureka in region us-east-1
+[INFO ] 2019-07-01 15:57:19 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {70}] - Using JSON encoding codec LegacyJacksonJson
+[INFO ] 2019-07-01 15:57:19 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {71}] - Using JSON decoding codec LegacyJacksonJson
+[INFO ] 2019-07-01 15:57:19 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {80}] - Using XML encoding codec XStreamXml
+[INFO ] 2019-07-01 15:57:19 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {81}] - Using XML decoding codec XStreamXml
+[INFO ] 2019-07-01 15:57:19 [main] c.n.d.s.r.aws.ConfigClusterResolver [{ConfigClusterResolver.java} {43}] - Resolving eureka endpoints via configuration
+[INFO ] 2019-07-01 15:57:19 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {958}] - Disable delta property : false
+[INFO ] 2019-07-01 15:57:19 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {959}] - Single vip registry refresh property : null
+[INFO ] 2019-07-01 15:57:19 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {960}] - Force full registry fetch : false
+[INFO ] 2019-07-01 15:57:19 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {961}] - Application is null : false
+[INFO ] 2019-07-01 15:57:19 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {962}] - Registered Applications size is zero : true
+[INFO ] 2019-07-01 15:57:19 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {964}] - Application version is -1: true
+[INFO ] 2019-07-01 15:57:19 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1047}] - Getting all instance registry info from the eureka server
+[INFO ] 2019-07-01 15:57:19 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1056}] - The response status is 200
+[INFO ] 2019-07-01 15:57:19 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1270}] - Starting heartbeat executor: renew interval is: 5
+[INFO ] 2019-07-01 15:57:19 [main] c.n.discovery.InstanceInfoReplicator [{InstanceInfoReplicator.java} {60}] - InstanceInfoReplicator onDemand update allowed rate per min is 4
+[INFO ] 2019-07-01 15:57:19 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {449}] - Discovery Client initialized at timestamp 1561967844779 with initial instances count: 1
+[INFO ] 2019-07-01 15:57:19 [main] o.s.c.n.e.s.EurekaServiceRegistry [{EurekaServiceRegistry.java} {41}] - Registering application GATEWAY with eureka with status UP
+[INFO ] 2019-07-01 15:57:19 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1305}] - Saw local status change event StatusChangeEvent [timestamp=1561967844787, current=UP, previous=STARTING]
+[INFO ] 2019-07-01 15:57:19 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {826}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702: registering service...
+[INFO ] 2019-07-01 15:57:19 [main] o.a.coyote.http11.Http11NioProtocol [{DirectJDKLog.java} {173}] - Starting ProtocolHandler ["http-nio-8702"]
+[INFO ] 2019-07-01 15:57:19 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {835}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702 - registration status: 204
+[INFO ] 2019-07-01 15:57:19 [main] o.s.b.w.e.tomcat.TomcatWebServer [{TomcatWebServer.java} {204}] - Tomcat started on port(s): 8702 (http) with context path ''
+[INFO ] 2019-07-01 15:57:19 [main] o.s.c.n.e.s.EurekaAutoServiceRegistration [{EurekaAutoServiceRegistration.java} {143}] - Updating port to 8702
+[INFO ] 2019-07-01 15:57:19 [main] org.yugh.gateway.GatewayApplication [{StartupInfoLogger.java} {59}] - Started GatewayApplication in 6.016 seconds (JVM running for 11.549)
+[INFO ] 2019-07-01 15:57:19 [RMI TCP Connection(3)-10.112.203.43] o.a.c.c.C.[Tomcat].[localhost].[/] [{DirectJDKLog.java} {173}] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 2019-07-01 15:57:19 [RMI TCP Connection(3)-10.112.203.43] o.s.web.servlet.DispatcherServlet [{FrameworkServlet.java} {524}] - Initializing Servlet 'dispatcherServlet'
+[INFO ] 2019-07-01 15:57:19 [RMI TCP Connection(3)-10.112.203.43] o.s.web.servlet.DispatcherServlet [{FrameworkServlet.java} {546}] - Completed initialization in 14 ms
+[INFO ] 2019-07-01 15:57:19 [parallel-1] io.lettuce.core.EpollProvider [{EpollProvider.java} {68}] - Starting without optional epoll library
+[INFO ] 2019-07-01 15:57:19 [parallel-1] io.lettuce.core.KqueueProvider [{KqueueProvider.java} {70}] - Starting without optional kqueue library
+[INFO ] 2019-07-01 15:57:19 [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver [{ConfigClusterResolver.java} {43}] - Resolving eureka endpoints via configuration
+[INFO ] 2019-07-01 15:57:19 [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver [{ConfigClusterResolver.java} {43}] - Resolving eureka endpoints via configuration
+[INFO ] 2019-07-01 15:57:19 [Thread-19] o.s.c.n.e.s.EurekaServiceRegistry [{EurekaServiceRegistry.java} {65}] - Unregistering application GATEWAY with eureka with status DOWN
+[INFO ] 2019-07-01 15:57:19 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {826}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702: registering service...
+[INFO ] 2019-07-01 15:57:19 [Thread-19] o.s.c.n.zuul.ZuulFilterInitializer [{ZuulFilterInitializer.java} {79}] - Stopping filter initializer
+[INFO ] 2019-07-01 15:57:19 [Thread-19] o.s.s.c.ThreadPoolTaskExecutor [{ExecutorConfigurationSupport.java} {208}] - Shutting down ExecutorService 'applicationTaskExecutor'
+[INFO ] 2019-07-01 16:13:18 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$8509b5ae] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-07-01 16:13:28 [main] org.yugh.gateway.GatewayApplication [{SpringApplication.java} {679}] - The following profiles are active: dev
+[INFO ] 2019-07-01 16:13:28 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {244}] - Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO ] 2019-07-01 16:13:28 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {126}] - Bootstrapping Spring Data repositories in DEFAULT mode.
+[INFO ] 2019-07-01 16:13:28 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {182}] - Finished Spring Data repository scanning in 9ms. Found 0 repository interfaces.
+[INFO ] 2019-07-01 16:13:28 [main] o.s.cloud.context.scope.GenericScope [{GenericScope.java} {295}] - BeanFactory id=dbbebe1f-043f-37c8-91fa-0d2df43863df
+[INFO ] 2019-07-01 16:13:28 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$8509b5ae] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-07-01 16:13:28 [main] o.s.b.w.e.tomcat.TomcatWebServer [{TomcatWebServer.java} {90}] - Tomcat initialized with port(s): 8702 (http)
+[INFO ] 2019-07-01 16:13:28 [main] o.a.coyote.http11.Http11NioProtocol [{DirectJDKLog.java} {173}] - Initializing ProtocolHandler ["http-nio-8702"]
+[INFO ] 2019-07-01 16:13:28 [main] o.a.catalina.core.StandardService [{DirectJDKLog.java} {173}] - Starting service [Tomcat]
+[INFO ] 2019-07-01 16:13:28 [main] o.a.catalina.core.StandardEngine [{DirectJDKLog.java} {173}] - Starting Servlet engine: [Apache Tomcat/9.0.19]
+[INFO ] 2019-07-01 16:13:28 [main] o.a.c.c.C.[Tomcat].[localhost].[/] [{DirectJDKLog.java} {173}] - Initializing Spring embedded WebApplicationContext
+[INFO ] 2019-07-01 16:13:28 [main] o.s.web.context.ContextLoader [{ServletWebServerApplicationContext.java} {296}] - Root WebApplicationContext: initialization completed in 1758 ms
+[INFO ] 2019-07-01 16:13:28 [main] c.n.c.sources.URLConfigurationSource [{URLConfigurationSource.java} {126}] - URLs to be used as dynamic configuration source: [file:/Users/yuzhilin/IdeaProjects/spring-cloud/gateway/target/classes/config.properties]
+[INFO ] 2019-07-01 16:13:28 [main] c.n.config.DynamicPropertyFactory [{DynamicPropertyFactory.java} {281}] - DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@53747c4a
+[INFO ] 2019-07-01 16:13:28 [main] org.yugh.gateway.config.RedisClient [{RedisClient.java} {32}] - =============> redis run ............
+[INFO ] 2019-07-01 16:13:28 [main] c.n.c.sources.URLConfigurationSource [{URLConfigurationSource.java} {126}] - URLs to be used as dynamic configuration source: [file:/Users/yuzhilin/IdeaProjects/spring-cloud/gateway/target/classes/config.properties]
+[INFO ] 2019-07-01 16:13:28 [main] o.s.s.c.ThreadPoolTaskExecutor [{ExecutorConfigurationSupport.java} {171}] - Initializing ExecutorService 'applicationTaskExecutor'
+[INFO ] 2019-07-01 16:13:28 [main] o.s.c.n.zuul.ZuulFilterInitializer [{ZuulFilterInitializer.java} {67}] - Starting filter initializer
+[INFO ] 2019-07-01 16:13:28 [main] o.s.b.a.e.web.EndpointLinksResolver [{EndpointLinksResolver.java} {59}] - Exposing 2 endpoint(s) beneath base path '/actuator'
+[INFO ] 2019-07-01 16:13:28 [main] o.s.c.n.eureka.InstanceInfoFactory [{InstanceInfoFactory.java} {72}] - Setting initial instance status as: STARTING
+[INFO ] 2019-07-01 16:13:28 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {349}] - Initializing Eureka in region us-east-1
+[INFO ] 2019-07-01 16:13:28 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {70}] - Using JSON encoding codec LegacyJacksonJson
+[INFO ] 2019-07-01 16:13:28 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {71}] - Using JSON decoding codec LegacyJacksonJson
+[INFO ] 2019-07-01 16:13:28 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {80}] - Using XML encoding codec XStreamXml
+[INFO ] 2019-07-01 16:13:28 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {81}] - Using XML decoding codec XStreamXml
+[INFO ] 2019-07-01 16:13:28 [main] c.n.d.s.r.aws.ConfigClusterResolver [{ConfigClusterResolver.java} {43}] - Resolving eureka endpoints via configuration
+[INFO ] 2019-07-01 16:13:28 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {958}] - Disable delta property : false
+[INFO ] 2019-07-01 16:13:28 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {959}] - Single vip registry refresh property : null
+[INFO ] 2019-07-01 16:13:28 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {960}] - Force full registry fetch : false
+[INFO ] 2019-07-01 16:13:28 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {961}] - Application is null : false
+[INFO ] 2019-07-01 16:13:28 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {962}] - Registered Applications size is zero : true
+[INFO ] 2019-07-01 16:13:28 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {964}] - Application version is -1: true
+[INFO ] 2019-07-01 16:13:28 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1047}] - Getting all instance registry info from the eureka server
+[INFO ] 2019-07-01 16:13:28 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1056}] - The response status is 200
+[INFO ] 2019-07-01 16:13:28 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1270}] - Starting heartbeat executor: renew interval is: 30
+[INFO ] 2019-07-01 16:13:28 [main] c.n.discovery.InstanceInfoReplicator [{InstanceInfoReplicator.java} {60}] - InstanceInfoReplicator onDemand update allowed rate per min is 4
+[INFO ] 2019-07-01 16:13:28 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {449}] - Discovery Client initialized at timestamp 1561968819731 with initial instances count: 0
+[INFO ] 2019-07-01 16:13:28 [main] o.s.c.n.e.s.EurekaServiceRegistry [{EurekaServiceRegistry.java} {41}] - Registering application GATEWAY with eureka with status UP
+[INFO ] 2019-07-01 16:13:28 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1305}] - Saw local status change event StatusChangeEvent [timestamp=1561968819741, current=UP, previous=STARTING]
+[INFO ] 2019-07-01 16:13:28 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {826}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702: registering service...
+[INFO ] 2019-07-01 16:13:28 [main] o.a.coyote.http11.Http11NioProtocol [{DirectJDKLog.java} {173}] - Starting ProtocolHandler ["http-nio-8702"]
+[INFO ] 2019-07-01 16:13:28 [main] o.s.b.w.e.tomcat.TomcatWebServer [{TomcatWebServer.java} {204}] - Tomcat started on port(s): 8702 (http) with context path ''
+[INFO ] 2019-07-01 16:13:28 [main] o.s.c.n.e.s.EurekaAutoServiceRegistration [{EurekaAutoServiceRegistration.java} {143}] - Updating port to 8702
+[INFO ] 2019-07-01 16:13:28 [main] org.yugh.gateway.GatewayApplication [{StartupInfoLogger.java} {59}] - Started GatewayApplication in 31.692 seconds (JVM running for 42.229)
+[INFO ] 2019-07-01 16:13:28 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {835}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702 - registration status: 204
+[INFO ] 2019-07-01 16:13:28 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {958}] - Disable delta property : false
+[INFO ] 2019-07-01 16:13:28 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {959}] - Single vip registry refresh property : null
+[INFO ] 2019-07-01 16:13:28 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {960}] - Force full registry fetch : false
+[INFO ] 2019-07-01 16:13:28 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {961}] - Application is null : false
+[INFO ] 2019-07-01 16:13:28 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {962}] - Registered Applications size is zero : true
+[INFO ] 2019-07-01 16:13:28 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {964}] - Application version is -1: false
+[INFO ] 2019-07-01 16:13:28 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1047}] - Getting all instance registry info from the eureka server
+[INFO ] 2019-07-01 16:13:28 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1056}] - The response status is 200
+[INFO ] 2019-07-01 16:13:28 [http-nio-8702-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] [{DirectJDKLog.java} {173}] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 2019-07-01 16:13:28 [http-nio-8702-exec-1] o.s.web.servlet.DispatcherServlet [{FrameworkServlet.java} {524}] - Initializing Servlet 'dispatcherServlet'
+[INFO ] 2019-07-01 16:13:28 [http-nio-8702-exec-1] o.s.web.servlet.DispatcherServlet [{FrameworkServlet.java} {546}] - Completed initialization in 17 ms
+[INFO ] 2019-07-01 16:13:28 [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver [{ConfigClusterResolver.java} {43}] - Resolving eureka endpoints via configuration
+[INFO ] 2019-07-01 16:13:28 [Thread-7] o.s.c.n.e.s.EurekaServiceRegistry [{EurekaServiceRegistry.java} {65}] - Unregistering application GATEWAY with eureka with status DOWN
+[INFO ] 2019-07-01 16:13:28 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {826}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702: registering service...
+[INFO ] 2019-07-01 16:13:28 [Thread-7] o.s.c.n.zuul.ZuulFilterInitializer [{ZuulFilterInitializer.java} {79}] - Stopping filter initializer
+[INFO ] 2019-07-01 16:13:28 [Thread-7] o.s.s.c.ThreadPoolTaskExecutor [{ExecutorConfigurationSupport.java} {208}] - Shutting down ExecutorService 'applicationTaskExecutor'
+[INFO ] 2019-07-01 16:13:28 [Thread-7] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {888}] - Shutting down DiscoveryClient ...
+[INFO ] 2019-07-01 16:19:21 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$2ec407ed] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-07-01 16:19:21 [main] org.yugh.gateway.GatewayApplication [{SpringApplication.java} {679}] - The following profiles are active: dev
+[INFO ] 2019-07-01 16:19:21 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {244}] - Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO ] 2019-07-01 16:19:21 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {126}] - Bootstrapping Spring Data repositories in DEFAULT mode.
+[INFO ] 2019-07-01 16:19:21 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {182}] - Finished Spring Data repository scanning in 11ms. Found 0 repository interfaces.
+[INFO ] 2019-07-01 16:19:21 [main] o.s.cloud.context.scope.GenericScope [{GenericScope.java} {295}] - BeanFactory id=dbbebe1f-043f-37c8-91fa-0d2df43863df
+[INFO ] 2019-07-01 16:19:21 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$2ec407ed] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-07-01 16:19:21 [main] o.s.b.w.e.tomcat.TomcatWebServer [{TomcatWebServer.java} {90}] - Tomcat initialized with port(s): 8702 (http)
+[INFO ] 2019-07-01 16:19:21 [main] o.a.coyote.http11.Http11NioProtocol [{DirectJDKLog.java} {173}] - Initializing ProtocolHandler ["http-nio-8702"]
+[INFO ] 2019-07-01 16:19:21 [main] o.a.catalina.core.StandardService [{DirectJDKLog.java} {173}] - Starting service [Tomcat]
+[INFO ] 2019-07-01 16:19:21 [main] o.a.catalina.core.StandardEngine [{DirectJDKLog.java} {173}] - Starting Servlet engine: [Apache Tomcat/9.0.19]
+[INFO ] 2019-07-01 16:19:21 [main] o.a.c.c.C.[Tomcat].[localhost].[/] [{DirectJDKLog.java} {173}] - Initializing Spring embedded WebApplicationContext
+[INFO ] 2019-07-01 16:19:21 [main] o.s.web.context.ContextLoader [{ServletWebServerApplicationContext.java} {296}] - Root WebApplicationContext: initialization completed in 1891 ms
+[INFO ] 2019-07-01 16:19:21 [main] c.n.c.sources.URLConfigurationSource [{URLConfigurationSource.java} {126}] - URLs to be used as dynamic configuration source: [file:/Users/yuzhilin/IdeaProjects/spring-cloud/gateway/target/classes/config.properties]
+[INFO ] 2019-07-01 16:19:21 [main] c.n.config.DynamicPropertyFactory [{DynamicPropertyFactory.java} {281}] - DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@23468512
+[INFO ] 2019-07-01 16:19:21 [main] o.s.b.a.e.w.ServletEndpointRegistrar [{ServletEndpointRegistrar.java} {78}] - Registered '/actuator/hystrix.stream' to hystrix.stream-actuator-endpoint
+[INFO ] 2019-07-01 16:19:21 [main] org.yugh.gateway.config.RedisClient [{RedisClient.java} {32}] - =============> redis run ............
+[INFO ] 2019-07-01 16:19:21 [main] c.n.c.sources.URLConfigurationSource [{URLConfigurationSource.java} {126}] - URLs to be used as dynamic configuration source: [file:/Users/yuzhilin/IdeaProjects/spring-cloud/gateway/target/classes/config.properties]
+[INFO ] 2019-07-01 16:19:21 [main] o.s.s.c.ThreadPoolTaskExecutor [{ExecutorConfigurationSupport.java} {171}] - Initializing ExecutorService 'applicationTaskExecutor'
+[INFO ] 2019-07-01 16:19:21 [main] o.s.c.n.zuul.ZuulFilterInitializer [{ZuulFilterInitializer.java} {67}] - Starting filter initializer
+[INFO ] 2019-07-01 16:19:21 [main] o.s.b.a.e.web.EndpointLinksResolver [{EndpointLinksResolver.java} {59}] - Exposing 22 endpoint(s) beneath base path '/actuator'
+[INFO ] 2019-07-01 16:19:21 [main] o.s.c.n.eureka.InstanceInfoFactory [{InstanceInfoFactory.java} {72}] - Setting initial instance status as: STARTING
+[INFO ] 2019-07-01 16:19:21 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {349}] - Initializing Eureka in region us-east-1
+[INFO ] 2019-07-01 16:19:21 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {70}] - Using JSON encoding codec LegacyJacksonJson
+[INFO ] 2019-07-01 16:19:21 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {71}] - Using JSON decoding codec LegacyJacksonJson
+[INFO ] 2019-07-01 16:19:21 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {80}] - Using XML encoding codec XStreamXml
+[INFO ] 2019-07-01 16:19:21 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {81}] - Using XML decoding codec XStreamXml
+[INFO ] 2019-07-01 16:19:21 [main] c.n.d.s.r.aws.ConfigClusterResolver [{ConfigClusterResolver.java} {43}] - Resolving eureka endpoints via configuration
+[INFO ] 2019-07-01 16:19:21 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {958}] - Disable delta property : false
+[INFO ] 2019-07-01 16:19:21 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {959}] - Single vip registry refresh property : null
+[INFO ] 2019-07-01 16:19:21 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {960}] - Force full registry fetch : false
+[INFO ] 2019-07-01 16:19:21 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {961}] - Application is null : false
+[INFO ] 2019-07-01 16:19:21 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {962}] - Registered Applications size is zero : true
+[INFO ] 2019-07-01 16:19:21 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {964}] - Application version is -1: true
+[INFO ] 2019-07-01 16:19:21 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1047}] - Getting all instance registry info from the eureka server
+[INFO ] 2019-07-01 16:19:21 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1056}] - The response status is 200
+[INFO ] 2019-07-01 16:19:21 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1270}] - Starting heartbeat executor: renew interval is: 30
+[INFO ] 2019-07-01 16:19:21 [main] c.n.discovery.InstanceInfoReplicator [{InstanceInfoReplicator.java} {60}] - InstanceInfoReplicator onDemand update allowed rate per min is 4
+[INFO ] 2019-07-01 16:19:21 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {449}] - Discovery Client initialized at timestamp 1561969167279 with initial instances count: 0
+[INFO ] 2019-07-01 16:19:21 [main] o.s.c.n.e.s.EurekaServiceRegistry [{EurekaServiceRegistry.java} {41}] - Registering application GATEWAY with eureka with status UP
+[INFO ] 2019-07-01 16:19:21 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1305}] - Saw local status change event StatusChangeEvent [timestamp=1561969167290, current=UP, previous=STARTING]
+[INFO ] 2019-07-01 16:19:21 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {826}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702: registering service...
+[INFO ] 2019-07-01 16:19:21 [main] o.a.coyote.http11.Http11NioProtocol [{DirectJDKLog.java} {173}] - Starting ProtocolHandler ["http-nio-8702"]
+[INFO ] 2019-07-01 16:19:21 [main] o.s.b.w.e.tomcat.TomcatWebServer [{TomcatWebServer.java} {204}] - Tomcat started on port(s): 8702 (http) with context path ''
+[INFO ] 2019-07-01 16:19:21 [main] o.s.c.n.e.s.EurekaAutoServiceRegistration [{EurekaAutoServiceRegistration.java} {143}] - Updating port to 8702
+[INFO ] 2019-07-01 16:19:21 [main] org.yugh.gateway.GatewayApplication [{StartupInfoLogger.java} {59}] - Started GatewayApplication in 6.599 seconds (JVM running for 12.17)
+[INFO ] 2019-07-01 16:19:21 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {835}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702 - registration status: 204
+[INFO ] 2019-07-01 16:19:21 [RMI TCP Connection(5)-10.112.203.43] o.a.c.c.C.[Tomcat].[localhost].[/] [{DirectJDKLog.java} {173}] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 2019-07-01 16:19:21 [RMI TCP Connection(5)-10.112.203.43] o.s.web.servlet.DispatcherServlet [{FrameworkServlet.java} {524}] - Initializing Servlet 'dispatcherServlet'
+[INFO ] 2019-07-01 16:19:21 [RMI TCP Connection(5)-10.112.203.43] o.s.web.servlet.DispatcherServlet [{FrameworkServlet.java} {546}] - Completed initialization in 23 ms
+[INFO ] 2019-07-01 16:19:21 [parallel-1] io.lettuce.core.EpollProvider [{EpollProvider.java} {68}] - Starting without optional epoll library
+[INFO ] 2019-07-01 16:19:21 [parallel-1] io.lettuce.core.KqueueProvider [{KqueueProvider.java} {70}] - Starting without optional kqueue library
+[INFO ] 2019-07-01 16:19:21 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {958}] - Disable delta property : false
+[INFO ] 2019-07-01 16:19:21 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {959}] - Single vip registry refresh property : null
+[INFO ] 2019-07-01 16:19:21 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {960}] - Force full registry fetch : false
+[INFO ] 2019-07-01 16:19:21 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {961}] - Application is null : false
+[INFO ] 2019-07-01 16:19:21 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {962}] - Registered Applications size is zero : true
+[INFO ] 2019-07-01 16:19:21 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {964}] - Application version is -1: false
+[INFO ] 2019-07-01 16:19:21 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1047}] - Getting all instance registry info from the eureka server
+[INFO ] 2019-07-01 16:19:21 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1056}] - The response status is 200
+[INFO ] 2019-07-01 16:19:21 [Thread-20] o.s.c.n.e.s.EurekaServiceRegistry [{EurekaServiceRegistry.java} {65}] - Unregistering application GATEWAY with eureka with status DOWN
+[INFO ] 2019-07-01 16:19:21 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {826}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702: registering service...
+[INFO ] 2019-07-01 16:19:21 [Thread-20] o.s.c.n.zuul.ZuulFilterInitializer [{ZuulFilterInitializer.java} {79}] - Stopping filter initializer
+[INFO ] 2019-07-01 16:19:21 [Thread-20] o.s.s.c.ThreadPoolTaskExecutor [{ExecutorConfigurationSupport.java} {208}] - Shutting down ExecutorService 'applicationTaskExecutor'
+[INFO ] 2019-07-01 16:19:21 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {835}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702 - registration status: 204
+[INFO ] 2019-07-01 16:19:21 [Thread-20] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {888}] - Shutting down DiscoveryClient ...
+[INFO ] 2019-07-01 16:19:21 [Thread-20] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {922}] - Unregistering ...
+[INFO ] 2019-07-01 16:19:21 [Thread-20] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {924}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702 - deregister  status: 200
+[INFO ] 2019-07-01 16:19:21 [Thread-20] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {911}] - Completed shut down of DiscoveryClient
+[INFO ] 2019-07-01 16:20:43 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$aa3d4ca] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-07-01 16:20:44 [main] org.yugh.gateway.GatewayApplication [{SpringApplication.java} {679}] - The following profiles are active: dev
+[INFO ] 2019-07-01 16:20:44 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {244}] - Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO ] 2019-07-01 16:20:44 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {126}] - Bootstrapping Spring Data repositories in DEFAULT mode.
+[INFO ] 2019-07-01 16:20:44 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {182}] - Finished Spring Data repository scanning in 9ms. Found 0 repository interfaces.
+[INFO ] 2019-07-01 16:20:44 [main] o.s.cloud.context.scope.GenericScope [{GenericScope.java} {295}] - BeanFactory id=dbbebe1f-043f-37c8-91fa-0d2df43863df
+[INFO ] 2019-07-01 16:20:44 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$aa3d4ca] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-07-01 16:20:44 [main] o.s.b.w.e.tomcat.TomcatWebServer [{TomcatWebServer.java} {90}] - Tomcat initialized with port(s): 8702 (http)
+[INFO ] 2019-07-01 16:20:44 [main] o.a.coyote.http11.Http11NioProtocol [{DirectJDKLog.java} {173}] - Initializing ProtocolHandler ["http-nio-8702"]
+[INFO ] 2019-07-01 16:20:44 [main] o.a.catalina.core.StandardService [{DirectJDKLog.java} {173}] - Starting service [Tomcat]
+[INFO ] 2019-07-01 16:20:44 [main] o.a.catalina.core.StandardEngine [{DirectJDKLog.java} {173}] - Starting Servlet engine: [Apache Tomcat/9.0.19]
+[INFO ] 2019-07-01 16:20:44 [main] o.a.c.c.C.[Tomcat].[localhost].[/] [{DirectJDKLog.java} {173}] - Initializing Spring embedded WebApplicationContext
+[INFO ] 2019-07-01 16:20:44 [main] o.s.web.context.ContextLoader [{ServletWebServerApplicationContext.java} {296}] - Root WebApplicationContext: initialization completed in 1938 ms
+[INFO ] 2019-07-01 16:20:44 [main] c.n.c.sources.URLConfigurationSource [{URLConfigurationSource.java} {126}] - URLs to be used as dynamic configuration source: [file:/Users/yuzhilin/IdeaProjects/spring-cloud/gateway/target/classes/config.properties]
+[INFO ] 2019-07-01 16:20:44 [main] c.n.config.DynamicPropertyFactory [{DynamicPropertyFactory.java} {281}] - DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@7069f076
+[INFO ] 2019-07-01 16:22:25 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$c0f5719d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-07-01 16:22:25 [main] org.yugh.gateway.GatewayApplication [{SpringApplication.java} {679}] - The following profiles are active: dev
+[INFO ] 2019-07-01 16:22:25 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {244}] - Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO ] 2019-07-01 16:22:25 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {126}] - Bootstrapping Spring Data repositories in DEFAULT mode.
+[INFO ] 2019-07-01 16:22:25 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {182}] - Finished Spring Data repository scanning in 10ms. Found 0 repository interfaces.
+[INFO ] 2019-07-01 16:22:25 [main] o.s.cloud.context.scope.GenericScope [{GenericScope.java} {295}] - BeanFactory id=42bbbcf1-1040-35d5-9d06-9f1b5953b31f
+[INFO ] 2019-07-01 16:22:25 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$c0f5719d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-07-01 16:22:25 [main] o.s.b.w.e.tomcat.TomcatWebServer [{TomcatWebServer.java} {90}] - Tomcat initialized with port(s): 8702 (http)
+[INFO ] 2019-07-01 16:22:25 [main] o.a.coyote.http11.Http11NioProtocol [{DirectJDKLog.java} {173}] - Initializing ProtocolHandler ["http-nio-8702"]
+[INFO ] 2019-07-01 16:22:25 [main] o.a.catalina.core.StandardService [{DirectJDKLog.java} {173}] - Starting service [Tomcat]
+[INFO ] 2019-07-01 16:22:25 [main] o.a.catalina.core.StandardEngine [{DirectJDKLog.java} {173}] - Starting Servlet engine: [Apache Tomcat/9.0.19]
+[INFO ] 2019-07-01 16:22:25 [main] o.a.c.c.C.[Tomcat].[localhost].[/] [{DirectJDKLog.java} {173}] - Initializing Spring embedded WebApplicationContext
+[INFO ] 2019-07-01 16:22:25 [main] o.s.web.context.ContextLoader [{ServletWebServerApplicationContext.java} {296}] - Root WebApplicationContext: initialization completed in 1959 ms
+[INFO ] 2019-07-01 16:22:25 [main] c.n.c.sources.URLConfigurationSource [{URLConfigurationSource.java} {126}] - URLs to be used as dynamic configuration source: [file:/Users/yuzhilin/IdeaProjects/spring-cloud/gateway/target/classes/config.properties]
+[INFO ] 2019-07-01 16:22:25 [main] c.n.config.DynamicPropertyFactory [{DynamicPropertyFactory.java} {281}] - DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@4dcbae55
+[INFO ] 2019-07-01 16:22:25 [main] o.s.b.a.e.w.ServletEndpointRegistrar [{ServletEndpointRegistrar.java} {78}] - Registered '/actuator/hystrix.stream' to hystrix.stream-actuator-endpoint
+[INFO ] 2019-07-01 16:22:25 [main] org.yugh.gateway.config.RedisClient [{RedisClient.java} {32}] - =============> redis run ............
+[INFO ] 2019-07-01 16:22:25 [main] c.n.c.sources.URLConfigurationSource [{URLConfigurationSource.java} {126}] - URLs to be used as dynamic configuration source: [file:/Users/yuzhilin/IdeaProjects/spring-cloud/gateway/target/classes/config.properties]
+[INFO ] 2019-07-01 16:22:25 [main] o.s.s.c.ThreadPoolTaskExecutor [{ExecutorConfigurationSupport.java} {171}] - Initializing ExecutorService 'applicationTaskExecutor'
+[INFO ] 2019-07-01 16:22:25 [main] o.s.c.n.zuul.ZuulFilterInitializer [{ZuulFilterInitializer.java} {67}] - Starting filter initializer
+[INFO ] 2019-07-01 16:22:25 [main] o.s.b.a.e.web.EndpointLinksResolver [{EndpointLinksResolver.java} {59}] - Exposing 1 endpoint(s) beneath base path '/actuator'
+[INFO ] 2019-07-01 16:22:25 [main] o.s.c.n.eureka.InstanceInfoFactory [{InstanceInfoFactory.java} {72}] - Setting initial instance status as: STARTING
+[INFO ] 2019-07-01 16:22:25 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {349}] - Initializing Eureka in region us-east-1
+[INFO ] 2019-07-01 16:22:25 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {70}] - Using JSON encoding codec LegacyJacksonJson
+[INFO ] 2019-07-01 16:22:25 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {71}] - Using JSON decoding codec LegacyJacksonJson
+[INFO ] 2019-07-01 16:22:25 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {80}] - Using XML encoding codec XStreamXml
+[INFO ] 2019-07-01 16:22:25 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {81}] - Using XML decoding codec XStreamXml
+[INFO ] 2019-07-01 16:22:25 [main] c.n.d.s.r.aws.ConfigClusterResolver [{ConfigClusterResolver.java} {43}] - Resolving eureka endpoints via configuration
+[INFO ] 2019-07-01 16:22:25 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {958}] - Disable delta property : false
+[INFO ] 2019-07-01 16:22:25 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {959}] - Single vip registry refresh property : null
+[INFO ] 2019-07-01 16:22:25 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {960}] - Force full registry fetch : false
+[INFO ] 2019-07-01 16:22:25 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {961}] - Application is null : false
+[INFO ] 2019-07-01 16:22:25 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {962}] - Registered Applications size is zero : true
+[INFO ] 2019-07-01 16:22:25 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {964}] - Application version is -1: true
+[INFO ] 2019-07-01 16:22:25 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1047}] - Getting all instance registry info from the eureka server
+[INFO ] 2019-07-01 16:22:25 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1056}] - The response status is 200
+[INFO ] 2019-07-01 16:22:25 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1270}] - Starting heartbeat executor: renew interval is: 30
+[INFO ] 2019-07-01 16:22:25 [main] c.n.discovery.InstanceInfoReplicator [{InstanceInfoReplicator.java} {60}] - InstanceInfoReplicator onDemand update allowed rate per min is 4
+[INFO ] 2019-07-01 16:22:25 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {449}] - Discovery Client initialized at timestamp 1561969351182 with initial instances count: 0
+[INFO ] 2019-07-01 16:22:25 [main] o.s.c.n.e.s.EurekaServiceRegistry [{EurekaServiceRegistry.java} {41}] - Registering application GATEWAY with eureka with status UP
+[INFO ] 2019-07-01 16:22:25 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1305}] - Saw local status change event StatusChangeEvent [timestamp=1561969351191, current=UP, previous=STARTING]
+[INFO ] 2019-07-01 16:22:25 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {826}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702: registering service...
+[INFO ] 2019-07-01 16:22:25 [main] o.a.coyote.http11.Http11NioProtocol [{DirectJDKLog.java} {173}] - Starting ProtocolHandler ["http-nio-8702"]
+[INFO ] 2019-07-01 16:22:25 [main] o.s.b.w.e.tomcat.TomcatWebServer [{TomcatWebServer.java} {204}] - Tomcat started on port(s): 8702 (http) with context path ''
+[INFO ] 2019-07-01 16:22:25 [main] o.s.c.n.e.s.EurekaAutoServiceRegistration [{EurekaAutoServiceRegistration.java} {143}] - Updating port to 8702
+[INFO ] 2019-07-01 16:22:25 [main] org.yugh.gateway.GatewayApplication [{StartupInfoLogger.java} {59}] - Started GatewayApplication in 6.484 seconds (JVM running for 12.031)
+[INFO ] 2019-07-01 16:22:25 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {835}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702 - registration status: 204
+[INFO ] 2019-07-01 16:22:25 [RMI TCP Connection(2)-10.112.203.43] o.a.c.c.C.[Tomcat].[localhost].[/] [{DirectJDKLog.java} {173}] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 2019-07-01 16:22:25 [RMI TCP Connection(2)-10.112.203.43] o.s.web.servlet.DispatcherServlet [{FrameworkServlet.java} {524}] - Initializing Servlet 'dispatcherServlet'
+[INFO ] 2019-07-01 16:22:25 [RMI TCP Connection(2)-10.112.203.43] o.s.web.servlet.DispatcherServlet [{FrameworkServlet.java} {546}] - Completed initialization in 16 ms
+[INFO ] 2019-07-01 16:22:25 [parallel-1] io.lettuce.core.EpollProvider [{EpollProvider.java} {68}] - Starting without optional epoll library
+[INFO ] 2019-07-01 16:22:25 [parallel-1] io.lettuce.core.KqueueProvider [{KqueueProvider.java} {70}] - Starting without optional kqueue library
+[INFO ] 2019-07-01 16:22:25 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {958}] - Disable delta property : false
+[INFO ] 2019-07-01 16:22:25 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {959}] - Single vip registry refresh property : null
+[INFO ] 2019-07-01 16:22:25 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {960}] - Force full registry fetch : false
+[INFO ] 2019-07-01 16:22:25 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {961}] - Application is null : false
+[INFO ] 2019-07-01 16:22:25 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {962}] - Registered Applications size is zero : true
+[INFO ] 2019-07-01 16:22:25 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {964}] - Application version is -1: false
+[INFO ] 2019-07-01 16:22:25 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1047}] - Getting all instance registry info from the eureka server
+[INFO ] 2019-07-01 16:22:25 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1056}] - The response status is 200
+[INFO ] 2019-07-01 16:22:25 [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver [{ConfigClusterResolver.java} {43}] - Resolving eureka endpoints via configuration
+[INFO ] 2019-07-01 16:22:25 [Thread-20] o.s.c.n.e.s.EurekaServiceRegistry [{EurekaServiceRegistry.java} {65}] - Unregistering application GATEWAY with eureka with status DOWN
+[INFO ] 2019-07-01 16:22:25 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {826}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702: registering service...
+[INFO ] 2019-07-01 16:22:25 [Thread-20] o.s.c.n.zuul.ZuulFilterInitializer [{ZuulFilterInitializer.java} {79}] - Stopping filter initializer
+[INFO ] 2019-07-01 16:22:25 [Thread-20] o.s.s.c.ThreadPoolTaskExecutor [{ExecutorConfigurationSupport.java} {208}] - Shutting down ExecutorService 'applicationTaskExecutor'
+[INFO ] 2019-07-01 16:22:25 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {835}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702 - registration status: 204
+[INFO ] 2019-07-01 16:22:25 [Thread-20] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {888}] - Shutting down DiscoveryClient ...
+[INFO ] 2019-07-01 16:22:25 [Thread-20] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {922}] - Unregistering ...
+[INFO ] 2019-07-01 16:22:25 [Thread-20] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {924}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702 - deregister  status: 200
+[INFO ] 2019-07-01 16:22:25 [Thread-20] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {911}] - Completed shut down of DiscoveryClient
+[INFO ] 2019-07-01 16:30:29 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$511f4685] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-07-01 16:30:32 [main] org.yugh.gateway.GatewayApplication [{SpringApplication.java} {679}] - The following profiles are active: dev
+[INFO ] 2019-07-01 16:30:32 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {244}] - Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO ] 2019-07-01 16:30:32 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {126}] - Bootstrapping Spring Data repositories in DEFAULT mode.
+[INFO ] 2019-07-01 16:30:32 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {182}] - Finished Spring Data repository scanning in 10ms. Found 0 repository interfaces.
+[INFO ] 2019-07-01 16:30:32 [main] o.s.cloud.context.scope.GenericScope [{GenericScope.java} {295}] - BeanFactory id=81cc9004-3e63-3525-9dd3-29b0724e72a5
+[INFO ] 2019-07-01 16:30:32 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$511f4685] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-07-01 16:30:32 [main] o.s.b.w.e.tomcat.TomcatWebServer [{TomcatWebServer.java} {90}] - Tomcat initialized with port(s): 8702 (http)
+[INFO ] 2019-07-01 16:30:32 [main] o.a.coyote.http11.Http11NioProtocol [{DirectJDKLog.java} {173}] - Initializing ProtocolHandler ["http-nio-8702"]
+[INFO ] 2019-07-01 16:30:32 [main] o.a.catalina.core.StandardService [{DirectJDKLog.java} {173}] - Starting service [Tomcat]
+[INFO ] 2019-07-01 16:30:32 [main] o.a.catalina.core.StandardEngine [{DirectJDKLog.java} {173}] - Starting Servlet engine: [Apache Tomcat/9.0.19]
+[INFO ] 2019-07-01 16:30:32 [main] o.a.c.c.C.[Tomcat].[localhost].[/] [{DirectJDKLog.java} {173}] - Initializing Spring embedded WebApplicationContext
+[INFO ] 2019-07-01 16:30:32 [main] o.s.web.context.ContextLoader [{ServletWebServerApplicationContext.java} {296}] - Root WebApplicationContext: initialization completed in 1788 ms
+[INFO ] 2019-07-01 16:30:32 [main] c.n.c.sources.URLConfigurationSource [{URLConfigurationSource.java} {126}] - URLs to be used as dynamic configuration source: [file:/Users/yuzhilin/IdeaProjects/spring-cloud/gateway/target/classes/config.properties]
+[INFO ] 2019-07-01 16:30:32 [main] c.n.config.DynamicPropertyFactory [{DynamicPropertyFactory.java} {281}] - DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@5482bcac
+[INFO ] 2019-07-01 16:30:32 [main] o.s.b.a.e.w.ServletEndpointRegistrar [{ServletEndpointRegistrar.java} {78}] - Registered '/actuator/hystrix.stream' to hystrix.stream-actuator-endpoint
+[INFO ] 2019-07-01 16:30:32 [main] org.yugh.gateway.config.RedisClient [{RedisClient.java} {32}] - =============> redis run ............
+[INFO ] 2019-07-01 16:30:32 [main] c.n.c.sources.URLConfigurationSource [{URLConfigurationSource.java} {126}] - URLs to be used as dynamic configuration source: [file:/Users/yuzhilin/IdeaProjects/spring-cloud/gateway/target/classes/config.properties]
+[INFO ] 2019-07-01 16:30:32 [main] o.s.s.c.ThreadPoolTaskExecutor [{ExecutorConfigurationSupport.java} {171}] - Initializing ExecutorService 'applicationTaskExecutor'
+[INFO ] 2019-07-01 16:30:32 [main] o.s.c.n.zuul.ZuulFilterInitializer [{ZuulFilterInitializer.java} {67}] - Starting filter initializer
+[INFO ] 2019-07-01 16:30:32 [main] o.s.b.a.e.web.EndpointLinksResolver [{EndpointLinksResolver.java} {59}] - Exposing 1 endpoint(s) beneath base path '/actuator'
+[INFO ] 2019-07-01 16:30:32 [main] o.s.c.n.eureka.InstanceInfoFactory [{InstanceInfoFactory.java} {72}] - Setting initial instance status as: STARTING
+[INFO ] 2019-07-01 16:30:32 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {349}] - Initializing Eureka in region us-east-1
+[INFO ] 2019-07-01 16:30:32 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {70}] - Using JSON encoding codec LegacyJacksonJson
+[INFO ] 2019-07-01 16:30:32 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {71}] - Using JSON decoding codec LegacyJacksonJson
+[INFO ] 2019-07-01 16:30:32 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {80}] - Using XML encoding codec XStreamXml
+[INFO ] 2019-07-01 16:30:32 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {81}] - Using XML decoding codec XStreamXml
+[INFO ] 2019-07-01 16:30:32 [main] c.n.d.s.r.aws.ConfigClusterResolver [{ConfigClusterResolver.java} {43}] - Resolving eureka endpoints via configuration
+[INFO ] 2019-07-01 16:30:32 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {958}] - Disable delta property : false
+[INFO ] 2019-07-01 16:30:32 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {959}] - Single vip registry refresh property : null
+[INFO ] 2019-07-01 16:30:32 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {960}] - Force full registry fetch : false
+[INFO ] 2019-07-01 16:30:32 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {961}] - Application is null : false
+[INFO ] 2019-07-01 16:30:32 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {962}] - Registered Applications size is zero : true
+[INFO ] 2019-07-01 16:30:32 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {964}] - Application version is -1: true
+[INFO ] 2019-07-01 16:30:32 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1047}] - Getting all instance registry info from the eureka server
+[INFO ] 2019-07-01 16:30:32 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1056}] - The response status is 200
+[INFO ] 2019-07-01 16:30:32 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1270}] - Starting heartbeat executor: renew interval is: 30
+[INFO ] 2019-07-01 16:30:32 [main] c.n.discovery.InstanceInfoReplicator [{InstanceInfoReplicator.java} {60}] - InstanceInfoReplicator onDemand update allowed rate per min is 4
+[INFO ] 2019-07-01 16:30:32 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {449}] - Discovery Client initialized at timestamp 1561969837914 with initial instances count: 1
+[INFO ] 2019-07-01 16:30:32 [main] o.s.c.n.e.s.EurekaServiceRegistry [{EurekaServiceRegistry.java} {41}] - Registering application GATEWAY with eureka with status UP
+[INFO ] 2019-07-01 16:30:32 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1305}] - Saw local status change event StatusChangeEvent [timestamp=1561969837923, current=UP, previous=STARTING]
+[INFO ] 2019-07-01 16:30:32 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {826}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702: registering service...
+[INFO ] 2019-07-01 16:30:32 [main] o.a.coyote.http11.Http11NioProtocol [{DirectJDKLog.java} {173}] - Starting ProtocolHandler ["http-nio-8702"]
+[INFO ] 2019-07-01 16:30:32 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {835}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702 - registration status: 204
+[INFO ] 2019-07-01 16:30:32 [main] o.s.b.w.e.tomcat.TomcatWebServer [{TomcatWebServer.java} {204}] - Tomcat started on port(s): 8702 (http) with context path ''
+[INFO ] 2019-07-01 16:30:32 [main] o.s.c.n.e.s.EurekaAutoServiceRegistration [{EurekaAutoServiceRegistration.java} {143}] - Updating port to 8702
+[INFO ] 2019-07-01 16:30:32 [main] org.yugh.gateway.GatewayApplication [{StartupInfoLogger.java} {59}] - Started GatewayApplication in 18.74 seconds (JVM running for 29.335)
+[INFO ] 2019-07-01 16:30:32 [http-nio-8702-exec-4] o.a.c.c.C.[Tomcat].[localhost].[/] [{DirectJDKLog.java} {173}] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 2019-07-01 16:30:32 [http-nio-8702-exec-4] o.s.web.servlet.DispatcherServlet [{FrameworkServlet.java} {524}] - Initializing Servlet 'dispatcherServlet'
+[INFO ] 2019-07-01 16:30:32 [http-nio-8702-exec-4] o.s.web.servlet.DispatcherServlet [{FrameworkServlet.java} {546}] - Completed initialization in 26 ms
+[INFO ] 2019-07-01 16:30:32 [http-nio-8702-exec-5] o.y.g.controller.IndexController [{IndexController.java} {26}] - ========> url:/index1
+[INFO ] 2019-07-01 16:30:32 [http-nio-8702-exec-7] o.y.g.controller.IndexController [{IndexController.java} {26}] - ========> url:/index1
+[INFO ] 2019-07-01 16:30:32 [AsyncReporter{org.springframework.cloud.sleuth.zipkin2.sender.RestTemplateSender@3fdcde7a}] c.n.config.ChainedDynamicProperty [{ChainedDynamicProperty.java} {115}] - Flipping property: localhost.ribbon.ActiveConnectionsLimit to use NEXT property: niws.loadbalancer.availabilityFilteringRule.activeConnectionsLimit = 2147483647
+[INFO ] 2019-07-01 16:30:32 [AsyncReporter{org.springframework.cloud.sleuth.zipkin2.sender.RestTemplateSender@3fdcde7a}] c.n.u.c.ShutdownEnabledTimer [{ShutdownEnabledTimer.java} {58}] - Shutdown hook installed for: NFLoadBalancer-PingTimer-localhost
+[INFO ] 2019-07-01 16:30:32 [AsyncReporter{org.springframework.cloud.sleuth.zipkin2.sender.RestTemplateSender@3fdcde7a}] c.n.loadbalancer.BaseLoadBalancer [{BaseLoadBalancer.java} {197}] - Client: localhost instantiated a LoadBalancer: DynamicServerListLoadBalancer:{NFLoadBalancer:name=localhost,current list of Servers=[],Load balancer stats=Zone stats: {},Server stats: []}ServerList:null
+[INFO ] 2019-07-01 16:30:32 [AsyncReporter{org.springframework.cloud.sleuth.zipkin2.sender.RestTemplateSender@3fdcde7a}] c.n.l.DynamicServerListLoadBalancer [{DynamicServerListLoadBalancer.java} {222}] - Using serverListUpdater PollingServerListUpdater
+[INFO ] 2019-07-01 16:30:32 [AsyncReporter{org.springframework.cloud.sleuth.zipkin2.sender.RestTemplateSender@3fdcde7a}] c.n.l.DynamicServerListLoadBalancer [{DynamicServerListLoadBalancer.java} {150}] - DynamicServerListLoadBalancer for client localhost initialized: DynamicServerListLoadBalancer:{NFLoadBalancer:name=localhost,current list of Servers=[],Load balancer stats=Zone stats: {},Server stats: []}ServerList:org.springframework.cloud.netflix.ribbon.eureka.DomainExtractingServerList@4e898bc5
+[INFO ] 2019-07-01 16:30:32 [http-nio-8702-exec-9] o.y.g.controller.IndexController [{IndexController.java} {26}] - ========> url:/index1
+[INFO ] 2019-07-01 16:30:32 [http-nio-8702-exec-6] o.y.g.controller.IndexController [{IndexController.java} {26}] - ========> url:/index1
+[INFO ] 2019-07-01 16:30:32 [http-nio-8702-exec-8] o.y.g.controller.IndexController [{IndexController.java} {26}] - ========> url:/index1
+[INFO ] 2019-07-01 16:30:32 [http-nio-8702-exec-10] o.y.g.controller.IndexController [{IndexController.java} {26}] - ========> url:/index1
+[INFO ] 2019-07-01 16:30:32 [http-nio-8702-exec-6] o.y.g.controller.IndexController [{IndexController.java} {26}] - ========> url:/index1
+[INFO ] 2019-07-01 16:30:32 [http-nio-8702-exec-6] o.y.g.controller.IndexController [{IndexController.java} {26}] - ========> url:/index1
+[INFO ] 2019-07-01 16:30:32 [http-nio-8702-exec-8] o.y.g.controller.IndexController [{IndexController.java} {26}] - ========> url:/index1
+[INFO ] 2019-07-01 16:30:32 [http-nio-8702-exec-4] o.y.g.controller.IndexController [{IndexController.java} {26}] - ========> url:/index1
+[INFO ] 2019-07-01 16:30:32 [http-nio-8702-exec-3] o.y.g.controller.IndexController [{IndexController.java} {26}] - ========> url:/index1
+[INFO ] 2019-07-01 16:30:32 [http-nio-8702-exec-7] o.y.g.controller.IndexController [{IndexController.java} {26}] - ========> url:/index1
+[INFO ] 2019-07-01 16:30:32 [http-nio-8702-exec-5] o.y.g.controller.IndexController [{IndexController.java} {26}] - ========> url:/index1
+[INFO ] 2019-07-01 16:30:32 [http-nio-8702-exec-2] o.y.g.controller.IndexController [{IndexController.java} {26}] - ========> url:/index1
+[INFO ] 2019-07-01 16:30:32 [http-nio-8702-exec-8] o.y.g.controller.IndexController [{IndexController.java} {26}] - ========> url:/index1
+[INFO ] 2019-07-01 16:30:32 [http-nio-8702-exec-4] o.y.g.controller.IndexController [{IndexController.java} {26}] - ========> url:/index1
+[INFO ] 2019-07-01 16:30:32 [http-nio-8702-exec-3] o.y.g.controller.IndexController [{IndexController.java} {26}] - ========> url:/index1
+[INFO ] 2019-07-01 16:30:32 [http-nio-8702-exec-8] o.y.g.controller.IndexController [{IndexController.java} {26}] - ========> url:/index1
+[INFO ] 2019-07-01 16:30:32 [http-nio-8702-exec-4] o.y.g.controller.IndexController [{IndexController.java} {26}] - ========> url:/index1
+[INFO ] 2019-07-01 16:30:32 [http-nio-8702-exec-8] o.y.g.controller.IndexController [{IndexController.java} {26}] - ========> url:/index1
+[INFO ] 2019-07-01 16:30:32 [http-nio-8702-exec-7] o.y.g.controller.IndexController [{IndexController.java} {26}] - ========> url:/index1
+[INFO ] 2019-07-01 16:30:32 [http-nio-8702-exec-4] o.y.g.controller.IndexController [{IndexController.java} {26}] - ========> url:/index1
+[INFO ] 2019-07-01 16:30:32 [http-nio-8702-exec-8] o.y.g.controller.IndexController [{IndexController.java} {26}] - ========> url:/index1
+[INFO ] 2019-07-01 16:30:32 [http-nio-8702-exec-7] o.y.g.controller.IndexController [{IndexController.java} {26}] - ========> url:/index1
+[INFO ] 2019-07-01 16:30:32 [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver [{ConfigClusterResolver.java} {43}] - Resolving eureka endpoints via configuration
+[INFO ] 2019-07-01 16:30:32 [http-nio-8702-exec-4] o.y.g.controller.IndexController [{IndexController.java} {26}] - ========> url:/index1
+[INFO ] 2019-07-01 16:30:32 [Thread-11] c.n.l.PollingServerListUpdater [{PollingServerListUpdater.java} {53}] - Shutting down the Executor Pool for PollingServerListUpdater
+[INFO ] 2019-07-01 16:30:32 [Thread-7] o.s.c.n.e.s.EurekaServiceRegistry [{EurekaServiceRegistry.java} {65}] - Unregistering application GATEWAY with eureka with status DOWN
+[INFO ] 2019-07-01 16:30:32 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {826}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702: registering service...
+[INFO ] 2019-07-01 16:30:32 [Thread-7] o.s.c.n.zuul.ZuulFilterInitializer [{ZuulFilterInitializer.java} {79}] - Stopping filter initializer
+[INFO ] 2019-07-01 16:30:32 [Thread-7] o.s.s.c.ThreadPoolTaskExecutor [{ExecutorConfigurationSupport.java} {208}] - Shutting down ExecutorService 'applicationTaskExecutor'
+[INFO ] 2019-07-01 16:30:32 [Thread-7] c.n.u.c.ShutdownEnabledTimer [{ShutdownEnabledTimer.java} {67}] - Shutdown hook removed for: NFLoadBalancer-PingTimer-localhost
+[INFO ] 2019-07-01 16:30:32 [Thread-7] c.n.u.c.ShutdownEnabledTimer [{ShutdownEnabledTimer.java} {72}] - Exception caught (might be ok if at shutdown)
+java.lang.IllegalStateException: Shutdown in progress
+	at java.lang.ApplicationShutdownHooks.remove(ApplicationShutdownHooks.java:82)
+	at java.lang.Runtime.removeShutdownHook(Runtime.java:239)
+	at com.netflix.util.concurrent.ShutdownEnabledTimer.cancel(ShutdownEnabledTimer.java:70)
+	at com.netflix.loadbalancer.BaseLoadBalancer.cancelPingTask(BaseLoadBalancer.java:632)
+	at com.netflix.loadbalancer.BaseLoadBalancer.shutdown(BaseLoadBalancer.java:883)
+	at com.netflix.loadbalancer.DynamicServerListLoadBalancer.shutdown(DynamicServerListLoadBalancer.java:285)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:337)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:271)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:571)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:543)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1034)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:504)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1027)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1057)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1026)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:975)
+	at org.springframework.cloud.context.named.NamedContextFactory.destroy(NamedContextFactory.java:92)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:256)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:571)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:543)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1034)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:504)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1027)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1057)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1026)
+	at org.springframework.context.support.AbstractApplicationContext$1.run(AbstractApplicationContext.java:945)
+[INFO ] 2019-07-01 16:30:32 [Thread-7] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {888}] - Shutting down DiscoveryClient ...
+[INFO ] 2019-07-01 16:49:03 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$88923d02] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-07-01 16:49:03 [main] org.yugh.gateway.GatewayApplication [{SpringApplication.java} {679}] - The following profiles are active: dev
+[INFO ] 2019-07-01 16:49:03 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {244}] - Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO ] 2019-07-01 16:49:03 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {126}] - Bootstrapping Spring Data repositories in DEFAULT mode.
+[INFO ] 2019-07-01 16:49:03 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {182}] - Finished Spring Data repository scanning in 10ms. Found 0 repository interfaces.
+[INFO ] 2019-07-01 16:49:03 [main] o.s.cloud.context.scope.GenericScope [{GenericScope.java} {295}] - BeanFactory id=81cc9004-3e63-3525-9dd3-29b0724e72a5
+[INFO ] 2019-07-01 16:49:03 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$88923d02] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-07-01 16:49:03 [main] o.s.b.w.e.tomcat.TomcatWebServer [{TomcatWebServer.java} {90}] - Tomcat initialized with port(s): 8702 (http)
+[INFO ] 2019-07-01 16:49:03 [main] o.a.coyote.http11.Http11NioProtocol [{DirectJDKLog.java} {173}] - Initializing ProtocolHandler ["http-nio-8702"]
+[INFO ] 2019-07-01 16:49:03 [main] o.a.catalina.core.StandardService [{DirectJDKLog.java} {173}] - Starting service [Tomcat]
+[INFO ] 2019-07-01 16:49:03 [main] o.a.catalina.core.StandardEngine [{DirectJDKLog.java} {173}] - Starting Servlet engine: [Apache Tomcat/9.0.19]
+[INFO ] 2019-07-01 16:49:03 [main] o.a.c.c.C.[Tomcat].[localhost].[/] [{DirectJDKLog.java} {173}] - Initializing Spring embedded WebApplicationContext
+[INFO ] 2019-07-01 16:49:03 [main] o.s.web.context.ContextLoader [{ServletWebServerApplicationContext.java} {296}] - Root WebApplicationContext: initialization completed in 1908 ms
+[INFO ] 2019-07-01 16:49:03 [main] c.n.c.sources.URLConfigurationSource [{URLConfigurationSource.java} {126}] - URLs to be used as dynamic configuration source: [file:/Users/yuzhilin/IdeaProjects/spring-cloud/gateway/target/classes/config.properties]
+[INFO ] 2019-07-01 16:49:03 [main] c.n.config.DynamicPropertyFactory [{DynamicPropertyFactory.java} {281}] - DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@996a546
+[INFO ] 2019-07-01 16:49:03 [main] o.s.b.a.e.w.ServletEndpointRegistrar [{ServletEndpointRegistrar.java} {78}] - Registered '/actuator/hystrix.stream' to hystrix.stream-actuator-endpoint
+[INFO ] 2019-07-01 16:49:03 [main] org.yugh.gateway.config.RedisClient [{RedisClient.java} {32}] - =============> redis run ............
+[INFO ] 2019-07-01 16:49:03 [main] c.n.c.sources.URLConfigurationSource [{URLConfigurationSource.java} {126}] - URLs to be used as dynamic configuration source: [file:/Users/yuzhilin/IdeaProjects/spring-cloud/gateway/target/classes/config.properties]
+[INFO ] 2019-07-01 16:49:03 [main] o.s.s.c.ThreadPoolTaskExecutor [{ExecutorConfigurationSupport.java} {171}] - Initializing ExecutorService 'applicationTaskExecutor'
+[INFO ] 2019-07-01 16:49:03 [main] o.s.c.n.zuul.ZuulFilterInitializer [{ZuulFilterInitializer.java} {67}] - Starting filter initializer
+[INFO ] 2019-07-01 16:49:03 [main] o.s.b.a.e.web.EndpointLinksResolver [{EndpointLinksResolver.java} {59}] - Exposing 1 endpoint(s) beneath base path '/actuator'
+[INFO ] 2019-07-01 16:49:03 [main] o.s.c.n.eureka.InstanceInfoFactory [{InstanceInfoFactory.java} {72}] - Setting initial instance status as: STARTING
+[INFO ] 2019-07-01 16:49:03 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {349}] - Initializing Eureka in region us-east-1
+[INFO ] 2019-07-01 16:49:03 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {70}] - Using JSON encoding codec LegacyJacksonJson
+[INFO ] 2019-07-01 16:49:03 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {71}] - Using JSON decoding codec LegacyJacksonJson
+[INFO ] 2019-07-01 16:49:03 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {80}] - Using XML encoding codec XStreamXml
+[INFO ] 2019-07-01 16:49:03 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {81}] - Using XML decoding codec XStreamXml
+[INFO ] 2019-07-01 16:49:03 [main] c.n.d.s.r.aws.ConfigClusterResolver [{ConfigClusterResolver.java} {43}] - Resolving eureka endpoints via configuration
+[INFO ] 2019-07-01 16:49:03 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {958}] - Disable delta property : false
+[INFO ] 2019-07-01 16:49:03 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {959}] - Single vip registry refresh property : null
+[INFO ] 2019-07-01 16:49:03 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {960}] - Force full registry fetch : false
+[INFO ] 2019-07-01 16:49:03 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {961}] - Application is null : false
+[INFO ] 2019-07-01 16:49:03 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {962}] - Registered Applications size is zero : true
+[INFO ] 2019-07-01 16:49:03 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {964}] - Application version is -1: true
+[INFO ] 2019-07-01 16:49:03 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1047}] - Getting all instance registry info from the eureka server
+[INFO ] 2019-07-01 16:49:03 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1056}] - The response status is 200
+[INFO ] 2019-07-01 16:49:03 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1270}] - Starting heartbeat executor: renew interval is: 30
+[INFO ] 2019-07-01 16:49:03 [main] c.n.discovery.InstanceInfoReplicator [{InstanceInfoReplicator.java} {60}] - InstanceInfoReplicator onDemand update allowed rate per min is 4
+[INFO ] 2019-07-01 16:49:03 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {449}] - Discovery Client initialized at timestamp 1561970950011 with initial instances count: 0
+[INFO ] 2019-07-01 16:49:03 [main] o.s.c.n.e.s.EurekaServiceRegistry [{EurekaServiceRegistry.java} {41}] - Registering application GATEWAY with eureka with status UP
+[INFO ] 2019-07-01 16:49:03 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1305}] - Saw local status change event StatusChangeEvent [timestamp=1561970950022, current=UP, previous=STARTING]
+[INFO ] 2019-07-01 16:49:03 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {826}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702: registering service...
+[INFO ] 2019-07-01 16:49:03 [main] o.a.coyote.http11.Http11NioProtocol [{DirectJDKLog.java} {173}] - Starting ProtocolHandler ["http-nio-8702"]
+[INFO ] 2019-07-01 16:49:03 [main] o.s.b.w.e.tomcat.TomcatWebServer [{TomcatWebServer.java} {204}] - Tomcat started on port(s): 8702 (http) with context path ''
+[INFO ] 2019-07-01 16:49:03 [main] o.s.c.n.e.s.EurekaAutoServiceRegistration [{EurekaAutoServiceRegistration.java} {143}] - Updating port to 8702
+[INFO ] 2019-07-01 16:49:03 [main] org.yugh.gateway.GatewayApplication [{StartupInfoLogger.java} {59}] - Started GatewayApplication in 7.278 seconds (JVM running for 12.864)
+[INFO ] 2019-07-01 16:49:03 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {835}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702 - registration status: 204
+[INFO ] 2019-07-01 16:49:03 [RMI TCP Connection(6)-10.112.203.43] o.a.c.c.C.[Tomcat].[localhost].[/] [{DirectJDKLog.java} {173}] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 2019-07-01 16:49:03 [RMI TCP Connection(6)-10.112.203.43] o.s.web.servlet.DispatcherServlet [{FrameworkServlet.java} {524}] - Initializing Servlet 'dispatcherServlet'
+[INFO ] 2019-07-01 16:49:03 [RMI TCP Connection(6)-10.112.203.43] o.s.web.servlet.DispatcherServlet [{FrameworkServlet.java} {546}] - Completed initialization in 35 ms
+[INFO ] 2019-07-01 16:49:03 [parallel-1] io.lettuce.core.EpollProvider [{EpollProvider.java} {68}] - Starting without optional epoll library
+[INFO ] 2019-07-01 16:49:03 [parallel-1] io.lettuce.core.KqueueProvider [{KqueueProvider.java} {70}] - Starting without optional kqueue library
+[INFO ] 2019-07-01 16:49:03 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {958}] - Disable delta property : false
+[INFO ] 2019-07-01 16:49:03 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {959}] - Single vip registry refresh property : null
+[INFO ] 2019-07-01 16:49:03 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {960}] - Force full registry fetch : false
+[INFO ] 2019-07-01 16:49:03 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {961}] - Application is null : false
+[INFO ] 2019-07-01 16:49:03 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {962}] - Registered Applications size is zero : true
+[INFO ] 2019-07-01 16:49:03 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {964}] - Application version is -1: false
+[INFO ] 2019-07-01 16:49:03 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1047}] - Getting all instance registry info from the eureka server
+[INFO ] 2019-07-01 16:49:03 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1056}] - The response status is 200
+[INFO ] 2019-07-01 16:49:03 [Thread-22] o.s.c.n.e.s.EurekaServiceRegistry [{EurekaServiceRegistry.java} {65}] - Unregistering application GATEWAY with eureka with status DOWN
+[INFO ] 2019-07-01 16:49:03 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {826}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702: registering service...
+[INFO ] 2019-07-01 16:49:03 [Thread-22] o.s.c.n.zuul.ZuulFilterInitializer [{ZuulFilterInitializer.java} {79}] - Stopping filter initializer
+[INFO ] 2019-07-01 16:49:03 [Thread-22] o.s.s.c.ThreadPoolTaskExecutor [{ExecutorConfigurationSupport.java} {208}] - Shutting down ExecutorService 'applicationTaskExecutor'
+[INFO ] 2019-07-01 16:49:03 [Thread-22] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {888}] - Shutting down DiscoveryClient ...
+[INFO ] 2019-07-01 16:49:03 [Thread-22] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {922}] - Unregistering ...
+[INFO ] 2019-07-01 16:49:03 [Thread-22] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {911}] - Completed shut down of DiscoveryClient
+[INFO ] 2019-07-01 16:55:56 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$2ec407ed] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-07-01 16:55:56 [main] org.yugh.gateway.GatewayApplication [{SpringApplication.java} {679}] - The following profiles are active: dev
+[INFO ] 2019-07-01 16:55:56 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {244}] - Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO ] 2019-07-01 16:55:56 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {126}] - Bootstrapping Spring Data repositories in DEFAULT mode.
+[INFO ] 2019-07-01 16:55:56 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {182}] - Finished Spring Data repository scanning in 9ms. Found 0 repository interfaces.
+[INFO ] 2019-07-01 16:55:56 [main] o.s.cloud.context.scope.GenericScope [{GenericScope.java} {295}] - BeanFactory id=8a46f3b7-1c25-34bc-8b82-b5b130b6b17e
+[INFO ] 2019-07-01 16:55:56 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$2ec407ed] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-07-01 16:55:56 [main] o.s.b.w.e.tomcat.TomcatWebServer [{TomcatWebServer.java} {90}] - Tomcat initialized with port(s): 8702 (http)
+[INFO ] 2019-07-01 16:55:56 [main] o.a.coyote.http11.Http11NioProtocol [{DirectJDKLog.java} {173}] - Initializing ProtocolHandler ["http-nio-8702"]
+[INFO ] 2019-07-01 16:55:56 [main] o.a.catalina.core.StandardService [{DirectJDKLog.java} {173}] - Starting service [Tomcat]
+[INFO ] 2019-07-01 16:55:56 [main] o.a.catalina.core.StandardEngine [{DirectJDKLog.java} {173}] - Starting Servlet engine: [Apache Tomcat/9.0.19]
+[INFO ] 2019-07-01 16:55:56 [main] o.a.c.c.C.[Tomcat].[localhost].[/] [{DirectJDKLog.java} {173}] - Initializing Spring embedded WebApplicationContext
+[INFO ] 2019-07-01 16:55:56 [main] o.s.web.context.ContextLoader [{ServletWebServerApplicationContext.java} {296}] - Root WebApplicationContext: initialization completed in 2317 ms
+[INFO ] 2019-07-01 16:55:56 [main] c.n.c.sources.URLConfigurationSource [{URLConfigurationSource.java} {126}] - URLs to be used as dynamic configuration source: [file:/Users/yuzhilin/IdeaProjects/spring-cloud/gateway/target/classes/config.properties]
+[INFO ] 2019-07-01 16:55:56 [main] c.n.config.DynamicPropertyFactory [{DynamicPropertyFactory.java} {281}] - DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@4262fdeb
+[INFO ] 2019-07-01 16:55:56 [main] org.yugh.gateway.config.RedisClient [{RedisClient.java} {32}] - =============> redis run ............
+[INFO ] 2019-07-01 16:55:56 [main] c.n.c.sources.URLConfigurationSource [{URLConfigurationSource.java} {126}] - URLs to be used as dynamic configuration source: [file:/Users/yuzhilin/IdeaProjects/spring-cloud/gateway/target/classes/config.properties]
+[INFO ] 2019-07-01 16:55:56 [main] o.s.s.c.ThreadPoolTaskExecutor [{ExecutorConfigurationSupport.java} {171}] - Initializing ExecutorService 'applicationTaskExecutor'
+[INFO ] 2019-07-01 16:55:56 [main] o.s.c.n.zuul.ZuulFilterInitializer [{ZuulFilterInitializer.java} {67}] - Starting filter initializer
+[INFO ] 2019-07-01 16:55:56 [main] o.s.b.a.e.web.EndpointLinksResolver [{EndpointLinksResolver.java} {59}] - Exposing 2 endpoint(s) beneath base path '/actuator'
+[INFO ] 2019-07-01 16:55:56 [main] o.s.c.n.eureka.InstanceInfoFactory [{InstanceInfoFactory.java} {72}] - Setting initial instance status as: STARTING
+[INFO ] 2019-07-01 16:55:56 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {349}] - Initializing Eureka in region us-east-1
+[INFO ] 2019-07-01 16:55:56 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {70}] - Using JSON encoding codec LegacyJacksonJson
+[INFO ] 2019-07-01 16:55:56 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {71}] - Using JSON decoding codec LegacyJacksonJson
+[INFO ] 2019-07-01 16:55:56 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {80}] - Using XML encoding codec XStreamXml
+[INFO ] 2019-07-01 16:55:56 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {81}] - Using XML decoding codec XStreamXml
+[INFO ] 2019-07-01 16:55:56 [main] c.n.d.s.r.aws.ConfigClusterResolver [{ConfigClusterResolver.java} {43}] - Resolving eureka endpoints via configuration
+[INFO ] 2019-07-01 16:55:56 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {958}] - Disable delta property : false
+[INFO ] 2019-07-01 16:55:56 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {959}] - Single vip registry refresh property : null
+[INFO ] 2019-07-01 16:55:56 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {960}] - Force full registry fetch : false
+[INFO ] 2019-07-01 16:55:56 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {961}] - Application is null : false
+[INFO ] 2019-07-01 16:55:56 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {962}] - Registered Applications size is zero : true
+[INFO ] 2019-07-01 16:55:56 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {964}] - Application version is -1: true
+[INFO ] 2019-07-01 16:55:56 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1047}] - Getting all instance registry info from the eureka server
+[INFO ] 2019-07-01 16:55:56 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1056}] - The response status is 200
+[INFO ] 2019-07-01 16:55:56 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1270}] - Starting heartbeat executor: renew interval is: 30
+[INFO ] 2019-07-01 16:55:56 [main] c.n.discovery.InstanceInfoReplicator [{InstanceInfoReplicator.java} {60}] - InstanceInfoReplicator onDemand update allowed rate per min is 4
+[INFO ] 2019-07-01 16:55:56 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {449}] - Discovery Client initialized at timestamp 1561971363067 with initial instances count: 0
+[INFO ] 2019-07-01 16:55:56 [main] o.s.c.n.e.s.EurekaServiceRegistry [{EurekaServiceRegistry.java} {41}] - Registering application GATEWAY with eureka with status UP
+[INFO ] 2019-07-01 16:55:56 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1305}] - Saw local status change event StatusChangeEvent [timestamp=1561971363076, current=UP, previous=STARTING]
+[INFO ] 2019-07-01 16:55:56 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {826}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702: registering service...
+[INFO ] 2019-07-01 16:55:56 [main] o.a.coyote.http11.Http11NioProtocol [{DirectJDKLog.java} {173}] - Starting ProtocolHandler ["http-nio-8702"]
+[INFO ] 2019-07-01 16:55:56 [main] o.s.b.w.e.tomcat.TomcatWebServer [{TomcatWebServer.java} {204}] - Tomcat started on port(s): 8702 (http) with context path ''
+[INFO ] 2019-07-01 16:55:56 [main] o.s.c.n.e.s.EurekaAutoServiceRegistration [{EurekaAutoServiceRegistration.java} {143}] - Updating port to 8702
+[INFO ] 2019-07-01 16:55:56 [main] org.yugh.gateway.GatewayApplication [{StartupInfoLogger.java} {59}] - Started GatewayApplication in 7.226 seconds (JVM running for 11.975)
+[INFO ] 2019-07-01 16:55:56 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {835}] - DiscoveryClient_GATEWAY/10.112.203.43:gateway:8702 - registration status: 204
+[INFO ] 2019-07-01 16:55:56 [RMI TCP Connection(9)-10.112.203.43] o.a.c.c.C.[Tomcat].[localhost].[/] [{DirectJDKLog.java} {173}] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 2019-07-01 16:55:56 [RMI TCP Connection(9)-10.112.203.43] o.s.web.servlet.DispatcherServlet [{FrameworkServlet.java} {524}] - Initializing Servlet 'dispatcherServlet'
+[INFO ] 2019-07-01 16:55:56 [RMI TCP Connection(9)-10.112.203.43] o.s.web.servlet.DispatcherServlet [{FrameworkServlet.java} {546}] - Completed initialization in 17 ms
+[INFO ] 2019-07-01 16:55:56 [parallel-1] io.lettuce.core.EpollProvider [{EpollProvider.java} {68}] - Starting without optional epoll library
+[INFO ] 2019-07-01 16:55:56 [parallel-1] io.lettuce.core.KqueueProvider [{KqueueProvider.java} {70}] - Starting without optional kqueue library
+[INFO ] 2019-07-01 16:55:56 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {958}] - Disable delta property : false
+[INFO ] 2019-07-01 16:55:56 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {959}] - Single vip registry refresh property : null
+[INFO ] 2019-07-01 16:55:56 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {960}] - Force full registry fetch : false
+[INFO ] 2019-07-01 16:55:56 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {961}] - Application is null : false
+[INFO ] 2019-07-01 16:55:56 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {962}] - Registered Applications size is zero : true
+[INFO ] 2019-07-01 16:55:56 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {964}] - Application version is -1: false
+[INFO ] 2019-07-01 16:55:56 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1047}] - Getting all instance registry info from the eureka server
+[INFO ] 2019-07-01 16:55:56 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1056}] - The response status is 200
+[INFO ] 2019-07-01 16:55:56 [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver [{ConfigClusterResolver.java} {43}] - Resolving eureka endpoints via configuration

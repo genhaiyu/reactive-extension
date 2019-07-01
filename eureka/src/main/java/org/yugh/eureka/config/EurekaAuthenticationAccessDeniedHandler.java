@@ -14,6 +14,7 @@ import java.io.PrintWriter;
 
 /**
  * //无权限
+ * 1:Authentication 在eureka里不用验证用户的信息
  *
  * @author: 余根海
  * @creation: 2019-06-30 19:14

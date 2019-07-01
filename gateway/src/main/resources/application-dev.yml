@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: gateway
+
+#eureka-gateway-monitor-config 每个端口+1
+server:
+  port: 8702
+
+#eureka注册配置
+eureka:
+  instance:
+    #使用IP注册
+    prefer-ip-address: true
+    ##续约更新时间间隔设置5秒，m默认30s
+    lease-renewal-interval-in-seconds: 5
+    ##续约到期时间10秒，默认是90秒
+    lease-expiration-duration-in-seconds: 10
+  client:
+    service-url:
+      defaultZone: http://localhost:8700/eureka/
+
+#断路时间
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 300000
+
+#负载时间
+ribbon:
+  ReadTimeout: 60000
+  SocketTimeout: 60000
+
+#权限控制
+auth-props:
+  access-token: dev
+  auth-level: dev
+  access-ip: 127.0.0.1
+  api-urlMap: {
+    service1: 2,
+    service2: 1
+  }
+  exclude-urls:
+    - service1/v1
+    - service2/v2

@@ -1,20 +1,16 @@
 spring:
   application:
-    name: monitor
-  rabbitmq:
-    host: 127.0.0.1
-    port: 5672
-    username: guest
-    password: guest
+    name: customer
   #cloud:
   #  config:
    #   discovery:
-    #    enabled: true
-    #    service-id: config
+   #     enabled: true
+   #     service-id: config
+
 
 #eureka-gateway-monitor-config 每个端口+1
 server:
-  port: 8703
+  port: 8705
 
 #eureka注册配置
 eureka:
@@ -29,13 +25,14 @@ eureka:
     service-url:
       defaultZone: http://localhost:8700/eureka/
 
-ribbon:
-  #请求处理超时时间
-  ReadTimeout: 2000
-  ConnectTimeout: 2000
+#看板
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
 
-#要监听的微服务列表
-turbine:
-  app-config: product,customer
-  cluster-name-expression: new String("default")
-  combine-host-port: true
+#swagger
+#swagger:
+  #enable: true
+  #header: token

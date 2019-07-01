@@ -1,0 +1,79 @@
+[WARN ] 2019-06-30 19:38:59 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-06-30 19:38:59 [main] c.n.d.s.t.d.RetryableEurekaHttpClient [{RetryableEurekaHttpClient.java} {130}] - Request execution failed with message: java.net.ConnectException: Connection refused (Connection refused)
+[WARN ] 2019-06-30 19:38:59 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {290}] - Using default backup registry implementation which does not do anything.
+[WARN ] 2019-06-30 19:39:51 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-06-30 19:39:51 [main] c.n.d.s.t.d.RetryableEurekaHttpClient [{RetryableEurekaHttpClient.java} {130}] - Request execution failed with message: java.net.ConnectException: Connection refused (Connection refused)
+[WARN ] 2019-06-30 19:39:51 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {290}] - Using default backup registry implementation which does not do anything.
+[WARN ] 2019-06-30 20:03:48 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-06-30 20:05:08 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-06-30 20:05:47 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-06-30 20:07:11 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-06-30 20:07:11 [main] o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext [{AbstractApplicationContext.java} {557}] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration': Injection of autowired dependencies failed; nested exception is java.lang.IllegalStateException: @Order on WebSecurityConfigurers must be unique. Order of 100 was already used on org.yugh.eureka.config.WebSecurityConfig$$EnhancerBySpringCGLIB$$49b5d1b4@20a3e10c, so it cannot be used on org.yugh.eureka.config.WebSecurityConfig@426c0486 too.
+[WARN ] 2019-06-30 20:07:11 [main] o.a.c.loader.WebappClassLoaderBase [{DirectJDKLog.java} {173}] - The web application [ROOT] appears to have started a thread named [pollingConfigurationSource] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:748)
+[WARN ] 2019-06-30 20:07:27 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-06-30 20:07:27 [main] o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext [{AbstractApplicationContext.java} {557}] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration': Injection of autowired dependencies failed; nested exception is java.lang.IllegalStateException: @Order on WebSecurityConfigurers must be unique. Order of 100 was already used on org.yugh.eureka.config.WebSecurityConfig$$EnhancerBySpringCGLIB$$dd00846c@5d14e99e, so it cannot be used on org.yugh.eureka.config.WebSecurityConfig@38cfecf3 too.
+[WARN ] 2019-06-30 20:07:27 [main] o.a.c.loader.WebappClassLoaderBase [{DirectJDKLog.java} {173}] - The web application [ROOT] appears to have started a thread named [pollingConfigurationSource] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:748)
+[WARN ] 2019-06-30 20:08:04 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-06-30 20:08:49 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-06-30 20:09:04 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-06-30 20:19:38 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-06-30 20:19:38 [main] o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext [{AbstractApplicationContext.java} {557}] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'webSecurityConfig' defined in file [/Users/yuzhilin/IdeaProjects/spring-cloud/eureka/target/classes/org/yugh/eureka/config/WebSecurityConfig.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'org.springframework.security.web.access.AccessDeniedHandler' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+[WARN ] 2019-06-30 20:19:38 [main] o.a.c.loader.WebappClassLoaderBase [{DirectJDKLog.java} {173}] - The web application [ROOT] appears to have started a thread named [pollingConfigurationSource] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:748)
+[WARN ] 2019-06-30 20:20:52 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-06-30 20:20:52 [main] o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext [{AbstractApplicationContext.java} {557}] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'webSecurityConfig' defined in file [/Users/yuzhilin/IdeaProjects/spring-cloud/eureka/target/classes/org/yugh/eureka/config/WebSecurityConfig.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'org.springframework.security.web.access.AccessDeniedHandler' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+[WARN ] 2019-06-30 20:20:52 [main] o.a.c.loader.WebappClassLoaderBase [{DirectJDKLog.java} {173}] - The web application [ROOT] appears to have started a thread named [pollingConfigurationSource] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:748)
+[WARN ] 2019-06-30 20:22:23 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-06-30 20:22:23 [main] o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext [{AbstractApplicationContext.java} {557}] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'webSecurityConfig' defined in file [/Users/yuzhilin/IdeaProjects/spring-cloud/eureka/target/classes/org/yugh/eureka/config/WebSecurityConfig.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'org.springframework.security.web.access.AccessDeniedHandler' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+[WARN ] 2019-06-30 20:22:23 [main] o.a.c.loader.WebappClassLoaderBase [{DirectJDKLog.java} {173}] - The web application [ROOT] appears to have started a thread named [pollingConfigurationSource] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:748)
+[WARN ] 2019-06-30 20:26:26 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-06-30 20:28:02 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-06-30 20:28:56 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-06-30 20:29:37 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-06-30 20:34:04 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-06-30 20:35:53 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-06-30 20:36:25 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.

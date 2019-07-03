@@ -19,6 +19,19 @@ eureka:
     service-url:
       defaultZone: http://localhost:8700/eureka/
 
+#route connection
+zuul:
+  host:
+    max-per-route-connections: 20
+    max-total-connections: 200
+  #path
+  routes:
+    api-product.path: /pro/**
+    api-product.serviceId: product
+    api-customer.path: /cust/**
+    api-customer.serviceId: customer
+
+
 #断路时间
 hystrix:
   command:
@@ -28,21 +41,7 @@ hystrix:
           thread:
             timeoutInMilliseconds: 300000
 
-
 #负载时间
 ribbon:
   ReadTimeout: 60000
   SocketTimeout: 60000
-
-#权限控制
-auth-props:
-  access-token: dev
-  auth-level: dev
-  access-ip: 127.0.0.1
-  api-urlMap: {
-    service1: 2,
-    service2: 1
-  }
-  exclude-urls:
-    - service1/v1
-    - service2/v2

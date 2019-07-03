@@ -29,5 +29,5 @@ eureka:
     fetch-registry: false
     serviceUrl:
         #主注册中心地址
-      defaultZone: http://@localhost:${server.port}/eureka/
+      defaultZone: http://localhost:${server.port}/eureka/
 

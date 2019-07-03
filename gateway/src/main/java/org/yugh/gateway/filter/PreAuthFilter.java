@@ -10,14 +10,14 @@ import org.yugh.gateway.common.constants.Constant;
 import org.yugh.gateway.common.enums.DeployEnum;
 import org.yugh.gateway.common.enums.HttpStatusEnum;
 import org.yugh.gateway.common.enums.ResultEnum;
-import org.yugh.gateway.config.AuthPropConfig;
 import org.yugh.gateway.config.RedisClient;
+import org.yugh.gateway.config.ZuulPropConfig;
 import org.yugh.gateway.util.ResultJson;
-import org.yugh.gateway.util.WebUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -34,7 +34,7 @@ public class PreAuthFilter extends ZuulFilter {
     @Value("${spring.profiles.active}")
     private String activeType;
     @Autowired
-    private AuthPropConfig authPropConfig;
+    private ZuulPropConfig zuulPropConfig;
     @Autowired
     private RedisClient redisClient;
 
@@ -61,13 +61,13 @@ public class PreAuthFilter extends ZuulFilter {
         RequestContext context = RequestContext.getCurrentContext();
         HttpServletRequest request = context.getRequest();
         if (activeType.equals(DeployEnum.DEV.getType())) {
-            log.info("请求地址 ： {}      当前环境 ：{} ", request.getServletPath(), DeployEnum.DEV.getType());
+            log.info("请求地址 : {}      当前环境  : {} ", request.getServletPath(), DeployEnum.DEV.getType());
             return true;
         } else if (activeType.equals(DeployEnum.TEST.getType())) {
-            log.info("请求地址 ： {}      当前环境 ：{} ", request.getServletPath(), DeployEnum.TEST.getType());
+            log.info("请求地址 : {}      当前环境  : {} ", request.getServletPath(), DeployEnum.TEST.getType());
             return true;
         } else if (activeType.equals(DeployEnum.PROD.getType())) {
-            log.info("请求地址 ： {}      当前环境 ：{} ", request.getServletPath(), DeployEnum.PROD.getType());
+            log.info("请求地址 : {}      当前环境  : {} ", request.getServletPath(), DeployEnum.PROD.getType());
             return true;
         }
         return true;
@@ -75,7 +75,7 @@ public class PreAuthFilter extends ZuulFilter {
 
 
     /**
-     * 路由拦截
+     * 路由拦截转发
      *
      * @return
      * @author yugenhai
@@ -85,66 +85,63 @@ public class PreAuthFilter extends ZuulFilter {
     public Object run() {
         RequestContext context = RequestContext.getCurrentContext();
         HttpServletRequest request = context.getRequest();
-        String readUrl = WebUtil.getRequestURI(request);
-        try {
-            //白名单直接访问
-            if (!StringUtils.isEmpty(authPropConfig.getExcludeUrls())) {
-                for (String url : authPropConfig.getExcludeUrls()) {
-                    if (url.contains(readUrl)) {
-                        log.info("请求链接白名单 ： {}      直接跳过 ：{} ", url, request.getServletPath());
-                        return null;
-                    }
-                }
-            }
-            //异常情况不路由
-            if (request.getServletPath().length() <= Constant.PATH_LENGTH || authPropConfig.getApiUrlMap().size() == 0) {
-                return null;
-            }
-            //链接打过来实例名
-            String serverName = request.getServletPath().substring(1, request.getServletPath().indexOf('/', 1));
-            log.info("请求路径 ： {}       实例名 ： {} ", request.getServletPath(), serverName);
-            //取到实例名
-            for (String key : authPropConfig.getApiUrlMap().keySet()) {
-                log.info("路由已配置微服务 Instance IDs ：{} ", key);
-            }
-            // 1:检查白名单微服务名
-            // 2:获取到微服务的别名级别
-            if (authPropConfig.getApiUrlMap().containsKey(serverName)) {
-                authToken(context, authPropConfig.getApiUrlMap().get(serverName));
-                return null;
-            } else {
-                //如果不在白名单中,拒绝访问
-                log.info("路由请求地址 ：{}  请求被拒绝, 不允许直接访问底层方法 ", request.getServletPath());
-                noSignIn(request, context);
-                return null;
-            }
-
-        } catch (Exception e) {
-            log.info("gateway路由器请求异常 ：{}  请求被拒绝 ", e.getMessage());
-            context.setResponseStatusCode(HttpStatusEnum.UNAUTHORIZED.code());
-            context.setResponseBody(ResultJson.failure(ResultEnum.FORBIDDEN,("Url Error, Please Check It")).toString());
+        String requestMethod = context.getRequest().getMethod();
+        if (Constant.OPTIONS.equals(requestMethod)) {
+            log.info("请求的跨域的地址:{}   跨域的方法", request.getServletPath(), requestMethod);
+            assemblyCross(context);
+            context.setResponseStatusCode(200);
             context.setSendZuulResponse(false);
             return null;
         }
+        String readUrl = request.getServletPath().substring(1, request.getServletPath().indexOf('/', 1));
+        try {
+            if (request.getServletPath().length() <= Constant.PATH_LENGTH || zuulPropConfig.getRoutes().size() == 0) {
+                throw new Exception();
+            }
+            Iterator<Map.Entry<String,String>> zuulMap = zuulPropConfig.getRoutes().entrySet().iterator();
+            while(zuulMap.hasNext()){
+                Map.Entry<String, String> entry = zuulMap.next();
+                String routeValue = entry.getValue();
+                if(routeValue.startsWith(Constant.ZUUL_PREFIX)){
+                    routeValue = routeValue.substring(1, routeValue.indexOf('/', 1));
+                }
+                if(routeValue.contains(readUrl)){
+                    log.info("请求白名单地址 : {}     请求跳过的真实地址  :{} ", routeValue, request.getServletPath());
+                    return null;
+                }
+            }
+            log.info("即将请求登录 : {}       实例名 : {} ", request.getServletPath(), readUrl);
+            authToken(context);
+            return null;
+        } catch (Exception e) {
+            log.info("gateway路由器请求异常 :{}  请求被拒绝 ", e.getMessage());
+            assemblyCross(context);
+            context.set("isSuccess", false);
+            context.setSendZuulResponse(false);
+            context.setResponseStatusCode(HttpStatusEnum.OK.code());
+            context.getResponse().setContentType("application/json;charset=UTF-8");
+            context.setResponseBody(ResultJson.failure(ResultEnum.UNAUTHORIZED, "Url Error, Please Check It").toString());
+            return null;
+        }
     }
+
 
 
     /**
      * 检查微服务权限
      *
      * @param context
-     * @param authUserType
      * @return
      * @author yugenhai
      * @creation: 2019-06-26 17:50
      */
-    private Object authToken(RequestContext context, int authUserType) {
+    private Object authToken(RequestContext context) {
         HttpServletRequest request = context.getRequest();
         HttpServletResponse response = context.getResponse();
         //boolean isLogin = 根据业务判断.isLogined(request, response);
         boolean isLogin = true;
+        //是否存在用户或者是否登录
         if (isLogin) {
-            //登录状态
             try {
 
                 //1:拿到用户信息
@@ -157,7 +154,7 @@ public class PreAuthFilter extends ZuulFilter {
 
         } else {
             //根据该token查询该用户未登录
-            noSignIn(request, context);
+            unLogin(request, context);
         }
         return null;
     }
@@ -168,16 +165,20 @@ public class PreAuthFilter extends ZuulFilter {
      *
      * @param request
      */
-    private void noSignIn(HttpServletRequest request, RequestContext context) {
+    private void unLogin(HttpServletRequest request, RequestContext context) {
         String requestURL = request.getRequestURL().toString();
         String loginUrl = getSsoUrl(request) + "?returnUrl=" + requestURL;
         Map map = new HashMap(2);
         map.put("redirctUrl", loginUrl);
-        log.info("检查到该token对应的用户登录状态未登录  跳转到Login页面 ： {} ", loginUrl);
-        context.setResponseStatusCode(HttpStatusEnum.UNAUTHORIZED.code());
-        context.setResponseBody(ResultJson.failure(ResultEnum.UNAUTHORIZED,("This User Not Login, Please Check Token")).toString());
+        log.info("检查到该token对应的用户登录状态未登录  跳转到Login页面 : {} ", loginUrl);
+        context.setResponseStatusCode(HttpStatusEnum.OK.code());
+        assemblyCross(context);
+        context.getResponse().setContentType("application/json;charset=UTF-8");
         context.setSendZuulResponse(false);
+        context.set("isSuccess", false);
+        context.setResponseBody(ResultJson.failure(ResultEnum.UNAUTHORIZED, "This User Not Found, Please Check Token").toString());
     }
+
 
 
     /**
@@ -194,6 +195,17 @@ public class PreAuthFilter extends ZuulFilter {
         return "https://github.com/yugenhai108";
 
     }
+
+    /**
+     * 拼装跨域处理
+     */
+    private void assemblyCross(RequestContext ctx) {
+        HttpServletResponse response = ctx.getResponse();
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Headers", ctx.getRequest().getHeader("Access-Control-Request-Headers"));
+        response.setHeader("Access-Control-Allow-Methods", "*");
+    }
+
 
 
 }

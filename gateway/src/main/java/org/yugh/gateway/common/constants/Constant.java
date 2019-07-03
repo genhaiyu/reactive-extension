@@ -17,6 +17,16 @@ public class Constant {
     /**
      * 请求链接长度
      */
-    public static final int PATH_LENGTH = 2;
+    public static final int PATH_LENGTH = 3;
+
+    /**
+     * 匹配线
+     */
+    public static final String ZUUL_PREFIX = "/";
+
+    /**
+     * 跨域
+     */
+    public final static String OPTIONS = "OPTIONS";
 
 }

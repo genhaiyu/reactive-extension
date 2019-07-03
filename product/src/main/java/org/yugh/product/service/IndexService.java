@@ -21,7 +21,7 @@ public interface IndexService {
      * @param randomId
      * @return
      */
-    @GetMapping("getRandomId/{randomId}")
+    @GetMapping("cust/getRandomId/{randomId}")
     Object getRandomId(@PathVariable("randomId") Long randomId);
 
 }

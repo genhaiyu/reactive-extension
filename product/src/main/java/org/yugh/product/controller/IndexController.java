@@ -73,6 +73,7 @@ public class IndexController {
     }
 
     private String defaultFallback() {
+        log.info("来自product的提示： 太拥挤了， 请稍后再试。");
 
         return "来自product的提示： 太拥挤了， 请稍后再试。 ";
     }

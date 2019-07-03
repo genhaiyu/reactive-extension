@@ -48,7 +48,7 @@ zuul:
     api-customer.serviceId: customer
 ```
 </br>
-（6）api-product.path 对应目前@RequestMapping路径，api-customer.serviceId 微服务名字spring:application:name  。</br> 
+（6）api-product.path 对应目标服务@RequestMapping，api-customer.serviceId 服务名字spring:application:name  。</br> 
 
 ## </br>
 

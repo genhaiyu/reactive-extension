@@ -5,6 +5,7 @@ import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.yugh.customer.utils.SnowFlakeUtil;
 
@@ -18,6 +19,7 @@ import org.yugh.customer.utils.SnowFlakeUtil;
 @Slf4j
 @RestController
 @Api(description = "消费控制器")
+@RequestMapping("cust")
 @DefaultProperties(defaultFallback = "defaultFallback")
 public class IndexController {
 

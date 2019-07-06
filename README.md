@@ -51,10 +51,12 @@ zuul:
 （6）api-product.path 对应目标服务@RequestMapping，api-customer.serviceId 服务名字spring:application:name  。</br> 
 
 ## </br>
-
+</br>
 + 4：启动Monitor（Port = 8703）。单个服务的hystrix，如 Product （Port = 8704） http://192.168.0.113:8704/actuator/hystrix.stream  。</br>
 （1）在HystrixDashboard看熔断或调用情况，访问 http://192.168.0.113:8703/hystrix ，在链接框输入要监控 Product （Port = 8704）http://192.168.0.113:8704/hystrix.stream ，Delay: 1000ms  Title: http://192.168.0.113:8704/hystrix.stream  。</br>
+</br>
 （2）请求的熔断成功失败率在 [代码](https://github.com/yugenhai108/spring-cloud/blob/master/product/src/main/java/org/yugh/product/controller/IndexController.java)，请求地址 http://192.168.0.113:8704/pro/index2/1 ，如被调方抛异常也熔断，熔断率可自行控制。</br>
+</br>
 （3）监控图：
 
-![Image text](https://github.com/yugenhai108/spring-cloud/blob/master/hystrixDashboard.png)
+![Image text](https://github.com/yugenhai108/spring-cloud/blob/master/dashboard.png)

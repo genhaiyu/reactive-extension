@@ -1,11 +1,6 @@
 spring:
   application:
     name: eureka
-  security:
-    user:
-      name: yugh
-      password: mac12345
-      role: admin
 
 #eureka-gateway-monitor-config 每个端口+1
 server:

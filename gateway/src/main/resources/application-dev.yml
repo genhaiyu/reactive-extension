@@ -16,20 +16,32 @@ eureka:
     ##续约到期时间10秒，默认是90秒
     lease-expiration-duration-in-seconds: 90
   client:
-    service-url:
+    serviceUrl:
       defaultZone: http://localhost:8700/eureka/
 
-#route connection
+# route connection
 zuul:
   host:
+    #单个服务最大请求
     max-per-route-connections: 20
+    #网关最大连接数
     max-total-connections: 200
-  #path
-  routes:
-    api-product.path: /pro/**
-    api-product.serviceId: product
-    api-customer.path: /cust/**
-    api-customer.serviceId: customer
+
+
+#移除url同时移除服务
+auth-props:
+  accessIp: 127.0.0.1
+  accessToken: admin
+  authLevel: dev
+  #服务
+  api-urlMap: {
+    product: 1&2,
+    customer: 1&1
+  }
+  #移除url同时移除服务
+  exclude-urls:
+    - /pro
+    - /cust
 
 
 #断路时间
@@ -41,7 +53,12 @@ hystrix:
           thread:
             timeoutInMilliseconds: 300000
 
-#负载时间
+#ribbon
 ribbon:
-  ReadTimeout: 60000
-  SocketTimeout: 60000
+  ReadTimeout: 15000
+  ConnectTimeout: 15000
+  SocketTimeout: 15000
+  eager-load:
+    enabled: true
+    clients: product, customer
+

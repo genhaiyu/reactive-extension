@@ -5,6 +5,7 @@ import com.netflix.zuul.context.RequestContext;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.yugh.gateway.common.constants.Constant;
 import org.yugh.gateway.common.enums.DeployEnum;
@@ -14,11 +15,14 @@ import org.yugh.gateway.config.RedisClient;
 import org.yugh.gateway.config.ZuulPropConfig;
 import org.yugh.gateway.util.ResultJson;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.regex.Matcher;
 
 /**
  * //路由拦截转发请求
@@ -86,14 +90,39 @@ public class PreAuthFilter extends ZuulFilter {
         RequestContext context = RequestContext.getCurrentContext();
         HttpServletRequest request = context.getRequest();
         String requestMethod = context.getRequest().getMethod();
+        //判断请求方式
         if (Constant.OPTIONS.equals(requestMethod)) {
-            log.info("请求的跨域的地址:{}   跨域的方法", request.getServletPath(), requestMethod);
+            log.info("请求的跨域的地址 : {}   跨域的方法", request.getServletPath(), requestMethod);
             assemblyCross(context);
-            context.setResponseStatusCode(200);
+            context.setResponseStatusCode(HttpStatusEnum.OK.code());
             context.setSendZuulResponse(false);
             return null;
         }
-        String readUrl = request.getServletPath().substring(1, request.getServletPath().indexOf('/', 1));
+        //转发信息共享 其他服务不要依赖MVC拦截器，或重写拦截器
+        if (isIgnore(request, this::exclude, this::checkLength)) {
+            String token = getCookieByGuaziSso(request);
+            if(!StringUtils.isEmpty(token)){
+                //context.addZuulRequestHeader(JwtUtil.HEADER_AUTH, token);
+            }
+            log.info("请求白名单地址 : {} ", request.getServletPath());
+            return null;
+        }
+        String serverName = request.getServletPath().substring(1, request.getServletPath().indexOf('/', 1));
+        String authUserType = zuulPropConfig.getApiUrlMap().get(serverName);
+        log.info("实例服务名: {}  对应用户类型: {}", serverName, authUserType);
+        if (!StringUtils.isEmpty(authUserType)) {
+            //用户是否合法和登录
+            authToken(context);
+        } else {
+            //下线前删除配置的实例名
+            log.info("实例服务: {}  不允许访问", serverName);
+            unauthorized(context, HttpStatusEnum.FORBIDDEN.code(), "请求的服务已经作废,不可访问");
+        }
+        return null;
+
+        /******************************以下代码可能会复用，勿删，若使用Gateway整个路由项目将不使用 add by - yugenhai 2019-0704********************************************/
+
+        /*String readUrl = request.getServletPath().substring(1, request.getServletPath().indexOf('/', 1));
         try {
             if (request.getServletPath().length() <= Constant.PATH_LENGTH || zuulPropConfig.getRoutes().size() == 0) {
                 throw new Exception();
@@ -120,15 +149,15 @@ public class PreAuthFilter extends ZuulFilter {
             context.setSendZuulResponse(false);
             context.setResponseStatusCode(HttpStatusEnum.OK.code());
             context.getResponse().setContentType("application/json;charset=UTF-8");
-            context.setResponseBody(ResultJson.failure(ResultEnum.UNAUTHORIZED, "Url Error, Please Check It").toString());
+            context.setResponseBody(JsonUtils.toJson(JsonResult.buildErrorResult(HttpStatusEnum.UNAUTHORIZED.code(),"Url Error, Please Check It")));
             return null;
         }
+        */
     }
 
 
-
     /**
-     * 检查微服务权限
+     * 检查用户
      *
      * @param context
      * @return
@@ -138,25 +167,29 @@ public class PreAuthFilter extends ZuulFilter {
     private Object authToken(RequestContext context) {
         HttpServletRequest request = context.getRequest();
         HttpServletResponse response = context.getResponse();
-        //boolean isLogin = 根据业务判断.isLogined(request, response);
-        boolean isLogin = true;
-        //是否存在用户或者是否登录
+        /*boolean isLogin = sessionManager.isLogined(request, response);
+        //用户存在
         if (isLogin) {
             try {
-
-                //1:拿到用户信息
-                //2:冗余一份、放在上下文里、放缓存一份
-                //redisClient.set(user.getNo(), token, 20 * 60L);
-
+                User user = sessionManager.getUser(request);
+                log.info("用户存在 : {} ", JsonUtils.toJson(user));
+               // String token = userAuthUtil.generateToken(user.getNo(), user.getUserName(), user.getRealName());
+                log.info("根据用户生成的Token :{}", token);
+                //转发信息共享
+               // context.addZuulRequestHeader(JwtUtil.HEADER_AUTH, token);
+                //缓存 后期所有服务都判断
+                redisClient.set(user.getNo(), token, 20 * 60L);
+                //冗余一份
+                userService.syncUser(user);
             } catch (Exception e) {
-                log.error("获取用户信息异常：{}", e.getMessage());
+                log.error("调用SSO获取用户信息异常 :{}", e.getMessage());
             }
-
         } else {
-            //根据该token查询该用户未登录
+            //根据该token查询该用户不存在
             unLogin(request, context);
-        }
+        }*/
         return null;
+
     }
 
 
@@ -168,17 +201,107 @@ public class PreAuthFilter extends ZuulFilter {
     private void unLogin(HttpServletRequest request, RequestContext context) {
         String requestURL = request.getRequestURL().toString();
         String loginUrl = getSsoUrl(request) + "?returnUrl=" + requestURL;
-        Map map = new HashMap(2);
-        map.put("redirctUrl", loginUrl);
+        //Map map = new HashMap(2);
+        //map.put("redirctUrl", loginUrl);
         log.info("检查到该token对应的用户登录状态未登录  跳转到Login页面 : {} ", loginUrl);
-        context.setResponseStatusCode(HttpStatusEnum.OK.code());
         assemblyCross(context);
         context.getResponse().setContentType("application/json;charset=UTF-8");
-        context.setSendZuulResponse(false);
         context.set("isSuccess", false);
-        context.setResponseBody(ResultJson.failure(ResultEnum.UNAUTHORIZED, "This User Not Found, Please Check Token").toString());
+        context.setSendZuulResponse(false);
+        //context.setResponseBody(ResultJson.failure(map, "This User Not Found, Please Check Token").toString());
+        context.setResponseStatusCode(HttpStatusEnum.OK.code());
     }
 
+
+    /**
+     * 判断是否忽略对请求的校验
+     * @param request
+     * @param functions
+     * @return
+     */
+    private boolean isIgnore(HttpServletRequest request, Function<HttpServletRequest, Boolean>... functions) {
+        return Arrays.stream(functions).anyMatch(f -> f.apply(request));
+    }
+
+
+    /**
+     * 判断是否存在地址
+     * @param request
+     * @return
+     */
+    private boolean exclude(HttpServletRequest request) {
+        String servletPath = request.getServletPath();
+        if (!CollectionUtils.isEmpty(zuulPropConfig.getExcludeUrls())) {
+            return zuulPropConfig.getPatterns().stream()
+                    .map(pattern -> pattern.matcher(servletPath))
+                    .anyMatch(Matcher::find);
+        }
+        return false;
+    }
+
+
+    /**
+     * 校验请求连接是否合法
+     * @param request
+     * @return
+     */
+    private boolean checkLength(HttpServletRequest request) {
+        return request.getServletPath().length() <= Constant.PATH_LENGTH || CollectionUtils.isEmpty(zuulPropConfig.getApiUrlMap());
+    }
+
+
+    /**
+     * 会话存在则跨域发送
+     * @param request
+     * @return
+     */
+    private String getCookieByGuaziSso(HttpServletRequest request){
+        Cookie cookie = this.getCookieByName(request, "");
+        return cookie != null ? cookie.getValue() : null;
+    }
+
+
+    /**
+     * 不路由直接返回
+     * @param ctx
+     * @param code
+     * @param msg
+     */
+    private void unauthorized(RequestContext ctx, int code, String msg) {
+        assemblyCross(ctx);
+        ctx.getResponse().setContentType("application/json;charset=UTF-8");
+        ctx.setSendZuulResponse(false);
+        ctx.setResponseBody(ResultJson.failure(ResultEnum.UNAUTHORIZED, msg).toString());
+        ctx.set("isSuccess", false);
+        ctx.setResponseStatusCode(HttpStatusEnum.OK.code());
+    }
+
+
+    /**
+     * 获取会话里的token
+     * @param request
+     * @param name
+     * @return
+     */
+    private Cookie getCookieByName(HttpServletRequest request, String name) {
+        Map<String, Cookie> cookieMap = new HashMap(16);
+        Cookie[] cookies = request.getCookies();
+        if (!StringUtils.isEmpty(cookies)) {
+            Cookie[] c1 = cookies;
+            int length = cookies.length;
+            for(int i = 0; i < length; ++i) {
+                Cookie cookie = c1[i];
+                cookieMap.put(cookie.getName(), cookie);
+            }
+        }else {
+            return null;
+        }
+        if (cookieMap.containsKey(name)) {
+            Cookie cookie = cookieMap.get(name);
+            return cookie;
+        }
+        return null;
+    }
 
 
     /**
@@ -205,7 +328,6 @@ public class PreAuthFilter extends ZuulFilter {
         response.setHeader("Access-Control-Allow-Headers", ctx.getRequest().getHeader("Access-Control-Request-Headers"));
         response.setHeader("Access-Control-Allow-Methods", "*");
     }
-
 
 
 }

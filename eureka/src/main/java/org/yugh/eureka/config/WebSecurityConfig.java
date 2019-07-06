@@ -1,15 +1,5 @@
 package org.yugh.eureka.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.web.access.AccessDeniedHandler;
-
 /**
  * //
  * 1: 使用Spring Security不需要重写很多自定义的拦截代码
@@ -19,11 +9,12 @@ import org.springframework.security.web.access.AccessDeniedHandler;
  * @creation: 2019-06-30 19:14
  * @Copyright © 2019 yugenhai. All rights reserved.
  */
-@EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+//@EnableWebSecurity
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class WebSecurityConfig {
 
-
+    /*
+extends WebSecurityConfigurerAdapter
     private final AccessDeniedHandler accessDeniedHandler;
     private final EurekaAuthenticationEntryPoint eurekaAuthenticationEntryPoint;
 
@@ -42,7 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      * @param http
      * @throws Exception
      */
-    @Override
+  /*  @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .exceptionHandling().accessDeniedHandler(accessDeniedHandler).and()
@@ -55,12 +46,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated();
         http.headers().cacheControl();
     }
-
+ */
     /**
      * 跳过静态资源防止页面异常
      * @param web
      */
-    @Override
+   /*  @Override
     public void configure(WebSecurity web) {
         web
                 .ignoring()
@@ -69,5 +60,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/eureka/**"
                 );
     }
-
+        */
 }

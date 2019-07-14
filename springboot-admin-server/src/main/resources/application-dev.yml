@@ -1,0 +1,50 @@
+#port
+server:
+  port: 7777
+#setting
+spring:
+  application:
+    name: springboot-admin-server
+  #redis
+  redis:
+    host: localhost
+    port: 6379
+    database: 0
+    timeout: 5000
+
+
+
+#log
+logging:
+  level:
+    org.yugh.gatewaynew: DEBUG
+    org.springframework.cloud.gateway: INFO
+    org.springframework.http.server.reactive: INFO
+    org.springframework.web.reactive: INFO
+    reactor.ipc.netty: INFO
+
+
+#reg
+eureka:
+    instance:
+      prefer-ip-address: true
+    client:
+        serviceUrl:
+          defaultZone: http://localhost:8700/eureka/
+
+
+#lb
+ribbon:
+  ReadTimeout: 120000
+  ConnectTimeout: 30000
+
+
+
+#hystrix
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 20000

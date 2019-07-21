@@ -81,7 +81,7 @@ auth-skip:
 #日志输出
 logging:
   level:
-    org.yugh.springbootadminserver: INFO
+    org.yugh.gatewaynew: INFO
     org.springframework.cloud.gateway: TRACE
     org.springframework.http.server.reactive: DEBUG
     org.springframework.web.reactive: DEBUG

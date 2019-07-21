@@ -1,0 +1,112 @@
+#port
+server:
+  port: 8706
+#setting
+spring:
+  application:
+    name: gateway-new
+  #redis
+  redis:
+    host: localhost
+    port: 6379
+    database: 0
+    timeout: 5000
+  #overriding name
+  main:
+    allow-bean-definition-overriding: true
+  #gateway
+  cloud:
+    gateway:
+      #open service
+      discovery:
+        locator:
+          #serviceId routes
+          enabled: true
+      routes:
+        #user-center
+        - id: CompositeDiscoveryClient_DATAWORKS-USERCENTER-WEB
+          uri: lb://DATAWORKS-USERCENTER-WEB
+          order: 0
+          predicates:
+            - Path= /api/user/**
+          filters:
+            - StripPrefix=1
+            - AddResponseHeader=X-Response-Default-Foo, Default-Bar
+            - name: RequestRateLimiter
+              args:
+                key-resolver: "#{@gatewayKeyResolver}"
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 2
+        #habo
+        - id: CompositeDiscoveryClient_APP-HABO-SERVICE
+          uri: lb://APP-HABO-SERVICE
+          order: 1
+          predicates:
+            - Path= /api/habo/**
+          filters:
+            - StripPrefix=2
+            - AddResponseHeader=X-Response-Default-Foo, Default-Bar
+            - name: RequestRateLimiter
+              args:
+                key-resolver: "#{@gatewayKeyResolver}"
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 10
+          default-filters:
+          - AddResponseHeader=X-Response-Default-Foo, Default-Bar
+          - name: gatewayKeyResolver
+            args:
+              key-resolver: "#{@gatewayKeyResolver}"
+          - name: Hystrix
+            args:
+              name: fallbackcmd
+              fallbackUri: forward:/fallbackController
+
+#safe path
+auth-skip:
+    dataworks-servers:
+        - APP-HABO-SERVICE
+        - DATAWORKS-USERCENTER-WEB
+    api-urls:
+        #habo
+        - /task/workspace
+        #usercenter
+        - /user/
+
+#log
+logging:
+  level:
+    org.yugh.gatewaynew: DEBUG
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.http.server.reactive: TRACE
+    org.springframework.web.reactive: TRACE
+    reactor.ipc.netty: TRACE
+
+
+#reg
+eureka:
+    instance:
+      prefer-ip-address: true
+    client:
+        serviceUrl:
+          defaultZone: http://localhost:8700/eureka/
+
+
+#lb
+ribbon:
+  ReadTimeout: 120000
+  ConnectTimeout: 30000
+
+
+#feign
+feign:
+  hystrix:
+    enabled: false
+
+#hystrix
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 20000

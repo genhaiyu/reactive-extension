@@ -100,7 +100,7 @@ public class PreAuthFilter extends ZuulFilter {
         }
         //转发信息共享 其他服务不要依赖MVC拦截器，或重写拦截器
         if (isIgnore(request, this::exclude, this::checkLength)) {
-            String token = getCookieByGuaziSso(request);
+            String token = getCookieBySso(request);
             if(!StringUtils.isEmpty(token)){
                 //context.addZuulRequestHeader(JwtUtil.HEADER_AUTH, token);
             }
@@ -255,7 +255,7 @@ public class PreAuthFilter extends ZuulFilter {
      * @param request
      * @return
      */
-    private String getCookieByGuaziSso(HttpServletRequest request){
+    private String getCookieBySso(HttpServletRequest request){
         Cookie cookie = this.getCookieByName(request, "");
         return cookie != null ? cookie.getValue() : null;
     }

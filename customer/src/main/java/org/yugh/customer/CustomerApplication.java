@@ -2,13 +2,15 @@ package org.yugh.customer;
 
 import com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServlet;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
-import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.netflix.turbine.EnableTurbine;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+
 /**
  * //微服务2~~~~
  *
@@ -19,18 +21,19 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableHystrix
 @EnableTurbine
 @EnableFeignClients
-@ComponentScan(basePackages= {"org.yugh.customer"})
-@SpringCloudApplication
+@ComponentScan(basePackages = {"org.yugh"})
+@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 public class CustomerApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(CustomerApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(CustomerApplication.class, args);
+    }
 
-	@Bean
-	public ServletRegistrationBean hystrixMetricsStreamServlet() {
-		ServletRegistrationBean registration = new ServletRegistrationBean(new HystrixMetricsStreamServlet());
-		registration.addUrlMappings("/hystrix.stream");
-		return registration;
-	}
+    @Bean
+    public ServletRegistrationBean hystrixMetricsStreamServlet() {
+        ServletRegistrationBean registration = new ServletRegistrationBean(new HystrixMetricsStreamServlet());
+        registration.addUrlMappings("/hystrix.stream");
+        return registration;
+    }
+
 }

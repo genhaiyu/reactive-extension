@@ -27,14 +27,14 @@ import java.util.regex.Pattern;
 public class AuthSkipUrlsProperties implements InitializingBean {
 
     private static final String NORMAL = "(\\w|\\d|-)+";
-    private List<Pattern> urlPatterns = new ArrayList();
-    private List<Pattern> serverPatterns = new ArrayList();
-    private List<String> dataWorksServers;
+    private List<Pattern> urlPatterns = new ArrayList(10);
+    private List<Pattern> serverPatterns = new ArrayList(10);
+    private List<String> instanceServers;
     private List<String> apiUrls;
 
     @Override
     public void afterPropertiesSet() {
-        dataWorksServers.stream().map(d -> d.replace("*", NORMAL)).map(Pattern::compile).forEach(serverPatterns::add);
+        instanceServers.stream().map(d -> d.replace("*", NORMAL)).map(Pattern::compile).forEach(serverPatterns::add);
         apiUrls.stream().map(s -> s.replace("*", NORMAL)).map(Pattern::compile).forEach(urlPatterns::add);
         log.info("============> 配置服务器ID : {} , 白名单Url : {}", serverPatterns, urlPatterns);
     }

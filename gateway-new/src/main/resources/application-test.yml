@@ -22,7 +22,7 @@ spring:
           #开启通过服务中心的自动根据 serviceId 创建路由的功能
           enabled: true
       routes:
-        #自测服务1
+        #服务1
         - id: CompositeDiscoveryClient_CUSTOMER
           uri: lb://CUSTOMER
           order: 1
@@ -39,13 +39,13 @@ spring:
                 redis-rate-limiter.replenishRate: 1
                 redis-rate-limiter.burstCapacity: 1
         #用户微服务
-        - id: CompositeDiscoveryClient_DATAWORKS-USERCENTER-WEB
-          uri: lb://DATAWORKS-USERCENTER-WEB
+        - id: CompositeDiscoveryClient_PRODUCT
+          uri: lb://PRODUCT
           order: 0
           predicates:
-            - Path= /api/user/**
+            - Path= /api/product/**
           filters:
-            - StripPrefix=1
+            - StripPrefix=2
             - AddResponseHeader=X-Response-Default-Foo, Default-Bar
             - name: RequestRateLimiter
               args:
@@ -66,29 +66,30 @@ spring:
                 name: fallbackcmd
                 fallbackUri: forward:/fallbackController
 
-#自定义过滤链接
+#safe path
 auth-skip:
+  instance-servers:
+    - CUSTOMER
+    - PRODUCT
   api-urls:
-    - /task/sch/config
-    - /health
-    - /task/callback
-    - /task/exec
-    - /task/workspace
-    - /user/group
+    #PRODUCT
+    - /pro
+    #CUSTOMER
+    - /cust
 
+    #gray-env
+    #...
 
-
-#日志输出
+#log
 logging:
   level:
-    org.yugh.gatewaynew: INFO
-    org.springframework.cloud.gateway: TRACE
-    org.springframework.http.server.reactive: DEBUG
-    org.springframework.web.reactive: DEBUG
-    reactor.ipc.netty: DEBUG
+    org.yugh: INFO
+    org.springframework.cloud.gateway: INFO
+    org.springframework.http.server.reactive: INFO
+    org.springframework.web.reactive: INFO
+    reactor.ipc.netty: INFO
 
-
-#注册中心
+#reg
 eureka:
   instance:
     prefer-ip-address: true
@@ -96,31 +97,24 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8700/eureka/
 
-#健康监控
-management:
-  endpoint:
-    gateway:
-      enabled: true
-  endpoints:
-    web:
-      exposure:
-        include: "*"
 
-#负载均衡
 ribbon:
-  ReadTimeout: 10000
+  eureka:
+    enabled: true
+  ReadTimeout: 120000
+  ConnectTimeout: 30000
 
 
 #feign
 feign:
   hystrix:
-    enabled: true
+    enabled: false
 
-#熔断超时时间
+#hystrix
 hystrix:
   command:
     default:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 30000
+            timeoutInMilliseconds: 20000

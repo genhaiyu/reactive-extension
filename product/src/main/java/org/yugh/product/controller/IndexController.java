@@ -1,8 +1,5 @@
 package org.yugh.product.controller;
 
-import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 @Api(description = "index控制器")
 @RequestMapping("pro")
-@DefaultProperties(defaultFallback = "defaultFallback")
+//@DefaultProperties(defaultFallback = "defaultFallback")
 public class IndexController {
 
     private final IndexService indexService;
@@ -35,6 +32,7 @@ public class IndexController {
     public IndexController(IndexService indexService) {
         this.indexService = indexService;
     }
+
 
     @GetMapping("index1")
     public Object index1(HttpServletRequest request) {
@@ -49,17 +47,19 @@ public class IndexController {
      * @param randomId
      * @return
      */
-    @HystrixCommand(commandProperties = {
+    /*@HystrixCommand(commandProperties = {
             @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000"),
             @HystrixProperty(name = "circuitBreaker.enabled", value = "true"), //开启熔断
-            @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "5"), //最近10次服务
-            @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "60"),//最近10次服务，请求的成功率， 达到就熔断
+            @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "100"), //最近10次服务
+            @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "20"),//最近10次服务，请求的成功率， 达到就熔断
             @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "2000"),// 休眠10秒后， 重新探测是否需要熔断。
 
-    })
+    })*/
     @ApiOperation(value = "拿到一个随机数", notes = "测试")
     @GetMapping("/index2/{randomId}")
-    public String info(@PathVariable("randomId") Long randomId) {
+    public String info(@PathVariable("randomId") Long randomId, HttpServletRequest request) {
+        log.info("request : {}" , request);
+
         Object id = indexService.getRandomId(randomId);
         log.info("========> 拿到来自customer的一个随机数:{}", id);
         return "拿到来自customer的randomId:" + id;

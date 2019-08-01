@@ -18,14 +18,7 @@ public class GatewayThreadPoolConfig {
 
     @Bean({"gatewayQueueThreadPool"})
     public ExecutorService buildGatewayQueueThreadPool() {
-        ThreadFactory namedThreadFactory = new ThreadFactoryBuilder().setNameFormat("DataWorks-Gateway-ThreadPool--%d").build();
-        /**
-         * 1:核心数
-         * 2:最大线程数
-         * 3:存活时间
-         * 4:数组队列FIFO
-         * 5:Spring拒绝策略
-         */
+        ThreadFactory namedThreadFactory = new ThreadFactoryBuilder().setNameFormat("Gateway-ThreadPool--%d").build();
         ExecutorService pool = new ThreadPoolExecutor(5, 100, 1000L
                 , TimeUnit.MILLISECONDS, new ArrayBlockingQueue(5), namedThreadFactory
                 , new ThreadPoolExecutor.AbortPolicy());

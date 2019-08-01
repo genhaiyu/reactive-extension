@@ -1,6 +1,5 @@
 package org.yugh.customer.controller;
 
-import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.yugh.customer.utils.SnowFlakeUtil;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * //
@@ -20,13 +21,15 @@ import org.yugh.customer.utils.SnowFlakeUtil;
 @RestController
 @Api(description = "消费控制器")
 @RequestMapping("cust")
-@DefaultProperties(defaultFallback = "defaultFallback")
+//@DefaultProperties(defaultFallback = "defaultFallback")
 public class IndexController {
 
 
     @GetMapping(value = "getRandomId/{randomId}")
-    public Object getCustomerById(@PathVariable("randomId") Long randomId) {
+    public Object getCustomerById(@PathVariable("randomId") Long randomId, HttpServletRequest request) {
 
+
+        log.info("request : {}" , request);
 
         log.info("=====================>  收到来自productId: {} ", randomId);
 

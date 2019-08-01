@@ -32,16 +32,14 @@ public class GatewayContext implements Serializable {
      */
     private String ssoToken;
     /**
-     * 数据工厂网关颁发token
-     */
-    private String gatewayToken;
-    /**
      * 用户no
      */
+    @Deprecated
     private String userNo;
     /**
      * 请求地址
      */
+    @Deprecated
     private String path;
     /**
      * 重定向链接

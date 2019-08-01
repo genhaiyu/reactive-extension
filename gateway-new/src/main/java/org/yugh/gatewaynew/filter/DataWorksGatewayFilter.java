@@ -3,7 +3,6 @@ package org.yugh.gatewaynew.filter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
@@ -14,26 +13,17 @@ import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.server.ServerWebExchange;
-import org.yugh.common.auth.Config;
-import org.yugh.common.auth.CookieUtils;
-import org.yugh.common.auth.SessionManager;
-import org.yugh.common.common.constants.Constants;
-import org.yugh.common.common.enums.ResultEnum;
-import org.yugh.common.config.RedisClient;
-import org.yugh.common.model.User;
-import org.yugh.common.pojo.dto.UserDTO;
-import org.yugh.common.util.CommonUtils;
-import org.yugh.common.util.JsonResult;
-import org.yugh.common.util.ResultJson;
-import org.yugh.common.util.jwt.UserAuthUtil;
 import org.yugh.gatewaynew.config.GatewayContext;
-import org.yugh.gatewaynew.feign.IGatewayUserService;
 import org.yugh.gatewaynew.properties.AuthSkipUrlsProperties;
+import org.yugh.globalauth.common.constants.Constant;
+import org.yugh.globalauth.common.enums.ResultEnum;
+import org.yugh.globalauth.pojo.dto.User;
+import org.yugh.globalauth.service.AuthService;
+import org.yugh.globalauth.util.ResultJson;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.nio.charset.StandardCharsets;
-import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.regex.Matcher;
 
@@ -47,25 +37,13 @@ import java.util.regex.Matcher;
 @Slf4j
 public class DataWorksGatewayFilter implements GlobalFilter, Ordered {
 
-    @Value("${spring.profiles.active}")
-    private String activeType;
     @Autowired
     private AuthSkipUrlsProperties authSkipUrlsProperties;
-    @Autowired
-    private IGatewayUserService gatewayUserService;
-    @Autowired
-    private RedisClient redisClient;
     @Autowired
     @Qualifier(value = "gatewayQueueThreadPool")
     private ExecutorService buildGatewayQueueThreadPool;
     @Autowired
-    private SessionManager sessionManager;
-    @Autowired
-    private UserAuthUtil userAuthUtil;
-    @Autowired
-    private Config config;
-    @Autowired
-    private CookieUtils cookieUtils;
+    private AuthService authService;
 
 
     @Override
@@ -74,7 +52,8 @@ public class DataWorksGatewayFilter implements GlobalFilter, Ordered {
         ServerHttpRequest request = exchange.getRequest();
         ServerHttpResponse response = exchange.getResponse();
         response.getHeaders().setContentType(MediaType.APPLICATION_JSON_UTF8);
-        //防止网关监控不到请求
+        log.info("当前会话ID : {}", request.getId());
+        //防止网关监控不到限流请求
         if (blackServersCheck(context, exchange)) {
             response.setStatusCode(HttpStatus.FORBIDDEN);
             byte[] failureInfo = ResultJson.failure(ResultEnum.BLACK_SERVER_FOUND).toString().getBytes(StandardCharsets.UTF_8);
@@ -90,8 +69,9 @@ public class DataWorksGatewayFilter implements GlobalFilter, Ordered {
                 response.setStatusCode(HttpStatus.UNAUTHORIZED);
                 return response.writeWith(Flux.just(buffer));
             }
-            ServerHttpRequest mutateReq = exchange.getRequest().mutate().header(Constants.DATAWORKS_GATEWAY_HEADERS, context.toString()).build();
+            ServerHttpRequest mutateReq = exchange.getRequest().mutate().header(Constant.DATAWORKS_GATEWAY_HEADERS, context.getSsoToken()).build();
             ServerWebExchange mutableExchange = exchange.mutate().request(mutateReq).build();
+            log.info("当前会话转发成功 : {}", request.getId());
             return chain.filter(mutableExchange);
         } else {
             //黑名单
@@ -118,37 +98,24 @@ public class DataWorksGatewayFilter implements GlobalFilter, Ordered {
      */
     private void authToken(GatewayContext context, ServerHttpRequest request) {
         try {
-            boolean isLogin = sessionManager.isLogined(request);
+            // boolean isLogin = authService.isLoginByReactive(request);
+            boolean isLogin = true;
             if (isLogin) {
-                User userDo = sessionManager.getUser(request);
-                UserDTO userDto = UserDTO.builder().build();
+                //User userDo = authService.getUserByReactive(request);
                 try {
-                    //FIXME 修改
-                    Object redisUserToken = redisClient.get(userDo.getNo());
-                    if (Objects.isNull(redisUserToken)) {
-                        String token = userAuthUtil.generateToken(userDo.getNo(), userDo.getUserName(), userDo.getAliasName());
-                        CommonUtils.copyProperties(userDo, userDto);
-                        synUser(userDto);
-                        redisClient.set(userDo.getNo(), token, 60 * 60L);
-                        context.setGatewayToken(token);
-                    } else {
-                        CommonUtils.copyProperties(userDo, userDto);
-                        synUser(userDto);
-                    }
+                    // String ssoToken = authCookieUtils.getCookieByNameByReactive(request, Constant.TOKEN);
+                    String ssoToken = "123";
+                    context.setSsoToken(ssoToken);
                 } catch (Exception e) {
                     log.error("用户调用失败 : {}", e.getMessage());
                     context.setDoNext(false);
-                    //FIXME 异步写入 ,并修改同步失败而不是未登录 by yugenhai
                     return;
                 }
-                context.setUserNo(userDo.getNo());
-                context.setLogId(request.getId());
-                context.setSsoToken(cookieUtils.getCookieByName(request, Constants.TOKEN));
             } else {
                 unLogin(context, request);
             }
         } catch (Exception e) {
-            log.error("调用SSO获取用户信息异常 :{}", e.getMessage());
+            log.error("获取用户信息异常 :{}", e.getMessage());
             context.setDoNext(false);
         }
     }
@@ -159,12 +126,11 @@ public class DataWorksGatewayFilter implements GlobalFilter, Ordered {
      *
      * @param userDto
      */
-    public void synUser(UserDTO userDto) {
+    public void synUser(User userDto) {
         buildGatewayQueueThreadPool.execute(new Runnable() {
             @Override
             public void run() {
-                JsonResult user = gatewayUserService.synUser(userDto);
-                log.info("用户同步成功 : {}", user);
+                log.info("用户同步成功 : {}", "");
             }
         });
 
@@ -172,7 +138,6 @@ public class DataWorksGatewayFilter implements GlobalFilter, Ordered {
 
 
     /**
-     * 未从SSO颁发token
      * 视为不能登录
      *
      * @param context
@@ -215,7 +180,7 @@ public class DataWorksGatewayFilter implements GlobalFilter, Ordered {
      */
     private boolean blackServersCheck(GatewayContext context, ServerWebExchange exchange) {
         String instanceId = exchange.getRequest().getURI().getPath().substring(1, exchange.getRequest().getURI().getPath().indexOf('/', 1));
-        if (!CollectionUtils.isEmpty(authSkipUrlsProperties.getDataWorksServers())) {
+        if (!CollectionUtils.isEmpty(authSkipUrlsProperties.getInstanceServers())) {
             boolean black = authSkipUrlsProperties.getServerPatterns().stream()
                     .map(pattern -> pattern.matcher(instanceId))
                     .anyMatch(Matcher::find);
@@ -233,10 +198,7 @@ public class DataWorksGatewayFilter implements GlobalFilter, Ordered {
      * @return
      */
     private String getSsoUrl(ServerHttpRequest request) {
-        /**
-         *  add code
-         */
-        return null;
+        return request.getPath().value();
     }
 
 }

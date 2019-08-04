@@ -24,10 +24,10 @@ public class AuthService {
      */
     public String getToken(HttpServletRequest request) {
         String token;
-        if ((token = request.getHeader(Constant.DATAWORKS_GATEWAY_HEADERS)) != null) {
+        if ((token = request.getHeader(Constant.TOKEN)) != null) {
             return token;
         }
-        if ((token = request.getParameter(Constant.DATAWORKS_GATEWAY_HEADERS)) != null) {
+        if ((token = request.getParameter(Constant.TOKEN)) != null) {
             return token;
         }
         //cookie

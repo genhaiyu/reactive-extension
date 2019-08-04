@@ -5,9 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
-import org.yugh.common.config.BaseJpaQueryFactory;
-import org.yugh.common.model.QUser;
-import org.yugh.common.model.User;
+import org.yugh.repository.entites.QUserEntity;
+import org.yugh.repository.entites.UserEntity;
 import org.yugh.repository.repositories.UserRepository;
 import org.yugh.repository.service.IUserService;
 
@@ -25,7 +24,11 @@ import javax.transaction.Transactional;
 @Slf4j
 @Service
 @Transactional(rollbackOn = Exception.class)
-public class UserServiceImpl extends BaseJpaQueryFactory implements IUserService {
+public class UserServiceImpl implements IUserService {
+
+    /**
+     * extends BaseJpaQueryFactory
+     **/
 
     @PersistenceContext
     protected EntityManager manager;
@@ -34,20 +37,20 @@ public class UserServiceImpl extends BaseJpaQueryFactory implements IUserService
 
 
     @Override
-    public User getUserByUserName(final String userName) {
-        final JPAQuery<User> query = new JPAQuery(manager);
-        final QUser qUserDo = QUser.user;
-        return query.from(qUserDo).where(qUserDo.userName.eq(userName)).fetchOne();
+    public UserEntity getUserByUserName(final String userName) {
+        final JPAQuery<UserEntity> query = new JPAQuery(manager);
+        final QUserEntity qUserDo = QUserEntity.userEntity;
+        return query.from(qUserDo).where(qUserDo.name.eq(userName)).fetchOne();
     }
 
     @Override
-    public void addUser(User userDo) {
+    public void addUser(UserEntity userDo) {
         userRepository.save(userDo);
     }
 
 
     @Override
-    public void update(User userDo) {
+    public void update(UserEntity userDo) {
         userDo.preUpdate();
         userRepository.updateUser(userDo);
     }
@@ -56,10 +59,10 @@ public class UserServiceImpl extends BaseJpaQueryFactory implements IUserService
     @Override
     public boolean exists(String userName) {
         boolean success = false;
-        final JPAQuery<User> query = new JPAQuery(manager);
-        final QUser qUser = QUser.user;
+        final JPAQuery<UserEntity> query = new JPAQuery(manager);
+        final QUserEntity qUser = QUserEntity.userEntity;
         if (!CollectionUtils.isEmpty(query.from(qUser)
-                .where(qUser.userName.eq(userName)).fetch())) {
+                .where(qUser.name.eq(userName)).fetch())) {
             success = true;
         }
         return success;

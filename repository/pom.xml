@@ -18,8 +18,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
-        <fast.json.version>1.2.58</fast.json.version>
-        <mysql.version>5.1.38</mysql.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -34,12 +32,25 @@
     </dependencyManagement>
     <dependencies>
 
-        <!-- 临时引用-->
+        <!-- mybatis plus -->
+        <!-- <dependency>
+             <groupId>com.baomidou</groupId>
+             <artifactId>mybatis-plus</artifactId>
+             <version>3.1.2</version>
+         </dependency>-->
+
+        <!-- <dependency>
+             <groupId>org.yugh</groupId>
+             <artifactId>common</artifactId>
+             <version>1.0.1-SNAPSHOT</version>
+         </dependency>-->
+
         <dependency>
             <groupId>org.yugh</groupId>
-            <artifactId>common</artifactId>
-            <version>1.0.1-SNAPSHOT</version>
+            <artifactId>global-auth</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
+
 
         <!-- webflux -->
         <dependency>
@@ -93,17 +104,6 @@
             <artifactId>querydsl-collections</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>${fast.json.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>net.sf.json-lib</groupId>
-            <artifactId>json-lib</artifactId>
-            <version>2.4</version>
-            <classifier>jdk15</classifier>
-        </dependency>
-        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
@@ -121,17 +121,6 @@
             <groupId>javax.interceptor</groupId>
             <artifactId>javax.interceptor-api</artifactId>
             <version>1.2.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>4.5.9</version>
-        </dependency>
-        <!-- jwt -->
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt</artifactId>
-            <version>0.9.1</version>
         </dependency>
     </dependencies>
 

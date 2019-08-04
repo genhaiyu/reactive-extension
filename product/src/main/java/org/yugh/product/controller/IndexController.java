@@ -1,5 +1,8 @@
 package org.yugh.product.controller;
 
+import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 //@Api(description = "index控制器")
 @RequestMapping("pro")
-//@DefaultProperties(defaultFallback = "defaultFallback")
+@DefaultProperties(defaultFallback = "defaultFallback")
 public class IndexController {
 
     private final IndexService indexService;
@@ -45,14 +48,14 @@ public class IndexController {
      * @param randomId
      * @return
      */
-    /*@HystrixCommand(commandProperties = {
+    @HystrixCommand(commandProperties = {
             @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000"),
             @HystrixProperty(name = "circuitBreaker.enabled", value = "true"), //开启熔断
             @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "100"), //最近10次服务
             @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "20"),//最近10次服务，请求的成功率， 达到就熔断
             @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "2000"),// 休眠10秒后， 重新探测是否需要熔断。
 
-    })*/
+    })
     // @ApiOperation(value = "拿到一个随机数", notes = "测试")
     @GetMapping("/index2/{randomId}")
     public String info(@PathVariable("randomId") Long randomId, HttpServletRequest request) {

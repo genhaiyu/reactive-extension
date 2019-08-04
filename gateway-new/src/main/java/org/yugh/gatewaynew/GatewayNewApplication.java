@@ -8,7 +8,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.yugh.gatewaynew.config.GatewayKeyResolver;
-import org.yugh.gatewaynew.filter.DataWorksGatewayFilter;
+import org.yugh.gatewaynew.filter.GatewayFilter;
 
 /**
  * //网关服务
@@ -34,7 +34,7 @@ public class GatewayNewApplication {
     }
 
     @Bean
-    public DataWorksGatewayFilter gatewayFilter() {
-        return new DataWorksGatewayFilter();
+    public GatewayFilter gatewayFilter() {
+        return new GatewayFilter();
     }
 }

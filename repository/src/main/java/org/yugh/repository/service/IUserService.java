@@ -1,7 +1,7 @@
 package org.yugh.repository.service;
 
 
-import org.yugh.common.model.User;
+import org.yugh.repository.entites.UserEntity;
 
 /**
  * //用户服务层
@@ -19,7 +19,7 @@ public interface IUserService {
      * @param userName
      * @return
      */
-    User getUserByUserName(String userName);
+    UserEntity getUserByUserName(String userName);
 
     /**
      * 新增用户
@@ -27,14 +27,14 @@ public interface IUserService {
      * @param userDo
      * @return
      */
-    void addUser(User userDo);
+    void addUser(UserEntity userDo);
 
     /**
      * 更新用户
      *
      * @param userDo
      */
-    void update(User userDo);
+    void update(UserEntity userDo);
 
 
     /**

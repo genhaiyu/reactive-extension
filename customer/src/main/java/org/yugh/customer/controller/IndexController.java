@@ -1,6 +1,5 @@
 package org.yugh.customer.controller;
 
-import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +18,6 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Slf4j
 @RestController
-@Api(description = "消费控制器")
 @RequestMapping("cust")
 //@DefaultProperties(defaultFallback = "defaultFallback")
 public class IndexController {
@@ -47,5 +45,7 @@ public class IndexController {
 
         return "来自customer的提示： 太拥挤了， 请稍后再试。 ";
     }
+
+
 
 }

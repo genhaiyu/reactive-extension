@@ -1,4 +1,4 @@
-# :sparkles: Distribute Core Project 
+# :sparkles: Core Project 
 
 ***
 ##  Description </br>

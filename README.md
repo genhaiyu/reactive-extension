@@ -3,7 +3,7 @@
 ***
 ##  Description </br>
 + 1：`eureka` It's springboot Registered，It is not necessary，default prot 8700。 ^~^
-+ 2：`customer` simple test from `product` feign invoke，test netflix.hystrix，see class `IndexController` method [info](https://github.com/yugenhai108/spring-cloud/blob/master/product/src/main/java/org/yugh/product/controller/IndexController.java)  HystrixCommand ^~^
++ 2：`customer` simple test from `product` feign invoke，test netflix.hystrix，see class `IndexController` method [info](https://github.com/yugenhai108/framework-applications/blob/master/product/src/main/java/org/yugh/product/controller/IndexController.java)  HystrixCommand ^~^
 + 3：`gateway` Is netflix.zuul of ZuulFilter implements，It's also popular Component。^~^
 + 4：`gateway-new` I'm modifying it based on netflix.zuul of ZuulFilter，It from Spring5.0 Reactor springframework。^~^
 + 5：`global-auth` It's implements similar to SSO，But it also includes Feign Interceptor Function。^~^
@@ -13,7 +13,7 @@
 ## 功能示意图（A schematic）:
 </br>
 
-![Image text](https://github.com/yugenhai108/spring-cloud/blob/master/gateway-auth.png)
+![Image text](https://github.com/yugenhai108/framework-applications/blob/master/gateway-auth.png)
 
 </br>
 
@@ -22,7 +22,7 @@
 ## 链路图(present diagram):
 </br>
 
-![Image text](https://github.com/yugenhai108/spring-cloud/blob/master/zipkin-detail.png)
+![Image text](https://github.com/yugenhai108/framework-applications/blob/master/zipkin-detail.png)
 
 </br>
 
@@ -30,5 +30,5 @@
 
 ## Hystrix Dashboard </br> 
 
-![Image text](https://github.com/yugenhai108/spring-cloud/blob/master/dashboard.png)
+![Image text](https://github.com/yugenhai108/framework-applications/blob/master/dashboard.png)
 

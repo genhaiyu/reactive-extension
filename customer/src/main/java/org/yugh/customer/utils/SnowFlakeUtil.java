@@ -1,9 +1,5 @@
 package org.yugh.customer.utils;
 
-import cn.hutool.core.lang.Snowflake;
-import cn.hutool.core.util.IdUtil;
-import lombok.extern.slf4j.Slf4j;
-
 /**
  * //雪花算法生成分布式ID
  *
@@ -11,14 +7,17 @@ import lombok.extern.slf4j.Slf4j;
  * @creation: 2019-05-26 19:20
  * @Copyright © 2019 yugenhai. All rights reserved.
  */
-@Slf4j
 public class SnowFlakeUtil {
 
 
-    static final Snowflake snowflake = IdUtil.createSnowflake(1, 1);
-
+    /**
+     * 1：机器码
+     * 2：时间偏移
+     * 3：硬件码防撞
+     * @return
+     */
     public static Long nextWaterFlow() {
-        return snowflake.nextId();
+       return SnowFlakeGenerated.nextId();
     }
 
 }

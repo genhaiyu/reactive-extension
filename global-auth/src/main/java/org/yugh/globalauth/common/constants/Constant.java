@@ -6,11 +6,6 @@ package org.yugh.globalauth.common.constants;
 public class Constant {
 
     /**
-     * 链路头部信息
-     */
-    public final static String DATAWORKS_GATEWAY_HEADERS = "Authorization-Gateway";
-
-    /**
      * cookie
      */
     public final static String TOKEN = "token";
@@ -38,7 +33,7 @@ public class Constant {
     private final static String DISABLE = "disable";
     private final static String HEART = "heart";
     private final static String ENABLE = "enable";
-    public final static String [] arrays = {READY, DISABLE, HEART, ENABLE};
+    public final static String [] ARRAYS = {READY, DISABLE, HEART, ENABLE};
 
 
 }

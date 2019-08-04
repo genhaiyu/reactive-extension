@@ -3,6 +3,8 @@ package org.yugh.globalauth.annotation;
 import java.lang.annotation.*;
 
 /**
+ * 是否验证当前类或者方法
+ *
  * @author yugenhai
  */
 @Documented

@@ -18,7 +18,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 @EnableFeignClients(basePackages = {"org.yugh.*"})
 @EntityScan("org.yugh.*")
-@ComponentScan(value = "org.yugh.common.*")
+@ComponentScan(value = "org.yugh.*")
 @EnableJpaRepositories(basePackages={"org.yugh.*"})
 public class RepositoryApplication {
 

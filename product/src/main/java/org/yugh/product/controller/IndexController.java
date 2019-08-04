@@ -1,7 +1,5 @@
 package org.yugh.product.controller;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Slf4j
 @RestController
-@Api(description = "index控制器")
+//@Api(description = "index控制器")
 @RequestMapping("pro")
 //@DefaultProperties(defaultFallback = "defaultFallback")
 public class IndexController {
@@ -55,10 +53,10 @@ public class IndexController {
             @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "2000"),// 休眠10秒后， 重新探测是否需要熔断。
 
     })*/
-    @ApiOperation(value = "拿到一个随机数", notes = "测试")
+    // @ApiOperation(value = "拿到一个随机数", notes = "测试")
     @GetMapping("/index2/{randomId}")
     public String info(@PathVariable("randomId") Long randomId, HttpServletRequest request) {
-        log.info("request : {}" , request);
+        log.info("request : {}", request);
 
         Object id = indexService.getRandomId(randomId);
         log.info("========> 拿到来自customer的一个随机数:{}", id);

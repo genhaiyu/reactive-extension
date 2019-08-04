@@ -11,7 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
-import org.yugh.common.model.User;
+import org.yugh.repository.entites.UserEntity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,21 +34,14 @@ public class ControllerTest {
     @LocalServerPort
     private int port = 6301;
 
-    private static Map<String, User> userMap = new HashMap<>();
+    private static Map<String, UserEntity> userMap = new HashMap<>();
 
     @BeforeClass
     public static void setup() throws Exception {
 
-        User user = new User();
-        user.setUserName("yugh");
-        user.setAliasName("余根海");
-        user.setEmail("yugenhai@guazi.com");
-        user.setSex("1");
-        user.setCompany("2");
-        user.setDepart("3");
-        user.setAdmin(4);
-        user.setDisabled(5);
-
+        UserEntity user = new UserEntity();
+        user.setName("yugh");
+        user.setPhone("17611255755");
 
         userMap.put("userInfo", user);
     }
@@ -56,27 +49,26 @@ public class ControllerTest {
     @Test
     public void testUpdate() throws Exception {
 
-        User user = webClient.post().uri("/user/syncUser", port)
+        UserEntity user = webClient.post().uri("/user/syncUser", port)
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromObject(userMap.get("userInfo")))
                 .exchange()
                 .expectStatus().isOk()
-                .expectBody(User.class).returnResult().getResponseBody();
+                .expectBody(UserEntity.class).returnResult().getResponseBody();
 
         Assert.assertNotNull(user);
         Assert.assertEquals(user.getId(), userMap.get("userInfo").getId());
     }
 
 
-
     @Test
-    public void testAdd() throws Exception{
-        User user = webClient.post().uri("/user/addUser")
+    public void testAdd() throws Exception {
+        UserEntity user = webClient.post().uri("/user/addUser")
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromObject(userMap.get("userInfo")))
                 .exchange()
                 .expectStatus().isOk()
-                .expectBody(User.class).returnResult().getResponseBody();
+                .expectBody(UserEntity.class).returnResult().getResponseBody();
 
         Assert.assertNotNull(user);
     }

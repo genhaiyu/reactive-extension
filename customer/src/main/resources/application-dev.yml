@@ -25,12 +25,16 @@ eureka:
     service-url:
       defaultZone: http://localhost:8700/eureka/
 
-#看板
+#health
 management:
   endpoints:
     web:
       exposure:
-        include: hystrix.stream
+        include: '*'
+      base-path: /actuator
+  endpoint:
+    health:
+      show-details: ALWAYS
 
 #swagger
 #swagger:

@@ -1,15 +1,14 @@
 package org.yugh.repository.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.yugh.common.model.User;
-import org.yugh.common.pojo.dto.UserDTO;
-import org.yugh.common.util.JsonResult;
+import org.yugh.globalauth.common.enums.ResultEnum;
+import org.yugh.globalauth.util.ResultJson;
+import org.yugh.repository.entites.UserEntity;
 import org.yugh.repository.service.IUserService;
 
 import javax.validation.Valid;
@@ -32,40 +31,25 @@ public class UserController {
 
 
     @RequestMapping(value = "/getUserByName", method = RequestMethod.POST)
-    public JsonResult<User> get(String userName) {
+    public ResultJson<UserEntity> get(String userName) {
         try {
-            User user = userService.getUserByUserName(userName);
-            return JsonResult.buildSuccessResult(user);
+            UserEntity user = userService.getUserByUserName(userName);
+            return ResultJson.ok(user);
         } catch (Exception e) {
             log.error("获取用户信息失败:{}, ", e.getMessage());
-            return JsonResult.buildErrorResult(e.getMessage(), "获取用户信息失败");
-        }
-    }
-
-    @RequestMapping(value = "/addUser", method = RequestMethod.POST)
-    public JsonResult addUser(@RequestBody @Valid UserDTO userDto) {
-        try {
-            User userDo = new User();
-            BeanUtils.copyProperties(userDto, userDo);
-            userService.addUser(userDo);
-            return JsonResult.buildSuccessResult("添加用户成功");
-        } catch (Exception e) {
-            log.error("添加用户失败:{}", e.getMessage());
-            return JsonResult.buildErrorResult(e.getMessage(), "添加用户失败");
+            return ResultJson.failure(ResultEnum.SERVER_ERROR, "获取用户信息失败");
         }
     }
 
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public JsonResult update(@RequestBody @Valid UserDTO userDto) {
+    public ResultJson update(@RequestBody @Valid UserEntity userDto) {
         try {
-            User userDo = new User();
-            BeanUtils.copyProperties(userDto, userDo);
-            userService.update(userDo);
-            return JsonResult.buildSuccessResult("更新用户成功");
+            userService.update(userDto);
+            return ResultJson.ok("更新用户成功");
         } catch (Exception e) {
             log.error("更新用户失败:{}", e.getMessage());
-            return JsonResult.buildErrorResult(e.getMessage(), "更新用户失败");
+            return ResultJson.failure(ResultEnum.SERVER_ERROR, "更新用户失败");
         }
     }
 
@@ -77,20 +61,18 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/syncUser", method = RequestMethod.POST)
-    public JsonResult syncUser(@RequestBody @Valid UserDTO userDto) {
+    public ResultJson syncUser(@RequestBody @Valid UserEntity userDto) {
         try {
-            User userDo = new User();
-            BeanUtils.copyProperties(userDto, userDo);
-            boolean exist = userService.exists(userDo.getUserName());
+            boolean exist = userService.exists(userDto.getName());
             if (exist) {
-                userService.update(userDo);
+                userService.update(userDto);
             } else {
-                userService.addUser(userDo);
+                userService.addUser(userDto);
             }
-            return JsonResult.buildSuccessResult("同步用户成功");
+            return ResultJson.ok("同步用户成功");
         } catch (Exception e) {
             log.error("同步用户失败:{}", e.getMessage());
-            return JsonResult.buildErrorResult(e.getMessage(), "用户同步失败");
+            return ResultJson.failure(ResultEnum.SERVER_ERROR, "用户同步失败");
         }
     }
 }

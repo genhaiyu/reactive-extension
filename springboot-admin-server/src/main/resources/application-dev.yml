@@ -39,6 +39,17 @@ ribbon:
   ConnectTimeout: 30000
 
 
+#health
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+      base-path: /actuator
+  endpoint:
+    health:
+      show-details: ALWAYS
+
 
 #hystrix
 hystrix:

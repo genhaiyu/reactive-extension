@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 /**
- * //
+ * // JPA + QUERYDSL 语法
  *
  * @author: 余根海
  * @creation: 2019-07-10 14:20

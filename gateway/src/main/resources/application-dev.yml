@@ -26,13 +26,20 @@ zuul:
     max-per-route-connections: 20
     #网关最大连接数
     max-total-connections: 200
+    #routes to serviceId
+    routes:
+      api-product.path: /api/product/**
+      api-product.serviceId: product
+      api-customer.path: /api/customer/**
+      api-customer.serviceId: customer
+
 
 
 #移除url同时移除服务
 auth-props:
-  accessIp: 127.0.0.1
-  accessToken: admin
-  authLevel: dev
+  #accessIp: 127.0.0.1
+  #accessToken: admin
+  #authLevel: dev
   #服务
   api-urlMap: {
     product: 1&2,

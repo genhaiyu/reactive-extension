@@ -10,11 +10,13 @@ import org.yugh.globalauth.common.enums.ResultEnum;
 import org.yugh.globalauth.util.ResultJson;
 import org.yugh.repository.entites.UserEntity;
 import org.yugh.repository.service.IUserService;
+import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
 
 /**
- * //
+ * // 项目引用了global-auth，里面包含了最大的exception，错误不需要在业务层抛
+ * //新增mono语法
  *
  * @author: 余根海
  * @creation: 2019-07-10 14:41
@@ -30,27 +32,27 @@ public class UserController {
     private IUserService userService;
 
 
+    /**
+     * 新增mono语法
+     */
+    public Mono getUserInfo(String userName){
+        return Mono.just(userService.getUserByUserName(userName));
+    }
+
+
+
+
+
     @RequestMapping(value = "/getUserByName", method = RequestMethod.POST)
     public ResultJson<UserEntity> get(String userName) {
-        try {
-            UserEntity user = userService.getUserByUserName(userName);
-            return ResultJson.ok(user);
-        } catch (Exception e) {
-            log.error("获取用户信息失败:{}, ", e.getMessage());
-            return ResultJson.failure(ResultEnum.SERVER_ERROR, "获取用户信息失败");
-        }
+        return ResultJson.ok(userService.getUserByUserName(userName));
     }
 
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ResultJson update(@RequestBody @Valid UserEntity userDto) {
-        try {
-            userService.update(userDto);
-            return ResultJson.ok("更新用户成功");
-        } catch (Exception e) {
-            log.error("更新用户失败:{}", e.getMessage());
-            return ResultJson.failure(ResultEnum.SERVER_ERROR, "更新用户失败");
-        }
+        userService.update(userDto);
+        return ResultJson.ok("更新用户成功");
     }
 
 
@@ -62,17 +64,12 @@ public class UserController {
      */
     @RequestMapping(value = "/syncUser", method = RequestMethod.POST)
     public ResultJson syncUser(@RequestBody @Valid UserEntity userDto) {
-        try {
-            boolean exist = userService.exists(userDto.getName());
-            if (exist) {
-                userService.update(userDto);
-            } else {
-                userService.addUser(userDto);
-            }
-            return ResultJson.ok("同步用户成功");
-        } catch (Exception e) {
-            log.error("同步用户失败:{}", e.getMessage());
-            return ResultJson.failure(ResultEnum.SERVER_ERROR, "用户同步失败");
+        boolean exist = userService.exists(userDto.getName());
+        if (exist) {
+            userService.update(userDto);
+        } else {
+            userService.addUser(userDto);
         }
+        return ResultJson.ok("同步用户成功");
     }
 }

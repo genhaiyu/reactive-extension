@@ -12,22 +12,10 @@ import org.springframework.web.context.request.RequestContextListener;
  *
  * @author yugenhai
  */
-@ComponentScan(basePackages = {"org.yugh"})
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+@Deprecated
 public class GlobalAuthApplication {
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         SpringApplication.run(GlobalAuthApplication.class, args);
-    }
-
-    /**
-     * RequestContextListener监听器
-     *
-     * @return
-     */
-    @Bean
-    public RequestContextListener requestContextListenerBean() {
-        return new RequestContextListener();
-    }
-
+    }*/
 }

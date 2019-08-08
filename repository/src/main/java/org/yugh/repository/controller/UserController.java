@@ -1,6 +1,7 @@
 package org.yugh.repository.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.yugh.globalauth.common.enums.ResultEnum;
 import org.yugh.globalauth.util.ResultJson;
 import org.yugh.repository.entites.UserEntity;
+import org.yugh.repository.pojo.dto.UserDTO;
 import org.yugh.repository.service.IUserService;
 import reactor.core.publisher.Mono;
 
@@ -35,12 +37,9 @@ public class UserController {
     /**
      * 新增mono语法
      */
-    public Mono getUserInfo(String userName){
+    public Mono getUserInfo(String userName) {
         return Mono.just(userService.getUserByUserName(userName));
     }
-
-
-
 
 
     @RequestMapping(value = "/getUserByName", method = RequestMethod.POST)
@@ -50,7 +49,7 @@ public class UserController {
 
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public ResultJson update(@RequestBody @Valid UserEntity userDto) {
+    public ResultJson update(@RequestBody @Valid UserDTO userDto) {
         userService.update(userDto);
         return ResultJson.ok("更新用户成功");
     }
@@ -59,16 +58,16 @@ public class UserController {
     /**
      * 同步用户信息数据
      *
-     * @param userDto 用户信息
+     * @param userDTO 用户信息
      * @return
      */
     @RequestMapping(value = "/syncUser", method = RequestMethod.POST)
-    public ResultJson syncUser(@RequestBody @Valid UserEntity userDto) {
-        boolean exist = userService.exists(userDto.getName());
+    public ResultJson syncUser(@RequestBody @Valid UserDTO userDTO) {
+        boolean exist = userService.exists(userDTO.getName());
         if (exist) {
-            userService.update(userDto);
+            userService.update(userDTO);
         } else {
-            userService.addUser(userDto);
+            userService.addUser(userDTO);
         }
         return ResultJson.ok("同步用户成功");
     }

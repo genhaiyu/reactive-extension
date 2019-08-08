@@ -6,7 +6,7 @@ package org.yugh.globalauth.common.constants;
 public class Constant {
 
     /**
-     * 数据工厂链路信息
+     * header
      */
     public final static String GATEWAY_HEADERS = "Authorization-Gateway";
 
@@ -16,30 +16,27 @@ public class Constant {
     public final static String TOKEN = "token";
 
     /**
-     * 用户信息
+     * uesr info
      */
     public final static String USER_INFO = "userInfo";
 
     /**
-     * 简单全局信息
+     * rpid
      */
     public final static String GLOBAL_RPID = "rpid";
 
     /**
-     * 实例本机
+     * instance ip
      */
     public final static String LOCAL_IP = "127.0.0.1";
 
 
     /**
-     * 健康检查云平台
+     * Ignore method
      */
-    private final static String READY = "ready";
-    private final static String DISABLE = "disable";
-    private final static String HEART = "heart";
-    private final static String ENABLE = "enable";
-    public final static String [] ARRAYS = {READY, DISABLE, HEART, ENABLE};
-
-
+    private final static String TEST = "get";
+    private final static String DEMO = "update";
+    private final static String EX = "syncUser";
+    public final static String[] ARRAYS = {TEST, DEMO, EX};
 
 }

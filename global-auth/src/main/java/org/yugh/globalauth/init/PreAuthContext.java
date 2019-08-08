@@ -1,8 +1,10 @@
 package org.yugh.globalauth.init;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextListener;
 import org.yugh.globalauth.common.constants.Constant;
 import org.yugh.globalauth.util.SnowFlakeUtil;
 
@@ -34,4 +36,5 @@ public class PreAuthContext implements ServletRequestListener {
         request.setAttribute(Constant.GLOBAL_RPID, rpid);
         LocaleContextHolder.setLocale(request.getLocale());
     }
+
 }

@@ -24,7 +24,7 @@ import java.util.Arrays;
 
 /**
  * aspect
- *
+ * <p>
  * 1：拦截声明注解的类或方法
  * 2：拦截当前声明的package下的类
  *
@@ -33,7 +33,7 @@ import java.util.Arrays;
 @Slf4j
 @Aspect
 @Component
-@Order(Integer.MIN_VALUE)
+@Order(Integer.MIN_VALUE + 2)
 public class GlobalAuthAspect {
 
 
@@ -76,7 +76,7 @@ public class GlobalAuthAspect {
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = servletRequestAttributes.getRequest();
         HttpServletResponse response = servletRequestAttributes.getResponse();
-
+        log.info("\n ******* Current rpid |=| {}", request.getAttribute(Constant.GLOBAL_RPID));
         //FIXME 这里用redis后，以下代码需要修改
 
         //FIXME 例如 Object token = redis.get("key");
@@ -85,8 +85,8 @@ public class GlobalAuthAspect {
 
         String token = authService.getToken(request);
         if (StringUtils.isEmpty(token)) {
-            log.info("用户未登录，非法访问");
-            throw new RuntimeException("用户未登录，非法访问");
+            log.info("User not login SSO, please Login!");
+            throw new RuntimeException("User not login SSO, please Login!");
         }
         Cookie ssoToken = new Cookie(Constant.TOKEN, token);
         request.setAttribute(Constant.TOKEN, token);
@@ -94,13 +94,13 @@ public class GlobalAuthAspect {
         //boolean isLogin = authService.isLogin(request);
         boolean isLogin = true;
         if (!isLogin) {
-            log.info("用户会话已失效, 请重新登录");
-            throw new RuntimeException("用户会话已失效, 请重新登录");
+            log.info("User session expired, please Login! ");
+            throw new RuntimeException("User session expired, please Login!");
         }
         //User user = authService.getUserByAuthToken(request);
         User user = new User();
         if (StringUtils.isEmpty(user)) {
-            throw new RuntimeException("用户获取异常");
+            throw new RuntimeException("Get User info exception");
         }
         request.setAttribute(Constant.USER_INFO, user);
         return joinPoint.proceed();

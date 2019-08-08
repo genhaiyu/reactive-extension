@@ -68,7 +68,6 @@ public class GlobalAuthAspect {
      */
     @Around("pointType() || pointMethod() || pointService() || pointOther()")
     public Object executeGateway(ProceedingJoinPoint joinPoint) throws Throwable {
-        /*ReactiveRequestContextHolder.getRequest();*/
         Method method = ((MethodSignature) joinPoint.getSignature()).getMethod();
         if (Arrays.stream(Constant.ARRAYS).anyMatch(white -> white.equals(method.getName()))) {
             return joinPoint.proceed();

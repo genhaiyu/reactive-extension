@@ -20,8 +20,8 @@ public interface UserRepository extends BaseRepository<UserEntity, Long>, Queryd
 
 
     @Modifying
-    @Query(value = "update UserEntity u set u.aliasName = :#{#userDo.aliasName}," +
-            " u.email = :#{#userDo.email}, u.updatedAt = :#{#userDo.updatedAt} where u.userName = :#{#userDo.userName}")
-    void updateUser(@Param("userDo") UserEntity userDo);
+    @Query(value = "update UserEntity u set u.name = :#{#userEntity.name}," +
+            " u.phone = :#{#userEntity.phone}, u.updatedAt = :#{#userEntity.updatedAt} where u.name = :#{#userEntity.name}")
+    void updateUser(@Param("userEntity") UserEntity userEntity);
 
 }

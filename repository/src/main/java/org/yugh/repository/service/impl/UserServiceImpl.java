@@ -2,11 +2,13 @@ package org.yugh.repository.service.impl;
 
 import com.querydsl.jpa.impl.JPAQuery;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.yugh.repository.entites.QUserEntity;
 import org.yugh.repository.entites.UserEntity;
+import org.yugh.repository.pojo.dto.UserDTO;
 import org.yugh.repository.repositories.UserRepository;
 import org.yugh.repository.service.IUserService;
 
@@ -44,15 +46,19 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public void addUser(UserEntity userDo) {
-        userRepository.save(userDo);
+    public void addUser(UserDTO userDTO) {
+        UserEntity userEntity = initUserEntity();
+        BeanUtils.copyProperties(userDTO, userEntity);
+        userRepository.save(userEntity);
     }
 
 
     @Override
-    public void update(UserEntity userDo) {
-        userDo.preUpdate();
-        userRepository.updateUser(userDo);
+    public void update(UserDTO userDTO) {
+        UserEntity userEntity = initUserEntity();
+        BeanUtils.copyProperties(userDTO, userEntity);
+        userEntity.preUpdate();
+        userRepository.updateUser(userEntity);
     }
 
 
@@ -66,5 +72,9 @@ public class UserServiceImpl implements IUserService {
             success = true;
         }
         return success;
+    }
+
+    private UserEntity initUserEntity() {
+        return UserEntity.builder().build();
     }
 }

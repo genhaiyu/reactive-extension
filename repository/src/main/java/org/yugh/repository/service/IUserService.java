@@ -2,6 +2,7 @@ package org.yugh.repository.service;
 
 
 import org.yugh.repository.entites.UserEntity;
+import org.yugh.repository.pojo.dto.UserDTO;
 
 /**
  * //用户服务层
@@ -24,17 +25,17 @@ public interface IUserService {
     /**
      * 新增用户
      *
-     * @param userDo
+     * @param userDTO
      * @return
      */
-    void addUser(UserEntity userDo);
+    void addUser(UserDTO userDTO);
 
     /**
      * 更新用户
      *
      * @param userDo
      */
-    void update(UserEntity userDo);
+    void update(UserDTO userDTO);
 
 
     /**

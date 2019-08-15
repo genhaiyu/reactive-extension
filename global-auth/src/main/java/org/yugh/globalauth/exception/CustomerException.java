@@ -1,7 +1,7 @@
 package org.yugh.globalauth.exception;
 
 import lombok.Getter;
-import org.yugh.globalauth.util.ResultJson;
+import org.yugh.globalauth.util.JsonResult;
 
 /**
  * // 自定义错误
@@ -13,9 +13,9 @@ import org.yugh.globalauth.util.ResultJson;
 @Getter
 public class CustomerException extends RuntimeException {
 
-    private ResultJson resultJson;
+    private JsonResult jsonResult;
 
-    public CustomerException(ResultJson resultJson) {
-        this.resultJson = resultJson;
+    public CustomerException(JsonResult jsonResult) {
+        this.jsonResult = jsonResult;
     }
 }

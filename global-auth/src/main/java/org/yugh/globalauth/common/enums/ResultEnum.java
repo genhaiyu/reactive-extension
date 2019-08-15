@@ -18,17 +18,16 @@ public enum ResultEnum {
     OPERATE_ERROR(405, "请求方法不允许被执行"),
     TIME_OUT(408, "请求超时"),
     SERVER_ERROR(500, "服务器内部错误"),
-    FEIGN_ERROR(500, "Feign 调用异常"),
-    PARAM_ERROR(403, "请求参数不符合规范"),
 
     /**
      * 业务码
      */
     WHITE_NOT_FOUND(10001, "当前请求权限不足"),
-    LOGIN_ERROR_GATEWAY(10002, "请通过登录后访问"),
+    LOGIN_ERROR_GATEWAY(10002, "请通过*.xx.com相关地址登录后访问"),
     GATEWAY_SERVER_ERROR(10003, "网关服务内部异常"),
     GATEWAY_DATA_CONVERT_ERROR(10004, "网关数据转换异常"),
-    BLACK_SERVER_FOUND(10005, "禁止此方式访问服务网关");
+    BLACK_SERVER_FOUND(10005, "禁止此方式访问服务网关"),
+    HYSTRIX_ERROR(10006, "当前用户请求过于频繁，请歇会儿吧");
 
 
     private Integer code;

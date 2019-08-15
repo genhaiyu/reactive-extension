@@ -7,7 +7,11 @@ import org.springframework.context.annotation.Configuration;
 import java.util.concurrent.*;
 
 /**
- * //网关线程池
+ * Gateway thread pool
+ *
+ * It’s function is SynUser info
+ *
+ * see {@link org.yugh.gatewaynew.filter.GatewayDataWorksFilter}
  *
  * @author 余根海
  * @creation 2019-07-12 17:52
@@ -18,7 +22,7 @@ public class GatewayThreadPoolConfig {
 
     @Bean({"gatewayQueueThreadPool"})
     public ExecutorService buildGatewayQueueThreadPool() {
-        ThreadFactory namedThreadFactory = new ThreadFactoryBuilder().setNameFormat("Gateway-ThreadPool--%d").build();
+        ThreadFactory namedThreadFactory = new ThreadFactoryBuilder().setNameFormat("DataWorks-Gateway-ThreadPool--%d").build();
         ExecutorService pool = new ThreadPoolExecutor(5, 100, 1000L
                 , TimeUnit.MILLISECONDS, new ArrayBlockingQueue(5), namedThreadFactory
                 , new ThreadPoolExecutor.AbortPolicy());

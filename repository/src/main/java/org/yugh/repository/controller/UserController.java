@@ -1,17 +1,16 @@
 package org.yugh.repository.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-import org.yugh.globalauth.common.enums.ResultEnum;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.server.RouterFunction;
 import org.yugh.globalauth.util.ResultJson;
 import org.yugh.repository.entites.UserEntity;
 import org.yugh.repository.pojo.dto.UserDTO;
 import org.yugh.repository.service.IUserService;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Hooks;
 import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
@@ -33,12 +32,25 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
+    @Autowired(required = false)
+    WebClient webClient;
 
-    /**
-     * 新增mono语法
-     */
-    public Mono getUserInfo(String userName) {
-        return Mono.just(userService.getUserByUserName(userName));
+
+    @GetMapping("/hooks-debug")
+    public Mono webClient() {
+        Hooks.onOperatorDebug();
+        return Mono.just("Hooks.onOperatorDebug!!");
+    }
+
+
+    @GetMapping("/flux")
+    public Flux helloFlux(String flux) {
+        return Flux.just("hello " + flux);
+    }
+
+    @GetMapping("/mono")
+    public Mono helloMono(String mono) {
+        return Mono.just("hello " + mono);
     }
 
 

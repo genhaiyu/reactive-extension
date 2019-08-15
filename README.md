@@ -2,13 +2,13 @@
 
 ***
 ##  Description </br>
-+ 1：`eureka` It's springboot Registered，It is not necessary。
-+ 2：`customer` simple test from `product` feign invoke，test netflix.hystrix，see class `IndexController` method [info](https://github.com/yugenhai108/framework-applications/blob/master/product/src/main/java/org/yugh/product/controller/IndexController.java)  HystrixCommand 
-+ 3：`gateway` Is netflix.zuul of ZuulFilter implements，It's also popular Component。
-+ 4：`gateway-new` I'm modifying it based on netflix.zuul of ZuulFilter，It from Spring5.0 Reactor springframework。
-+ 5：`global-auth` It's implements similar to SSO，But it also includes Feign Interceptor Function。
-+ 6：`repository` and `domain-event` They are in the `Domain Driven Design`，I've only implements simple demo,just like `spring data jpa` and `querydsl jpa` ，`domain-event`  _The code comes from [Spring Courses](https://github.com/eugenp/tutorials)_ 。 ^~^
-+ 7：`zipkin xx` just an example。^~^
++ 1：`eureka` 提供项目注册中心。
++ 2：`customer` 简单的调用关系，被 `product` feign 调用，测试客户端熔断 netflix.hystrix，请见 `IndexController` method [info](https://github.com/yugenhai108/framework-applications/blob/master/product/src/main/java/org/yugh/product/controller/IndexController.java)  HystrixCommand 
++ 3：`gateway` 我实现的第一代 netflix开发的zuul网关，当下也是流行的组件。
++ 4：`gateway-new` 我在第一代网关上实现的gateway，参照了 Spring Cloud Gateway官网 [info](https://cloud.spring.io/spring-cloud-gateway/reference/html/) ，它包含了Spring5.0、Webflux、reactor响应式等。
++ 5：`global-auth` 开发的项目全局SSO实现，拦截所有项目的请求验证、鉴权，也包括白名单，功能还有feign客户端权限拦截 ——> 到服务端的权限校验。
++ 6：`repository` and `domain-event` 主要是领域驱动 `Domain Driven Design`，实现的一个简单的例子（后续再扩展）,比如有 `spring data jpa` and `querydsl jpa` ，`domain-event`  _The code comes from [Spring Courses](https://github.com/eugenp/tutorials)_ 。 ^~^
++ 7：`zipkin xx` 一个分布式收集调用关系的看板，`request` 请求 `response`，通过双方注册的zipkin地址上传到zipkin-server上，后期扩展es和数据库支持收集存储。^~^
 
 ## 功能示意图（A schematic）:
 </br>

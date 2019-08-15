@@ -24,20 +24,13 @@
             <groupId>org.yugh</groupId>
             <artifactId>global-auth</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-web</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
-
         <!-- moss -->
-        <dependency>
+        <!--<dependency>
             <groupId>org.xujin.moss</groupId>
             <artifactId>moss-client-2.x</artifactId>
             <version>1.0.0.RELEASE</version>
-        </dependency>
+        </dependency>-->
 
         <!-- gateway -->
         <dependency>
@@ -71,11 +64,6 @@
             <artifactId>guava</artifactId>
             <version>23.0</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>
@@ -93,16 +81,41 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5</version>
                 <configuration>
-                    <classifier>exec</classifier>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>utf8</encoding>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.2</version>
                 <configuration>
                     <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.2</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>org.yugh.gatewaynew.DataWorksGatewayApplication</mainClass>
+                        </manifest>
+                    </archive>
                 </configuration>
             </plugin>
         </plugins>

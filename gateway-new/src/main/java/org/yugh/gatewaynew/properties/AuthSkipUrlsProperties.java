@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -13,31 +12,38 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 /**
- * //白名单和黑名单属性配置
+ * Configuration yml skip url, and black Instance Id
+ * <p>
+ * if you request Instance Id to Gateway ,is failed
+ * <p>
+ * see application-dev.yml
  *
- * @author  余根海
- * @creation  2019-07-05 15:52
+ * @author 余根海
+ * @creation 2019-07-05 15:52
  * @Copyright © 2019 yugenhai. All rights reserved.
  */
 @Data
 @Slf4j
 @Component
-@Configuration
 @ConfigurationProperties(prefix = "auth-skip")
 public class AuthSkipUrlsProperties implements InitializingBean {
 
     private static final String NORMAL = "(\\w|\\d|-)+";
     private List<Pattern> urlPatterns = new ArrayList(10);
     private List<Pattern> serverPatterns = new ArrayList(10);
-    private List<String> instanceServers;
+    private List<String> dataWorksServers;
     private List<String> apiUrls;
 
+    /**
+     * It's implements Spring Application
+     * <p>
+     * When ApplicationContextAware init, this {@link AuthSkipUrlsProperties} init
+     */
     @Override
     public void afterPropertiesSet() {
-        instanceServers.stream().map(d -> d.replace("*", NORMAL)).map(Pattern::compile).forEach(serverPatterns::add);
+        dataWorksServers.stream().map(d -> d.replace("*", NORMAL)).map(Pattern::compile).forEach(serverPatterns::add);
         apiUrls.stream().map(s -> s.replace("*", NORMAL)).map(Pattern::compile).forEach(urlPatterns::add);
-        log.info("============> 配置服务器ID : {} , 白名单Url : {}", serverPatterns, urlPatterns);
+        log.info("============> Configuration Instance IDs : {} , Skip Urls : {}", serverPatterns, urlPatterns);
     }
-
 }
 

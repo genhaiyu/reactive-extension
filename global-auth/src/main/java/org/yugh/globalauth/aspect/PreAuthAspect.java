@@ -12,96 +12,140 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.yugh.globalauth.annotation.PreSkipAuth;
 import org.yugh.globalauth.common.constants.Constant;
 import org.yugh.globalauth.pojo.dto.User;
 import org.yugh.globalauth.service.AuthService;
+import org.yugh.globalauth.util.WebUtils;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
-import java.util.Arrays;
 
 /**
- * aspect
+ * dataWorks aspect
  * <p>
- * 1：拦截声明注解的类或方法
- * 2：拦截当前声明的package下的类
+ * xx-corp.com
+ * xx.com
+ * xx-apps.com
+ * xx.com
+ * <p>
+ * Not Compatible and xx-cloud.com
  *
  * @author yugenhai
  */
 @Slf4j
 @Aspect
+@Order(2)
 @Component
-@Order(Integer.MIN_VALUE + 2)
-public class GlobalAuthAspect {
-
+public class PreAuthAspect {
 
     @Autowired
     private AuthService authService;
 
+    /**
+     * If request.getAttribute(Constant.USER_INFO) == null
+     * <p>
+     * Must use it @PreAuth
+     */
     @Pointcut("@within(org.yugh.globalauth.annotation.PreAuth)")
     public void pointType() {
-        //type
     }
 
     @Pointcut("@annotation(org.yugh.globalauth.annotation.PreAuth)")
     public void pointMethod() {
-        //Method
     }
 
-    @Pointcut("execution(* org.yugh.*.controller.*.*(..))")
-    public void pointService() {
-        //Service
+    /**
+     * luban-dashboard
+     */
+    @Pointcut("execution(* com.xx.dataworks.*.*.*.controller.*.*.*(..))")
+    public void pointLubanDashboard() {
     }
 
-    @Pointcut("execution(* org.yugh.*.*.controller.*.*(..))")
-    public void pointOther() {
-        //Service
+    /**
+     * luban-backend
+     */
+    @Pointcut("execution(* com.xx.dataworks.*.*.controller.*.*.*.*(..))")
+    public void pointLubanBackend() {
     }
 
+    /**
+     * habo
+     */
+    @Pointcut("execution(* com.xx.dataworks.*.*.*.controller.*.*(..))")
+    public void pointHabo() {
+    }
+
+    /**
+     * submission
+     */
+    @Pointcut("execution(* com.xx.dataworks.*.*.controller.*.*(..))")
+    public void pointLubanSubmission() {
+    }
+
+    /**
+     * lineage
+     */
+    @Pointcut("execution(* com.xx.dataworks.*.*.controller.*.*(..))")
+    public void pointLineage() {
+    }
+
+    /**
+     * datasource
+     */
+    @Pointcut("execution(* com.xx.dataworks.*.*.controller.*.*(..))")
+    public void pointDatasource() {
+    }
+
+    /**
+     * quota
+     */
+    @Pointcut("execution(* com.xx.dataworks.*.controller.*.*(..))")
+    public void pointQuota() {
+    }
+
+    /**
+     * table
+     */
+    @Pointcut("execution(* com.xx.dataworks.*.*.controller.*.*(..))")
+    public void pointTable() {
+    }
 
     /**
      * @param joinPoint
      * @return
      * @throws Throwable
      */
-    @Around("pointType() || pointMethod() || pointService() || pointOther()")
-    public Object executeGateway(ProceedingJoinPoint joinPoint) throws Throwable {
+    @Around("pointLubanDashboard() || pointLubanBackend() || pointHabo() || pointTable()" +
+            "|| pointLubanSubmission() || pointLineage() || pointDatasource() || pointQuota()" +
+            "|| pointMethod() || pointType()")
+    public Object executeDataWorksAuth(ProceedingJoinPoint joinPoint) throws Throwable {
         Method method = ((MethodSignature) joinPoint.getSignature()).getMethod();
-        if (Arrays.stream(Constant.ARRAYS).anyMatch(white -> white.equals(method.getName()))) {
+        if (method.isAnnotationPresent(PreSkipAuth.class) || joinPoint.getTarget().getClass().isAnnotationPresent(PreSkipAuth.class)) {
             return joinPoint.proceed();
         }
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = servletRequestAttributes.getRequest();
         HttpServletResponse response = servletRequestAttributes.getResponse();
         log.info("\n ******* Current rpid |=| {}", request.getAttribute(Constant.GLOBAL_RPID));
-        //FIXME 这里用redis后，以下代码需要修改
-
-        //FIXME 例如 Object token = redis.get("key");
-        //FIXME redis里放入用户登录信息和超时时间，如果没有获取到表示用户已经失效，需要抛出msg
-
-
         String token = authService.getToken(request);
+        //msg throw to
         if (StringUtils.isEmpty(token)) {
             log.info("User not login SSO, please Login!");
             throw new RuntimeException("User not login SSO, please Login!");
         }
-        Cookie ssoToken = new Cookie(Constant.TOKEN, token);
-        request.setAttribute(Constant.TOKEN, token);
-        response.addCookie(ssoToken);
-        //boolean isLogin = authService.isLogin(request);
-        boolean isLogin = true;
+        boolean isLogin = authService.isLogin(request);
         if (!isLogin) {
             log.info("User session expired, please Login! ");
             throw new RuntimeException("User session expired, please Login!");
         }
-        //User user = authService.getUserByAuthToken(request);
-        User user = new User();
+        User user = authService.getUserByAuthToken(request);
         if (StringUtils.isEmpty(user)) {
             throw new RuntimeException("Get User info exception");
         }
-        request.setAttribute(Constant.USER_INFO, user);
+        WebUtils.setSession(request, Constant.USER_INFO, user);
+        WebUtils.addCookie(response, Constant.SESSION_XX_TOKEN, token, Constant.COOKIE_TIME_OUT);
         return joinPoint.proceed();
     }
 

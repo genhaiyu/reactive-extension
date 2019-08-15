@@ -1,4 +1,4 @@
-package org.yugh.gatewaynew.config;
+package org.yugh.gatewaynew.context;
 
 import lombok.Data;
 
@@ -15,34 +15,39 @@ import java.io.Serializable;
 public class GatewayContext implements Serializable {
 
     private static final long serialVersionUID = 7420632808330120030L;
+
     /**
-     * 是否执行下一步
+     * next go on
      */
     private boolean doNext = true;
+
+
     /**
-     * 黑名单
+     * black instance
      */
     private boolean black;
+
     /**
-     * 会话ID
-     */
-    private String logId;
-    /**
-     * sso颁发的token
+     * sso token
      */
     private String ssoToken;
+
     /**
      * 用户no
      */
     @Deprecated
     private String userNo;
+
     /**
      * 请求地址
      */
     @Deprecated
     private String path;
+
     /**
-     * 重定向链接
+     * redirectUrl
      */
     private String redirectUrl;
+
+
 }

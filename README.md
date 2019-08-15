@@ -1,7 +1,7 @@
 # :sparkles: Core Project 
 
 ***
-##  Description </br>
+## :palm_tree: Applications Description </br>
 + 1：`eureka` 提供项目注册中心。
 + 2：`customer` 简单的调用关系，被 `product` feign 调用，测试客户端熔断，请见 `IndexController` method [info](https://github.com/yugenhai108/framework-applications/blob/master/product/src/main/java/org/yugh/product/controller/IndexController.java)  HystrixCommand 
 + 3：`gateway` 我实现的第一代 netflix开发的zuul网关，当下也是流行的组件。

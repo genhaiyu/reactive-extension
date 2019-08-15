@@ -37,6 +37,6 @@
 ***
 ## DDD = Domain Driven Design 架构实现图</br>
 
-![Image text](https://github.com/yugenhai108/framework-applications/blob/master/ddd-project.png)
+![Image text](https://github.com/yugenhai108/framework-applications/blob/master/ddd-project.jpg)
 
  

@@ -3,7 +3,7 @@ package org.yugh.product.service;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.yugh.globalauth.aspect.GlobalFeignInterceptor;
+import org.yugh.globalauth.interceptor.PreFeignInterceptor;
 import org.yugh.product.fallback.IndexFallbackFactory;
 
 /**
@@ -13,7 +13,7 @@ import org.yugh.product.fallback.IndexFallbackFactory;
  * @creation: 2019-07-01 19:10
  * @Copyright © 2019 yugenhai. All rights reserved.
  */
-@FeignClient(name = "customer", fallbackFactory = IndexFallbackFactory.class, configuration = GlobalFeignInterceptor.class)
+@FeignClient(name = "customer", fallbackFactory = IndexFallbackFactory.class, configuration = PreFeignInterceptor.class)
 public interface IndexService {
 
 

@@ -1,9 +1,9 @@
-package org.yugh.gatewaynew.feign.impl;
+package org.yugh.product.service.impl;
 
 import org.springframework.stereotype.Component;
-import org.yugh.gatewaynew.feign.IGatewayTestService;
 import org.yugh.globalauth.common.enums.HttpStatusEnum;
 import org.yugh.globalauth.util.JsonResult;
+import org.yugh.product.service.IGatewayTestService;
 
 /**
  * @author yugenhai

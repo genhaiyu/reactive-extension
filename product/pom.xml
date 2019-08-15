@@ -23,13 +23,13 @@
     <dependencies>
 
         <!-- moss -->
-        <dependency>
+        <!--<dependency>
             <groupId>org.xujin.moss</groupId>
             <artifactId>moss-client-2.x</artifactId>
             <version>1.0.0.RELEASE</version>
-        </dependency>
+        </dependency>-->
 
-        <dependency>
+       <!-- <dependency>
             <groupId>org.yugh</groupId>
             <artifactId>common</artifactId>
             <version>1.0.1-SNAPSHOT</version>
@@ -39,7 +39,7 @@
                     <artifactId>spring-boot-starter-data-redis-reactive</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
+        </dependency>-->
 
         <!-- 权限-->
         <dependency>

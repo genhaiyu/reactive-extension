@@ -2,35 +2,57 @@ package org.yugh.gatewaynew.security;
 
 import com.netflix.discovery.EurekaClient;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.yugh.globalauth.annotation.PreSkipAuth;
+import org.yugh.globalauth.common.constants.Constant;
+import org.yugh.globalauth.common.enums.ResultEnum;
+import org.yugh.globalauth.util.ResultJson;
+
+import java.net.InetAddress;
 
 /**
+ * Close this client
  *
  * @author yugenhai
  */
 @Slf4j
-@Component
-@RequestMapping("/security")
-@ConditionalOnBean(EurekaClient.class)
+@PreSkipAuth
+@RestController
+@RequestMapping("/down")
 public class HealthController {
 
-    /*@Autowired
+    @Autowired
     private EurekaClient eurekaClient;
 
+    /**
+     * Shutdown Gateway Client Switch
+     */
+    private boolean switchFlag = true;
+
+    private final static String REGEX = "/";
+
+    /**
+     * Don't Request the controller
+     * <p>
+     * My test class
+     *
+     * @return
+     */
     @GetMapping("/offline")
     public ResultJson disable() {
-        ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        HttpServletRequest request = requestAttributes.getRequest();
-        String remoteHost = request.getRemoteHost();
-        log.info("=========>  下线的请求 : {} ", remoteHost);
-        if (!Constant.LOCAL_IP.equals(remoteHost)) {
-            log.warn("下线的必须是 '" + Constant.LOCAL_IP + "' , 当前实例本身 {}   ", remoteHost);
-            return ResultJson.failure(ResultEnum.BAD_REQUEST, "下线的必须是 '" + Constant.LOCAL_IP + "' ,  当前的 (" + remoteHost + " ) ");
+        try {
+            InetAddress addr = InetAddress.getLocalHost();
+            if (Constant.LOCAL_IP.equals(addr.toString().split(REGEX)[1]) || switchFlag) {
+                eurekaClient.shutdown();
+                log.info("Shutdown Gateway Client is success !!!");
+                return ResultJson.ok(null);
+            }
+        } catch (Exception e) {
+            log.error("Shutdown Gateway Client Exception : {}", e);
         }
-        log.info("=========> dataWorks Gateway服务下线 !!!");
-        eurekaClient.shutdown();
-        return ResultJson.ok(null);
-    }*/
+        return ResultJson.failure(ResultEnum.GATEWAY_SERVER_ERROR);
+    }
 }

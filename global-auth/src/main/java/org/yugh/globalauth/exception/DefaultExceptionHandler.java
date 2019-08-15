@@ -2,8 +2,8 @@ package org.yugh.globalauth.exception;
 
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.yugh.globalauth.common.enums.ResultEnum;
-import org.yugh.globalauth.util.ResultJson;
+import org.yugh.globalauth.common.enums.HttpStatusEnum;
+import org.yugh.globalauth.util.JsonResult;
 
 /**
  * // 错误拦截
@@ -22,8 +22,8 @@ public class DefaultExceptionHandler {
      * @return
      */
     @ExceptionHandler(CustomerException.class)
-    public ResultJson handleCustomException(CustomerException e) {
-        return e.getResultJson();
+    public JsonResult handleCustomException(CustomerException e) {
+        return e.getJsonResult();
     }
 
     /**
@@ -33,8 +33,8 @@ public class DefaultExceptionHandler {
      * @return
      */
     @ExceptionHandler(Exception.class)
-    public ResultJson exception(Exception e) {
-        return ResultJson.failure(ResultEnum.SERVER_ERROR, e.getMessage());
+    public JsonResult exception(Exception e) {
+        return JsonResult.buildErrorResult(HttpStatusEnum.INTERNAL_SERVER_ERROR.reasonPhraseCN(), e.getMessage());
     }
 
     /**
@@ -44,7 +44,7 @@ public class DefaultExceptionHandler {
      * @return
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResultJson handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
-        return ResultJson.failure(ResultEnum.PARAM_ERROR, e.getBindingResult().getFieldError().getDefaultMessage());
+    public JsonResult handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
+        return JsonResult.buildErrorResult(HttpStatusEnum.BAD_REQUEST.reasonPhraseCN(), e.getBindingResult().getFieldError().getDefaultMessage());
     }
 }

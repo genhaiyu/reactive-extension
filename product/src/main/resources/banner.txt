@@ -1,4 +1,4 @@
-${AnsiColor.BRIGHT_RED}
+${AnsiColor.GREEN}
 /*
 * ━━━━━━神兽出没━━━━━━
 * 　　　┏┓　　　┏┓

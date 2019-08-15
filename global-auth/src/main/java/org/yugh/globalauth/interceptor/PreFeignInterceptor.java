@@ -1,4 +1,4 @@
-package org.yugh.globalauth.aspect;
+package org.yugh.globalauth.interceptor;
 
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
@@ -12,22 +12,19 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Enumeration;
 
 /**
- * feign aspect
- *
- * 拦截feign请求并验证当前用户
+ * dataWorks feign aspect
  *
  * @author yugenhai
  */
 @Slf4j
 @Component
-public class GlobalFeignInterceptor implements RequestInterceptor {
+public class PreFeignInterceptor implements RequestInterceptor {
 
     @Override
     public void apply(RequestTemplate requestTemplate) {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         if (null != attributes) {
             HttpServletRequest request = attributes.getRequest();
-            log.info("\n ******* Current rpid |=| {}", request.getAttribute(Constant.GLOBAL_RPID));
             Enumeration<String> headerNames = request.getHeaderNames();
             if (null != headerNames) {
                 while (headerNames.hasMoreElements()) {

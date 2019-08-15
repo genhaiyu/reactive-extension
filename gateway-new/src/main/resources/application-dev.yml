@@ -1,81 +1,235 @@
+#port
 server:
-  port: 8706
+  port: 6300
 #setting
 spring:
   application:
-    name: gateway-new
+    name: dataworks-gateway-service
   #redis
   redis:
-    host: localhost
-    port: 6379
     database: 0
-    timeout: 5000
-  #遇到相同名字，允许覆盖
+    host: test-redis.dns.xx.com
+    port: 6379
+    expire_seconds: 300
+    cluster:
+      nodes:
+        - test-redis.dns.xx.com:3001
+        - test-redis.dns.xx.com:3002
+        - test-redis.dns.xx.com:3003
+        - test-redis.dns.xx.com:3004
+        - test-redis.dns.xx.com:3005
+        - test-redis.dns.xx.com:3006
+      max-redirects: 3
+  #overriding name
   main:
     allow-bean-definition-overriding: true
   #gateway
   cloud:
     gateway:
-      #注册中心服务发现
+      #open service
       discovery:
         locator:
-          #开启通过服务中心的自动根据 serviceId 创建路由的功能
+          #serviceId routes
           enabled: true
       routes:
-        #服务1
-        - id: CompositeDiscoveryClient_CUSTOMER
-          uri: lb://CUSTOMER
+        #habo
+        - id: CompositeDiscoveryClient_APP-HABO-SERVICE
+          uri: lb://APP-HABO-SERVICE
           order: 1
           predicates:
-            # 跳过自定义是直接带实例名 必须是大写 同样限流拦截失效
-            - Path= /api/customer/**
+            - Path= /api/habo/**
           filters:
             - StripPrefix=2
-            - AddResponseHeader=X-Response-Default-Foo, Default-Bar
+            # see {@link GatewayCorsConfig} and {@link CorsFilter}
             - name: RequestRateLimiter
               args:
+                # X-RateLimit-Remaining -> Token bucket, Current Remaining = burstCapacity-replenishRate
+                # See {@link GatewayKeyResolver}
                 key-resolver: "#{@gatewayKeyResolver}"
-                #限额配置
-                redis-rate-limiter.replenishRate: 1
-                redis-rate-limiter.burstCapacity: 1
-        #用户微服务
-        - id: CompositeDiscoveryClient_PRODUCT
-          uri: lb://PRODUCT
-          order: 0
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 10
+        #datasource
+        - id: CompositeDiscoveryClient_METADATA-DATASOURCE-SERVICE
+          uri: lb://METADATA-DATASOURCE-SERVICE
+          order: 1
           predicates:
-            - Path= /api/product/**
+            - Path= /api/datasource/**
           filters:
             - StripPrefix=2
-            - AddResponseHeader=X-Response-Default-Foo, Default-Bar
+            # see {@link GatewayCorsConfig} and {@link CorsFilter}
             - name: RequestRateLimiter
               args:
+                # X-RateLimit-Remaining -> Token bucket, Current Remaining = burstCapacity-replenishRate
+                # See {@link GatewayKeyResolver}
                 key-resolver: "#{@gatewayKeyResolver}"
-                #限额配置
-                redis-rate-limiter.replenishRate: 1
-                redis-rate-limiter.burstCapacity: 1
-          #请求路径选择自定义会进入限流器
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 10
+        #lineage
+        - id: CompositeDiscoveryClient_METADATA-DATA-LINEAGE-SERVICE
+          uri: lb://METADATA-DATA-LINEAGE-SERVICE
+          order: 1
+          predicates:
+            - Path= /api/lineage/**
+          filters:
+            - StripPrefix=2
+            # see {@link GatewayCorsConfig} and {@link CorsFilter}
+            - name: RequestRateLimiter
+              args:
+                # X-RateLimit-Remaining -> Token bucket, Current Remaining = burstCapacity-replenishRate
+                # See {@link GatewayKeyResolver}
+                key-resolver: "#{@gatewayKeyResolver}"
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 10
+        #quota
+        - id: CompositeDiscoveryClient_METADATA-QUOTA-DICT-SERVICE
+          uri: lb://METADATA-QUOTA-DICT-SERVICE
+          order: 1
+          predicates:
+            - Path= /api/quotamanage/**
+          filters:
+            - StripPrefix=2
+            # see {@link GatewayCorsConfig} and {@link CorsFilter}
+            - name: RequestRateLimiter
+              args:
+                # X-RateLimit-Remaining -> Token bucket, Current Remaining = burstCapacity-replenishRate
+                # See {@link GatewayKeyResolver}
+                key-resolver: "#{@gatewayKeyResolver}"
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 10
+        #table
+        - id: CompositeDiscoveryClient_METADATA-TABLE-DICT-SERVICE
+          uri: lb://METADATA-TABLE-DICT-SERVICE
+          order: 1
+          predicates:
+            - Path= /api/table/**
+          filters:
+            - StripPrefix=2
+            # see {@link GatewayCorsConfig} and {@link CorsFilter}
+            - name: RequestRateLimiter
+              args:
+                # X-RateLimit-Remaining -> Token bucket, Current Remaining = burstCapacity-replenishRate
+                # See {@link GatewayKeyResolver}
+                key-resolver: "#{@gatewayKeyResolver}"
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 10
+        #luban-dashboard
+        - id: CompositeDiscoveryClient_APP-LUBAN-DASHBOARD-SERVICE
+          uri: lb://APP-LUBAN-DASHBOARD-SERVICE
+          order: 1
+          predicates:
+            - Path= /api/luban-dashboard/**
+          filters:
+            - StripPrefix=2
+            # see {@link GatewayCorsConfig} and {@link CorsFilter}
+            #- AddResponseHeader=Access-Control-Allow-Credentials,true Access-Control-Allow-Headers,Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With, XXSSO, DEVICEID
+            - name: RequestRateLimiter
+              args:
+                # X-RateLimit-Remaining -> Token bucket, Current Remaining = burstCapacity-replenishRate
+                # See {@link GatewayKeyResolver}
+                key-resolver: "#{@gatewayKeyResolver}"
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 10
+        #submission
+        - id: CompositeDiscoveryClient_BASE-SQL-SUBMISSION-SERVICE
+          uri: lb://BASE-SQL-SUBMISSION-SERVICE
+          order: 1
+          predicates:
+            - Path= /api/submission/**
+          filters:
+            - StripPrefix=2
+            # see {@link GatewayCorsConfig} and {@link CorsFilter}
+            - name: RequestRateLimiter
+              args:
+                # X-RateLimit-Remaining -> Token bucket, Current Remaining = burstCapacity-replenishRate
+                # See {@link GatewayKeyResolver}
+                key-resolver: "#{@gatewayKeyResolver}"
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 10
+        #luban-backend
+        - id: CompositeDiscoveryClient_APP-LUBAN-BACKEND-SERVICE
+          uri: lb://APP-LUBAN-BACKEND-SERVICE
+          order: 1
+          predicates:
+            - Path= /api/luban-backend/**
+          filters:
+            - StripPrefix=2
+            # see {@link GatewayCorsConfig} and {@link CorsFilter}
+            - name: RequestRateLimiter
+              args:
+                # X-RateLimit-Remaining -> Token bucket, Current Remaining = burstCapacity-replenishRate
+                # See {@link GatewayKeyResolver}
+                key-resolver: "#{@gatewayKeyResolver}"
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 10
+          #default
           default-filters:
-            - AddResponseHeader=X-Response-Default-Foo, Default-Bar
+            # see {@link GatewayCorsConfig} and {@link CorsFilter}
+            #- AddResponseHeader=Access-Control-Allow-Credentials,true Access-Control-Allow-Headers,Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With, XX, DEVICEID
             - name: gatewayKeyResolver
               args:
                 key-resolver: "#{@gatewayKeyResolver}"
-              #断路异常跳转
             - name: Hystrix
               args:
-                #网关异常或超时跳转到处理类
                 name: fallbackcmd
                 fallbackUri: forward:/fallbackController
 
 #safe path
 auth-skip:
-  instance-servers:
-    - CUSTOMER
-    - PRODUCT
+  dataworks-servers:
+    - APP-HABO-SERVICE
+    - METADATA-DATASOURCE-SERVICE
+    - METADATA-DATA-LINEAGE-SERVICE
+    - METADATA-QUOTA-DICT-SERVICE
+    - METADATA-TABLE-DICT-SERVICE
+    - APP-LUBAN-DASHBOARD-SERVICE
+    - BASE-SQL-SUBMISSION-SERVICE
+    - APP-LUBAN-BACKEND-SERVICE
   api-urls:
-    #PRODUCT
-    - /pro
-    #CUSTOMER
-    - /cust
+    #habo
+    - /task/workspace
+    - /task/callback
+    - /task/exec
+    - /task/sch/config
+    - /user/group
+    - /health
+    #usercenter
+    #- /usercenter/user
+    #- /usercenter/health
+    #datasource
+    - /query
+    - /management
+    - /health
+    #lineage
+    - /blood
+    - /test
+    - /health
+    #quota
+    - /callback/dimension
+    - /approve/callback
+    - /v1
+    - /action/indicator
+    - /health
+    #table
+    - /v1/datasource
+    - /v1/database
+    - /v1/bdptable
+    - /health
+    #lubanDashboard
+    - /v1/chart
+    - /v1/dashboard
+    - /v1/dashboardShare
+    - /health
+    #submission
+    - /health
+    - /v1/metadata
+    - /v1/query
+    - /v1/sql
+    #luban-backend
+    - /v1/dataset
+    - /v1/datasetsql
+    - /v1/datasetshare
+    - /health
+
 
     #gray-env
     #...
@@ -83,7 +237,7 @@ auth-skip:
 #log
 logging:
   level:
-    org.yugh: INFO
+    com.xx.dataworks.gateway: INFO
     org.springframework.cloud.gateway: INFO
     org.springframework.http.server.reactive: INFO
     org.springframework.web.reactive: INFO
@@ -97,7 +251,18 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8700/eureka/
 
+#health
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+      base-path: /actuator
+  endpoint:
+    health:
+      show-details: ALWAYS
 
+#ribbon
 ribbon:
   eureka:
     enabled: true
@@ -116,15 +281,6 @@ hystrix:
     default:
       execution:
         isolation:
+          strategy: SEMAPHORE
           thread:
             timeoutInMilliseconds: 20000
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
-      base-path: /actuator
-  endpoint:
-    health:
-      show-details: ALWAYS

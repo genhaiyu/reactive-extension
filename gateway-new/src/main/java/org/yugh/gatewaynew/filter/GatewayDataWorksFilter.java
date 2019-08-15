@@ -13,7 +13,7 @@ import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.server.ServerWebExchange;
-import org.yugh.gatewaynew.config.GatewayContext;
+import org.yugh.gatewaynew.context.GatewayContext;
 import org.yugh.gatewaynew.properties.AuthSkipUrlsProperties;
 import org.yugh.globalauth.common.constants.Constant;
 import org.yugh.globalauth.common.enums.ResultEnum;
@@ -28,17 +28,19 @@ import java.util.concurrent.ExecutorService;
 import java.util.regex.Matcher;
 
 /**
- * // 网关服务
+ * This Component use gateway-core
+ * And Webflux , since 5.0 reactive by HTTP, see reactor ${@link org.reactivestreams.Publisher}
  *
  * @author 余根海
  * @creation 2019-07-09 10:52
  * @Copyright © 2019 yugenhai. All rights reserved.
  */
 @Slf4j
-public class GatewayFilter implements GlobalFilter, Ordered {
+public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
 
     @Autowired
     private AuthSkipUrlsProperties authSkipUrlsProperties;
+    @Deprecated
     @Autowired
     @Qualifier(value = "gatewayQueueThreadPool")
     private ExecutorService buildGatewayQueueThreadPool;
@@ -52,15 +54,18 @@ public class GatewayFilter implements GlobalFilter, Ordered {
         ServerHttpRequest request = exchange.getRequest();
         ServerHttpResponse response = exchange.getResponse();
         response.getHeaders().setContentType(MediaType.APPLICATION_JSON_UTF8);
-        log.info("当前会话ID : {}", request.getId());
-        //防止网关监控不到限流请求
+        log.info("Current gateway session : {}", request.getId());
         if (blackServersCheck(context, exchange)) {
             response.setStatusCode(HttpStatus.FORBIDDEN);
             byte[] failureInfo = ResultJson.failure(ResultEnum.BLACK_SERVER_FOUND).toString().getBytes(StandardCharsets.UTF_8);
             DataBuffer buffer = response.bufferFactory().wrap(failureInfo);
             return response.writeWith(Flux.just(buffer));
         }
-        //白名单
+
+        /**
+         * if (!Arrays.stream(context.getPath().split(Constant.PREFIX)).anyMatch(white -> white.equals(authSkipUrlsProperties.getApiUrls()))) {
+         */
+
         if (whiteListCheck(context, exchange)) {
             authToken(context, request);
             if (!context.isDoNext()) {
@@ -69,12 +74,11 @@ public class GatewayFilter implements GlobalFilter, Ordered {
                 response.setStatusCode(HttpStatus.UNAUTHORIZED);
                 return response.writeWith(Flux.just(buffer));
             }
-            ServerHttpRequest mutateReq = exchange.getRequest().mutate().header(Constant.TOKEN, context.getSsoToken()).build();
+            ServerHttpRequest mutateReq = exchange.getRequest().mutate().header(Constant.DATAWORKS_GATEWAY_HEADERS, context.getSsoToken()).build();
             ServerWebExchange mutableExchange = exchange.mutate().request(mutateReq).build();
-            log.info("当前会话转发成功 : {}", request.getId());
+            log.info("Current gateway session forward success : {}", request.getId());
             return chain.filter(mutableExchange);
         } else {
-            //黑名单
             response.setStatusCode(HttpStatus.FORBIDDEN);
             byte[] failureInfo = ResultJson.failure(ResultEnum.WHITE_NOT_FOUND).toString().getBytes(StandardCharsets.UTF_8);
             DataBuffer buffer = response.bufferFactory().wrap(failureInfo);
@@ -82,11 +86,6 @@ public class GatewayFilter implements GlobalFilter, Ordered {
         }
     }
 
-
-    @Override
-    public int getOrder() {
-        return Integer.MIN_VALUE;
-    }
 
     /**
      * 检查用户
@@ -98,16 +97,13 @@ public class GatewayFilter implements GlobalFilter, Ordered {
      */
     private void authToken(GatewayContext context, ServerHttpRequest request) {
         try {
-            // boolean isLogin = authService.isLoginByReactive(request);
-            boolean isLogin = true;
+            boolean isLogin = authService.isLoginByReactive(request);
             if (isLogin) {
-                //User userDo = authService.getUserByReactive(request);
                 try {
-                    // String ssoToken = authCookieUtils.getCookieByNameByReactive(request, Constant.TOKEN);
-                    String ssoToken = "123";
+                    String ssoToken = authService.getUserTokenByGateway(request);
                     context.setSsoToken(ssoToken);
                 } catch (Exception e) {
-                    log.error("用户调用失败 : {}", e.getMessage());
+                    log.error("Feign user Server Exception : {}", e.getMessage());
                     context.setDoNext(false);
                     return;
                 }
@@ -115,7 +111,7 @@ public class GatewayFilter implements GlobalFilter, Ordered {
                 unLogin(context, request);
             }
         } catch (Exception e) {
-            log.error("获取用户信息异常 :{}", e.getMessage());
+            log.error("Invoke xx SSO RuntimeException :{}", e.getMessage());
             context.setDoNext(false);
         }
     }
@@ -126,11 +122,13 @@ public class GatewayFilter implements GlobalFilter, Ordered {
      *
      * @param userDto
      */
+    @Deprecated
     public void synUser(User userDto) {
         buildGatewayQueueThreadPool.execute(new Runnable() {
             @Override
             public void run() {
-                log.info("用户同步成功 : {}", "");
+               // JsonResult user = gatewayUserService.synUser(userDto);
+                //log.info("Feign user success : {}", user);
             }
         });
 
@@ -138,8 +136,6 @@ public class GatewayFilter implements GlobalFilter, Ordered {
 
 
     /**
-     * 视为不能登录
-     *
      * @param context
      * @param request
      */
@@ -152,8 +148,6 @@ public class GatewayFilter implements GlobalFilter, Ordered {
 
 
     /**
-     * 白名单
-     *
      * @param context
      * @param exchange
      * @return
@@ -172,15 +166,13 @@ public class GatewayFilter implements GlobalFilter, Ordered {
 
 
     /**
-     * 黑名单
-     *
      * @param context
      * @param exchange
      * @return
      */
     private boolean blackServersCheck(GatewayContext context, ServerWebExchange exchange) {
         String instanceId = exchange.getRequest().getURI().getPath().substring(1, exchange.getRequest().getURI().getPath().indexOf('/', 1));
-        if (!CollectionUtils.isEmpty(authSkipUrlsProperties.getInstanceServers())) {
+        if (!CollectionUtils.isEmpty(authSkipUrlsProperties.getDataWorksServers())) {
             boolean black = authSkipUrlsProperties.getServerPatterns().stream()
                     .map(pattern -> pattern.matcher(instanceId))
                     .anyMatch(Matcher::find);
@@ -198,7 +190,13 @@ public class GatewayFilter implements GlobalFilter, Ordered {
      * @return
      */
     private String getSsoUrl(ServerHttpRequest request) {
-        return request.getPath().value();
+        String serverName = request.getPath().value();
+        return "http://sso-stage.xx-corp.com";
     }
 
+
+    @Override
+    public int getOrder() {
+        return Integer.MIN_VALUE;
+    }
 }

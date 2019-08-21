@@ -4,8 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.web.reactive.function.server.RouterFunction;
-import org.yugh.globalauth.util.ResultJson;
+import org.yugh.auth.util.ResultJson;
 import org.yugh.repository.entites.UserEntity;
 import org.yugh.repository.pojo.dto.UserDTO;
 import org.yugh.repository.service.IUserService;
@@ -16,7 +15,7 @@ import reactor.core.publisher.Mono;
 import javax.validation.Valid;
 
 /**
- * // 项目引用了global-auth，里面包含了最大的exception，错误不需要在业务层抛
+ * // 项目引用了common-auth，加上@RestControllerAdvice，错误则不需要在业务层抛
  * //新增mono语法
  *
  * @author: 余根海

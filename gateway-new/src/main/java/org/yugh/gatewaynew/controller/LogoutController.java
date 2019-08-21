@@ -1,17 +1,21 @@
 package org.yugh.gatewaynew.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.yugh.globalauth.service.AuthService;
-import org.yugh.globalauth.util.ResultJson;
+import org.yugh.auth.annotation.PreSkipAuth;
+import org.yugh.auth.service.AuthService;
+import org.yugh.auth.util.JsonResult;
 import reactor.core.publisher.Mono;
 
 /**
  * @author yugenhai
  */
+@Slf4j
+@PreSkipAuth
 @RestController
 public class LogoutController {
 
@@ -19,9 +23,15 @@ public class LogoutController {
     private AuthService authService;
 
     @GetMapping("logout")
-    public Mono<ResultJson> logout(ServerHttpRequest request, ServerHttpResponse response) {
-        authService.logoutByGateway(request, response);
-        return Mono.just(ResultJson.ok("退出成功"));
+    public Mono<JsonResult> logout(ServerHttpRequest request, ServerHttpResponse response) {
+        try {
+            authService.logoutByGateway(request, response);
+            return Mono.just(JsonResult.buildSuccessResult("Logout Success!"));
+        } catch (Exception e) {
+            log.info("Logout Failed!");
+            return Mono.just(JsonResult.buildErrorResult("Logout Failed!"));
+        }
+
     }
 
 }

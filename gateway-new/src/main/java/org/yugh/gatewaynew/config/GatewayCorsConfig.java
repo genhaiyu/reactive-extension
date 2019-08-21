@@ -1,27 +1,28 @@
-package org.yugh.gatewaynew.config;
+package corg.yugh.gatewaynew.config;
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.cors.reactive.CorsUtils;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
-import org.yugh.globalauth.common.constants.Constant;
+import org.yugh.auth.common.constants.Constant;
 import reactor.core.publisher.Mono;
 
 /**
  * Spring Cloud Gateway CORS setting
- * <p>
- * See {@link org.yugh.globalauth.filter.CorsFilter}
  *
  * @author yugenhai
  */
-//@Component
-//@Order(Ordered.HIGHEST_PRECEDENCE)
+@Slf4j
+@Component
+@Order(Ordered.HIGHEST_PRECEDENCE)
 public class GatewayCorsConfig implements WebFilter {
 
     @Override
@@ -29,22 +30,16 @@ public class GatewayCorsConfig implements WebFilter {
         ServerHttpRequest request = exchange.getRequest();
         if (CorsUtils.isCorsRequest(request)) {
             ServerHttpResponse response = exchange.getResponse();
-            HttpHeaders headers = response.getHeaders();
-            if (StringUtils.isEmpty(headers.get(HttpHeaders.ORIGIN))) {
-                headers.add(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, Constant.XX_ALLOW_ALL);
+            if (StringUtils.isEmpty(request.getHeaders().getFirst(HttpHeaders.ORIGIN))) {
+                response.getHeaders().add(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, Constant.xx_ALLOW_ALL);
             } else {
-                headers.add(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, headers.get(HttpHeaders.ORIGIN).toString());
+                response.getHeaders().add(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, request.getHeaders().getFirst(HttpHeaders.ORIGIN));
             }
-            headers.add(HttpHeaders.ACCESS_CONTROL_MAX_AGE, String.valueOf(Constant.COOKIE_TIME_OUT));
-            headers.add(HttpHeaders.ACCESS_CONTROL_ALLOW_CREDENTIALS, "true");
-            headers.add(HttpHeaders.ACCESS_CONTROL_ALLOW_METHODS, Constant.XX_ALLOW_ALL);
-            headers.add(HttpHeaders.ACCESS_CONTROL_ALLOW_HEADERS, Constant.XX_ALLOW_HEADERS);
-            if (request.getMethod() == HttpMethod.OPTIONS) {
-                response.setStatusCode(HttpStatus.OK);
-                return Mono.empty();
-            }
+            response.getHeaders().add(HttpHeaders.ACCESS_CONTROL_ALLOW_CREDENTIALS, "true");
+            response.getHeaders().add(HttpHeaders.ACCESS_CONTROL_ALLOW_METHODS, Constant.xx_ALLOW_ALL);
+            response.getHeaders().add(HttpHeaders.ACCESS_CONTROL_MAX_AGE, String.valueOf(Constant.COOKIE_TIME_OUT));
+            response.getHeaders().add(HttpHeaders.ACCESS_CONTROL_ALLOW_HEADERS, Constant.xx_ALLOW_HEADERS);
         }
         return chain.filter(exchange);
     }
-
 }

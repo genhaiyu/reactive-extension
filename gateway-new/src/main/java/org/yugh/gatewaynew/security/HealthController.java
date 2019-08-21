@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.yugh.globalauth.annotation.PreSkipAuth;
-import org.yugh.globalauth.common.constants.Constant;
-import org.yugh.globalauth.common.enums.ResultEnum;
-import org.yugh.globalauth.util.ResultJson;
+import org.yugh.auth.annotation.PreSkipAuth;
+import org.yugh.auth.common.constants.Constant;
+import org.yugh.auth.common.enums.ResultEnum;
+import org.yugh.auth.util.ResultJson;
 
 import java.net.InetAddress;
 

@@ -13,16 +13,20 @@ import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.server.ServerWebExchange;
+import org.yugh.auth.common.constants.Constant;
+import org.yugh.auth.common.enums.ResultEnum;
+import org.yugh.auth.pojo.dto.User;
+import org.yugh.auth.service.AuthService;
+import org.yugh.auth.util.JsonResult;
+import org.yugh.auth.util.ResultJson;
+import org.yugh.auth.util.SSOConfig;
 import org.yugh.gatewaynew.context.GatewayContext;
+import org.yugh.gatewaynew.feign.IGatewayUserService;
 import org.yugh.gatewaynew.properties.AuthSkipUrlsProperties;
-import org.yugh.globalauth.common.constants.Constant;
-import org.yugh.globalauth.common.enums.ResultEnum;
-import org.yugh.globalauth.pojo.dto.User;
-import org.yugh.globalauth.service.AuthService;
-import org.yugh.globalauth.util.ResultJson;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.ExecutorService;
 import java.util.regex.Matcher;
@@ -42,10 +46,15 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
     private AuthSkipUrlsProperties authSkipUrlsProperties;
     @Deprecated
     @Autowired
+    private IGatewayUserService gatewayUserService;
+    @Deprecated
+    @Autowired
     @Qualifier(value = "gatewayQueueThreadPool")
     private ExecutorService buildGatewayQueueThreadPool;
     @Autowired
     private AuthService authService;
+    @Autowired
+    private SSOConfig ssoConfig;
 
 
     @Override
@@ -54,18 +63,13 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
         ServerHttpRequest request = exchange.getRequest();
         ServerHttpResponse response = exchange.getResponse();
         response.getHeaders().setContentType(MediaType.APPLICATION_JSON_UTF8);
-        log.info("Current gateway session : {}", request.getId());
+        log.info("============> Current gateway session : {}", request.getId());
         if (blackServersCheck(context, exchange)) {
             response.setStatusCode(HttpStatus.FORBIDDEN);
             byte[] failureInfo = ResultJson.failure(ResultEnum.BLACK_SERVER_FOUND).toString().getBytes(StandardCharsets.UTF_8);
             DataBuffer buffer = response.bufferFactory().wrap(failureInfo);
             return response.writeWith(Flux.just(buffer));
         }
-
-        /**
-         * if (!Arrays.stream(context.getPath().split(Constant.PREFIX)).anyMatch(white -> white.equals(authSkipUrlsProperties.getApiUrls()))) {
-         */
-
         if (whiteListCheck(context, exchange)) {
             authToken(context, request);
             if (!context.isDoNext()) {
@@ -76,7 +80,7 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
             }
             ServerHttpRequest mutateReq = exchange.getRequest().mutate().header(Constant.DATAWORKS_GATEWAY_HEADERS, context.getSsoToken()).build();
             ServerWebExchange mutableExchange = exchange.mutate().request(mutateReq).build();
-            log.info("Current gateway session forward success : {}", request.getId());
+            log.info("============> Current gateway session forward success : {}", request.getId());
             return chain.filter(mutableExchange);
         } else {
             response.setStatusCode(HttpStatus.FORBIDDEN);
@@ -97,10 +101,16 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
      */
     private void authToken(GatewayContext context, ServerHttpRequest request) {
         try {
+            String ssoToken1 = authService.getUserTokenByGateway(request);
+
+            log.info("网关获取到token ： {}", ssoToken1);
+
             boolean isLogin = authService.isLoginByReactive(request);
+            log.info(" 网关当前登录状态 : {}", isLogin);
             if (isLogin) {
                 try {
                     String ssoToken = authService.getUserTokenByGateway(request);
+                    log.info(" 网关当前token : {}", ssoToken);
                     context.setSsoToken(ssoToken);
                 } catch (Exception e) {
                     log.error("Feign user Server Exception : {}", e.getMessage());
@@ -111,7 +121,7 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
                 unLogin(context, request);
             }
         } catch (Exception e) {
-            log.error("Invoke xx SSO RuntimeException :{}", e.getMessage());
+            log.error("Invoke SSO RuntimeException :{}", e.getMessage());
             context.setDoNext(false);
         }
     }
@@ -127,8 +137,8 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
         buildGatewayQueueThreadPool.execute(new Runnable() {
             @Override
             public void run() {
-               // JsonResult user = gatewayUserService.synUser(userDto);
-                //log.info("Feign user success : {}", user);
+                JsonResult user = gatewayUserService.synUser(userDto);
+                log.info("Feign user success : {}", user);
             }
         });
 
@@ -136,11 +146,13 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
 
 
     /**
+     * + "?returnUrl=" + request.getURI()
+     *
      * @param context
      * @param request
      */
     private void unLogin(GatewayContext context, ServerHttpRequest request) {
-        String loginUrl = getSsoUrl(request) + "?returnUrl=" + request.getURI();
+        String loginUrl = getSsoUrl(request);
         context.setRedirectUrl(loginUrl);
         context.setDoNext(false);
         log.info("检查到该token对应的用户登录状态未登录  跳转到Login页面 : {} ", loginUrl);
@@ -186,12 +198,33 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
 
 
     /**
+     * {@link SSOConfig}
+     *
      * @param request
      * @return
      */
     private String getSsoUrl(ServerHttpRequest request) {
-        String serverName = request.getPath().value();
-        return "http://sso-stage.xx-corp.com";
+        URI uri = request.getURI();
+        String host = uri.getHost();
+        if (ssoConfig.getTestSsoWeb().equals(host)) {
+            return ssoConfig.getSsoTestUrl();
+        } else if (ssoConfig.getTestStaffDev().equals(host)) {
+            return ssoConfig.getSsoTestUrl();
+        } else if (ssoConfig.getTestStageCorp().equals(host)) {
+            return ssoConfig.getSsoTestUrl();
+        } else {
+            return ssoConfig.getSsoTestUrl();
+        }
+
+        /**if (ssoConfig.getProdSsoWeb().equals(host)) {
+         return ssoConfig.getSsoProdUrl();
+         } else if (ssoConfig.getProdSsoCorp().equals(host)) {
+         return ssoConfig.getSsoProdUrl();
+         } else if (ssoConfig.getProdStaff().equals(host)) {
+         return ssoConfig.getSsoProdUrl();
+         } else {
+         return ssoConfig.getSsoProdUrl();
+         }*/
     }
 
 

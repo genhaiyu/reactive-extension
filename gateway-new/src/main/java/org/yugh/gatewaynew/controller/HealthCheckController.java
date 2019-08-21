@@ -5,10 +5,11 @@ import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.yugh.globalauth.annotation.PreSkipAuth;
+import org.yugh.auth.annotation.PreSkipAuth;
 
 @PreSkipAuth
 @RestController
+@Deprecated
 @RequestMapping("/health")
 public class HealthCheckController {
 

@@ -22,7 +22,7 @@
     <dependencies>
         <dependency>
             <groupId>org.yugh</groupId>
-            <artifactId>global-auth</artifactId>
+            <artifactId>common-auth</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <!-- moss -->

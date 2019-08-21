@@ -3,7 +3,7 @@ package org.yugh.product.service;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.yugh.globalauth.interceptor.PreFeignInterceptor;
+import org.yugh.auth.interceptor.PreFeignInterceptor;
 import org.yugh.product.service.impl.GatewayTestServiceImpl;
 
 /**

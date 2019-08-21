@@ -3,9 +3,9 @@ package org.yugh.gatewaynew.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.yugh.globalauth.annotation.PreSkipAuth;
-import org.yugh.globalauth.common.enums.ResultEnum;
-import org.yugh.globalauth.util.ResultJson;
+import org.yugh.auth.annotation.PreSkipAuth;
+import org.yugh.auth.common.enums.ResultEnum;
+import org.yugh.auth.util.ResultJson;
 
 /**
  * Gateway default RuntimeException It's been here

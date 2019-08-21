@@ -2,6 +2,7 @@ package org.yugh.product.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import org.yugh.auth.feign.DefaultFallbackFactory;
 import org.yugh.product.service.IndexService;
 
 /**
@@ -13,11 +14,10 @@ import org.yugh.product.service.IndexService;
  */
 @Slf4j
 @Component("indexTimeOutFallbackImpl")
-public class IndexTimeOutFallbackImpl implements IndexService {
+public class IndexTimeOutFallbackImpl extends DefaultFallbackFactory<IndexService> {
 
-    @Override
-    public Object getRandomId(Long randomId) {
-        log.info("========> 超时熔断:{}", randomId);
-        return "超时熔断";
-    }
+    /**@Override public Object getRandomId(Long randomId) {
+    log.info("========> 超时熔断:{}", randomId);
+    return "超时熔断";
+    }**/
 }

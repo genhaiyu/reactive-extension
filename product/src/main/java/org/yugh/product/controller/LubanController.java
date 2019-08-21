@@ -3,7 +3,7 @@ package org.yugh.product.controller;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.yugh.globalauth.hystrix.AbstractHystrixController;
+import org.yugh.auth.hystrix.AbstractHystrixController;
 import org.yugh.product.service.IGatewayTestService;
 
 /**

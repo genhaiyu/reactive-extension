@@ -254,7 +254,7 @@ eureka:
     prefer-ip-address: true
   client:
     serviceUrl:
-      defaultZone: http://10.16.208.24:6200/eureka/
+      defaultZone: http://localhost:8700/eureka/
 
 
 #health

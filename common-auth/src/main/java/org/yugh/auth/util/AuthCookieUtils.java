@@ -1,3 +1,14 @@
+/*
+ Cookie cookie = new Cookie(name, value);
+ cookie.setPath("/");
+  if (!StringUtils.isEmpty(domain)) {
+  cookie.setDomain(domain);
+  }
+  if (maxAge != null) {
+  cookie.setMaxAge(maxAge);
+  }
+  response.addCookie(cookie);
+ */
 package org.yugh.auth.util;
 
 import org.springframework.http.HttpCookie;
@@ -18,15 +29,29 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * Auth Cookie Tools
+ *
+ * @author yugenhai
+ */
 @Component
 public class AuthCookieUtils {
 
-
+    /**
+     * Http only
+     */
     private boolean cookieHttpOnly;
 
+    /**
+     * Http 5.0 Secure
+     * Default false
+     */
     private boolean cookieSecure;
 
-    static final String DEFAULT_CSRF_COOKIE_PATH = "/";
+    /**
+     * CSRF Cookie path
+     */
+    private static final String DEFAULT_CSRF_COOKIE_PATH = "/";
 
 
     /**
@@ -38,54 +63,37 @@ public class AuthCookieUtils {
      * @param domain
      * @param maxAge
      */
+    @Deprecated
     public void addCookie(HttpServletResponse response, String name, String value, String domain, Integer maxAge) {
-        /**Cookie cookie = new Cookie(name, value);
-         cookie.setPath("/");
-         if (!StringUtils.isEmpty(domain)) {
-         cookie.setDomain(domain);
-         }
-         if (maxAge != null) {
-         cookie.setMaxAge(maxAge);
-         }
-         response.addCookie(cookie);*/
         Cookie cookie = new Cookie(name.trim(), value.trim());
         cookie.setMaxAge(maxAge);
         cookie.setPath("/");
+        cookie.setHttpOnly(true);
         response.addCookie(cookie);
     }
 
     /**
-     * 将response里的会话置为实时失效
-     * 将根下的cookie置为失效
+     * Clean up By HttpServletResponse
+     * <p>
+     * {@link HttpServletResponse}
      *
      * @param response
      * @param domain
      * @param name
      */
-    public void removeCookie(HttpServletRequest request, HttpServletResponse response, String domain, String name) {
-        /**Cookie cookie = new Cookie(name, null);
-         cookie.setPath("/");
-         if (!StringUtils.isEmpty(domain)) {
-         cookie.setDomain(domain);
-         }
-         cookie.setMaxAge(0);
-         response.addCookie(cookie);*/
-        Cookie[] cookies = request.getCookies();
-        if (!StringUtils.isEmpty(cookies)) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals(name)) {
-                    cookie.setValue(null);
-                    cookie.setMaxAge(0);
-                    cookie.setPath("/");
-                    response.addCookie(cookie);
-                    //  break;
-                }
-            }
+    public void removeCookie(HttpServletResponse response, String domain, String name) {
+        Cookie cookie = new Cookie(name, null);
+        cookie.setPath("/");
+        if (!StringUtils.isEmpty(domain)) {
+            cookie.setDomain(domain);
         }
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
     }
 
+
     /**
-     * 根据 XXSSO 获取cookie
+     * Get Cookie by GUAZISSO
      *
      * @param request
      * @param name
@@ -119,9 +127,6 @@ public class AuthCookieUtils {
     }
 
 
-    /**********************reactive******************************/
-
-
     /**
      * @param request
      * @param name
@@ -139,6 +144,8 @@ public class AuthCookieUtils {
 
 
     /**
+     * Get Cookies By Reactive
+     *
      * @param request
      * @return
      * @author yugenhai
@@ -161,21 +168,26 @@ public class AuthCookieUtils {
     /**
      * HTTP 5.0
      * Logout session
+     * <p>
+     * {@link ServerHttpResponse}
+     * <p>
+     * see https://github.com/spring-projects/spring-framework
      *
      * @param response
      * @param cookieValue
      * @param cookieName
      * @author yugenhai
      */
-    public void removeCookieByReactive(ServerHttpRequest request, ServerHttpResponse response, String cookieValue, String cookieName) {
+    public void removeCookieByReactive(ServerHttpResponse response, String cookieName, String cookieValue, String domain) {
         ResponseCookie.ResponseCookieBuilder cookieBuilder = ResponseCookie.from(cookieName, cookieValue)
                 .path(DEFAULT_CSRF_COOKIE_PATH)
-                .httpOnly(true)
-                .secure(cookieSecure);
-        cookieBuilder.maxAge(0);
+                .httpOnly(cookieHttpOnly)
+                .secure(cookieSecure)
+                .maxAge(0);
+        if (!StringUtils.isEmpty(domain)) {
+            cookieBuilder.domain(domain);
+        }
         response.addCookie(cookieBuilder.build());
-        MultiValueMap<String, HttpCookie> cookies = request.getCookies();
-        cookies.isEmpty();
     }
 
 }

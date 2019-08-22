@@ -15,7 +15,7 @@ import javax.annotation.Resource;
  * @Copyright © 2019 yugenhai. All rights reserved.
  */
 @Slf4j
-@Component
+//@Component
 public class IndexFallbackFactory implements FallbackFactory<IndexService> {
 
     private final static String TIME_OUT = "Read time out";

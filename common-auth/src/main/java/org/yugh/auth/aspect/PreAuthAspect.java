@@ -25,7 +25,6 @@ import java.lang.reflect.Method;
 /**
  * dataWorks aspect
  * <p>
-
  *
  * @author yugenhai
  */
@@ -38,8 +37,7 @@ public class PreAuthAspect {
     @Autowired
     private AuthService authService;
 
-    /**@Autowired
-    private AuthCookieUtils authCookieUtils;*/
+    /**@Autowired private AuthCookieUtils authCookieUtils;*/
 
     /**@Autowired private RedisClient redisClient;**/
 
@@ -137,9 +135,9 @@ public class PreAuthAspect {
         }
         boolean isLogin = authService.isLogin(request);
         if (!isLogin) {
-            authService.removeCookieByAspect(request, response);
-            log.info("User session expired, please Login! ");
+            authService.removeCookieByAspect(response);
             WebUtils.removeSession(request, Constant.USER_INFO);
+            log.info("User session expired, please Login! ");
             throw new RuntimeException("User session expired, please Login!");
         }
         User user = authService.getUserByAuthToken(request);
@@ -147,7 +145,6 @@ public class PreAuthAspect {
             throw new RuntimeException("Get User info exception");
         }
         WebUtils.setSession(request, Constant.USER_INFO, user);
-        WebUtils.editCookie(request, response, Constant.SESSION_xx_TOKEN, token);
         return joinPoint.proceed();
     }
 

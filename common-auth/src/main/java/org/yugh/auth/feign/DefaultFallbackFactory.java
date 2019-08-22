@@ -20,7 +20,7 @@ public class DefaultFallbackFactory<T> implements FallbackFactory<T>, Initializi
 
     @Override
     public T create(Throwable throwable) {
-        log.error(String.format("\n ******* Feign Service : {}, Call Back Fall Msg : {} ", clazz.getSimpleName()), throwable);
+        log.error("\n ******* Feign Service : {}, Call Back Fall Msg : {} ", clazz.getSimpleName(), throwable.getMessage());
         return t;
     }
 

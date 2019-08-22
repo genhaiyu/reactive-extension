@@ -9,7 +9,7 @@ import org.yugh.product.service.impl.GatewayTestServiceImpl;
 /**
  * @author yugenhai
  */
-@FeignClient(value = "APP-LUBAN-DASHBOARD-SERVICE", fallback = GatewayTestServiceImpl.class, configuration = PreFeignInterceptor.class)
+@FeignClient(value = "APP-LUBAN-DASHBOARD-SERVICE", fallbackFactory = GatewayTestServiceImpl.class, configuration = PreFeignInterceptor.class)
 public interface IGatewayTestService {
 
     /**

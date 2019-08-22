@@ -2,6 +2,7 @@ package org.yugh.auth.hystrix;
 
 import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.yugh.auth.common.constants.Constant;
@@ -18,6 +19,8 @@ import java.util.Map;
  * @author yugenhai
  */
 @Slf4j
+@Deprecated
+//@EnableHystrix
 @DefaultProperties(defaultFallback = "hystrixDefaultFallback")
 public abstract class AbstractHystrixController {
 
@@ -27,12 +30,13 @@ public abstract class AbstractHystrixController {
      *
      * @return
      */
-    private ResultJson hystrixDefaultFallback() {
+    @Deprecated
+    protected ResultJson hystrixDefaultFallback() {
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = servletRequestAttributes.getRequest();
         Map<String, Object> resultMap = new HashMap(16);
         resultMap.put("rpid", request.getAttribute(Constant.GLOBAL_RPID));
-        resultMap.put("user", request.getAttribute(Constant.USER_INFO));
+        resultMap.put("userInfo", request.getAttribute(Constant.USER_INFO));
         log.info("\n ******* Current Hystrix Rpid : {}, Current Hystrix Info : {}", request.getAttribute(Constant.GLOBAL_RPID), resultMap);
         return ResultJson.failure(ResultEnum.HYSTRIX_ERROR, resultMap);
     }

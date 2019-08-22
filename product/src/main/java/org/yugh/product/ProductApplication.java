@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.openfeign.EnableFeignClients;
-import org.springframework.cloud.openfeign.FeignClientsConfiguration;
 
 /**
  * //微服务1~~~~
@@ -15,7 +14,7 @@ import org.springframework.cloud.openfeign.FeignClientsConfiguration;
  * @Copyright © 2019 yugenhai. All rights reserved.
  */
 @EnableHystrix
-@EnableFeignClients(defaultConfiguration = FeignClientsConfiguration.class)
+@EnableFeignClients
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 public class ProductApplication {
 

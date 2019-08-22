@@ -11,6 +11,7 @@ import org.yugh.auth.util.JsonResult;
  * @Copyright © 2019 yugenhai. All rights reserved.
  */
 @Getter
+@Deprecated
 public class CustomerException extends RuntimeException {
 
     private JsonResult jsonResult;

@@ -2,17 +2,20 @@ package org.yugh.product.controller;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import org.yugh.auth.hystrix.AbstractHystrixController;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.yugh.auth.annotation.PreAuth;
 import org.yugh.product.service.IGatewayTestService;
 
 /**
  * @author yugenhai
  */
-@CrossOrigin
+@PreAuth
 @RestController
 @RequestMapping("test1")
-public class LubanController extends AbstractHystrixController {
+public class LubanController {
 
 
     @Autowired

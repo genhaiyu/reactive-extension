@@ -29,17 +29,17 @@
             <version>1.0.0.RELEASE</version>
         </dependency>-->
 
-       <!-- <dependency>
-            <groupId>org.yugh</groupId>
-            <artifactId>common</artifactId>
-            <version>1.0.1-SNAPSHOT</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-data-redis-reactive</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>-->
+        <!-- <dependency>
+             <groupId>org.yugh</groupId>
+             <artifactId>common</artifactId>
+             <version>1.0.1-SNAPSHOT</version>
+             <exclusions>
+                 <exclusion>
+                     <groupId>org.springframework.boot</groupId>
+                     <artifactId>spring-boot-starter-data-redis-reactive</artifactId>
+                 </exclusion>
+             </exclusions>
+         </dependency>-->
 
         <!-- 权限-->
         <dependency>
@@ -47,6 +47,7 @@
             <artifactId>common-auth</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+
 
         <dependency>
             <groupId>org.projectlombok</groupId>

@@ -7,12 +7,6 @@ import org.springframework.stereotype.Component;
 /**
  * Gateway check env
  * <p>
- * * guazi-corp.com
- * * guazi.com
- * * guazi-apps.com
- * * maodou.com
- * * <p>
- * * guazi-cloud.com
  *
  * @author yugenhai
  */
@@ -74,13 +68,13 @@ public class AuthConfig {
     @Value("${gateway.apps}")
     private String gatewayApps;
     @Value("${xx.corp}")
-    private String guaziCorp;
+    private String xxCorp;
     @Value("${xx.apps}")
-    private String guaziApps;
+    private String xxApps;
     @Value("${xx.cloud}")
-    private String guaziCloud;
+    private String xxCloud;
     @Value("${xxxx.com}")
-    private String guaziCom;
+    private String xxCom;
     @Value("${env.switch}")
     private String envSwitch;
     @Value("${shutdown.client}")

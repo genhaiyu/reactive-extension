@@ -33,7 +33,7 @@ public class UserTest {
         User user = new User();
         user.setUserName("yugh");
         user.setAliasName("余根海");
-        user.setEmail("yugenhai@guazi.com");
+        user.setEmail("yugenhai@xx.com");
         user.setSex("1");
         user.setCompany("2");
         user.setDepart("3");

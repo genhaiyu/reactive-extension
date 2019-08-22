@@ -13,6 +13,7 @@ import org.yugh.auth.util.JsonResult;
  * @Copyright © 2019 yugenhai. All rights reserved.
  */
 //@RestControllerAdvice
+@Deprecated
 public class DefaultExceptionHandler {
 
     /**

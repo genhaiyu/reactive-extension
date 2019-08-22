@@ -1,3 +1,33 @@
+/**
+ * public boolean logoutByRequest(HttpServletRequest request, HttpServletResponse response) {
+ * Cookie cookie = authCookieUtils.getCookieByName(request, Constant.SESSION_GUAZI_TOKEN);
+ * String token = cookie != null ? cookie.getValue() : null;
+ * if (StringUtils.isEmpty(token)) {
+ * return true;
+ * } else {
+ * Map paramsMap = new HashMap<String, Object>(16);
+ * paramsMap.put("token", token);
+ * String env = authConfig.getEnvSwitch();
+ * switch (env) {
+ * case "test":
+ * boolean test = this.logoutByTestOrProdAndRequest(paramsMap, authConfig.getSsoTestAppKey(), authConfig.getSsoTestAppSecret(), authConfig.getSsoTestIdentity());
+ * if (test) {
+ * this.removeCookieByAspect(response);
+ * return true;
+ * }
+ * return false;
+ * case "prod":
+ * boolean prod = this.logoutByTestOrProdAndRequest(paramsMap, authConfig.getSsoProdAppKey(), authConfig.getSsoProdAppSecret(), authConfig.getSsoProdIdentity());
+ * if (prod) {
+ * this.removeCookieByAspect(response);
+ * return true;
+ * }
+ * default:
+ * return false;
+ * }
+ * }
+ * }
+ */
 package org.yugh.auth.service;
 
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +49,11 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
+ * Main auth service
+ * <p>
+ * <p>
+ * Servlet  --- > Reactive
+ *
  * @author yugenhai
  */
 @Slf4j
@@ -29,7 +64,7 @@ public class AuthService {
     private AuthCookieUtils authCookieUtils;
     private HttpClientHelper httpClientHelper;
     @Autowired
-    private SSOConfig properties;
+    private AuthConfig authConfig;
 
     public AuthService() {
         this.httpClientHelper = new HttpClientHelper(10000, 1000 * 60);
@@ -37,7 +72,7 @@ public class AuthService {
 
 
     /**
-     * web -> webflux
+     * Get token By Gateway
      *
      * @param request
      * @return
@@ -47,7 +82,6 @@ public class AuthService {
         if ((token = request.getHeader(Constant.DATAWORKS_GATEWAY_HEADERS)) != null) {
             return token;
         }
-        //cookie
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
             return Arrays.stream(cookies).filter(cookie -> Constant.SESSION_xx_TOKEN.equals(cookie.getName())).map(Cookie::getValue).findFirst().orElse(null);
@@ -57,7 +91,75 @@ public class AuthService {
 
 
     /**
-     * 网关登录用户
+     * HttpServletResponse Remove Cookies
+     *
+     * @param response
+     */
+    public void removeCookieByAspect(HttpServletResponse response) {
+        this.authCookieUtils.removeCookie(response, authConfig.getGatewayCloud(), Constant.SESSION_xx_TOKEN);
+        this.authCookieUtils.removeCookie(response, authConfig.getGatewayApps(), Constant.SESSION_xx_TOKEN);
+        this.authCookieUtils.removeCookie(response, authConfig.getGuaziCorp(), Constant.SESSION_xx_TOKEN);
+        this.authCookieUtils.removeCookie(response, authConfig.getGuaziCloud(), Constant.SESSION_xx_TOKEN);
+        this.authCookieUtils.removeCookie(response, authConfig.getGuaziApps(), Constant.SESSION_xx_TOKEN);
+        this.authCookieUtils.removeCookie(response, authConfig.getGuaziCom(), Constant.SESSION_xx_TOKEN);
+    }
+
+    /**
+     * Reactive Remove Cookies
+     *
+     * @param response
+     */
+    private void removeCookieByGateway(ServerHttpResponse response) {
+        this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_xx_TOKEN, null, authConfig.getGatewayCloud());
+        this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_xx_TOKEN, null, authConfig.getGatewayApps());
+        this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_xx_TOKEN, null, authConfig.getGuaziApps());
+        this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_xx_TOKEN, null, authConfig.getGuaziCloud());
+        this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_xx_TOKEN, null, authConfig.getGuaziCorp());
+        this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_xx_TOKEN, null, authConfig.getGuaziCom());
+    }
+
+
+    /**
+     * Check Env
+     *
+     * @param paramsMap
+     * @param appKey
+     * @param secret
+     * @param identity
+     * @return
+     * @author yugenhai
+     */
+    private boolean logoutByTestOrProd(Map<String, Object> paramsMap, String appKey, String secret, String
+            identity) {
+        SignUtils.addSignatureWithoutEnter(paramsMap, appKey, secret);
+        String resp = httpClientHelper.doPost(identity, new HashMap(16), paramsMap);
+        if (StringUtils.isEmpty(resp)) {
+            throw new RuntimeException("SSO Logout Failed !!!");
+        }
+        Map respMap = JsonUtils.jsonToObject(resp, Map.class);
+        Object status = respMap.get("status");
+        if (status == null || (!status.toString().equalsIgnoreCase("true"))) {
+            Object msg = respMap.get("msg");
+            log.error(msg == null ? "SSO Logout Failed !!!" : (String) msg);
+            return false;
+        }
+        return true;
+    }
+
+
+    /**
+     * Gateway Get token
+     *
+     * @param request
+     * @return
+     */
+    public String getUserTokenByGateway(ServerHttpRequest request) {
+        return this.authCookieUtils.getCookieByNameByReactive(request, Constant.SESSION_xx_TOKEN);
+    }
+
+
+    /**
+     * Gateway Login
      *
      * @param request
      * @return
@@ -82,7 +184,7 @@ public class AuthService {
 
 
     /**
-     * 网关获取用户
+     * Gateway Get user
      *
      * @param request
      * @return
@@ -92,9 +194,8 @@ public class AuthService {
         if (StringUtils.isEmpty(token)) {
             return null;
         }
-        User user = null;
         try {
-            user = this.getUserByToken(token);
+            User user = this.getUserByToken(token);
             if (StringUtils.isEmpty(user)) {
                 return null;
             }
@@ -107,52 +208,29 @@ public class AuthService {
 
 
     /**
-     * 网关获取token
-     *
-     * @param request
-     * @return
-     */
-    public String getUserTokenByGateway(ServerHttpRequest request) {
-        return authCookieUtils.getCookieByNameByReactive(request, Constant.SESSION_xx_TOKEN);
-    }
-
-
-    /**
-     * 网关下线用户
+     * Gateway logout User
      *
      * @param request
      * @param response
      */
     public void logoutByGateway(ServerHttpRequest request, ServerHttpResponse response) {
         String token = authCookieUtils.getCookieByNameByReactive(request, Constant.SESSION_xx_TOKEN);
-        authCookieUtils.removeCookieByReactive(request, response, null, Constant.SESSION_xx_TOKEN);
         if (StringUtils.isEmpty(token)) {
             return;
         } else {
             try {
                 this.logoutByToken(token);
+                this.removeCookieByGateway(response);
             } catch (Exception e) {
                 log.error("注销失败 : {}", e);
                 throw new RuntimeException("注销失败 : {}" + e.getMessage());
             }
         }
-
     }
 
 
     /**
-     * 移除所有的token
-     *
-     * @param request
-     * @param response
-     */
-    public void removeCookieByAspect(HttpServletRequest request, HttpServletResponse response) {
-        authCookieUtils.removeCookie(request, response, "/", Constant.SESSION_xx_TOKEN);
-    }
-
-
-    /**
-     * 拦截器获取用户
+     * Aspect Get token
      *
      * @param request
      * @return
@@ -178,7 +256,7 @@ public class AuthService {
 
 
     /**
-     * 判断是否存在登录token
+     * Check login
      *
      * @param request
      * @return
@@ -189,9 +267,8 @@ public class AuthService {
         if (StringUtils.isEmpty(token)) {
             return false;
         }
-        User user = null;
         try {
-            user = this.getUserByToken(token);
+            User user = this.getUserByToken(token);
             if (Objects.isNull(user)) {
                 return false;
             }
@@ -204,7 +281,7 @@ public class AuthService {
 
 
     /**
-     * 根据token调用SSO获取用户信息
+     * GetUserByToken
      *
      * @param token
      * @return
@@ -212,76 +289,57 @@ public class AuthService {
     public User getUserByToken(String token) {
         Map<String, Object> paramsMap = new HashMap(16);
         paramsMap.put("token", token);
-        //FIXME 动态选择
-        SignUtils.addSignatureWithoutEnter(paramsMap, properties.getSsoTestAppKey(), properties.getSsoTestAppSecret());
-        String resp = httpClientHelper.doPost(properties.getSsoTestIdentity(), new HashMap(16), paramsMap);
-        return parseAsUser(resp);
-    }
-
-
-    /**
-     * HTTP5.0之前的下线
-     *
-     * @param request
-     * @param response
-     * @return
-     * @throws Exception
-     */
-    public boolean logoutByRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        Cookie cookie = authCookieUtils.getCookieByName(request, Constant.SESSION_xx_TOKEN);
-        String token = cookie != null ? cookie.getValue() : null;
-        if (StringUtils.isEmpty(token)) {
-            return true;
-        } else {
-            Map paramsMap = new HashMap<String, Object>();
-            paramsMap.put("token", token);
-            //FIXME 动态选择
-            SignUtils.addSignatureWithoutEnter(paramsMap, properties.getSsoTestAppKey(), properties.getSsoTestAppSecret());
-            String resp = httpClientHelper.doPost(properties.getSsoTestLogout(), new HashMap(16), paramsMap);
-            if (StringUtils.isEmpty(resp)) {
-                throw new Exception("单点登录下线失败");
-            }
-            Map respMap = JsonUtils.jsonToObject(resp, Map.class);
-            Object status = respMap.get("status");
-            if (status == null || (!status.toString().equalsIgnoreCase("true"))) {
-                Object msg = respMap.get("msg");
-                log.error(msg == null ? "单点登录下线失败" : (String) msg);
-                return false;
-            }
+        String env = authConfig.getEnvSwitch();
+        if (StringUtils.isEmpty(env)) {
+            throw new RuntimeException("!!!!!!!!!!! Not Found env !!!!!!!!!!!");
         }
-        authCookieUtils.removeCookie(request, response, null, Constant.SESSION_xx_TOKEN);
-        return true;
+        String resp;
+        switch (env) {
+            case "test":
+                SignUtils.addSignatureWithoutEnter(paramsMap, authConfig.getSsoTestAppKey(), authConfig.getSsoTestAppSecret());
+                resp = httpClientHelper.doPost(authConfig.getSsoTestIdentity(), new HashMap(16), paramsMap);
+                return parseAsUser(resp);
+            case "prod":
+                SignUtils.addSignatureWithoutEnter(paramsMap, authConfig.getSsoProdAppKey(), authConfig.getSsoProdAppSecret());
+                resp = httpClientHelper.doPost(authConfig.getSsoProdIdentity(), new HashMap(16), paramsMap);
+                return parseAsUser(resp);
+            default:
+                return null;
+        }
     }
 
 
     /**
-     * 根据token调用下线
+     * Logout By token
      *
      * @param token
      * @return
      * @throws Exception
+     * @author yugenhai
      */
-    public boolean logoutByToken(String token) throws Exception {
+    public boolean logoutByToken(String token) {
         if (StringUtils.isEmpty(token)) {
             return true;
         } else {
-            Map paramsMap = new HashMap<String, Object>();
+            Map<String, Object> paramsMap = new HashMap(16);
             paramsMap.put("token", token);
-            //FIXME 动态选择
-            SignUtils.addSignatureWithoutEnter(paramsMap, properties.getSsoTestAppKey(), properties.getSsoTestAppSecret());
-            String resp = httpClientHelper.doPost(properties.getSsoTestLogout(), new HashMap(16), paramsMap);
-            if (resp == null) {
-                throw new Exception("单点登录下线失败");
-            }
-            Map respMap = JsonUtils.jsonToObject(resp, Map.class);
-            Object status = respMap.get("status");
-            if (status == null || (!status.toString().equalsIgnoreCase("true"))) {
-                Object msg = respMap.get("msg");
-                log.error(msg == null ? "单点登录下线失败" : (String) msg);
-                return false;
+            String env = authConfig.getEnvSwitch();
+            switch (env) {
+                case "test":
+                    boolean test = this.logoutByTestOrProd(paramsMap, authConfig.getSsoTestAppKey(), authConfig.getSsoTestAppSecret(), authConfig.getSsoTestIdentity());
+                    if (test) {
+                        return true;
+                    }
+                    return false;
+                case "prod":
+                    boolean prod = this.logoutByTestOrProd(paramsMap, authConfig.getSsoProdAppKey(), authConfig.getSsoProdAppSecret(), authConfig.getSsoProdIdentity());
+                    if (prod) {
+                        return true;
+                    }
+                default:
+                    return false;
             }
         }
-        return true;
     }
 
     /**

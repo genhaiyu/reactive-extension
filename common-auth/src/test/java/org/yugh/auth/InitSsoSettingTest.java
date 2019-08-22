@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.yugh.auth.base.TestAbstract;
 import org.yugh.auth.service.AuthService;
-import org.yugh.auth.util.SSOConfig;
+import org.yugh.auth.util.AuthConfig;
 
 /**
  * @author yugenhai
@@ -13,7 +13,7 @@ import org.yugh.auth.util.SSOConfig;
 public class InitSsoSettingTest extends TestAbstract {
 
     @Autowired
-    private SSOConfig properties;
+    private AuthConfig authConfig;
 
     @Value("${sso.test.url}")
     private String ssoTestUrl;
@@ -27,11 +27,12 @@ public class InitSsoSettingTest extends TestAbstract {
         //  List result = properties.getIgnoreMethods();
         // System.out.println(result);
 
-        String string = properties.getSsoProdAppKey();
+        String string = authConfig.getSsoProdAppKey();
 
         System.out.println(string);
 
     }
+
 
 
     @Test

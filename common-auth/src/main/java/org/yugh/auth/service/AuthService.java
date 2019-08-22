@@ -1,6 +1,6 @@
 /**
  * public boolean logoutByRequest(HttpServletRequest request, HttpServletResponse response) {
- * Cookie cookie = authCookieUtils.getCookieByName(request, Constant.SESSION_GUAZI_TOKEN);
+ * Cookie cookie = authCookieUtils.getCookieByName(request, Constant.xx);
  * String token = cookie != null ? cookie.getValue() : null;
  * if (StringUtils.isEmpty(token)) {
  * return true;
@@ -98,10 +98,10 @@ public class AuthService {
     public void removeCookieByAspect(HttpServletResponse response) {
         this.authCookieUtils.removeCookie(response, authConfig.getGatewayCloud(), Constant.SESSION_xx_TOKEN);
         this.authCookieUtils.removeCookie(response, authConfig.getGatewayApps(), Constant.SESSION_xx_TOKEN);
-        this.authCookieUtils.removeCookie(response, authConfig.getGuaziCorp(), Constant.SESSION_xx_TOKEN);
-        this.authCookieUtils.removeCookie(response, authConfig.getGuaziCloud(), Constant.SESSION_xx_TOKEN);
-        this.authCookieUtils.removeCookie(response, authConfig.getGuaziApps(), Constant.SESSION_xx_TOKEN);
-        this.authCookieUtils.removeCookie(response, authConfig.getGuaziCom(), Constant.SESSION_xx_TOKEN);
+        this.authCookieUtils.removeCookie(response, authConfig.getXxCorp(), Constant.SESSION_xx_TOKEN);
+        this.authCookieUtils.removeCookie(response, authConfig.getXxCloud(), Constant.SESSION_xx_TOKEN);
+        this.authCookieUtils.removeCookie(response, authConfig.getXxApps(), Constant.SESSION_xx_TOKEN);
+        this.authCookieUtils.removeCookie(response, authConfig.getXxCom(), Constant.SESSION_xx_TOKEN);
     }
 
     /**
@@ -112,10 +112,10 @@ public class AuthService {
     private void removeCookieByGateway(ServerHttpResponse response) {
         this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_xx_TOKEN, null, authConfig.getGatewayCloud());
         this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_xx_TOKEN, null, authConfig.getGatewayApps());
-        this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_xx_TOKEN, null, authConfig.getGuaziApps());
-        this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_xx_TOKEN, null, authConfig.getGuaziCloud());
-        this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_xx_TOKEN, null, authConfig.getGuaziCorp());
-        this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_xx_TOKEN, null, authConfig.getGuaziCom());
+        this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_xx_TOKEN, null, authConfig.getXxApps());
+        this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_xx_TOKEN, null, authConfig.getXxCloud());
+        this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_xx_TOKEN, null, authConfig.getXxCorp());
+        this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_xx_TOKEN, null, authConfig.getXxCom());
     }
 
 

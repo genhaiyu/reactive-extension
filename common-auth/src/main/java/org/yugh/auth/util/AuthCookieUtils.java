@@ -93,7 +93,7 @@ public class AuthCookieUtils {
 
 
     /**
-     * Get Cookie by GUAZISSO
+     * Get Cookie
      *
      * @param request
      * @param name

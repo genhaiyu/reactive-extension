@@ -1,7 +1,5 @@
 package org.yugh.auth.util;
 
-import org.yugh.auth.common.constants.Constant;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -62,27 +60,6 @@ public final class WebUtils {
         //禁用JS获取COOKIE
         cookie.setHttpOnly(true);
         response.addCookie(cookie);
-    }
-
-    /**
-     * 替换Cookie
-     *
-     * @param request
-     * @param response
-     * @param name
-     * @param value
-     */
-    public static void editCookie(HttpServletRequest request, HttpServletResponse response, String name, String value) {
-        Cookie[] cookies = request.getCookies();
-        for (Cookie cookie : cookies) {
-            if (cookie.getName().equals(name)) {
-                cookie.setValue(value);
-                cookie.setPath("/");
-                cookie.setMaxAge(Constant.COOKIE_TIME_OUT);
-                response.addCookie(cookie);
-                break;
-            }
-        }
     }
 
 }

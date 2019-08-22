@@ -34,7 +34,7 @@ public class FeignProxy<T> implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) {
-        log.error("\n ******* Feign exception Class Method : {}, Method name : {} ", clazz.getSimpleName(), method.getName());
+        log.error("\n ******* Feign exception Class name : {}, Method name : {} ", clazz.getSimpleName(), method.getName());
         return JsonResult.buildErrorResult(HttpStatus.SC_INTERNAL_SERVER_ERROR, "Feign调用失败！");
     }
 

@@ -37,5 +37,4 @@ public class FeignProxy<T> implements InvocationHandler {
         log.error("\n ******* Feign exception Class name : {}, Method name : {} ", clazz.getSimpleName(), method.getName());
         return JsonResult.buildErrorResult(HttpStatus.SC_INTERNAL_SERVER_ERROR, "Feign调用失败！");
     }
-
 }

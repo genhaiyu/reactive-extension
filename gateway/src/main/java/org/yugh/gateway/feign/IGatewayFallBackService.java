@@ -4,18 +4,18 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.yugh.auth.interceptor.PreFeignInterceptor;
-import org.yugh.gateway.feign.impl.GatewayTestServiceImpl;
+import org.yugh.gateway.feign.impl.GatewayFallBackServiceServiceImpl;
 
 /**
  * @author yugenhai
  */
-@FeignClient(value = "APP-LUBAN-DASHBOARD-SERVICE", fallbackFactory = GatewayTestServiceImpl.class, configuration = PreFeignInterceptor.class)
-public interface IGatewayTestService {
+@FeignClient(value = "APP-LUBAN-DASHBOARD-SERVICE", fallbackFactory = GatewayFallBackServiceServiceImpl.class, configuration = PreFeignInterceptor.class)
+public interface IGatewayFallBackService {
 
     /**
      * The method test case to HystrixCommand
      * And test case PreFeignAspect {@link PreFeignInterceptor}
-     * See http://xxxx.com/pages/viewpage.action?pageId=113329378
+     * See http://cwiki.xxxx.com/pages/viewpage.action?pageId=113329378
      *
      * @param id
      * @param name

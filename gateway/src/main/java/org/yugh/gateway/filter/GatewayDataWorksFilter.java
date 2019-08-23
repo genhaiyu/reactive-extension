@@ -1,8 +1,19 @@
+/*
+ *  @Autowired
+ *  @Qualifier(value = "gatewayQueueThreadPool")
+ *  private ExecutorService buildGatewayQueueThreadPool;
+ *  public void setRedisCache(User userDto) {
+ *      buildGatewayQueueThreadPool.execute(new Runnable() {
+ *   @Override
+ *   public void run() {
+ *      redisCache.sAdd(StringPool.DATAWORKS_USER_INFO, userDto.toString());
+ * }
+ * });}
+ */
 package org.yugh.gateway.filter;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
@@ -15,17 +26,18 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.web.server.ServerWebExchange;
 import org.yugh.auth.common.constants.Constant;
 import org.yugh.auth.common.enums.ResultEnum;
+import org.yugh.auth.config.AuthConfig;
 import org.yugh.auth.pojo.dto.User;
 import org.yugh.auth.service.AuthService;
-import org.yugh.auth.util.AuthConfig;
 import org.yugh.auth.util.ResultJson;
+import org.yugh.auth.util.StringPool;
+import org.yugh.gateway.cache.RedisCache;
 import org.yugh.gateway.context.GatewayContext;
 import org.yugh.gateway.properties.AuthSkipUrlsProperties;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.nio.charset.StandardCharsets;
-import java.util.concurrent.ExecutorService;
 import java.util.regex.Matcher;
 
 /**
@@ -42,12 +54,11 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
     @Autowired
     private AuthSkipUrlsProperties authSkipUrlsProperties;
     @Autowired
-    @Qualifier(value = "gatewayQueueThreadPool")
-    private ExecutorService buildGatewayQueueThreadPool;
-    @Autowired
     private AuthService authService;
     @Autowired
     private AuthConfig authConfig;
+    @Autowired
+    private RedisCache redisCache;
 
 
     /**
@@ -70,7 +81,6 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
         ServerHttpRequest request = exchange.getRequest();
         ServerHttpResponse response = exchange.getResponse();
         response.getHeaders().setContentType(MediaType.APPLICATION_JSON_UTF8);
-        log.info("============> Current gateway session : {}", request.getId());
         /**
          * if you request Instance Id to Gateway ,is failed
          * See {@link AuthSkipUrlsProperties}
@@ -123,10 +133,9 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
                     String ssoToken = authService.getUserTokenByGateway(request);
                     log.info("Gateway Current Token  : {}", ssoToken);
                     User user = authService.getUserByToken(ssoToken);
-                    synUser(user);
+                    redisCache.sAdd(StringPool.DATAWORKS_USER_INFO, user.toString());
                     context.setSsoToken(ssoToken);
                 } catch (Exception e) {
-                    //Fixme Set Redis
                     log.error("Set Redis For User Exception : {}", e.getMessage());
                     context.setDoNext(false);
                     return;
@@ -138,29 +147,6 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
             log.error("Invoke SSO Exception :{}", e.getMessage());
             context.setDoNext(false);
         }
-    }
-
-
-    /**
-     * //Fixme Set Redis
-     * <p>
-     * Modify Set Redis
-     * <p>
-     * Increment add
-     *
-     * @param userDto
-     * @author yugenhai
-     */
-    public void synUser(User userDto) {
-        buildGatewayQueueThreadPool.execute(new Runnable() {
-            @Override
-            public void run() {
-
-                //FIXME redis set
-
-            }
-        });
-
     }
 
 
@@ -229,15 +215,16 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
     private String getSsoUrl() {
         String env = authConfig.getEnvSwitch();
         switch (env) {
-            case "test":
+            case StringPool
+                    .TEST:
                 return authConfig.getSsoTestUrl();
-            case "prod":
+            case StringPool
+                    .PROD:
                 return authConfig.getSsoProdUrl();
             default:
                 return authConfig.getSsoProdUrl();
         }
     }
-
 
     /**
      * Useful constant for the highest precedence value.

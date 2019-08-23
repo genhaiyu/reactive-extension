@@ -28,10 +28,8 @@ import org.yugh.gateway.reactor.GatewayKeyResolver;
 public class DataWorksGatewayApplication {
 
     /**
-     * GatewayClassPathWarningAutoConfiguration
-     * Check ConditionalOnClass (DispatcherServlet and DispatcherHandler )
-     *
      * @param args
+     * @EnableHystrix
      */
     public static void main(String[] args) {
         SpringApplication.run(DataWorksGatewayApplication.class, args);

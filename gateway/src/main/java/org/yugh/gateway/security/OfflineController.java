@@ -1,15 +1,22 @@
+/**
+ * @author yugenhai
+ * @Copyright © 2019 yugenhai. All rights reserved.
+ * private final Object shutdownMonitor = new Object();
+ */
 package org.yugh.gateway.security;
 
 import com.netflix.discovery.EurekaClient;
+import lombok.Synchronized;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.yugh.auth.annotation.PreSkipAuth;
-import org.yugh.auth.common.constants.Constant;
 import org.yugh.auth.common.enums.ResultEnum;
+import org.yugh.auth.config.AuthConfig;
 import org.yugh.auth.util.ResultJson;
+import org.yugh.auth.util.StringPool;
 
 import java.net.InetAddress;
 
@@ -21,31 +28,28 @@ import java.net.InetAddress;
 @Slf4j
 @PreSkipAuth
 @RestController
-@RequestMapping("/down")
-public class HealthController {
+@RequestMapping("manual")
+public class OfflineController {
 
     @Autowired
     private EurekaClient eurekaClient;
+    @Autowired
+    private AuthConfig authConfig;
 
-    /**
-     * Shutdown Gateway Client Switch
-     */
-    private boolean switchFlag = true;
-
-    private final static String REGEX = "/";
 
     /**
      * Don't Request the controller
-     * <p>
-     * My test class
      *
      * @return
      */
-    @GetMapping("/offline")
-    public ResultJson disable() {
+    @Synchronized
+    @GetMapping("offline")
+    public ResultJson offline() {
         try {
+            String flag = authConfig.getShutdownClient();
+            Boolean shutdown = Boolean.valueOf(flag);
             InetAddress addr = InetAddress.getLocalHost();
-            if (Constant.LOCAL_IP.equals(addr.toString().split(REGEX)[1]) || switchFlag) {
+            if (StringPool.INSTANCE_IP.equals(addr.toString().split(StringPool.SLASH)[1]) || shutdown) {
                 eurekaClient.shutdown();
                 log.info("Shutdown Gateway Client is success !!!");
                 return ResultJson.ok(null);

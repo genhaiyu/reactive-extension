@@ -17,9 +17,9 @@ import org.yugh.product.service.IGatewayTestService;
 @RequestMapping("test1")
 public class LubanController {
 
-
     @Autowired
     IGatewayTestService gatewayTestService;
+
 
     @HystrixCommand
     @GetMapping(value = "/sendMsg")
@@ -32,5 +32,8 @@ public class LubanController {
 
         return gatewayTestService.sendMsg1(id, name, createdAtStart, createdAtEnd, pageIndex, perPage);
     }
+
+
+
 
 }

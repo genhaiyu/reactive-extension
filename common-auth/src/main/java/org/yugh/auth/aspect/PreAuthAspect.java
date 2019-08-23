@@ -9,6 +9,7 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -23,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
 
 /**
- * dataWorks aspect
+ * DataWorks aspect
  * <p>
  *
  * @author yugenhai
@@ -36,10 +37,6 @@ public class PreAuthAspect {
 
     @Autowired
     private AuthService authService;
-
-    /**@Autowired private AuthCookieUtils authCookieUtils;*/
-
-    /**@Autowired private RedisClient redisClient;**/
 
     /**
      * If request.getAttribute(Constant.USER_INFO) == null
@@ -124,6 +121,7 @@ public class PreAuthAspect {
             return joinPoint.proceed();
         }
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        Assert.notNull(servletRequestAttributes, "RequestContextHolder is null");
         HttpServletRequest request = servletRequestAttributes.getRequest();
         HttpServletResponse response = servletRequestAttributes.getResponse();
         log.info("\n ******* Current rpid |=| {}", request.getAttribute(Constant.GLOBAL_RPID));

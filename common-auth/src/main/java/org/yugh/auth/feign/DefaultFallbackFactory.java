@@ -10,6 +10,8 @@ import java.lang.reflect.Type;
 /**
  * Feign fallback factory
  *
+ * Init Load Feign Interface
+ *
  * @author yugenhai
  */
 @Slf4j

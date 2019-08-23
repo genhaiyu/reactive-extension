@@ -1,6 +1,6 @@
-/**
+/*
  * public boolean logoutByRequest(HttpServletRequest request, HttpServletResponse response) {
- * Cookie cookie = authCookieUtils.getCookieByName(request, Constant.xx);
+ * Cookie cookie = authCookieUtils.getCookieByName(request, Constant.SESSION_xx_TOKEN);
  * String token = cookie != null ? cookie.getValue() : null;
  * if (StringUtils.isEmpty(token)) {
  * return true;
@@ -37,6 +37,7 @@ import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.yugh.auth.common.constants.Constant;
+import org.yugh.auth.config.AuthConfig;
 import org.yugh.auth.pojo.dto.User;
 import org.yugh.auth.util.*;
 
@@ -138,7 +139,7 @@ public class AuthService {
         }
         Map respMap = JsonUtils.jsonToObject(resp, Map.class);
         Object status = respMap.get("status");
-        if (status == null || (!status.toString().equalsIgnoreCase("true"))) {
+        if (status == null || (!status.toString().equalsIgnoreCase(StringPool.TRUE))) {
             Object msg = respMap.get("msg");
             log.error(msg == null ? "SSO Logout Failed !!!" : (String) msg);
             return false;
@@ -194,8 +195,9 @@ public class AuthService {
         if (StringUtils.isEmpty(token)) {
             return null;
         }
+        User user = null;
         try {
-            User user = this.getUserByToken(token);
+            user = this.getUserByToken(token);
             if (StringUtils.isEmpty(user)) {
                 return null;
             }
@@ -267,8 +269,9 @@ public class AuthService {
         if (StringUtils.isEmpty(token)) {
             return false;
         }
+        User user = null;
         try {
-            User user = this.getUserByToken(token);
+            user = this.getUserByToken(token);
             if (Objects.isNull(user)) {
                 return false;
             }
@@ -295,11 +298,13 @@ public class AuthService {
         }
         String resp;
         switch (env) {
-            case "test":
+            case StringPool
+                    .TEST:
                 SignUtils.addSignatureWithoutEnter(paramsMap, authConfig.getSsoTestAppKey(), authConfig.getSsoTestAppSecret());
                 resp = httpClientHelper.doPost(authConfig.getSsoTestIdentity(), new HashMap(16), paramsMap);
                 return parseAsUser(resp);
-            case "prod":
+            case StringPool
+                    .PROD:
                 SignUtils.addSignatureWithoutEnter(paramsMap, authConfig.getSsoProdAppKey(), authConfig.getSsoProdAppSecret());
                 resp = httpClientHelper.doPost(authConfig.getSsoProdIdentity(), new HashMap(16), paramsMap);
                 return parseAsUser(resp);
@@ -325,13 +330,15 @@ public class AuthService {
             paramsMap.put("token", token);
             String env = authConfig.getEnvSwitch();
             switch (env) {
-                case "test":
+                case StringPool
+                        .TEST:
                     boolean test = this.logoutByTestOrProd(paramsMap, authConfig.getSsoTestAppKey(), authConfig.getSsoTestAppSecret(), authConfig.getSsoTestIdentity());
                     if (test) {
                         return true;
                     }
                     return false;
-                case "prod":
+                case StringPool
+                        .PROD:
                     boolean prod = this.logoutByTestOrProd(paramsMap, authConfig.getSsoProdAppKey(), authConfig.getSsoProdAppSecret(), authConfig.getSsoProdIdentity());
                     if (prod) {
                         return true;
@@ -351,7 +358,7 @@ public class AuthService {
     private User parseAsUser(String userJSON) {
         Map respMap = JsonUtils.jsonToObject(userJSON, Map.class);
         Object status = respMap.get("status");
-        if (status == null || ("false").equalsIgnoreCase(status.toString())) {
+        if (status == null || (StringPool.FALSE).equalsIgnoreCase(status.toString())) {
             log.error("get user info error: " + userJSON);
             Object errorMsgObject = respMap.get("msg");
             String errorMsg = "get user info failed";
@@ -370,9 +377,6 @@ public class AuthService {
         String email = (String) userInfo.get("email");
         String userNameEn = email.replace("@xx.com", "");
         String userNameCn = (String) userInfo.get("fullname");
-        String isEhr = (String) userInfo.get("is_ehr");
-        String personType = (String) userInfo.get("person_type");
-        Boolean isSameDevice = (Boolean) userInfo.get("is_same_device");
         User user = User.builder().build();
         user.setNo(userId);
         user.setUserName(userNameEn);

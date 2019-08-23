@@ -1,4 +1,4 @@
-package org.yugh.auth.util;
+package org.yugh.auth.config;
 
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
@@ -7,6 +7,12 @@ import org.springframework.stereotype.Component;
 /**
  * Gateway check env
  * <p>
+ * * xx-corp.com
+ * * xx.com
+ * * xx-apps.com
+ * * xx.com
+ * * <p>
+ * * xx-cloud.com
  *
  * @author yugenhai
  */

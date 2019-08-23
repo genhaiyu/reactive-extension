@@ -22,7 +22,7 @@ spring:
         - test-redis.dns.xx.com:3002
         - test-redis.dns.xx.com:3003
         - test-redis.dns.xx.com:3004
-        - test-redis.dns.x.com:3005
+        - test-redis.dns.xx.com:3005
         - test-redis.dns.xx.com:3006
       max-redirects: 3
   #overriding name
@@ -51,8 +51,8 @@ spring:
                 # X-RateLimit-Remaining -> Token bucket, Current Remaining = burstCapacity-replenishRate
                 # See {@link GatewayKeyResolver}
                 key-resolver: "#{@gatewayKeyResolver}"
-                redis-rate-limiter.replenishRate: 2
-                redis-rate-limiter.burstCapacity: 10
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 5
         #datasource
         - id: CompositeDiscoveryClient_METADATA-DATASOURCE-SERVICE
           uri: lb://METADATA-DATASOURCE-SERVICE
@@ -67,8 +67,8 @@ spring:
                 # X-RateLimit-Remaining -> Token bucket, Current Remaining = burstCapacity-replenishRate
                 # See {@link GatewayKeyResolver}
                 key-resolver: "#{@gatewayKeyResolver}"
-                redis-rate-limiter.replenishRate: 2
-                redis-rate-limiter.burstCapacity: 10
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 5
         #lineage
         - id: CompositeDiscoveryClient_METADATA-DATA-LINEAGE-SERVICE
           uri: lb://METADATA-DATA-LINEAGE-SERVICE
@@ -83,8 +83,8 @@ spring:
                 # X-RateLimit-Remaining -> Token bucket, Current Remaining = burstCapacity-replenishRate
                 # See {@link GatewayKeyResolver}
                 key-resolver: "#{@gatewayKeyResolver}"
-                redis-rate-limiter.replenishRate: 2
-                redis-rate-limiter.burstCapacity: 10
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 5
         #quota
         - id: CompositeDiscoveryClient_METADATA-QUOTA-DICT-SERVICE
           uri: lb://METADATA-QUOTA-DICT-SERVICE
@@ -99,8 +99,8 @@ spring:
                 # X-RateLimit-Remaining -> Token bucket, Current Remaining = burstCapacity-replenishRate
                 # See {@link GatewayKeyResolver}
                 key-resolver: "#{@gatewayKeyResolver}"
-                redis-rate-limiter.replenishRate: 2
-                redis-rate-limiter.burstCapacity: 10
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 5
         #table
         - id: CompositeDiscoveryClient_METADATA-TABLE-DICT-SERVICE
           uri: lb://METADATA-TABLE-DICT-SERVICE
@@ -115,8 +115,8 @@ spring:
                 # X-RateLimit-Remaining -> Token bucket, Current Remaining = burstCapacity-replenishRate
                 # See {@link GatewayKeyResolver}
                 key-resolver: "#{@gatewayKeyResolver}"
-                redis-rate-limiter.replenishRate: 2
-                redis-rate-limiter.burstCapacity: 10
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 5
         #luban-dashboard
         - id: CompositeDiscoveryClient_APP-LUBAN-DASHBOARD-SERVICE
           uri: lb://APP-LUBAN-DASHBOARD-SERVICE
@@ -126,14 +126,14 @@ spring:
           filters:
             - StripPrefix=2
             # see {@link GatewayCorsConfig} and {@link CorsFilter}
-            #- AddResponseHeader=Access-Control-Allow-Credentials,true Access-Control-Allow-Headers,Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With, XX, DEVICEID
+            #- AddResponseHeader=Access-Control-Allow-Credentials,true Access-Control-Allow-Headers,Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With, xx, DEVICEID
             - name: RequestRateLimiter
               args:
                 # X-RateLimit-Remaining -> Token bucket, Current Remaining = burstCapacity-replenishRate
                 # See {@link GatewayKeyResolver}
                 key-resolver: "#{@gatewayKeyResolver}"
-                redis-rate-limiter.replenishRate: 2
-                redis-rate-limiter.burstCapacity: 10
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 5
         #submission
         - id: CompositeDiscoveryClient_BASE-SQL-SUBMISSION-SERVICE
           uri: lb://BASE-SQL-SUBMISSION-SERVICE
@@ -148,8 +148,8 @@ spring:
                 # X-RateLimit-Remaining -> Token bucket, Current Remaining = burstCapacity-replenishRate
                 # See {@link GatewayKeyResolver}
                 key-resolver: "#{@gatewayKeyResolver}"
-                redis-rate-limiter.replenishRate: 2
-                redis-rate-limiter.burstCapacity: 10
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 5
         #luban-backend
         - id: CompositeDiscoveryClient_APP-LUBAN-BACKEND-SERVICE
           uri: lb://APP-LUBAN-BACKEND-SERVICE
@@ -164,12 +164,12 @@ spring:
                 # X-RateLimit-Remaining -> Token bucket, Current Remaining = burstCapacity-replenishRate
                 # See {@link GatewayKeyResolver}
                 key-resolver: "#{@gatewayKeyResolver}"
-                redis-rate-limiter.replenishRate: 2
-                redis-rate-limiter.burstCapacity: 10
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 5
           #default
           default-filters:
             # see {@link GatewayCorsConfig} and {@link CorsFilter}
-            #- AddResponseHeader=Access-Control-Allow-Credentials,true Access-Control-Allow-Headers,Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With, XX, DEVICEID
+            #- AddResponseHeader=Access-Control-Allow-Credentials,true Access-Control-Allow-Headers,Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With, xx, DEVICEID
             - name: gatewayKeyResolver
               args:
                 key-resolver: "#{@gatewayKeyResolver}"
@@ -242,11 +242,11 @@ auth-skip:
 #log
 logging:
   level:
-    com.xx.dataworks.gateway: TRACE
-    org.springframework.cloud.gateway: TRACE
-    org.springframework.http.server.reactive: TRACE
-    org.springframework.web.reactive: TRACE
-    reactor.ipc.netty: TRACE
+    org.yugh.gateway: INFO
+    org.springframework.cloud.gateway: INFO
+    org.springframework.http.server.reactive: INFO
+    org.springframework.web.reactive: INFO
+    reactor.ipc.netty: INFO
 
 #reg
 eureka:
@@ -254,7 +254,8 @@ eureka:
     prefer-ip-address: true
   client:
     serviceUrl:
-      defaultZone: http://localhost:8700/eureka/
+      defaultZone: http://???/eureka/
+
 
 
 #health
@@ -279,7 +280,7 @@ ribbon:
 #feign
 feign:
   hystrix:
-    enabled: false
+    enabled: true
 
 #hystrix
 hystrix:

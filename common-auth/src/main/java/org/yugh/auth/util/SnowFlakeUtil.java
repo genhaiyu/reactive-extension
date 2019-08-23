@@ -1,7 +1,5 @@
 package org.yugh.auth.util;
 
-import org.yugh.auth.util.SnowFlakeGenerated;
-
 /**
  * //雪花算法生成分布式ID
  *

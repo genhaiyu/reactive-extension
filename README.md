@@ -12,7 +12,7 @@
 + 8：**cqrs** 准确说应该是DDD+cqrs，Command分发器+Domain+Even事件是一个很好的架构设计，目前只是把基本的结构搭建出来，需要后期填充功能场景，我整理了一些架构设计的特点，见`CqrsApplication` [CQRS启动类](https://github.com/yugenhai108/framework-applications/blob/master/cqrs/src/main/java/org/yugh/cqrs/CqrsApplication.java) 。
 + 9：**zipkin-server | zipkin-request | zipkin-response** 一个分布式收集调用关系的看板，**request** 请求 **response**，通过双方注册的zipkin地址上传到**zipkin-server**上，后期扩展es和数据库支持收集存储。
 
-## :evergreen_tree: 功能示意图（A schematic）
+## :evergreen_tree: **gateway** 功能示意图（A schematic）
 </br>
 
 ![Image text](https://github.com/yugenhai108/framework-applications/blob/master/gateway-auth.png)
@@ -20,6 +20,12 @@
 </br>
 
 ***
+
+## :seedling: "Filter" 的调用顺序(如WebHandler的实现GlobalFilter实现及个人的Filter实现)和调用全链路的过程
+</br>
+
+![Image text](https://github.com/yugenhai108/framework-applications/blob/master/gateway-pic.png)
+
 
 ## :deciduous_tree: 链路图（present diagram）
 </br>

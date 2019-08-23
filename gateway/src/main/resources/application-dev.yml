@@ -8,18 +8,8 @@ spring:
   #redis
   redis:
     database: 0
-    host: test-redis.dns.xx.com
+    host: 127.0.0.1
     port: 6379
-    expire_seconds: 300
-    cluster:
-      nodes:
-        - test-redis.dns.xx.com:3001
-        - test-redis.dns.xx.com:3002
-        - test-redis.dns.xx.com:3003
-        - test-redis.dns.xx.com:3004
-        - test-redis.dns.xx.com:3005
-        - test-redis.dns.xx.com:3006
-      max-redirects: 3
   #overriding name
   main:
     allow-bean-definition-overriding: true
@@ -121,7 +111,7 @@ spring:
           filters:
             - StripPrefix=2
             # see {@link GatewayCorsConfig} and {@link CorsFilter}
-            #- AddResponseHeader=Access-Control-Allow-Credentials,true Access-Control-Allow-Headers,Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With, XXSSO, DEVICEID
+            #- AddResponseHeader=Access-Control-Allow-Credentials,true Access-Control-Allow-Headers,Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With, xx, DEVICEID
             - name: RequestRateLimiter
               args:
                 # X-RateLimit-Remaining -> Token bucket, Current Remaining = burstCapacity-replenishRate
@@ -164,7 +154,7 @@ spring:
           #default
           default-filters:
             # see {@link GatewayCorsConfig} and {@link CorsFilter}
-            #- AddResponseHeader=Access-Control-Allow-Credentials,true Access-Control-Allow-Headers,Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With, XX, DEVICEID
+            #- AddResponseHeader=Access-Control-Allow-Credentials,true Access-Control-Allow-Headers,Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With, xx, DEVICEID
             - name: gatewayKeyResolver
               args:
                 key-resolver: "#{@gatewayKeyResolver}"
@@ -237,7 +227,7 @@ auth-skip:
 #log
 logging:
   level:
-    com.xx.dataworks.gateway: INFO
+    org.yugh.gateway: INFO
     org.springframework.cloud.gateway: INFO
     org.springframework.http.server.reactive: INFO
     org.springframework.web.reactive: INFO
@@ -273,7 +263,7 @@ ribbon:
 #feign
 feign:
   hystrix:
-    enabled: false
+    enabled: true
 
 #hystrix
 hystrix:
@@ -284,3 +274,4 @@ hystrix:
           strategy: SEMAPHORE
           thread:
             timeoutInMilliseconds: 20000
+

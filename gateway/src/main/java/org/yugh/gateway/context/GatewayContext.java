@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * //网关上下文
+ * Gateway Context
  *
  * @author 余根海
  * @creation 2019-07-10 23:41
@@ -21,6 +21,7 @@ public class GatewayContext implements Serializable {
      */
     private boolean doNext = true;
 
+
     /**
      * black instance
      */
@@ -32,13 +33,13 @@ public class GatewayContext implements Serializable {
     private String ssoToken;
 
     /**
-     * 用户no
+     * User no
      */
     @Deprecated
     private String userNo;
 
     /**
-     * 请求地址
+     * path
      */
     @Deprecated
     private String path;

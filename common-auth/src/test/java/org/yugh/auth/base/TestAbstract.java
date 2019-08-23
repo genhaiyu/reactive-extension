@@ -1,21 +1,12 @@
 package org.yugh.auth.base;
 
-import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.http.MediaType;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.web.reactive.server.WebTestClient;
 import org.yugh.auth.DataWorksAuthApplication;
-import org.yugh.auth.pojo.dto.User;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author yugenhai

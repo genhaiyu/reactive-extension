@@ -3,6 +3,7 @@ package org.yugh.auth.common.constants;
 /**
  * @author yugenhai
  */
+@Deprecated
 public class Constant {
 
     /**
@@ -13,12 +14,8 @@ public class Constant {
     /**
      * cookie
      */
-    public final static String SESSION_xx_TOKEN = "xx";
+    public final static String SESSION_xx_TOKEN = "xxSSO";
 
-    /**
-     * CORS TOKEN
-     */
-    public final static String CORS_TOKEN = "token";
 
     /**
      * user info
@@ -31,34 +28,22 @@ public class Constant {
     public final static String GLOBAL_RPID = "rpid";
 
     /**
-     * instance ip
-     */
-    public final static String LOCAL_IP = "127.0.0.1";
-
-    /**
-     * xx allow headers
+     * guazi allow headers
      */
     public final static String xx_ALLOW_HEADERS = "X-Requested-with,Cache-Control,Pragma,Content-Type,token,xx,DEVICEID,Authorization-DataWorks-Gateway";
 
     /**
-     * xx allow headers by creek
+     * guazi allow headers by creek
      */
+    @Deprecated
     public final static String xx_ALLOW_HEADERS_NEW = "X-Requested-with,If-Modified-Since,Last-Modified,Cache-Control,Expires,Content-Type,xx,DEVICEID,Authorization-DataWorks-Gateway,X-Requested-ID";
 
-    /**
-     * allow all
-     */
-    public final static String xx_ALLOW_ALL = "*";
 
     /**
      * Cookie time out
+     * By luban
      */
     public final static int COOKIE_TIME_OUT = 4 * 60 * 60;
-
-    /**
-     * request uri
-     */
-    public final static String PREFIX = "/";
 
 
 }

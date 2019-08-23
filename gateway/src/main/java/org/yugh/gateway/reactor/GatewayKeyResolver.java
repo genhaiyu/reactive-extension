@@ -39,4 +39,10 @@ public class GatewayKeyResolver implements KeyResolver {
         return Mono.just(exchange.getRequest().getRemoteAddress().getAddress().getHostAddress());
     }
 
+    /**
+     * Modify implements Redis
+     *
+     * FIXME
+     */
+
 }

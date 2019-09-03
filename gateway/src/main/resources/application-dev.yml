@@ -30,11 +30,8 @@ spring:
             - Path= /api/habo/**
           filters:
             - StripPrefix=2
-            # see {@link GatewayCorsConfig} and {@link CorsFilter}
             - name: RequestRateLimiter
               args:
-                # X-RateLimit-Remaining -> Token bucket, Current Remaining = burstCapacity-replenishRate
-                # See {@link GatewayKeyResolver}
                 key-resolver: "#{@gatewayKeyResolver}"
                 redis-rate-limiter.replenishRate: 2
                 redis-rate-limiter.burstCapacity: 10
@@ -46,11 +43,8 @@ spring:
             - Path= /api/datasource/**
           filters:
             - StripPrefix=2
-            # see {@link GatewayCorsConfig} and {@link CorsFilter}
             - name: RequestRateLimiter
               args:
-                # X-RateLimit-Remaining -> Token bucket, Current Remaining = burstCapacity-replenishRate
-                # See {@link GatewayKeyResolver}
                 key-resolver: "#{@gatewayKeyResolver}"
                 redis-rate-limiter.replenishRate: 2
                 redis-rate-limiter.burstCapacity: 10
@@ -62,11 +56,8 @@ spring:
             - Path= /api/lineage/**
           filters:
             - StripPrefix=2
-            # see {@link GatewayCorsConfig} and {@link CorsFilter}
             - name: RequestRateLimiter
               args:
-                # X-RateLimit-Remaining -> Token bucket, Current Remaining = burstCapacity-replenishRate
-                # See {@link GatewayKeyResolver}
                 key-resolver: "#{@gatewayKeyResolver}"
                 redis-rate-limiter.replenishRate: 2
                 redis-rate-limiter.burstCapacity: 10
@@ -78,11 +69,8 @@ spring:
             - Path= /api/quotamanage/**
           filters:
             - StripPrefix=2
-            # see {@link GatewayCorsConfig} and {@link CorsFilter}
             - name: RequestRateLimiter
               args:
-                # X-RateLimit-Remaining -> Token bucket, Current Remaining = burstCapacity-replenishRate
-                # See {@link GatewayKeyResolver}
                 key-resolver: "#{@gatewayKeyResolver}"
                 redis-rate-limiter.replenishRate: 2
                 redis-rate-limiter.burstCapacity: 10
@@ -94,11 +82,8 @@ spring:
             - Path= /api/table/**
           filters:
             - StripPrefix=2
-            # see {@link GatewayCorsConfig} and {@link CorsFilter}
             - name: RequestRateLimiter
               args:
-                # X-RateLimit-Remaining -> Token bucket, Current Remaining = burstCapacity-replenishRate
-                # See {@link GatewayKeyResolver}
                 key-resolver: "#{@gatewayKeyResolver}"
                 redis-rate-limiter.replenishRate: 2
                 redis-rate-limiter.burstCapacity: 10
@@ -110,12 +95,8 @@ spring:
             - Path= /api/luban-dashboard/**
           filters:
             - StripPrefix=2
-            # see {@link GatewayCorsConfig} and {@link CorsFilter}
-            #- AddResponseHeader=Access-Control-Allow-Credentials,true Access-Control-Allow-Headers,Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With, xx, DEVICEID
             - name: RequestRateLimiter
               args:
-                # X-RateLimit-Remaining -> Token bucket, Current Remaining = burstCapacity-replenishRate
-                # See {@link GatewayKeyResolver}
                 key-resolver: "#{@gatewayKeyResolver}"
                 redis-rate-limiter.replenishRate: 2
                 redis-rate-limiter.burstCapacity: 10
@@ -127,11 +108,8 @@ spring:
             - Path= /api/submission/**
           filters:
             - StripPrefix=2
-            # see {@link GatewayCorsConfig} and {@link CorsFilter}
             - name: RequestRateLimiter
               args:
-                # X-RateLimit-Remaining -> Token bucket, Current Remaining = burstCapacity-replenishRate
-                # See {@link GatewayKeyResolver}
                 key-resolver: "#{@gatewayKeyResolver}"
                 redis-rate-limiter.replenishRate: 2
                 redis-rate-limiter.burstCapacity: 10
@@ -143,18 +121,13 @@ spring:
             - Path= /api/luban-backend/**
           filters:
             - StripPrefix=2
-            # see {@link GatewayCorsConfig} and {@link CorsFilter}
             - name: RequestRateLimiter
               args:
-                # X-RateLimit-Remaining -> Token bucket, Current Remaining = burstCapacity-replenishRate
-                # See {@link GatewayKeyResolver}
                 key-resolver: "#{@gatewayKeyResolver}"
                 redis-rate-limiter.replenishRate: 2
                 redis-rate-limiter.burstCapacity: 10
           #default
           default-filters:
-            # see {@link GatewayCorsConfig} and {@link CorsFilter}
-            #- AddResponseHeader=Access-Control-Allow-Credentials,true Access-Control-Allow-Headers,Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With, xx, DEVICEID
             - name: gatewayKeyResolver
               args:
                 key-resolver: "#{@gatewayKeyResolver}"

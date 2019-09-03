@@ -29,8 +29,8 @@ public class GatewayCorsConfig implements WebFilter {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
-        Assert.notNull(exchange, "exchange is null");
-        Assert.notNull(chain, "chain is null");
+        Assert.notNull(exchange, () -> "ServerWebExchange '" + exchange + "' is null");
+        Assert.notNull(chain, () -> "WebFilterChain '" + chain + "' is null");
         ServerHttpRequest request = exchange.getRequest();
         if (CorsUtils.isCorsRequest(request)) {
             ServerHttpResponse response = exchange.getResponse();
@@ -42,7 +42,7 @@ public class GatewayCorsConfig implements WebFilter {
             response.getHeaders().add(HttpHeaders.ACCESS_CONTROL_ALLOW_CREDENTIALS, StringPool.TRUE);
             response.getHeaders().add(HttpHeaders.ACCESS_CONTROL_ALLOW_METHODS, StringPool.ASTERISK);
             response.getHeaders().add(HttpHeaders.ACCESS_CONTROL_MAX_AGE, String.valueOf(Constant.COOKIE_TIME_OUT));
-            response.getHeaders().add(HttpHeaders.ACCESS_CONTROL_ALLOW_HEADERS, StringPool.ASTERISK);
+            response.getHeaders().add(HttpHeaders.ACCESS_CONTROL_ALLOW_HEADERS, Constant.DATAWORKS_ALLOW_HEADERS);
         }
         return chain.filter(exchange);
     }

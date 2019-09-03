@@ -1,5 +1,7 @@
 package org.yugh.auth.util;
 
+import lombok.experimental.UtilityClass;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -7,7 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author yugenhai
  */
-public final class WebUtils {
+@UtilityClass
+public class WebUtils {
 
 
     /**

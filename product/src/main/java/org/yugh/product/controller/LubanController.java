@@ -2,11 +2,10 @@ package org.yugh.product.controller;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 import org.yugh.auth.annotation.PreAuth;
+import org.yugh.auth.util.ResultJson;
 import org.yugh.product.service.IGatewayTestService;
 
 /**
@@ -19,7 +18,8 @@ public class LubanController {
 
     @Autowired
     IGatewayTestService gatewayTestService;
-
+    @Autowired
+    DataService dataService;
 
     @HystrixCommand
     @GetMapping(value = "/sendMsg")
@@ -33,7 +33,14 @@ public class LubanController {
         return gatewayTestService.sendMsg1(id, name, createdAtStart, createdAtEnd, pageIndex, perPage);
     }
 
+    @PostMapping(value = "/preview", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResultJson preview(DataSetDTO dataSetDTO) {
 
+        ResultJson object = dataService.preview(dataSetDTO);
+
+        System.out.println(object);
+        return object;
+    }
 
 
 }

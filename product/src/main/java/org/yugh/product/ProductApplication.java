@@ -15,6 +15,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  */
 @EnableHystrix
 @EnableFeignClients
+//@EnableFeignAcceptGzipEncoding
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 public class ProductApplication {
 

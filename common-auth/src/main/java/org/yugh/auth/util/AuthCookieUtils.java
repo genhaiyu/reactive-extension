@@ -1,14 +1,3 @@
-/*
- Cookie cookie = new Cookie(name, value);
- cookie.setPath("/");
-  if (!StringUtils.isEmpty(domain)) {
-  cookie.setDomain(domain);
-  }
-  if (maxAge != null) {
-  cookie.setMaxAge(maxAge);
-  }
-  response.addCookie(cookie);
- */
 package org.yugh.auth.util;
 
 import org.springframework.http.HttpCookie;
@@ -170,8 +159,6 @@ public class AuthCookieUtils {
      * Logout session
      * <p>
      * {@link ServerHttpResponse}
-     * <p>
-     * see https://github.com/spring-projects/spring-framework
      *
      * @param response
      * @param cookieValue

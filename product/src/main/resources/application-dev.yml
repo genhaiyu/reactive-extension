@@ -1,11 +1,11 @@
 spring:
   application:
     name: product
-  #cloud:
-  #  config:
-   #   discovery:
-   #     enabled: true
-   #     service-id: config
+    #cloud:
+    #  config:
+    #   discovery:
+    #     enabled: true
+    #     service-id: config
 
 
 #eureka-gateway-monitor-config 每个端口+1
@@ -39,6 +39,8 @@ management:
     health:
       show-details: ALWAYS
 
+
+
 #ribbon
 ribbon:
   eureka:
@@ -47,14 +49,7 @@ ribbon:
   ConnectTimeout: 30000
 
 
-#feign
-feign:
-  hystrix:
-    enabled: true
-  okhttp:
-    enabled: true
-  httpclient:
-    enabled: false
+
 
 #hystrix
 hystrix:
@@ -65,4 +60,3 @@ hystrix:
           strategy: SEMAPHORE
           thread:
             timeoutInMilliseconds: 60000
-

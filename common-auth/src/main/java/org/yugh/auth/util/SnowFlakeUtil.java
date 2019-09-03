@@ -20,5 +20,4 @@ public class SnowFlakeUtil {
     public static Long nextWaterFlow() {
         return SnowFlakeGenerated.nextId();
     }
-
 }

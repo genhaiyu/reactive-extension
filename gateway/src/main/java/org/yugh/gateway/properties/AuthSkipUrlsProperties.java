@@ -35,9 +35,7 @@ public class AuthSkipUrlsProperties implements InitializingBean {
     private List<String> apiUrls;
 
     /**
-     * It's implements Spring Application
-     * <p>
-     * When ApplicationContextAware init, this {@link AuthSkipUrlsProperties} init
+     * This {@link AuthSkipUrlsProperties} init
      */
     @Override
     public void afterPropertiesSet() {

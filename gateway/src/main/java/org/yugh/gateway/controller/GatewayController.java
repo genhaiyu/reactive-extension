@@ -8,12 +8,11 @@ import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.yugh.auth.adapter.CacheProcessAdapter;
 import org.yugh.auth.annotation.PreSkipAuth;
 import org.yugh.auth.common.enums.ResultEnum;
 import org.yugh.auth.service.AuthService;
-import org.yugh.auth.util.JsonResult;
 import org.yugh.auth.util.ResultJson;
-import reactor.core.publisher.Mono;
 
 /**
  * Gateway default RuntimeException It's been here
@@ -32,6 +31,9 @@ public class GatewayController {
 
     @Autowired
     private AuthService authService;
+
+    @Autowired
+    CacheProcessAdapter cacheProcessAdapter;
 
 
     /**
@@ -62,14 +64,14 @@ public class GatewayController {
      */
     @Synchronized
     @GetMapping("logout")
-    public Mono logout(ServerHttpRequest request, ServerHttpResponse response) {
+    public ResultJson logout(ServerHttpRequest request, ServerHttpResponse response) {
         try {
             authService.logoutByGateway(request, response);
             log.info("Logout Success!");
-            return Mono.just(JsonResult.buildSuccessResult("Logout Success!"));
+            return ResultJson.ok("Logout Success!");
         } catch (Exception e) {
             log.info("Logout Failed!");
-            return Mono.just(JsonResult.buildErrorResult("Logout Failed!"));
+            return ResultJson.ok("Logout Failed!");
         }
     }
 }

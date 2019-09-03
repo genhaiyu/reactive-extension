@@ -63,6 +63,7 @@ public interface StringPool {
     String INSTANCE_IP = "127.0.0.1";
     String DOLLAR_LEFT_BRACE = "${";
     String UNKNOWN = "unknown";
+    String FEIGN = "feign";
     String DATAWORKS_USER_INFO = "dataworks_user_info";
     String DATAWORKS_USER_DETAILS = "dataworks_user_details_";
 }

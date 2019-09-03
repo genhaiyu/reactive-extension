@@ -27,7 +27,8 @@ public enum ResultEnum {
     GATEWAY_SERVER_ERROR(10003, "网关服务内部异常"),
     GATEWAY_DATA_CONVERT_ERROR(10004, "网关数据转换异常"),
     BLACK_SERVER_FOUND(10005, "禁止此方式访问服务网关"),
-    HYSTRIX_ERROR(10006, "当前用户请求过于频繁，请歇会儿吧");
+    HYSTRIX_ERROR(10006, "当前用户请求过于频繁，请歇会儿吧"),
+    FEIGN_ERROR(10007, "Feign调用失败！");
 
 
     private Integer code;

@@ -1,0 +1,17 @@
+{
+  "properties": [
+    {
+      "name": "feign.compression.request.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables request by Feign.",
+      "defaultValue": true
+    },
+    {
+      "name": "feign.compression.response.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables response from Feign.",
+      "defaultValue": true
+    }
+  ]
+}
+

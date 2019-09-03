@@ -1,6 +1,5 @@
 package org.yugh.auth.annotation;
 
-
 import java.lang.annotation.*;
 
 /**

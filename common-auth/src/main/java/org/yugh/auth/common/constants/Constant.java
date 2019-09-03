@@ -3,7 +3,6 @@ package org.yugh.auth.common.constants;
 /**
  * @author yugenhai
  */
-@Deprecated
 public class Constant {
 
     /**
@@ -14,7 +13,7 @@ public class Constant {
     /**
      * cookie
      */
-    public final static String SESSION_xx_TOKEN = "xxSSO";
+    public final static String SESSION_TOKEN = "token";
 
 
     /**
@@ -28,15 +27,15 @@ public class Constant {
     public final static String GLOBAL_RPID = "rpid";
 
     /**
-     * guazi allow headers
+     * dataworks allow headers
      */
-    public final static String xx_ALLOW_HEADERS = "X-Requested-with,Cache-Control,Pragma,Content-Type,token,xx,DEVICEID,Authorization-DataWorks-Gateway";
+    public final static String DATAWORKS_ALLOW_HEADERS = "X-Requested-with,Cache-Control,Pragma,Content-Type,token,token,DEVICEID,Authorization-DataWorks-Gateway";
 
     /**
-     * guazi allow headers by creek
+     * datworks allow headers by creek
      */
     @Deprecated
-    public final static String xx_ALLOW_HEADERS_NEW = "X-Requested-with,If-Modified-Since,Last-Modified,Cache-Control,Expires,Content-Type,xx,DEVICEID,Authorization-DataWorks-Gateway,X-Requested-ID";
+    public final static String DATAWORKS_ALLOW_HEADERS_NEW = "X-Requested-with,If-Modified-Since,Last-Modified,Cache-Control,Expires,Content-Type,token,DEVICEID,Authorization-DataWorks-Gateway,X-Requested-ID";
 
 
     /**

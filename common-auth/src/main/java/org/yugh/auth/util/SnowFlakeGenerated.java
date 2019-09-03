@@ -137,6 +137,5 @@ public class SnowFlakeGenerated {
         System.out.println(new SnowFlakeGenerated().getNextId());
 
 
-
     }
 }

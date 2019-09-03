@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * 放入rpid
  * <p>
- * 生成规则见 {@link SnowFlakeUtil}
+ * 生成规则见 {@link org.yugh.auth.util.SnowFlakeUtil}
  *
  * @author yugenhai
  */
@@ -23,10 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 public class PreAuthContext implements ServletRequestListener {
 
     /**
-     * begin
-     * <p>
-     * If use track log id , in {@link HttpServletRequest} request.getAttribute(Constant.GLOBAL_RPID)
-     * I suggest print Constant.GLOBAL_RPID to log Console
+     * 初始化监听器时放入rpid作为当前线程名
      *
      * @param sre
      */

@@ -1,8 +1,8 @@
-package org.yugh.auth.feign;
+package org.yugh.auth.factory;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.http.HttpStatus;
-import org.yugh.auth.util.JsonResult;
+import org.yugh.auth.common.enums.ResultEnum;
+import org.yugh.auth.util.ResultJson;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -35,6 +35,6 @@ public class FeignProxy<T> implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) {
         log.error("\n ******* Feign exception Class name : {}, Method name : {} ", clazz.getSimpleName(), method.getName());
-        return JsonResult.buildErrorResult(HttpStatus.SC_INTERNAL_SERVER_ERROR, "Feign调用失败！");
+        return ResultJson.failure(ResultEnum.FEIGN_ERROR, method.getName());
     }
 }

@@ -21,13 +21,13 @@
 
 ***
 
-## :seedling: "Filter" 的调用顺序(如WebHandler的实现GlobalFilter实现及个人的Filter实现)和调用全链路的过程
+## :seedling: "Filter" 的调用顺序(如WebHandler和GlobalFilter实现及个人的Filter实现)和调用全链路的过程
 </br>
 
 ![Image text](https://github.com/yugenhai108/framework-applications/blob/master/gateway-pic.png)
 
 
-## :deciduous_tree: 链路图（present diagram）
+## :deciduous_tree: Zipkin 链路图（present diagram）
 </br>
 
 ![Image text](https://github.com/yugenhai108/framework-applications/blob/master/zipkin-detail.png)

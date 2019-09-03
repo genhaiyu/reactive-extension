@@ -1,4 +1,4 @@
-package org.yugh.auth.feign;
+package org.yugh.auth.factory;
 
 import feign.hystrix.FallbackFactory;
 import lombok.extern.slf4j.Slf4j;

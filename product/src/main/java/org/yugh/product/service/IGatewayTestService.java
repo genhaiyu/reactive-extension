@@ -14,7 +14,7 @@ public interface IGatewayTestService {
 
     /**
      * The method test case to HystrixCommand
-     * And test case PreFeignAspect {@link PreFeignInterceptor}
+     * And test case PreFeignAspect {@link org.yugh.auth.interceptor.PreFeignInterceptor}
      * See http://cwiki.xx.com/pages/viewpage.action?pageId=113329378
      *
      * @param id

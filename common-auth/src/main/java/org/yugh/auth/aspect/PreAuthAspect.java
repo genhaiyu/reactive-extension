@@ -17,6 +17,7 @@ import org.yugh.auth.annotation.PreSkipAuth;
 import org.yugh.auth.common.constants.Constant;
 import org.yugh.auth.pojo.dto.User;
 import org.yugh.auth.service.AuthService;
+import org.yugh.auth.util.StringPool;
 import org.yugh.auth.util.WebUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -121,7 +122,7 @@ public class PreAuthAspect {
             return joinPoint.proceed();
         }
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        Assert.notNull(servletRequestAttributes, "RequestContextHolder is null");
+        Assert.notNull(servletRequestAttributes.getRequest(), () -> "RequestContextHolder.getRequestAttributes() '" + servletRequestAttributes.getRequest() + "' is null");
         HttpServletRequest request = servletRequestAttributes.getRequest();
         HttpServletResponse response = servletRequestAttributes.getResponse();
         log.info("\n ******* Current rpid |=| {}", request.getAttribute(Constant.GLOBAL_RPID));
@@ -131,10 +132,19 @@ public class PreAuthAspect {
             log.info("User not login SSO, please Login!");
             throw new RuntimeException("User not login SSO, please Login!");
         }
+        if (!StringUtils.isEmpty(WebUtils.getSession(request, StringPool.FEIGN))) {
+            boolean isLoginByFeign = authService.isLoginByFeign(token);
+            if (!isLoginByFeign) {
+                unLoginFunction(request, response);
+                log.info("User session expired, please Login! ");
+                throw new RuntimeException("User session expired, please Login!");
+            }
+            WebUtils.setSession(request, Constant.USER_INFO, authService.getUserByToken(token));
+            return joinPoint.proceed();
+        }
         boolean isLogin = authService.isLogin(request);
         if (!isLogin) {
-            authService.removeCookieByAspect(response);
-            WebUtils.removeSession(request, Constant.USER_INFO);
+            unLoginFunction(request, response);
             log.info("User session expired, please Login! ");
             throw new RuntimeException("User session expired, please Login!");
         }
@@ -144,6 +154,20 @@ public class PreAuthAspect {
         }
         WebUtils.setSession(request, Constant.USER_INFO, user);
         return joinPoint.proceed();
+    }
+
+
+    /**
+     * Current Session Remove
+     * <p>
+     * Web or Feign
+     *
+     * @param request
+     * @param response
+     */
+    private void unLoginFunction(HttpServletRequest request, HttpServletResponse response) {
+        authService.removeCookieByAspect(response);
+        WebUtils.removeSession(request, Constant.USER_INFO);
     }
 
 }

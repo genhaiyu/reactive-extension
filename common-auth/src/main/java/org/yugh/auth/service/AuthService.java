@@ -1,33 +1,3 @@
-/*
- * public boolean logoutByRequest(HttpServletRequest request, HttpServletResponse response) {
- * Cookie cookie = authCookieUtils.getCookieByName(request, Constant.SESSION_xx_TOKEN);
- * String token = cookie != null ? cookie.getValue() : null;
- * if (StringUtils.isEmpty(token)) {
- * return true;
- * } else {
- * Map paramsMap = new HashMap<String, Object>(16);
- * paramsMap.put("token", token);
- * String env = authConfig.getEnvSwitch();
- * switch (env) {
- * case "test":
- * boolean test = this.logoutByTestOrProdAndRequest(paramsMap, authConfig.getSsoTestAppKey(), authConfig.getSsoTestAppSecret(), authConfig.getSsoTestIdentity());
- * if (test) {
- * this.removeCookieByAspect(response);
- * return true;
- * }
- * return false;
- * case "prod":
- * boolean prod = this.logoutByTestOrProdAndRequest(paramsMap, authConfig.getSsoProdAppKey(), authConfig.getSsoProdAppSecret(), authConfig.getSsoProdIdentity());
- * if (prod) {
- * this.removeCookieByAspect(response);
- * return true;
- * }
- * default:
- * return false;
- * }
- * }
- * }
- */
 package org.yugh.auth.service;
 
 import lombok.extern.slf4j.Slf4j;
@@ -39,7 +9,10 @@ import org.springframework.util.StringUtils;
 import org.yugh.auth.common.constants.Constant;
 import org.yugh.auth.config.AuthConfig;
 import org.yugh.auth.pojo.dto.User;
-import org.yugh.auth.util.*;
+import org.yugh.auth.util.AuthCookieUtils;
+import org.yugh.auth.util.JsonUtils;
+import org.yugh.auth.util.StringPool;
+import org.yugh.auth.util.WebUtils;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -63,12 +36,16 @@ public class AuthService {
 
     @Autowired
     private AuthCookieUtils authCookieUtils;
-    private HttpClientHelper httpClientHelper;
     @Autowired
     private AuthConfig authConfig;
 
-    public AuthService() {
-        this.httpClientHelper = new HttpClientHelper(10000, 1000 * 60);
+
+    private void doSomeThing(Map<String, Object> paramsMap, String appKey, String secret){
+        log.info("doSomeThing for map-> appKey-> secret");
+    }
+
+    private String doSomeThing(String identity, HashMap map, Map<String, Object> paramsMap){
+        return "do something!";
     }
 
 
@@ -80,12 +57,23 @@ public class AuthService {
      */
     public String getToken(HttpServletRequest request) {
         String token;
-        if ((token = request.getHeader(Constant.DATAWORKS_GATEWAY_HEADERS)) != null) {
-            return token;
-        }
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
-            return Arrays.stream(cookies).filter(cookie -> Constant.SESSION_xx_TOKEN.equals(cookie.getName())).map(Cookie::getValue).findFirst().orElse(null);
+            return Arrays.stream(cookies).filter(cookie -> Constant.SESSION_TOKEN.equals(cookie.getName())).map(Cookie::getValue).findFirst().orElse(null);
+        }
+        if (!StringUtils.isEmpty(token = (String) request.getAttribute(Constant.SESSION_TOKEN))) {
+            return token;
+        }
+        if (!StringUtils.isEmpty((token = request.getParameter(Constant.SESSION_TOKEN)))) {
+            return token;
+        }
+        if (!StringUtils.isEmpty(request.getHeader(Constant.DATAWORKS_GATEWAY_HEADERS)) &&
+                !StringUtils.isEmpty(token = request.getHeader(Constant.SESSION_TOKEN))) {
+            return token;
+        }
+        if (!StringUtils.isEmpty((token = request.getHeader(Constant.SESSION_TOKEN)))) {
+            WebUtils.setSession(request, StringPool.FEIGN, token);
+            return token;
         }
         return null;
     }
@@ -97,12 +85,12 @@ public class AuthService {
      * @param response
      */
     public void removeCookieByAspect(HttpServletResponse response) {
-        this.authCookieUtils.removeCookie(response, authConfig.getGatewayCloud(), Constant.SESSION_xx_TOKEN);
-        this.authCookieUtils.removeCookie(response, authConfig.getGatewayApps(), Constant.SESSION_xx_TOKEN);
-        this.authCookieUtils.removeCookie(response, authConfig.getXxCorp(), Constant.SESSION_xx_TOKEN);
-        this.authCookieUtils.removeCookie(response, authConfig.getXxCloud(), Constant.SESSION_xx_TOKEN);
-        this.authCookieUtils.removeCookie(response, authConfig.getXxApps(), Constant.SESSION_xx_TOKEN);
-        this.authCookieUtils.removeCookie(response, authConfig.getXxCom(), Constant.SESSION_xx_TOKEN);
+        this.authCookieUtils.removeCookie(response, authConfig.getGatewayCloud(), Constant.SESSION_TOKEN);
+        this.authCookieUtils.removeCookie(response, authConfig.getGatewayApps(), Constant.SESSION_TOKEN);
+        this.authCookieUtils.removeCookie(response, authConfig.getXxCorp(), Constant.SESSION_TOKEN);
+        this.authCookieUtils.removeCookie(response, authConfig.getXxCloud(), Constant.SESSION_TOKEN);
+        this.authCookieUtils.removeCookie(response, authConfig.getXxApps(), Constant.SESSION_TOKEN);
+        this.authCookieUtils.removeCookie(response, authConfig.getXxCom(), Constant.SESSION_TOKEN);
     }
 
     /**
@@ -111,12 +99,12 @@ public class AuthService {
      * @param response
      */
     private void removeCookieByGateway(ServerHttpResponse response) {
-        this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_xx_TOKEN, null, authConfig.getGatewayCloud());
-        this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_xx_TOKEN, null, authConfig.getGatewayApps());
-        this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_xx_TOKEN, null, authConfig.getXxApps());
-        this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_xx_TOKEN, null, authConfig.getXxCloud());
-        this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_xx_TOKEN, null, authConfig.getXxCorp());
-        this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_xx_TOKEN, null, authConfig.getXxCom());
+        this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_TOKEN, null, authConfig.getGatewayCloud());
+        this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_TOKEN, null, authConfig.getGatewayApps());
+        this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_TOKEN, null, authConfig.getXxApps());
+        this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_TOKEN, null, authConfig.getXxCloud());
+        this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_TOKEN, null, authConfig.getXxCorp());
+        this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_TOKEN, null, authConfig.getXxCom());
     }
 
 
@@ -132,8 +120,8 @@ public class AuthService {
      */
     private boolean logoutByTestOrProd(Map<String, Object> paramsMap, String appKey, String secret, String
             identity) {
-        SignUtils.addSignatureWithoutEnter(paramsMap, appKey, secret);
-        String resp = httpClientHelper.doPost(identity, new HashMap(16), paramsMap);
+        this.doSomeThing(paramsMap, appKey, secret);
+        String resp = this.doSomeThing(identity, new HashMap(16), paramsMap);
         if (StringUtils.isEmpty(resp)) {
             throw new RuntimeException("SSO Logout Failed !!!");
         }
@@ -155,7 +143,7 @@ public class AuthService {
      * @return
      */
     public String getUserTokenByGateway(ServerHttpRequest request) {
-        return this.authCookieUtils.getCookieByNameByReactive(request, Constant.SESSION_xx_TOKEN);
+        return this.authCookieUtils.getCookieByNameByReactive(request, Constant.SESSION_TOKEN);
     }
 
 
@@ -166,7 +154,7 @@ public class AuthService {
      * @return
      */
     public boolean isLoginByReactive(ServerHttpRequest request) {
-        String token = authCookieUtils.getCookieByNameByReactive(request, Constant.SESSION_xx_TOKEN);
+        String token = authCookieUtils.getCookieByNameByReactive(request, Constant.SESSION_TOKEN);
         if (StringUtils.isEmpty(token)) {
             return false;
         }
@@ -191,7 +179,7 @@ public class AuthService {
      * @return
      */
     public User getUserByReactive(ServerHttpRequest request) {
-        String token = authCookieUtils.getCookieByNameByReactive(request, Constant.SESSION_xx_TOKEN);
+        String token = authCookieUtils.getCookieByNameByReactive(request, Constant.SESSION_TOKEN);
         if (StringUtils.isEmpty(token)) {
             return null;
         }
@@ -216,7 +204,7 @@ public class AuthService {
      * @param response
      */
     public void logoutByGateway(ServerHttpRequest request, ServerHttpResponse response) {
-        String token = authCookieUtils.getCookieByNameByReactive(request, Constant.SESSION_xx_TOKEN);
+        String token = authCookieUtils.getCookieByNameByReactive(request, Constant.SESSION_TOKEN);
         if (StringUtils.isEmpty(token)) {
             return;
         } else {
@@ -238,7 +226,7 @@ public class AuthService {
      * @return
      */
     public User getUserByAuthToken(HttpServletRequest request) {
-        Cookie cookie = authCookieUtils.getCookieByName(request, Constant.SESSION_xx_TOKEN);
+        Cookie cookie = authCookieUtils.getCookieByName(request, Constant.SESSION_TOKEN);
         String token = cookie != null ? cookie.getValue() : null;
         if (StringUtils.isEmpty(token)) {
             return null;
@@ -264,7 +252,7 @@ public class AuthService {
      * @return
      */
     public boolean isLogin(HttpServletRequest request) {
-        Cookie cookie = authCookieUtils.getCookieByName(request, Constant.SESSION_xx_TOKEN);
+        Cookie cookie = authCookieUtils.getCookieByName(request, Constant.SESSION_TOKEN);
         String token = cookie != null ? cookie.getValue() : null;
         if (StringUtils.isEmpty(token)) {
             return false;
@@ -277,6 +265,26 @@ public class AuthService {
             }
         } catch (Exception e) {
             log.error("获取SSO用户信息失败", e);
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Login by feign
+     *
+     * @param token
+     * @return
+     */
+    public boolean isLoginByFeign(String token) {
+        User user = null;
+        try {
+            user = this.getUserByToken(token);
+            if (Objects.isNull(user)) {
+                return false;
+            }
+        } catch (Exception e) {
+            log.error(" isLoginByFeign : {} ", e);
             return false;
         }
         return true;
@@ -300,13 +308,13 @@ public class AuthService {
         switch (env) {
             case StringPool
                     .TEST:
-                SignUtils.addSignatureWithoutEnter(paramsMap, authConfig.getSsoTestAppKey(), authConfig.getSsoTestAppSecret());
-                resp = httpClientHelper.doPost(authConfig.getSsoTestIdentity(), new HashMap(16), paramsMap);
+                this.doSomeThing(paramsMap, authConfig.getSsoTestAppKey(), authConfig.getSsoTestAppSecret());
+                resp = this.doSomeThing(authConfig.getSsoTestIdentity(), new HashMap(16), paramsMap);
                 return parseAsUser(resp);
             case StringPool
                     .PROD:
-                SignUtils.addSignatureWithoutEnter(paramsMap, authConfig.getSsoProdAppKey(), authConfig.getSsoProdAppSecret());
-                resp = httpClientHelper.doPost(authConfig.getSsoProdIdentity(), new HashMap(16), paramsMap);
+                this.doSomeThing(paramsMap, authConfig.getSsoProdAppKey(), authConfig.getSsoProdAppSecret());
+                resp = this.doSomeThing(authConfig.getSsoProdIdentity(), new HashMap(16), paramsMap);
                 return parseAsUser(resp);
             default:
                 return null;

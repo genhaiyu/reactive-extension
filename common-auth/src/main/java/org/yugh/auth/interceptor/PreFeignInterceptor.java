@@ -19,8 +19,12 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 public class PreFeignInterceptor implements RequestInterceptor {
 
+    private final AuthService authService;
+
     @Autowired
-    AuthService authService;
+    public PreFeignInterceptor(AuthService authService) {
+        this.authService = authService;
+    }
 
     /**
      * 这里有两种实现方式：

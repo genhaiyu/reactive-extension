@@ -16,9 +16,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  * @author genhai yu
  */
 @SpringBootApplication
-@EntityScan("org.yugh.*")
-@ComponentScan(value = "org.yugh.*")
-@EnableJpaRepositories(basePackages={"org.yugh.*"})
+@EntityScan("org.yugh")
+@ComponentScan(value = "org.yugh")
+@EnableJpaRepositories(basePackages={"org.yugh"})
 public class RepositoryApplication {
 
 	public static void main(String[] args) {

@@ -3,7 +3,7 @@ package org.yugh.auth.annotation;
 import java.lang.annotation.*;
 
 /**
- * Skip auth
+ * 操作记录
  *
  * @author yugenhai
  */
@@ -11,13 +11,12 @@ import java.lang.annotation.*;
 @Inherited
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface PreSkipAuth {
+public @interface Operation {
 
     /**
-     * 说一句话
+     * 设置一个值
      *
      * @return
      */
-    String message() default "";
-
+    String value() default "";
 }

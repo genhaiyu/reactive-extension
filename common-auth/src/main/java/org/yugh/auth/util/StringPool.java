@@ -65,5 +65,12 @@ public interface StringPool {
     String UNKNOWN = "unknown";
     String FEIGN = "feign";
     String DATAWORKS_USER_INFO = "dataworks_user_info";
+    String DATAWORKS_TOKEN = "dataworks_token";
     String DATAWORKS_USER_DETAILS = "dataworks_user_details_";
+    String USERNAME = "username";
+    String USER_TYPE = "userType";
+    String PLATFORM = "platform";
+    String PHONE = "phone";
+    String ID = "id";
+    String GLOBAL_RPID = "rpid";
 }

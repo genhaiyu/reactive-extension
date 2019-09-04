@@ -5,6 +5,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.yugh.auth.common.constants.Constant;
 import org.yugh.auth.util.SnowFlakeUtil;
+import org.yugh.auth.util.StringPool;
 import org.yugh.auth.util.WebUtils;
 
 import javax.servlet.ServletRequestEvent;
@@ -33,7 +34,7 @@ public class PreAuthContext implements ServletRequestListener {
         Thread thread = Thread.currentThread();
         String rpid = SnowFlakeUtil.nextWaterFlow().toString();
         thread.setName(rpid);
-        WebUtils.setSession(request, Constant.GLOBAL_RPID, rpid);
+        WebUtils.setSession(request, StringPool.GLOBAL_RPID, rpid);
         LocaleContextHolder.setLocale(request.getLocale());
     }
 }

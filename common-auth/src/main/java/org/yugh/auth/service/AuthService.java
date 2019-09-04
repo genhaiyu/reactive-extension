@@ -1,26 +1,22 @@
 package org.yugh.auth.service;
 
+import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 import org.yugh.auth.common.constants.Constant;
 import org.yugh.auth.config.AuthConfig;
 import org.yugh.auth.pojo.dto.User;
-import org.yugh.auth.util.AuthCookieUtils;
-import org.yugh.auth.util.JsonUtils;
-import org.yugh.auth.util.StringPool;
-import org.yugh.auth.util.WebUtils;
+import org.yugh.auth.util.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * Main auth service
@@ -38,14 +34,50 @@ public class AuthService {
     private AuthCookieUtils authCookieUtils;
     @Autowired
     private AuthConfig authConfig;
+    @Autowired
+    private JwtHelper jwtHelper;
 
 
-    private void doSomeThing(Map<String, Object> paramsMap, String appKey, String secret){
+    private void doSomeThing(Map<String, Object> paramsMap, String appKey, String secret) {
         log.info("doSomeThing for map-> appKey-> secret");
     }
 
-    private String doSomeThing(String identity, HashMap map, Map<String, Object> paramsMap){
+    private String doSomeThing(String identity, HashMap map, Map<String, Object> paramsMap) {
         return "do something!";
+    }
+
+
+    /**
+     * token 转 对象
+     *
+     * @param request
+     * @return
+     */
+    public User parseUserToJwt(HttpServletRequest request) {
+        String token = this.getTokenByHeader(request);
+        Assert.notNull(token, "parseUserToJwt token is null");
+        Claims claims = jwtHelper.getAllClaimsFromToken(token);
+        Map<String, Object> userMap = (Map<String, Object>) claims.get(StringPool.DATAWORKS_USER_INFO);
+        try {
+            User user = (User) BeanMapUtils.map2Object(userMap, User.class);
+            return user;
+        } catch (Exception e) {
+            log.error("parseUserToJwt Exception :{}", e.getMessage());
+        }
+        return null;
+    }
+
+
+    /**
+     * 验证token是否失效
+     * <p>
+     * 异常由业务使用时捕捉，会出现用非法token校验
+     *
+     * @param token
+     * @return
+     */
+    public boolean validateToken(String token) {
+        return jwtHelper.validateToken(token);
     }
 
 
@@ -55,6 +87,7 @@ public class AuthService {
      * @param request
      * @return
      */
+    @Deprecated
     public String getToken(HttpServletRequest request) {
         String token;
         Cookie[] cookies = request.getCookies();
@@ -74,6 +107,24 @@ public class AuthService {
         if (!StringUtils.isEmpty((token = request.getHeader(Constant.SESSION_TOKEN)))) {
             WebUtils.setSession(request, StringPool.FEIGN, token);
             return token;
+        }
+        return null;
+    }
+
+
+    /**
+     * Get Jwt
+     *
+     * @param request
+     * @return
+     */
+    public String getTokenByHeader(HttpServletRequest request) {
+        String userToken;
+        if (!StringUtils.isEmpty(userToken = request.getHeader(StringPool.DATAWORKS_TOKEN))) {
+            return userToken;
+        }
+        if (!StringUtils.isEmpty((userToken = (String) request.getAttribute(StringPool.DATAWORKS_TOKEN)))) {
+            return userToken;
         }
         return null;
     }
@@ -158,9 +209,8 @@ public class AuthService {
         if (StringUtils.isEmpty(token)) {
             return false;
         }
-        User user = null;
         try {
-            user = this.getUserByToken(token);
+            User user = this.getUserByToken(token);
             if (StringUtils.isEmpty(user)) {
                 return false;
             }
@@ -183,9 +233,8 @@ public class AuthService {
         if (StringUtils.isEmpty(token)) {
             return null;
         }
-        User user = null;
         try {
-            user = this.getUserByToken(token);
+            User user = this.getUserByToken(token);
             if (StringUtils.isEmpty(user)) {
                 return null;
             }
@@ -231,9 +280,8 @@ public class AuthService {
         if (StringUtils.isEmpty(token)) {
             return null;
         }
-        User user = null;
         try {
-            user = this.getUserByToken(token);
+            User user = this.getUserByToken(token);
             if (Objects.nonNull(user)) {
                 return user;
             }
@@ -257,9 +305,8 @@ public class AuthService {
         if (StringUtils.isEmpty(token)) {
             return false;
         }
-        User user = null;
         try {
-            user = this.getUserByToken(token);
+            User user = this.getUserByToken(token);
             if (Objects.isNull(user)) {
                 return false;
             }
@@ -277,9 +324,8 @@ public class AuthService {
      * @return
      */
     public boolean isLoginByFeign(String token) {
-        User user = null;
         try {
-            user = this.getUserByToken(token);
+            User user = this.getUserByToken(token);
             if (Objects.isNull(user)) {
                 return false;
             }
@@ -301,9 +347,7 @@ public class AuthService {
         Map<String, Object> paramsMap = new HashMap(16);
         paramsMap.put("token", token);
         String env = authConfig.getEnvSwitch();
-        if (StringUtils.isEmpty(env)) {
-            throw new RuntimeException("!!!!!!!!!!! Not Found env !!!!!!!!!!!");
-        }
+        Assert.hasText(env, "envSwitch is Empty");
         String resp;
         switch (env) {
             case StringPool
@@ -358,6 +402,7 @@ public class AuthService {
     }
 
     /**
+     * 这是别人业务代码，只做参考
      * 解析SSO返回的用户信息
      *
      * @param userJSON

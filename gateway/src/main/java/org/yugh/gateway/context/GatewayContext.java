@@ -29,8 +29,17 @@ public class GatewayContext implements Serializable {
 
     /**
      * sso token
+     * 原SSO Cookie 已作废
+     * <p>
+     * Modify yugenhai 2019-09-03
      */
+    @Deprecated
     private String ssoToken;
+
+    /**
+     * 用户生成token ，透传到微服务中，防止跨域问题
+     */
+    private String userToken;
 
     /**
      * User no

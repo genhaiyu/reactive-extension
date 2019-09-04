@@ -32,10 +32,6 @@ public class GatewayController {
     @Autowired
     private AuthService authService;
 
-    @Autowired
-    CacheProcessAdapter cacheProcessAdapter;
-
-
     /**
      * Gateway default exception
      * <p>

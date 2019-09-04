@@ -45,15 +45,20 @@ public class CacheProcessAdapter extends AbstractCacheHandler implements SmartIn
     public Object getObjectByCache(String key) {
         try {
             long begin = System.currentTimeMillis();
-            log.info("开始查询实例缓存...");
-            Object obj = cache.get(key).orNull();
+            log.info("Get Guava Cache ...");
+            Object obj = cache.get(key);
             long end = System.currentTimeMillis();
-            log.info("查询实例缓存耗时 : {}", (end - begin));
+            log.info("Get Guava Cache Take Time : {}", (end - begin));
             return obj;
         } catch (Exception e) {
-            log.error("查询实例缓存异常", e);
+            log.error("Get Guava Cache Exception", e);
         }
         return null;
+    }
+
+    @Override
+    public void removeCacheKey(String key) {
+        this.cache.invalidate(key);
     }
 
 

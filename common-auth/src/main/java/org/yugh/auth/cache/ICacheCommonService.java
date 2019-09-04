@@ -22,4 +22,11 @@ public interface ICacheCommonService {
      * @return
      */
     Object getObjectByCache(String key);
+
+    /**
+     * 丢弃key
+     *
+     * @param key
+     */
+    void removeCacheKey(String key);
 }

@@ -19,6 +19,7 @@ import org.yugh.auth.common.enums.ResultEnum;
 import org.yugh.auth.config.AuthConfig;
 import org.yugh.auth.pojo.dto.User;
 import org.yugh.auth.service.AuthService;
+import org.yugh.auth.util.JwtHelper;
 import org.yugh.auth.util.ResultJson;
 import org.yugh.auth.util.StringPool;
 import org.yugh.gateway.context.GatewayContext;
@@ -27,6 +28,8 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 
 /**
@@ -48,6 +51,8 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
     private AuthConfig authConfig;
     @Autowired
     private CacheProcessAdapter cacheProcessAdapter;
+    @Autowired
+    private JwtHelper jwtHelper;
 
 
     /**
@@ -81,8 +86,7 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
                 response.setStatusCode(HttpStatus.UNAUTHORIZED);
                 return response.writeWith(Flux.just(buffer));
             }
-            exchange.getRequest().mutate().header(Constant.SESSION_TOKEN, context.getSsoToken());
-            ServerHttpRequest mutateReq = exchange.getRequest().mutate().header(Constant.DATAWORKS_GATEWAY_HEADERS, context.getSsoToken()).build();
+            ServerHttpRequest mutateReq = exchange.getRequest().mutate().header(StringPool.DATAWORKS_TOKEN, context.getUserToken()).build();
             ServerWebExchange mutableExchange = exchange.mutate().request(mutateReq).build();
             return chain.filter(mutableExchange);
         } else {
@@ -96,6 +100,10 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
 
     /**
      * Check SSO Return Token
+     * <p>
+     * 这里逻辑是从网关的用户有效后，直接加密用户token透传到微服务中
+     * <p>
+     * 接口调用默认不验证用户的SSO，auth组件直接解密token拿到用户信息
      *
      * @param context
      * @param request
@@ -108,10 +116,15 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
             log.info("Gateway Current State : {}", isLogin);
             if (isLogin) {
                 String ssoToken = authService.getUserTokenByGateway(request);
-                log.info("Gateway Current Token  : {}", ssoToken);
                 User user = authService.getUserByToken(ssoToken);
                 cacheProcessAdapter.sAdd(StringPool.DATAWORKS_USER_INFO, user.toString());
+                Map<String, Object> userMap = new HashMap(16);
+                String dataWorksUserInfo = StringPool.DATAWORKS_USER_INFO;
+                userMap.put(dataWorksUserInfo, user);
+                String token = jwtHelper.generateToken(dataWorksUserInfo, userMap);
                 context.setSsoToken(ssoToken);
+                context.setUserToken(token);
+                log.info("Gateway Current Cookie  : {}, Gateway Current Token  : {}", ssoToken, token);
             } else {
                 unLogin(context);
             }
@@ -187,8 +200,8 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
      * @return
      */
     private String getSsoUrl() {
-        Assert.notNull(authConfig, () -> "AuthConfig '" + authConfig + "' is null");
         String env = authConfig.getEnvSwitch();
+        Assert.hasText(env, "envSwitch is Empty");
         switch (env) {
             case StringPool
                     .TEST:

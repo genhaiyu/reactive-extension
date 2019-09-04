@@ -74,8 +74,9 @@ public class OptimisticLockRepository {
 
     /**
      * 只做秒杀减库存操作
-     * @author yugenhai
+     *
      * @return
+     * @author yugenhai
      */
     public int updateStock() {
         String update = "update goods set stock=stock-1,token_time=now() where id=1";

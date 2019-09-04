@@ -19,6 +19,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public final class ResultJson<T> implements Serializable {
 
+    private static final long serialVersionUID = 2053742054576495115L;
     @Setter(AccessLevel.PRIVATE)
     private Integer code;
     @Setter(AccessLevel.PRIVATE)

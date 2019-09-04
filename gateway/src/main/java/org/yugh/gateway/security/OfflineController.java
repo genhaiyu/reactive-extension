@@ -8,8 +8,8 @@ package org.yugh.gateway.security;
 import com.netflix.discovery.EurekaClient;
 import lombok.Synchronized;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.http.util.Asserts;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,6 +23,8 @@ import java.net.InetAddress;
 
 /**
  * Close this client
+ * <p>
+ * Test class
  *
  * @author yugenhai
  */
@@ -46,7 +48,7 @@ public class OfflineController {
     public ResultJson offline() {
         try {
             String flag = authConfig.getShutdownClient();
-            Asserts.notEmpty(flag, "AuthConfig's ShutdownClient '" + flag + "' is empty");
+            Assert.hasText(flag, "AuthConfig's ShutdownClient '" + flag + "' is empty");
             Boolean shutdown = Boolean.valueOf(flag);
             InetAddress addr = InetAddress.getLocalHost();
             if (StringPool.INSTANCE_IP.equals(addr.toString().split(StringPool.SLASH)[1]) || shutdown) {

@@ -2,7 +2,10 @@ package org.yugh.auth.config;
 
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
+import org.yugh.auth.util.JwtHelper;
 
 /**
  * Gateway check env
@@ -18,6 +21,7 @@ import org.springframework.stereotype.Component;
  */
 @Data
 @Component
+@Configuration
 public class AuthConfig {
 
     /**
@@ -85,5 +89,18 @@ public class AuthConfig {
     private String envSwitch;
     @Value("${shutdown.client}")
     private String shutdownClient;
+
+    /**
+     * JWT
+     */
+    @Value("${jwt.token.secret}")
+    private String jwtTokenSecret;
+    @Value("${jwt.token.expiration}")
+    private Long jwtTokenExpiration;
+
+    @Bean
+    public JwtHelper jwtHelper() {
+        return new JwtHelper(jwtTokenSecret, jwtTokenExpiration);
+    }
 
 }

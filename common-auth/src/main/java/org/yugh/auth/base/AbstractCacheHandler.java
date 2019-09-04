@@ -26,14 +26,21 @@ public abstract class AbstractCacheHandler implements ICacheCommonService, IRedi
      */
     public LoadingCache<String, Optional<Object>> cache = CacheBuilder
             .newBuilder()
+            // 设置并发级别为10，并发级别是指可以同时写缓存的线程数
             .concurrencyLevel(10)
-            .expireAfterWrite(30, TimeUnit.SECONDS)
+            // 给定时间内没有被读/写访问，则回收。
+            // .refreshAfterWrite(600, TimeUnit.SECONDS)
+            // 这个方法是根据某个键值对被创建或值被替换后多少时间移除
+            .expireAfterWrite(300, TimeUnit.SECONDS)
+            // 这个方法是根据某个键值对最后一次访问之后多少时间后移除
+            //.expireAfterAccess(GuavaProperties.GUAVA_EXPIRETIME, TimeUnit.SECONDS)
+            // 设置缓存容器的初始容量为100
             .initialCapacity(100)
-            .maximumSize(1000)
+            // 设置缓存最大容量为10000，超过10000之后就会按照LRU最近虽少使用算法来移除缓存项
+            .maximumSize(10000)
             .build(new CacheLoader<String, Optional<Object>>() {
                 @Override
-                public Optional<Object> load(
-                        String key) throws Exception {
+                public Optional<Object> load(String key) {
                     return Optional.fromNullable(loadCache(key));
                 }
             });

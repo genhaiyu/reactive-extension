@@ -8,7 +8,6 @@ package org.yugh.auth.common.enums;
  */
 public enum ResultEnum {
 
-
     SUCCESS(200, "成功"),
     BAD_REQUEST(400, "请求错误，请修正请求"),
     UNAUTHORIZED(401, "没有被授权或者授权已经失效"),
@@ -28,7 +27,9 @@ public enum ResultEnum {
     GATEWAY_DATA_CONVERT_ERROR(10004, "网关数据转换异常"),
     BLACK_SERVER_FOUND(10005, "禁止此方式访问服务网关"),
     HYSTRIX_ERROR(10006, "当前用户请求过于频繁，请歇会儿吧"),
-    FEIGN_ERROR(10007, "Feign调用失败！");
+    TOKEN_ILLEGAL(10007, "token非法"),
+    TOKEN_EXPIRED(10008, "token已过期"),
+    FEIGN_ERROR(10009, "Feign调用失败！");
 
 
     private Integer code;

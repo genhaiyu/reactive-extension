@@ -8,9 +8,15 @@ import java.lang.annotation.*;
  * @author yugenhai
  */
 @Documented
+@Inherited
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface PreAuth {
 
+    /**
+     * 设置一个值
+     *
+     * @return
+     */
     String value() default "";
 }

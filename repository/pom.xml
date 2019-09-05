@@ -10,7 +10,7 @@
     </parent>
     <groupId>org.yugh</groupId>
     <artifactId>repository</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <name>repository</name>
     <properties>
         <java.version>1.8</java.version>

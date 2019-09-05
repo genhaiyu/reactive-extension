@@ -1,0 +1,99 @@
+[INFO ] 2019-09-04 14:12:45 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$b1d7b138] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-09-04 14:12:47 [main] o.s.c.c.c.ConfigServicePropertySourceLocator [{ConfigServicePropertySourceLocator.java} {207}] - Fetching config from server at : http://localhost:8888
+[INFO ] 2019-09-04 14:12:47 [main] o.s.c.c.c.ConfigServicePropertySourceLocator [{ConfigServicePropertySourceLocator.java} {230}] - Connect Timeout Exception on Url - http://localhost:8888. Will be trying the next url if available
+[INFO ] 2019-09-04 14:12:47 [main] o.yugh.customer.CustomerApplication [{SpringApplication.java} {679}] - The following profiles are active: dev
+[INFO ] 2019-09-04 14:12:47 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {244}] - Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO ] 2019-09-04 14:12:47 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {126}] - Bootstrapping Spring Data repositories in DEFAULT mode.
+[INFO ] 2019-09-04 14:12:47 [main] o.s.d.r.c.RepositoryConfigurationDelegate [{RepositoryConfigurationDelegate.java} {182}] - Finished Spring Data repository scanning in 19ms. Found 0 repository interfaces.
+[INFO ] 2019-09-04 14:12:47 [main] o.s.cloud.context.scope.GenericScope [{GenericScope.java} {295}] - BeanFactory id=e8f55670-5c91-3f2b-8d1a-4eedec3527d1
+[INFO ] 2019-09-04 14:12:47 [main] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [{PostProcessorRegistrationDelegate.java} {330}] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$b1d7b138] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-09-04 14:12:47 [main] o.s.b.w.e.tomcat.TomcatWebServer [{TomcatWebServer.java} {90}] - Tomcat initialized with port(s): 8705 (http)
+[INFO ] 2019-09-04 14:12:47 [main] o.a.coyote.http11.Http11NioProtocol [{DirectJDKLog.java} {173}] - Initializing ProtocolHandler ["http-nio-8705"]
+[INFO ] 2019-09-04 14:12:47 [main] o.a.catalina.core.StandardService [{DirectJDKLog.java} {173}] - Starting service [Tomcat]
+[INFO ] 2019-09-04 14:12:47 [main] o.a.catalina.core.StandardEngine [{DirectJDKLog.java} {173}] - Starting Servlet engine: [Apache Tomcat/9.0.19]
+[INFO ] 2019-09-04 14:12:47 [main] o.a.c.c.C.[Tomcat].[localhost].[/] [{DirectJDKLog.java} {173}] - Initializing Spring embedded WebApplicationContext
+[INFO ] 2019-09-04 14:12:47 [main] o.s.web.context.ContextLoader [{ServletWebServerApplicationContext.java} {296}] - Root WebApplicationContext: initialization completed in 1928 ms
+[INFO ] 2019-09-04 14:12:47 [main] c.n.c.sources.URLConfigurationSource [{URLConfigurationSource.java} {126}] - URLs to be used as dynamic configuration source: [file:/Users/yuzhilin/IdeaProjects/open-source/framework-applications/customer/target/classes/config.properties]
+[INFO ] 2019-09-04 14:12:47 [main] c.n.config.DynamicPropertyFactory [{DynamicPropertyFactory.java} {281}] - DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@7d528cf7
+[INFO ] 2019-09-04 14:12:47 [main] o.s.b.a.e.w.ServletEndpointRegistrar [{ServletEndpointRegistrar.java} {78}] - Registered '/actuator/hystrix.stream' to hystrix.stream-actuator-endpoint
+[INFO ] 2019-09-04 14:12:47 [main] c.n.c.sources.URLConfigurationSource [{URLConfigurationSource.java} {126}] - URLs to be used as dynamic configuration source: [file:/Users/yuzhilin/IdeaProjects/open-source/framework-applications/customer/target/classes/config.properties]
+[INFO ] 2019-09-04 14:12:47 [main] o.s.s.c.ThreadPoolTaskExecutor [{ExecutorConfigurationSupport.java} {171}] - Initializing ExecutorService 'applicationTaskExecutor'
+[INFO ] 2019-09-04 14:12:47 [main] o.s.b.a.e.web.EndpointLinksResolver [{EndpointLinksResolver.java} {59}] - Exposing 20 endpoint(s) beneath base path '/actuator'
+[INFO ] 2019-09-04 14:12:47 [main] o.s.c.n.t.SpringAggregatorFactory [{SpringAggregatorFactory.java} {64}] - Could not find monitors: []
+[INFO ] 2019-09-04 14:12:47 [main] c.n.t.monitor.cluster.ClusterMonitor [{ClusterMonitor.java} {232}] - Registering event handler for cluster monitor: StaticListener_For_Aggregator
+[INFO ] 2019-09-04 14:12:47 [main] c.n.t.handler.TurbineDataDispatcher [{TurbineDataDispatcher.java} {176}] - 
+
+Just added and starting handler tuple: StaticListener_For_Aggregator
+[INFO ] 2019-09-04 14:12:47 [main] c.n.t.monitor.cluster.ClusterMonitor [{ClusterMonitor.java} {234}] - All event handlers for cluster monitor: [StaticListener_For_Aggregator]
+[INFO ] 2019-09-04 14:12:47 [main] c.n.t.monitor.cluster.ClusterMonitor [{ClusterMonitor.java} {149}] - Starting up the cluster monitor for default_agg
+[INFO ] 2019-09-04 14:12:47 [main] c.n.t.discovery.InstanceObservable [{InstanceObservable.java} {178}] - Starting InstanceObservable at frequency: 60000 millis
+[INFO ] 2019-09-04 14:12:47 [Timer-0] o.s.c.n.t.CommonsInstanceDiscovery [{CommonsInstanceDiscovery.java} {107}] - No apps configured, returning an empty instance list
+[INFO ] 2019-09-04 14:12:47 [Timer-0] c.n.t.discovery.InstanceObservable [{InstanceObservable.java} {260}] - Retrieved hosts from InstanceDiscovery: 0
+[INFO ] 2019-09-04 14:12:47 [Timer-0] c.n.t.discovery.InstanceObservable [{InstanceObservable.java} {272}] - Found hosts that have been previously terminated: 0
+[INFO ] 2019-09-04 14:12:47 [Timer-0] c.n.t.discovery.InstanceObservable [{InstanceObservable.java} {289}] - Hosts up:0, hosts down: 0
+[INFO ] 2019-09-04 14:12:47 [main] o.s.c.n.eureka.InstanceInfoFactory [{InstanceInfoFactory.java} {72}] - Setting initial instance status as: STARTING
+[INFO ] 2019-09-04 14:12:47 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {349}] - Initializing Eureka in region us-east-1
+[INFO ] 2019-09-04 14:12:47 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {70}] - Using JSON encoding codec LegacyJacksonJson
+[INFO ] 2019-09-04 14:12:47 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {71}] - Using JSON decoding codec LegacyJacksonJson
+[INFO ] 2019-09-04 14:12:47 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {80}] - Using XML encoding codec XStreamXml
+[INFO ] 2019-09-04 14:12:47 [main] c.n.d.p.DiscoveryJerseyProvider [{DiscoveryJerseyProvider.java} {81}] - Using XML decoding codec XStreamXml
+[INFO ] 2019-09-04 14:12:47 [main] c.n.d.s.r.aws.ConfigClusterResolver [{ConfigClusterResolver.java} {43}] - Resolving eureka endpoints via configuration
+[INFO ] 2019-09-04 14:12:47 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {958}] - Disable delta property : false
+[INFO ] 2019-09-04 14:12:47 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {959}] - Single vip registry refresh property : null
+[INFO ] 2019-09-04 14:12:47 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {960}] - Force full registry fetch : false
+[INFO ] 2019-09-04 14:12:47 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {961}] - Application is null : false
+[INFO ] 2019-09-04 14:12:47 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {962}] - Registered Applications size is zero : true
+[INFO ] 2019-09-04 14:12:47 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {964}] - Application version is -1: true
+[INFO ] 2019-09-04 14:12:47 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1047}] - Getting all instance registry info from the eureka server
+[INFO ] 2019-09-04 14:12:47 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1056}] - The response status is 200
+[INFO ] 2019-09-04 14:12:47 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1270}] - Starting heartbeat executor: renew interval is: 30
+[INFO ] 2019-09-04 14:12:47 [main] c.n.discovery.InstanceInfoReplicator [{InstanceInfoReplicator.java} {60}] - InstanceInfoReplicator onDemand update allowed rate per min is 4
+[INFO ] 2019-09-04 14:12:47 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {449}] - Discovery Client initialized at timestamp 1567577572693 with initial instances count: 0
+[INFO ] 2019-09-04 14:12:47 [main] o.s.c.n.e.s.EurekaServiceRegistry [{EurekaServiceRegistry.java} {41}] - Registering application CUSTOMER with eureka with status UP
+[INFO ] 2019-09-04 14:12:47 [main] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1305}] - Saw local status change event StatusChangeEvent [timestamp=1567577572704, current=UP, previous=STARTING]
+[INFO ] 2019-09-04 14:12:47 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {826}] - DiscoveryClient_CUSTOMER/10.45.53.191:customer:8705: registering service...
+[INFO ] 2019-09-04 14:12:47 [main] o.a.coyote.http11.Http11NioProtocol [{DirectJDKLog.java} {173}] - Starting ProtocolHandler ["http-nio-8705"]
+[INFO ] 2019-09-04 14:12:47 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {835}] - DiscoveryClient_CUSTOMER/10.45.53.191:customer:8705 - registration status: 204
+[INFO ] 2019-09-04 14:12:47 [main] o.s.b.w.e.tomcat.TomcatWebServer [{TomcatWebServer.java} {204}] - Tomcat started on port(s): 8705 (http) with context path ''
+[INFO ] 2019-09-04 14:12:47 [main] o.s.c.n.e.s.EurekaAutoServiceRegistration [{EurekaAutoServiceRegistration.java} {143}] - Updating port to 8705
+[INFO ] 2019-09-04 14:12:47 [main] o.yugh.customer.CustomerApplication [{StartupInfoLogger.java} {59}] - Started CustomerApplication in 8.3 seconds (JVM running for 10.489)
+[INFO ] 2019-09-04 14:12:47 [RMI TCP Connection(12)-10.45.53.191] o.a.c.c.C.[Tomcat].[localhost].[/] [{DirectJDKLog.java} {173}] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 2019-09-04 14:12:47 [RMI TCP Connection(12)-10.45.53.191] o.s.web.servlet.DispatcherServlet [{FrameworkServlet.java} {524}] - Initializing Servlet 'dispatcherServlet'
+[INFO ] 2019-09-04 14:12:47 [RMI TCP Connection(11)-10.45.53.191] o.s.c.c.c.ConfigServicePropertySourceLocator [{ConfigServicePropertySourceLocator.java} {207}] - Fetching config from server at : http://localhost:8888
+[INFO ] 2019-09-04 14:12:47 [RMI TCP Connection(11)-10.45.53.191] o.s.c.c.c.ConfigServicePropertySourceLocator [{ConfigServicePropertySourceLocator.java} {230}] - Connect Timeout Exception on Url - http://localhost:8888. Will be trying the next url if available
+[INFO ] 2019-09-04 14:12:47 [RMI TCP Connection(12)-10.45.53.191] o.s.web.servlet.DispatcherServlet [{FrameworkServlet.java} {546}] - Completed initialization in 17 ms
+[INFO ] 2019-09-04 14:12:47 [parallel-1] io.lettuce.core.EpollProvider [{EpollProvider.java} {68}] - Starting without optional epoll library
+[INFO ] 2019-09-04 14:12:47 [parallel-1] io.lettuce.core.KqueueProvider [{KqueueProvider.java} {70}] - Starting without optional kqueue library
+[INFO ] 2019-09-04 14:12:47 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {958}] - Disable delta property : false
+[INFO ] 2019-09-04 14:12:47 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {959}] - Single vip registry refresh property : null
+[INFO ] 2019-09-04 14:12:47 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {960}] - Force full registry fetch : false
+[INFO ] 2019-09-04 14:12:47 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {961}] - Application is null : false
+[INFO ] 2019-09-04 14:12:47 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {962}] - Registered Applications size is zero : true
+[INFO ] 2019-09-04 14:12:47 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {964}] - Application version is -1: false
+[INFO ] 2019-09-04 14:12:47 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1047}] - Getting all instance registry info from the eureka server
+[INFO ] 2019-09-04 14:12:47 [DiscoveryClient-CacheRefreshExecutor-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1056}] - The response status is 200
+[INFO ] 2019-09-04 14:12:47 [Timer-0] o.s.c.n.t.CommonsInstanceDiscovery [{CommonsInstanceDiscovery.java} {107}] - No apps configured, returning an empty instance list
+[INFO ] 2019-09-04 14:12:47 [Timer-0] c.n.t.discovery.InstanceObservable [{InstanceObservable.java} {260}] - Retrieved hosts from InstanceDiscovery: 0
+[INFO ] 2019-09-04 14:12:47 [Timer-0] c.n.t.discovery.InstanceObservable [{InstanceObservable.java} {272}] - Found hosts that have been previously terminated: 0
+[INFO ] 2019-09-04 14:12:47 [Timer-0] c.n.t.discovery.InstanceObservable [{InstanceObservable.java} {289}] - Hosts up:0, hosts down: 0
+[INFO ] 2019-09-04 14:12:47 [Timer-0] o.s.c.n.t.CommonsInstanceDiscovery [{CommonsInstanceDiscovery.java} {107}] - No apps configured, returning an empty instance list
+[INFO ] 2019-09-04 14:12:47 [Timer-0] c.n.t.discovery.InstanceObservable [{InstanceObservable.java} {260}] - Retrieved hosts from InstanceDiscovery: 0
+[INFO ] 2019-09-04 14:12:47 [Timer-0] c.n.t.discovery.InstanceObservable [{InstanceObservable.java} {272}] - Found hosts that have been previously terminated: 0
+[INFO ] 2019-09-04 14:12:47 [Timer-0] c.n.t.discovery.InstanceObservable [{InstanceObservable.java} {289}] - Hosts up:0, hosts down: 0
+[INFO ] 2019-09-04 14:12:47 [Timer-0] o.s.c.n.t.CommonsInstanceDiscovery [{CommonsInstanceDiscovery.java} {107}] - No apps configured, returning an empty instance list
+[INFO ] 2019-09-04 14:12:47 [Timer-0] c.n.t.discovery.InstanceObservable [{InstanceObservable.java} {260}] - Retrieved hosts from InstanceDiscovery: 0
+[INFO ] 2019-09-04 14:12:47 [Timer-0] c.n.t.discovery.InstanceObservable [{InstanceObservable.java} {272}] - Found hosts that have been previously terminated: 0
+[INFO ] 2019-09-04 14:12:47 [Timer-0] c.n.t.discovery.InstanceObservable [{InstanceObservable.java} {289}] - Hosts up:0, hosts down: 0
+[INFO ] 2019-09-04 14:12:47 [Timer-0] o.s.c.n.t.CommonsInstanceDiscovery [{CommonsInstanceDiscovery.java} {107}] - No apps configured, returning an empty instance list
+[INFO ] 2019-09-04 14:12:47 [Timer-0] c.n.t.discovery.InstanceObservable [{InstanceObservable.java} {260}] - Retrieved hosts from InstanceDiscovery: 0
+[INFO ] 2019-09-04 14:12:47 [Timer-0] c.n.t.discovery.InstanceObservable [{InstanceObservable.java} {272}] - Found hosts that have been previously terminated: 0
+[INFO ] 2019-09-04 14:12:47 [Timer-0] c.n.t.discovery.InstanceObservable [{InstanceObservable.java} {289}] - Hosts up:0, hosts down: 0
+[INFO ] 2019-09-04 14:12:47 [Timer-0] o.s.c.n.t.CommonsInstanceDiscovery [{CommonsInstanceDiscovery.java} {107}] - No apps configured, returning an empty instance list
+[INFO ] 2019-09-04 14:12:47 [Timer-0] c.n.t.discovery.InstanceObservable [{InstanceObservable.java} {260}] - Retrieved hosts from InstanceDiscovery: 0
+[INFO ] 2019-09-04 14:12:47 [Timer-0] c.n.t.discovery.InstanceObservable [{InstanceObservable.java} {272}] - Found hosts that have been previously terminated: 0
+[INFO ] 2019-09-04 14:12:47 [Timer-0] c.n.t.discovery.InstanceObservable [{InstanceObservable.java} {289}] - Hosts up:0, hosts down: 0
+[INFO ] 2019-09-04 14:12:47 [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver [{ConfigClusterResolver.java} {43}] - Resolving eureka endpoints via configuration
+[INFO ] 2019-09-04 14:12:47 [Thread-30] o.s.c.n.e.s.EurekaServiceRegistry [{EurekaServiceRegistry.java} {65}] - Unregistering application CUSTOMER with eureka with status DOWN
+[INFO ] 2019-09-04 14:12:47 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {826}] - DiscoveryClient_CUSTOMER/10.45.53.191:customer:8705: registering service...
+[INFO ] 2019-09-04 14:12:47 [Thread-30] o.s.s.c.ThreadPoolTaskExecutor [{ExecutorConfigurationSupport.java} {208}] - Shutting down ExecutorService 'applicationTaskExecutor'
+[INFO ] 2019-09-04 14:12:47 [Thread-30] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {888}] - Shutting down DiscoveryClient ...

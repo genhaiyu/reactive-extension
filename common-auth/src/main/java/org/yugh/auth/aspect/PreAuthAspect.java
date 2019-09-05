@@ -15,6 +15,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.yugh.auth.annotation.PreSkipAuth;
 import org.yugh.auth.common.enums.ResultEnum;
+import org.yugh.auth.exception.BusinessException;
 import org.yugh.auth.service.AuthService;
 import org.yugh.auth.util.StringPool;
 
@@ -126,11 +127,10 @@ public class PreAuthAspect {
         try {
             isValidate = authService.validateToken(token);
         } catch (Exception e) {
-            throw new RuntimeException(ResultEnum.TOKEN_ILLEGAL.getValue());
+            throw new BusinessException(ResultEnum.TOKEN_ILLEGAL);
         }
         if (!isValidate) {
-            // 待修改 FIXME
-            throw new RuntimeException(ResultEnum.TOKEN_EXPIRED.getValue());
+            throw new BusinessException(ResultEnum.TOKEN_EXPIRED);
         } else {
             return joinPoint.proceed();
         }

@@ -55,7 +55,9 @@ public class AuthService {
      */
     public User parseUserToJwt(HttpServletRequest request) {
         String token = this.getTokenByHeader(request);
-        Assert.notNull(token, "parseUserToJwt token is null");
+        if (StringUtils.isEmpty(token)) {
+            return null;
+        }
         Claims claims = jwtHelper.getAllClaimsFromToken(token);
         Map<String, Object> userMap = (Map<String, Object>) claims.get(StringPool.DATAWORKS_USER_INFO);
         try {
@@ -215,11 +217,12 @@ public class AuthService {
                 return false;
             }
         } catch (Exception e) {
-            log.error("获取SSO用户信息失败", e);
+            log.error("getUserByToken Failed !!!", e);
             return false;
         }
         return true;
     }
+
 
 
     /**
@@ -240,7 +243,7 @@ public class AuthService {
             }
             return user;
         } catch (Exception e) {
-            log.error("获取SSO用户信息失败", e);
+            log.error("getUserByToken Failed !!!", e);
             return null;
         }
     }
@@ -259,10 +262,10 @@ public class AuthService {
         } else {
             try {
                 this.logoutByToken(token);
-                this.removeCookieByGateway(response);
+                //this.removeCookieByGateway(response);
             } catch (Exception e) {
-                log.error("注销失败 : {}", e);
-                throw new RuntimeException("注销失败 : {}" + e.getMessage());
+                log.error("logoutByToken Failed !!!", e);
+                throw new RuntimeException("logoutByToken Failed !!!" + e.getMessage());
             }
         }
     }
@@ -286,7 +289,7 @@ public class AuthService {
                 return user;
             }
         } catch (Exception e) {
-            log.error("获取SSO用户信息失败", e);
+            log.error("getUserByToken Failed !!!", e);
             return null;
         }
         return null;
@@ -311,7 +314,7 @@ public class AuthService {
                 return false;
             }
         } catch (Exception e) {
-            log.error("获取SSO用户信息失败", e);
+            log.error("getUserByToken Failed !!!", e);
             return false;
         }
         return true;
@@ -381,25 +384,20 @@ public class AuthService {
             Map<String, Object> paramsMap = new HashMap(16);
             paramsMap.put("token", token);
             String env = authConfig.getEnvSwitch();
+            Assert.hasText(env, "envSwitch is Empty");
             switch (env) {
                 case StringPool
                         .TEST:
-                    boolean test = this.logoutByTestOrProd(paramsMap, authConfig.getSsoTestAppKey(), authConfig.getSsoTestAppSecret(), authConfig.getSsoTestIdentity());
-                    if (test) {
-                        return true;
-                    }
-                    return false;
+                    return this.logoutByTestOrProd(paramsMap, authConfig.getSsoTestAppKey(), authConfig.getSsoTestAppSecret(), authConfig.getSsoTestIdentity());
                 case StringPool
                         .PROD:
-                    boolean prod = this.logoutByTestOrProd(paramsMap, authConfig.getSsoProdAppKey(), authConfig.getSsoProdAppSecret(), authConfig.getSsoProdIdentity());
-                    if (prod) {
-                        return true;
-                    }
+                    return this.logoutByTestOrProd(paramsMap, authConfig.getSsoProdAppKey(), authConfig.getSsoProdAppSecret(), authConfig.getSsoProdIdentity());
                 default:
                     return false;
             }
         }
     }
+
 
     /**
      * 这是别人业务代码，只做参考

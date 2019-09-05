@@ -22,15 +22,8 @@
         <dependency>
             <groupId>org.yugh</groupId>
             <artifactId>common-auth</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
-        <!-- moss -->
-        <!--<dependency>
-            <groupId>org.xujin.moss</groupId>
-            <artifactId>moss-client-2.x</artifactId>
-            <version>1.0.0.RELEASE</version>
-        </dependency>-->
-
         <!-- gateway -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

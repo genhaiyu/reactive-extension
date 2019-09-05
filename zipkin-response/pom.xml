@@ -10,7 +10,7 @@
     </parent>
     <groupId>org.yugh.zipkin</groupId>
     <artifactId>zipkin-response</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
 
     <properties>
         <java.version>1.8</java.version>

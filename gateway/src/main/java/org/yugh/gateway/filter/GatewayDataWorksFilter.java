@@ -71,7 +71,6 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
         GatewayContext context = new GatewayContext();
         ServerHttpRequest request = exchange.getRequest();
         ServerHttpResponse response = exchange.getResponse();
-        response.getHeaders().setContentType(MediaType.APPLICATION_JSON_UTF8);
         if (blackServersCheck(context, exchange)) {
             response.setStatusCode(HttpStatus.FORBIDDEN);
             byte[] failureInfo = ResultJson.failure(ResultEnum.BLACK_SERVER_FOUND).toString().getBytes(StandardCharsets.UTF_8);
@@ -113,18 +112,19 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
     private void authToken(GatewayContext context, ServerHttpRequest request) {
         try {
             boolean isLogin = authService.isLoginByReactive(request);
-            log.info("Gateway Current State : {}", isLogin);
             if (isLogin) {
                 String ssoToken = authService.getUserTokenByGateway(request);
                 User user = authService.getUserByToken(ssoToken);
-                cacheProcessAdapter.sAdd(StringPool.DATAWORKS_USER_INFO, user.toString());
+                try {
+                    cacheProcessAdapter.sAdd(StringPool.DATAWORKS_USER_INFO, user.toString());
+                } catch (Exception e) {
+                    log.error("Redis Exception : {}", e.getMessage());
+                }
                 Map<String, Object> userMap = new HashMap(16);
                 String dataWorksUserInfo = StringPool.DATAWORKS_USER_INFO;
                 userMap.put(dataWorksUserInfo, user);
                 String token = jwtHelper.generateToken(dataWorksUserInfo, userMap);
-                context.setSsoToken(ssoToken);
                 context.setUserToken(token);
-                log.info("Gateway Current Cookie  : {}, Gateway Current Token  : {}", ssoToken, token);
             } else {
                 unLogin(context);
             }
@@ -133,7 +133,6 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
             context.setDoNext(false);
         }
     }
-
 
     /**
      * + "?returnUrl=" + request.getURI()

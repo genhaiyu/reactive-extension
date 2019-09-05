@@ -12,14 +12,18 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.multipart.MultipartFile;
 import org.yugh.auth.annotation.Operation;
 import org.yugh.auth.common.enums.ResultEnum;
+import org.yugh.auth.exception.BusinessException;
 import org.yugh.auth.pojo.bo.SysLogBO;
 import org.yugh.auth.pojo.dto.User;
 import org.yugh.auth.service.AuthService;
 import org.yugh.auth.util.IpAddressUtil;
 import org.yugh.auth.util.JsonUtils;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
 import java.util.Date;
@@ -47,12 +51,15 @@ public class SysLogAspect {
 
 
     /**
-     * 日志执行
+     * 1:在类或方法上加 @Operation(value="操作的功能")
+     * 2:在该方法执行完毕后执行本切面功能
+     * 4:避开解析ServletRequest ServletResponse MultipartFile 等会产生递归栈溢出的对象
+     * 3:只是参考日志记录，只做输出，微服务要单独声明并做保存
      *
      * @param joinPoint
      */
     @AfterReturning("pointMethod() || pointType()")
-    public void saveSysLog(JoinPoint joinPoint) {
+    public void printSysLog(JoinPoint joinPoint) {
         SysLogBO sysLogBO = new SysLogBO();
         Method method = ((MethodSignature) joinPoint.getSignature()).getMethod();
         Operation operation = method.getAnnotation(Operation.class);
@@ -64,11 +71,18 @@ public class SysLogAspect {
         String methodName = method.getName();
         sysLogBO.setMethod(className + "." + methodName);
         Object[] args = joinPoint.getArgs();
+        Object[] arguments = new Object[args.length];
+        for (int i = 0; i < args.length; i++) {
+            if (args[i] instanceof ServletRequest || args[i] instanceof ServletResponse || args[i] instanceof MultipartFile) {
+                continue;
+            }
+            arguments[i] = args[i];
+        }
         String params = null;
         try {
-            params = JsonUtils.toJson(args);
+            params = JsonUtils.toJson(arguments);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(" objectMapper.writeValueAsString Exception : {}", e.getMessage());
         }
         sysLogBO.setParams(params);
         sysLogBO.setCreateDate(new Date());
@@ -81,14 +95,13 @@ public class SysLogAspect {
             throw new RuntimeException("User not login SSO, please Login To Gateway !");
         }
         boolean isValidate;
-        try{
+        try {
             isValidate = authService.validateToken(token);
-        }catch (Exception e){
-            throw new RuntimeException(ResultEnum.TOKEN_ILLEGAL.getValue());
+        } catch (Exception e) {
+            throw new BusinessException(ResultEnum.TOKEN_ILLEGAL);
         }
         if (!isValidate) {
-            // 待修改 FIXME
-            throw new RuntimeException(ResultEnum.TOKEN_EXPIRED.getValue());
+            throw new BusinessException(ResultEnum.TOKEN_EXPIRED);
         } else {
             User user = authService.parseUserToJwt(request);
             if (StringUtils.isEmpty(user)) {

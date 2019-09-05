@@ -1,7 +1,7 @@
 package org.yugh.auth.exception;
 
-import com.guazi.dataworks.auth.common.enums.ResultEnum;
 import lombok.Getter;
+import org.yugh.auth.common.enums.ResultEnum;
 
 /**
  * 带业务枚举的异常

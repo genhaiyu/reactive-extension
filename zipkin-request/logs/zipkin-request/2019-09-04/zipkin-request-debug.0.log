@@ -1,0 +1,1 @@
+[DEBUG] 2019-09-04 14:22:40 [main] o.s.c.o.FeignClientsRegistrar$2 [{ClassPathScanningCandidateComponentProvider.java} {437}] - Identified candidate component class: file [/Users/yuzhilin/IdeaProjects/open-source/framework-applications/zipkin-request/target/classes/org/yugh/zipkin/sentinel/feign/ICallResponseService.class]

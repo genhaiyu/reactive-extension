@@ -28,23 +28,11 @@
              <artifactId>moss-client-2.x</artifactId>
              <version>1.0.0.RELEASE</version>
          </dependency>-->
-
-        <dependency>
-            <groupId>org.yugh</groupId>
-            <artifactId>common</artifactId>
-            <version>1.0.1-SNAPSHOT</version>
-        </dependency>
-
         <!-- 权限-->
         <dependency>
             <groupId>org.yugh</groupId>
             <artifactId>common-auth</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -101,7 +89,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
     <build>
         <plugins>
             <plugin>
@@ -110,5 +97,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

@@ -21,7 +21,6 @@
     </properties>
 
     <dependencies>
-
         <!-- moss -->
         <!--<dependency>
             <groupId>org.xujin.moss</groupId>
@@ -29,34 +28,11 @@
             <version>1.0.0.RELEASE</version>
         </dependency>-->
 
-        <!-- <dependency>
-             <groupId>org.yugh</groupId>
-             <artifactId>common</artifactId>
-             <version>1.0.1-SNAPSHOT</version>
-             <exclusions>
-                 <exclusion>
-                     <groupId>org.springframework.boot</groupId>
-                     <artifactId>spring-boot-starter-data-redis-reactive</artifactId>
-                 </exclusion>
-             </exclusions>
-         </dependency>-->
-
         <!-- 权限-->
         <dependency>
             <groupId>org.yugh</groupId>
             <artifactId>common-auth</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.58</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -72,14 +48,6 @@
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
@@ -91,8 +59,7 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-zipkin</artifactId>
         </dependency>-->
-        <!--
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.amqp</groupId>
             <artifactId>spring-rabbit</artifactId>
         </dependency>
@@ -108,7 +75,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-turbine</artifactId>
         </dependency>
-
     </dependencies>
 
     <dependencyManagement>
@@ -129,8 +95,6 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-
-
             <!-- moss -->
             <plugin>
                 <groupId>pl.project13.maven</groupId>
@@ -147,8 +111,6 @@
                     <dotGitDirectory>${project.basedir}/.git</dotGitDirectory>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
-
 </project>

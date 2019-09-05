@@ -127,10 +127,10 @@ public class PreAuthAspect {
         try {
             isValidate = authService.validateToken(token);
         } catch (Exception e) {
-            throw new BusinessException(ResultEnum.TOKEN_ILLEGAL);
+            throw new RuntimeException(ResultEnum.TOKEN_ILLEGAL.getValue());
         }
         if (!isValidate) {
-            throw new BusinessException(ResultEnum.TOKEN_EXPIRED);
+            throw new RuntimeException(ResultEnum.TOKEN_EXPIRED.getValue());
         } else {
             return joinPoint.proceed();
         }

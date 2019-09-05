@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
-import org.yugh.zuul.common.constants.Constant;
-import org.yugh.zuul.common.enums.DeployEnum;
-import org.yugh.zuul.common.enums.HttpStatusEnum;
-import org.yugh.zuul.common.enums.ResultEnum;
+import org.yugh.auth.common.enums.DeployEnum;
+import org.yugh.auth.common.enums.HttpStatusEnum;
+import org.yugh.auth.common.enums.ResultEnum;
+import org.yugh.auth.util.ResultJson;
+import org.yugh.auth.util.StringPool;
 import org.yugh.zuul.config.RedisClient;
 import org.yugh.zuul.config.ZuulPropConfig;
-import org.yugh.zuul.util.ResultJson;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -91,7 +91,7 @@ public class PreAuthFilter extends ZuulFilter {
         HttpServletRequest request = context.getRequest();
         String requestMethod = context.getRequest().getMethod();
         //判断请求方式
-        if (Constant.OPTIONS.equals(requestMethod)) {
+        if (StringPool.OPTIONS.equals(requestMethod)) {
             log.info("请求的跨域的地址 : {}   跨域的方法", request.getServletPath(), requestMethod);
             assemblyCross(context);
             context.setResponseStatusCode(HttpStatusEnum.OK.code());
@@ -101,7 +101,7 @@ public class PreAuthFilter extends ZuulFilter {
         //转发信息共享 其他服务不要依赖MVC拦截器，或重写拦截器
         if (isIgnore(request, this::exclude, this::checkLength)) {
             String token = getCookieBySso(request);
-            if(!StringUtils.isEmpty(token)){
+            if (!StringUtils.isEmpty(token)) {
                 //context.addZuulRequestHeader(JwtUtil.HEADER_AUTH, token);
             }
             log.info("请求白名单地址 : {} ", request.getServletPath());
@@ -215,6 +215,7 @@ public class PreAuthFilter extends ZuulFilter {
 
     /**
      * 判断是否忽略对请求的校验
+     *
      * @param request
      * @param functions
      * @return
@@ -226,6 +227,7 @@ public class PreAuthFilter extends ZuulFilter {
 
     /**
      * 判断是否存在地址
+     *
      * @param request
      * @return
      */
@@ -242,20 +244,22 @@ public class PreAuthFilter extends ZuulFilter {
 
     /**
      * 校验请求连接是否合法
+     *
      * @param request
      * @return
      */
     private boolean checkLength(HttpServletRequest request) {
-        return request.getServletPath().length() <= Constant.PATH_LENGTH || CollectionUtils.isEmpty(zuulPropConfig.getApiUrlMap());
+        return request.getServletPath().length() <= StringPool.YES.length() || CollectionUtils.isEmpty(zuulPropConfig.getApiUrlMap());
     }
 
 
     /**
      * 会话存在则跨域发送
+     *
      * @param request
      * @return
      */
-    private String getCookieBySso(HttpServletRequest request){
+    private String getCookieBySso(HttpServletRequest request) {
         Cookie cookie = this.getCookieByName(request, "");
         return cookie != null ? cookie.getValue() : null;
     }
@@ -263,6 +267,7 @@ public class PreAuthFilter extends ZuulFilter {
 
     /**
      * 不路由直接返回
+     *
      * @param ctx
      * @param code
      * @param msg
@@ -279,6 +284,7 @@ public class PreAuthFilter extends ZuulFilter {
 
     /**
      * 获取会话里的token
+     *
      * @param request
      * @param name
      * @return
@@ -289,11 +295,11 @@ public class PreAuthFilter extends ZuulFilter {
         if (!StringUtils.isEmpty(cookies)) {
             Cookie[] c1 = cookies;
             int length = cookies.length;
-            for(int i = 0; i < length; ++i) {
+            for (int i = 0; i < length; ++i) {
                 Cookie cookie = c1[i];
                 cookieMap.put(cookie.getName(), cookie);
             }
-        }else {
+        } else {
             return null;
         }
         if (cookieMap.containsKey(name)) {

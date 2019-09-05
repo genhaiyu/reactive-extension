@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
  * ## Project Description </br>
  * + 1: Import this project pom
  * + 2: Check Feign Aspect this session
- * + 3: Get data-works User info, Like this "User user = request.getAttribute(Constant.USER_INFO)";
+ * + 3: Get data-works User info, Like this "User user = authService.parseUserToJwt(request)";
  * + 4: Feign Client, @FeignClient(value = "server1", fallback = Impl.class, configuration = PreFeignInterceptor.class), add configuration = PreFeignAspect.class。
  * + 5: See Notes http://cwiki.xxxxxxxx.com/pages/viewpage.action?pageId=113329378
  *

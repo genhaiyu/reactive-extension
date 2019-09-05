@@ -1,0 +1,41 @@
+[WARN ] 2019-09-04 14:13:14 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-09-04 14:13:14 [main] o.s.boot.actuate.endpoint.EndpointId [{EndpointId.java} {135}] - Endpoint ID 'hystrix.stream' contains invalid characters, please migrate to a valid format.
+[WARN ] 2019-09-04 14:13:14 [main] c.n.c.sources.URLConfigurationSource [{URLConfigurationSource.java} {121}] - No URLs will be polled as dynamic configuration sources.
+[WARN ] 2019-09-04 14:13:14 [main] c.n.c.sources.URLConfigurationSource [{URLConfigurationSource.java} {121}] - No URLs will be polled as dynamic configuration sources.
+[WARN ] 2019-09-04 14:13:14 [Thread-19] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {1303}] - Saw local status change event StatusChangeEvent [timestamp=1567577876192, current=DOWN, previous=UP]
+[WARN ] 2019-09-04 14:13:14 [DiscoveryClient-InstanceInfoReplicator-0] c.n.d.s.t.d.RetryableEurekaHttpClient [{RetryableEurekaHttpClient.java} {130}] - Request execution failed with message: java.net.ConnectException: Connection refused (Connection refused)
+[WARN ] 2019-09-04 14:13:14 [DiscoveryClient-InstanceInfoReplicator-0] c.n.d.s.t.d.RetryableEurekaHttpClient [{RetryableEurekaHttpClient.java} {130}] - Request execution failed with message: java.net.ConnectException: Connection refused (Connection refused)
+[WARN ] 2019-09-04 14:13:14 [DiscoveryClient-InstanceInfoReplicator-0] c.netflix.discovery.DiscoveryClient [{DiscoveryClient.java} {831}] - DiscoveryClient_PRODUCT/10.45.53.191:product:8704 - registration failed Cannot execute request on any known server
+com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:829)
+	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:121)
+	at com.netflix.discovery.InstanceInfoReplicator$1.run(InstanceInfoReplicator.java:101)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+[WARN ] 2019-09-04 14:13:14 [DiscoveryClient-InstanceInfoReplicator-0] c.n.discovery.InstanceInfoReplicator [{InstanceInfoReplicator.java} {125}] - There was a problem with the instance info replicator
+com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:829)
+	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:121)
+	at com.netflix.discovery.InstanceInfoReplicator$1.run(InstanceInfoReplicator.java:101)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)

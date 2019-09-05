@@ -1,4 +1,4 @@
-package org.yugh.zuul.common.enums;
+package org.yugh.auth.common.enums;
 
 /**
  * //按照部署级别进行管理

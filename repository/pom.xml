@@ -12,7 +12,6 @@
     <artifactId>repository</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>repository</name>
-
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -31,7 +30,6 @@
         </dependencies>
     </dependencyManagement>
     <dependencies>
-
         <!-- mybatis plus -->
         <!-- <dependency>
              <groupId>com.baomidou</groupId>
@@ -50,8 +48,6 @@
             <artifactId>common-auth</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-
-
         <!-- webflux -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -68,48 +64,12 @@
         </dependency>
         <!-- feign -->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
-        </dependency>
-        <!-- redis -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis-reactive</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>${mysql.version}</version>
-        </dependency>
-        <!-- querydsl -->
-        <dependency>
-            <groupId>com.querydsl</groupId>
-            <artifactId>querydsl-apt</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.querydsl</groupId>
-            <artifactId>querydsl-jpa</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.querydsl</groupId>
-            <artifactId>querydsl-collections</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -123,7 +83,6 @@
             <version>1.2.2</version>
         </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>

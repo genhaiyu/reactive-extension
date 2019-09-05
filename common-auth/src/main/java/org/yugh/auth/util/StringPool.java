@@ -73,4 +73,5 @@ public interface StringPool {
     String PHONE = "phone";
     String ID = "id";
     String GLOBAL_RPID = "rpid";
+    String OPTIONS = "OPTIONS";
 }

@@ -10,7 +10,7 @@
     </parent>
     <groupId>org.yugh</groupId>
     <artifactId>monitor</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <name>monitor</name>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -19,12 +19,11 @@
         <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
         <!--<swagger2.version>2.9.2</swagger2.version>-->
     </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.yugh</groupId>
             <artifactId>common-auth</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -52,7 +51,6 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
     <dependencyManagement>
         <dependencies>
             <dependency>

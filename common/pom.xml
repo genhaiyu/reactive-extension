@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.yugh</groupId>
     <artifactId>common</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <name>common</name>
     <parent>
         <groupId>org.springframework.boot</groupId>

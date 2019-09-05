@@ -1,4 +1,4 @@
-package org.yugh.zuul.common.enums;
+package org.yugh.auth.common.enums;
 
 /**
  * @author yugenhai

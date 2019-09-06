@@ -46,7 +46,7 @@
         <dependency>
             <groupId>org.yugh</groupId>
             <artifactId>common-auth</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <!-- webflux -->
         <dependency>
@@ -81,6 +81,24 @@
             <groupId>javax.interceptor</groupId>
             <artifactId>javax.interceptor-api</artifactId>
             <version>1.2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <!-- querydsl -->
+        <dependency>
+            <groupId>com.querydsl</groupId>
+            <artifactId>querydsl-apt</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.querydsl</groupId>
+            <artifactId>querydsl-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.querydsl</groupId>
+            <artifactId>querydsl-collections</artifactId>
         </dependency>
     </dependencies>
     <build>

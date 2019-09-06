@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * @author yugenhai
  */
-public class JwtUser extends TestAbstract {
+public class JwtUserDTO extends TestAbstract {
 
 
     @Autowired

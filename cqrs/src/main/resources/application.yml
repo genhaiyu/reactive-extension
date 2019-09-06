@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: cqrs
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/yugh?useUnicode=true&amp&characterEncoding=UTF-8&allowMultiQueries=true&useAffectedRows=true&useSSL=false&serverTimezone=GMT
+    username: root
+    password: mac12345
+  redis:
+    database: 0
+    host: localhost
+    port: 6379

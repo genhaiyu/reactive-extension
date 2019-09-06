@@ -7,15 +7,12 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.yugh.auth.annotation.PreSkipAuth;
 import org.yugh.auth.common.enums.ResultEnum;
-import org.yugh.auth.exception.BusinessException;
 import org.yugh.auth.service.AuthService;
 import org.yugh.auth.util.StringPool;
 
@@ -30,18 +27,13 @@ import java.lang.reflect.Method;
  */
 @Slf4j
 @Aspect
-@Order(2)
 @Component
 public class PreAuthAspect {
 
     @Autowired
     private AuthService authService;
 
-    /**
-     * If request.getAttribute(Constant.USER_INFO) == null
-     * <p>
-     * Must use it @PreAuth
-     */
+
     @Pointcut("@within(org.yugh.auth.annotation.PreAuth)")
     public void pointType() {
     }
@@ -115,7 +107,9 @@ public class PreAuthAspect {
             return joinPoint.proceed();
         }
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        Assert.notNull(servletRequestAttributes.getRequest(), () -> "RequestContextHolder.getRequestAttributes() '" + servletRequestAttributes.getRequest() + "' is null");
+        if(null == servletRequestAttributes){
+            throw new RuntimeException(ResultEnum.BAD_REQUEST.getValue());
+        }
         HttpServletRequest request = servletRequestAttributes.getRequest();
         log.info("\n ******* Current rpid |=| {}", request.getAttribute(StringPool.GLOBAL_RPID));
         String token = authService.getTokenByHeader(request);
@@ -135,5 +129,4 @@ public class PreAuthAspect {
             return joinPoint.proceed();
         }
     }
-
 }

@@ -1,4 +1,4 @@
-package org.yugh.common.ddd;
+package org.yugh.cqrs.jpa.ddd;
 
 import lombok.AccessLevel;
 import lombok.Data;

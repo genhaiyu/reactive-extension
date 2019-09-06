@@ -1,4 +1,4 @@
-package org.yugh.common.ddd;
+package org.yugh.cqrs.jpa.ddd;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;

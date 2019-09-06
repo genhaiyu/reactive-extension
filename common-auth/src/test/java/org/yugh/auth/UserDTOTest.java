@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import org.yugh.auth.pojo.dto.User;
+import org.yugh.auth.pojo.dto.UserDTO;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +17,7 @@ import java.util.Map;
  * @creation 2019-07-16 15:10
  * @Copyright © 2019 yugenhai. All rights reserved.
  */
-public class UserTest {
+public class UserDTOTest {
 
     @Autowired
     private WebTestClient webClient;
@@ -26,20 +26,20 @@ public class UserTest {
     @LocalServerPort
     private int port = 8709;
 
-    private static Map<String, User> userMap = new HashMap(16);
+    private static Map<String, UserDTO> userMap = new HashMap(16);
 
     @BeforeClass
     public static void setup() throws Exception {
-        User user = new User();
-        user.setUserName("yugh");
-        user.setAliasName("余根海");
-        user.setEmail("yugenhai@xx.com");
-        user.setSex("1");
-        user.setCompany("2");
-        user.setDepart("3");
-        user.setAdmin(4);
-        user.setDisabled(5);
-        userMap.put("userInfo", user);
+        UserDTO userDTO = new UserDTO();
+        userDTO.setUserName("yugh");
+        userDTO.setAliasName("余根海");
+        userDTO.setEmail("yugenhai@xx.com");
+        userDTO.setSex("1");
+        userDTO.setCompany("2");
+        userDTO.setDepart("3");
+        userDTO.setAdmin(4);
+        userDTO.setDisabled(5);
+        userMap.put("userInfo", userDTO);
     }
 
     @Test

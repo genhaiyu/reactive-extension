@@ -1,4 +1,4 @@
-package org.yugh.common.ddd;
+package org.yugh.cqrs.jpa.ddd;
 
 import javax.persistence.AttributeConverter;
 import java.time.Instant;

@@ -10,7 +10,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 import org.yugh.auth.common.constants.Constant;
 import org.yugh.auth.config.AuthConfig;
-import org.yugh.auth.pojo.dto.User;
+import org.yugh.auth.pojo.dto.UserDTO;
 import org.yugh.auth.util.*;
 
 import javax.servlet.http.Cookie;
@@ -38,10 +38,25 @@ public class AuthService {
     private JwtHelper jwtHelper;
 
 
+    /**
+     * doSomeThing
+     *
+     * @param paramsMap
+     * @param appKey
+     * @param secret
+     */
     private void doSomeThing(Map<String, Object> paramsMap, String appKey, String secret) {
         log.info("doSomeThing for map-> appKey-> secret");
     }
 
+    /**
+     * doSomeThing
+     *
+     * @param identity
+     * @param map
+     * @param paramsMap
+     * @return
+     */
     private String doSomeThing(String identity, HashMap map, Map<String, Object> paramsMap) {
         return "do something!";
     }
@@ -53,27 +68,24 @@ public class AuthService {
      * @param request
      * @return
      */
-    public User parseUserToJwt(HttpServletRequest request) {
+    public UserDTO parseUserToJwt(HttpServletRequest request) {
         String token = this.getTokenByHeader(request);
         if (StringUtils.isEmpty(token)) {
             return null;
         }
-        Claims claims = jwtHelper.getAllClaimsFromToken(token);
-        Map<String, Object> userMap = (Map<String, Object>) claims.get(StringPool.DATAWORKS_USER_INFO);
         try {
-            User user = (User) BeanMapUtils.map2Object(userMap, User.class);
-            return user;
+            Claims claims = jwtHelper.getAllClaimsFromToken(token);
+            Map<String, Object> userMap = (Map<String, Object>) claims.get(StringPool.DATAWORKS_USER_INFO);
+            UserDTO userDTO = (UserDTO) BeanMapUtils.map2Object(userMap, UserDTO.class);
+            return userDTO;
         } catch (Exception e) {
             log.error("parseUserToJwt Exception :{}", e.getMessage());
         }
         return null;
     }
 
-
     /**
      * 验证token是否失效
-     * <p>
-     * 异常由业务使用时捕捉，会出现用非法token校验
      *
      * @param token
      * @return
@@ -81,6 +93,25 @@ public class AuthService {
     public boolean validateToken(String token) {
         return jwtHelper.validateToken(token);
     }
+
+
+    /**
+     * Get Jwt
+     *
+     * @param request
+     * @return
+     */
+    public String getTokenByHeader(HttpServletRequest request) {
+        String userToken;
+        if (!StringUtils.isEmpty(userToken = request.getHeader(StringPool.DATAWORKS_TOKEN))) {
+            return userToken;
+        }
+        if (!StringUtils.isEmpty((userToken = (String) request.getAttribute(StringPool.DATAWORKS_TOKEN)))) {
+            return userToken;
+        }
+        return null;
+    }
+
 
 
     /**
@@ -115,49 +146,133 @@ public class AuthService {
 
 
     /**
-     * Get Jwt
+     * Gateway Login
      *
      * @param request
      * @return
      */
-    public String getTokenByHeader(HttpServletRequest request) {
-        String userToken;
-        if (!StringUtils.isEmpty(userToken = request.getHeader(StringPool.DATAWORKS_TOKEN))) {
-            return userToken;
+    public boolean isLoginByReactive(ServerHttpRequest request) {
+        String token = authCookieUtils.getCookieByNameByReactive(request, Constant.SESSION_TOKEN);
+        if (StringUtils.isEmpty(token)) {
+            return false;
         }
-        if (!StringUtils.isEmpty((userToken = (String) request.getAttribute(StringPool.DATAWORKS_TOKEN)))) {
-            return userToken;
+        try {
+            UserDTO userDTO = this.getUserByToken(token);
+            if (StringUtils.isEmpty(userDTO)) {
+                return false;
+            }
+        } catch (Exception e) {
+            log.error("getUserByToken Failed !!!", e);
+            return false;
         }
-        return null;
+        return true;
     }
 
 
     /**
-     * HttpServletResponse Remove Cookies
+     * Gateway Get user
      *
-     * @param response
+     * @param request
+     * @return
      */
-    public void removeCookieByAspect(HttpServletResponse response) {
-        this.authCookieUtils.removeCookie(response, authConfig.getGatewayCloud(), Constant.SESSION_TOKEN);
-        this.authCookieUtils.removeCookie(response, authConfig.getGatewayApps(), Constant.SESSION_TOKEN);
-        this.authCookieUtils.removeCookie(response, authConfig.getXxCorp(), Constant.SESSION_TOKEN);
-        this.authCookieUtils.removeCookie(response, authConfig.getXxCloud(), Constant.SESSION_TOKEN);
-        this.authCookieUtils.removeCookie(response, authConfig.getXxApps(), Constant.SESSION_TOKEN);
-        this.authCookieUtils.removeCookie(response, authConfig.getXxCom(), Constant.SESSION_TOKEN);
+    public UserDTO getUserByReactive(ServerHttpRequest request) {
+        String token = authCookieUtils.getCookieByNameByReactive(request, Constant.SESSION_TOKEN);
+        if (StringUtils.isEmpty(token)) {
+            return null;
+        }
+        try {
+            UserDTO userDTO = this.getUserByToken(token);
+            if (StringUtils.isEmpty(userDTO)) {
+                return null;
+            }
+            return userDTO;
+        } catch (Exception e) {
+            log.error("getUserByToken Failed !!!", e);
+            return null;
+        }
     }
 
+
     /**
-     * Reactive Remove Cookies
+     * Gateway logout User
      *
+     * @param request
      * @param response
      */
-    private void removeCookieByGateway(ServerHttpResponse response) {
-        this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_TOKEN, null, authConfig.getGatewayCloud());
-        this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_TOKEN, null, authConfig.getGatewayApps());
-        this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_TOKEN, null, authConfig.getXxApps());
-        this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_TOKEN, null, authConfig.getXxCloud());
-        this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_TOKEN, null, authConfig.getXxCorp());
-        this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_TOKEN, null, authConfig.getXxCom());
+    public void logoutByGateway(ServerHttpRequest request, ServerHttpResponse response) {
+        String token = authCookieUtils.getCookieByNameByReactive(request, Constant.SESSION_TOKEN);
+        if (StringUtils.isEmpty(token)) {
+            return;
+        } else {
+            try {
+                this.logoutByToken(token);
+                //this.removeCookieByGateway(response);
+            } catch (Exception e) {
+                log.error("logoutByToken Failed !!!", e);
+                throw new RuntimeException("logoutByToken Failed !!!" + e.getMessage());
+            }
+        }
+    }
+
+
+    /*******************************************************private*************************************************/
+
+    /**
+     * Logout By token
+     *
+     * @param token
+     * @return
+     * @throws Exception
+     * @author yugenhai
+     */
+    private boolean logoutByToken(String token) {
+        if (StringUtils.isEmpty(token)) {
+            return true;
+        } else {
+            Map<String, Object> paramsMap = new HashMap(16);
+            paramsMap.put("token", token);
+            String env = authConfig.getEnvSwitch();
+            Assert.hasText(env, "envSwitch is Empty");
+            switch (env) {
+                case StringPool
+                        .TEST:
+                    return this.logoutByTestOrProd(paramsMap, authConfig.getSsoTestAppKey(), authConfig.getSsoTestAppSecret(), authConfig.getSsoTestIdentity());
+                case StringPool
+                        .PROD:
+                    return this.logoutByTestOrProd(paramsMap, authConfig.getSsoProdAppKey(), authConfig.getSsoProdAppSecret(), authConfig.getSsoProdIdentity());
+                default:
+                    return false;
+            }
+        }
+    }
+
+
+    /**
+     * GetUserByToken
+     *
+     * @param token
+     * @return
+     */
+    private UserDTO getUserByToken(String token) {
+        Map<String, Object> paramsMap = new HashMap(16);
+        paramsMap.put("token", token);
+        String env = authConfig.getEnvSwitch();
+        Assert.hasText(env, "envSwitch is Empty");
+        String resp;
+        switch (env) {
+            case StringPool
+                    .TEST:
+                this.doSomeThing(paramsMap, authConfig.getSsoTestAppKey(), authConfig.getSsoTestAppSecret());
+                resp = this.doSomeThing(authConfig.getSsoTestIdentity(), new HashMap(16), paramsMap);
+                return parseAsUser(resp);
+            case StringPool
+                    .PROD:
+                this.doSomeThing(paramsMap, authConfig.getSsoProdAppKey(), authConfig.getSsoProdAppSecret());
+                resp = this.doSomeThing(authConfig.getSsoProdIdentity(), new HashMap(16), paramsMap);
+                return parseAsUser(resp);
+            default:
+                return null;
+        }
     }
 
 
@@ -190,249 +305,55 @@ public class AuthService {
 
 
     /**
+     * 解析SSO返回的用户信息
+     *
+     * @param userJson
+     * @return
+     */
+    private UserDTO parseAsUser(String userJson) {
+        return new UserDTO();
+    }
+
+
+    /**
+     * HttpServletResponse Remove Cookies
+     *
+     * @param response
+     */
+    @Deprecated
+    private void removeCookieByAspect(HttpServletResponse response) {
+        this.authCookieUtils.removeCookie(response, authConfig.getGatewayCloud(), Constant.SESSION_TOKEN);
+        this.authCookieUtils.removeCookie(response, authConfig.getGatewayApps(), Constant.SESSION_TOKEN);
+        this.authCookieUtils.removeCookie(response, authConfig.getXxCorp(), Constant.SESSION_TOKEN);
+        this.authCookieUtils.removeCookie(response, authConfig.getXxCloud(), Constant.SESSION_TOKEN);
+        this.authCookieUtils.removeCookie(response, authConfig.getXxApps(), Constant.SESSION_TOKEN);
+        this.authCookieUtils.removeCookie(response, authConfig.getXxCom(), Constant.SESSION_TOKEN);
+    }
+
+    /**
+     * Reactive Remove Cookies
+     *
+     * @param response
+     */
+    @Deprecated
+    private void removeCookieByGateway(ServerHttpResponse response) {
+        this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_TOKEN, null, authConfig.getGatewayCloud());
+        this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_TOKEN, null, authConfig.getGatewayApps());
+        this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_TOKEN, null, authConfig.getXxApps());
+        this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_TOKEN, null, authConfig.getXxCloud());
+        this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_TOKEN, null, authConfig.getXxCorp());
+        this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_TOKEN, null, authConfig.getXxCom());
+    }
+
+
+    /**
      * Gateway Get token
      *
      * @param request
      * @return
      */
-    public String getUserTokenByGateway(ServerHttpRequest request) {
+    @Deprecated
+    private String getUserTokenByGateway(ServerHttpRequest request) {
         return this.authCookieUtils.getCookieByNameByReactive(request, Constant.SESSION_TOKEN);
-    }
-
-
-    /**
-     * Gateway Login
-     *
-     * @param request
-     * @return
-     */
-    public boolean isLoginByReactive(ServerHttpRequest request) {
-        String token = authCookieUtils.getCookieByNameByReactive(request, Constant.SESSION_TOKEN);
-        if (StringUtils.isEmpty(token)) {
-            return false;
-        }
-        try {
-            User user = this.getUserByToken(token);
-            if (StringUtils.isEmpty(user)) {
-                return false;
-            }
-        } catch (Exception e) {
-            log.error("getUserByToken Failed !!!", e);
-            return false;
-        }
-        return true;
-    }
-
-
-
-    /**
-     * Gateway Get user
-     *
-     * @param request
-     * @return
-     */
-    public User getUserByReactive(ServerHttpRequest request) {
-        String token = authCookieUtils.getCookieByNameByReactive(request, Constant.SESSION_TOKEN);
-        if (StringUtils.isEmpty(token)) {
-            return null;
-        }
-        try {
-            User user = this.getUserByToken(token);
-            if (StringUtils.isEmpty(user)) {
-                return null;
-            }
-            return user;
-        } catch (Exception e) {
-            log.error("getUserByToken Failed !!!", e);
-            return null;
-        }
-    }
-
-
-    /**
-     * Gateway logout User
-     *
-     * @param request
-     * @param response
-     */
-    public void logoutByGateway(ServerHttpRequest request, ServerHttpResponse response) {
-        String token = authCookieUtils.getCookieByNameByReactive(request, Constant.SESSION_TOKEN);
-        if (StringUtils.isEmpty(token)) {
-            return;
-        } else {
-            try {
-                this.logoutByToken(token);
-                //this.removeCookieByGateway(response);
-            } catch (Exception e) {
-                log.error("logoutByToken Failed !!!", e);
-                throw new RuntimeException("logoutByToken Failed !!!" + e.getMessage());
-            }
-        }
-    }
-
-
-    /**
-     * Aspect Get token
-     *
-     * @param request
-     * @return
-     */
-    public User getUserByAuthToken(HttpServletRequest request) {
-        Cookie cookie = authCookieUtils.getCookieByName(request, Constant.SESSION_TOKEN);
-        String token = cookie != null ? cookie.getValue() : null;
-        if (StringUtils.isEmpty(token)) {
-            return null;
-        }
-        try {
-            User user = this.getUserByToken(token);
-            if (Objects.nonNull(user)) {
-                return user;
-            }
-        } catch (Exception e) {
-            log.error("getUserByToken Failed !!!", e);
-            return null;
-        }
-        return null;
-    }
-
-
-    /**
-     * Check login
-     *
-     * @param request
-     * @return
-     */
-    public boolean isLogin(HttpServletRequest request) {
-        Cookie cookie = authCookieUtils.getCookieByName(request, Constant.SESSION_TOKEN);
-        String token = cookie != null ? cookie.getValue() : null;
-        if (StringUtils.isEmpty(token)) {
-            return false;
-        }
-        try {
-            User user = this.getUserByToken(token);
-            if (Objects.isNull(user)) {
-                return false;
-            }
-        } catch (Exception e) {
-            log.error("getUserByToken Failed !!!", e);
-            return false;
-        }
-        return true;
-    }
-
-    /**
-     * Login by feign
-     *
-     * @param token
-     * @return
-     */
-    public boolean isLoginByFeign(String token) {
-        try {
-            User user = this.getUserByToken(token);
-            if (Objects.isNull(user)) {
-                return false;
-            }
-        } catch (Exception e) {
-            log.error(" isLoginByFeign : {} ", e);
-            return false;
-        }
-        return true;
-    }
-
-
-    /**
-     * GetUserByToken
-     *
-     * @param token
-     * @return
-     */
-    public User getUserByToken(String token) {
-        Map<String, Object> paramsMap = new HashMap(16);
-        paramsMap.put("token", token);
-        String env = authConfig.getEnvSwitch();
-        Assert.hasText(env, "envSwitch is Empty");
-        String resp;
-        switch (env) {
-            case StringPool
-                    .TEST:
-                this.doSomeThing(paramsMap, authConfig.getSsoTestAppKey(), authConfig.getSsoTestAppSecret());
-                resp = this.doSomeThing(authConfig.getSsoTestIdentity(), new HashMap(16), paramsMap);
-                return parseAsUser(resp);
-            case StringPool
-                    .PROD:
-                this.doSomeThing(paramsMap, authConfig.getSsoProdAppKey(), authConfig.getSsoProdAppSecret());
-                resp = this.doSomeThing(authConfig.getSsoProdIdentity(), new HashMap(16), paramsMap);
-                return parseAsUser(resp);
-            default:
-                return null;
-        }
-    }
-
-
-    /**
-     * Logout By token
-     *
-     * @param token
-     * @return
-     * @throws Exception
-     * @author yugenhai
-     */
-    public boolean logoutByToken(String token) {
-        if (StringUtils.isEmpty(token)) {
-            return true;
-        } else {
-            Map<String, Object> paramsMap = new HashMap(16);
-            paramsMap.put("token", token);
-            String env = authConfig.getEnvSwitch();
-            Assert.hasText(env, "envSwitch is Empty");
-            switch (env) {
-                case StringPool
-                        .TEST:
-                    return this.logoutByTestOrProd(paramsMap, authConfig.getSsoTestAppKey(), authConfig.getSsoTestAppSecret(), authConfig.getSsoTestIdentity());
-                case StringPool
-                        .PROD:
-                    return this.logoutByTestOrProd(paramsMap, authConfig.getSsoProdAppKey(), authConfig.getSsoProdAppSecret(), authConfig.getSsoProdIdentity());
-                default:
-                    return false;
-            }
-        }
-    }
-
-
-    /**
-     * 这是别人业务代码，只做参考
-     * 解析SSO返回的用户信息
-     *
-     * @param userJSON
-     * @return
-     */
-    private User parseAsUser(String userJSON) {
-        Map respMap = JsonUtils.jsonToObject(userJSON, Map.class);
-        Object status = respMap.get("status");
-        if (status == null || (StringPool.FALSE).equalsIgnoreCase(status.toString())) {
-            log.error("get user info error: " + userJSON);
-            Object errorMsgObject = respMap.get("msg");
-            String errorMsg = "get user info failed";
-            if (errorMsgObject != null) {
-                errorMsg = String.valueOf(errorMsgObject);
-            }
-            try {
-                throw new RuntimeException(errorMsg);
-            } catch (Exception e) {
-                log.error("get user info error: " + userJSON);
-                throw new RuntimeException(errorMsg);
-            }
-        }
-        Map userInfo = (Map) respMap.get("userInfo");
-        String userId = (String) userInfo.get("user_id");
-        String email = (String) userInfo.get("email");
-        String userNameEn = email.replace("@xx.com", "");
-        String userNameCn = (String) userInfo.get("fullname");
-        User user = User.builder().build();
-        user.setNo(userId);
-        user.setUserName(userNameEn);
-        user.setAliasName(userNameCn);
-        user.setEmail(email);
-        return user;
     }
 }

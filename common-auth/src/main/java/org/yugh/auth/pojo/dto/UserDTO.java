@@ -18,7 +18,7 @@ import java.io.Serializable;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class User implements Serializable {
+public class UserDTO implements Serializable {
 
     private static final long serialVersionUID = -8201209799583781642L;
 
@@ -62,11 +62,11 @@ public class User implements Serializable {
     /**
      * 权限
      */
-    private int admin;
+    private Integer admin;
 
     /**
      * 是否有效
      */
-    private int disabled;
+    private Integer disabled;
 
 }

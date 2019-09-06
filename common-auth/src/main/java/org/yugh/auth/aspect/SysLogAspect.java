@@ -8,16 +8,14 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.yugh.auth.annotation.Operation;
 import org.yugh.auth.common.enums.ResultEnum;
-import org.yugh.auth.exception.BusinessException;
 import org.yugh.auth.pojo.bo.SysLogBO;
-import org.yugh.auth.pojo.dto.User;
+import org.yugh.auth.pojo.dto.UserDTO;
 import org.yugh.auth.service.AuthService;
 import org.yugh.auth.util.IpAddressUtil;
 import org.yugh.auth.util.JsonUtils;
@@ -82,12 +80,15 @@ public class SysLogAspect {
         try {
             params = JsonUtils.toJson(arguments);
         } catch (Exception e) {
-            log.error(" objectMapper.writeValueAsString Exception : {}", e.getMessage());
+            log.error("objectMapper.writeValueAsString Exception : {}", e.getMessage());
         }
         sysLogBO.setParams(params);
         sysLogBO.setCreateDate(new Date());
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-        Assert.notNull(((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest(), () -> "RequestContextHolder.getRequestAttributes() '" + ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest() + "' is null");
+        ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        if(StringUtils.isEmpty(servletRequestAttributes)){
+            throw new RuntimeException(ResultEnum.BAD_REQUEST.getValue());
+        }
+        HttpServletRequest request = servletRequestAttributes.getRequest();
         sysLogBO.setIp(IpAddressUtil.getIpAddress(request));
         String token = authService.getTokenByHeader(request);
         if (StringUtils.isEmpty(token)) {
@@ -98,17 +99,17 @@ public class SysLogAspect {
         try {
             isValidate = authService.validateToken(token);
         } catch (Exception e) {
-            throw new BusinessException(ResultEnum.TOKEN_ILLEGAL);
+            throw new RuntimeException(ResultEnum.TOKEN_ILLEGAL.getValue());
         }
         if (!isValidate) {
-            throw new BusinessException(ResultEnum.TOKEN_EXPIRED);
+            throw new RuntimeException(ResultEnum.TOKEN_EXPIRED.getValue());
         } else {
-            User user = authService.parseUserToJwt(request);
-            if (StringUtils.isEmpty(user)) {
+            UserDTO userDTO = authService.parseUserToJwt(request);
+            if (StringUtils.isEmpty(userDTO)) {
                 throw new RuntimeException("Get User info exception");
             }
-            sysLogBO.setUserNo(Long.valueOf(user.getNo()));
-            sysLogBO.setUserName(user.getUserName());
+            sysLogBO.setUserNo(Long.valueOf(userDTO.getNo()));
+            sysLogBO.setUserName(userDTO.getUserName());
             log.info("\n ******* Current User Operation Log |=| {}", sysLogBO.toString());
         }
     }

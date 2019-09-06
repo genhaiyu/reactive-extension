@@ -7,17 +7,15 @@ import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.server.ServerWebExchange;
 import org.yugh.auth.adapter.CacheProcessAdapter;
-import org.yugh.auth.common.constants.Constant;
 import org.yugh.auth.common.enums.ResultEnum;
 import org.yugh.auth.config.AuthConfig;
-import org.yugh.auth.pojo.dto.User;
+import org.yugh.auth.pojo.dto.UserDTO;
 import org.yugh.auth.service.AuthService;
 import org.yugh.auth.util.JwtHelper;
 import org.yugh.auth.util.ResultJson;
@@ -113,8 +111,7 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
         try {
             boolean isLogin = authService.isLoginByReactive(request);
             if (isLogin) {
-                String ssoToken = authService.getUserTokenByGateway(request);
-                User user = authService.getUserByToken(ssoToken);
+                UserDTO user = authService.getUserByReactive(request);
                 try {
                     cacheProcessAdapter.sAdd(StringPool.DATAWORKS_USER_INFO, user.toString());
                 } catch (Exception e) {

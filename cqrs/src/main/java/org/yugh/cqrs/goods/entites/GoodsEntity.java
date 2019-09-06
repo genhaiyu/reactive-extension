@@ -1,17 +1,11 @@
 package org.yugh.cqrs.goods.entites;
 
-import lombok.AccessLevel;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import org.yugh.common.ddd.AbstractEntity;
-import org.yugh.common.ddd.InstantLongConverter;
+import org.yugh.cqrs.jpa.ddd.AbstractEntity;
 
 import javax.persistence.Column;
-import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import java.time.Instant;
 import java.util.Date;
 
 /**

@@ -4,10 +4,9 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.query.Param;
-import org.yugh.common.ddd.BaseRepository;
-import org.yugh.common.entites.UserEntity;
 import org.yugh.cqrs.goods.entites.GoodsEntity;
 import org.yugh.cqrs.goods.entites.QGoodsEntity;
+import org.yugh.cqrs.jpa.ddd.BaseRepository;
 
 /**
  * @author yugenhai

@@ -1,4 +1,4 @@
-package org.yugh.common.ddd.event;
+package org.yugh.cqrs.jpa.ddd.event;
 
 /**
  * // event root

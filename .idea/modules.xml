@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/common-auth/common-auth.iml" filepath="$PROJECT_DIR$/common-auth/common-auth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/config/config.iml" filepath="$PROJECT_DIR$/config/config.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cqrs/cqrs.iml" filepath="$PROJECT_DIR$/cqrs/cqrs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/customer/customer.iml" filepath="$PROJECT_DIR$/customer/customer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/domain-event/domain-event.iml" filepath="$PROJECT_DIR$/domain-event/domain-event.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eureka/eureka.iml" filepath="$PROJECT_DIR$/eureka/eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/framework-applications.iml" filepath="$PROJECT_DIR$/.idea/framework-applications.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gateway/gateway.iml" filepath="$PROJECT_DIR$/gateway/gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/goods-stock/goods-stock.iml" filepath="$PROJECT_DIR$/goods-stock/goods-stock.iml" />
+      <module fileurl="file://$PROJECT_DIR$/monitor/monitor.iml" filepath="$PROJECT_DIR$/monitor/monitor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/product/product.iml" filepath="$PROJECT_DIR$/product/product.iml" />
+      <module fileurl="file://$PROJECT_DIR$/repository/repository.iml" filepath="$PROJECT_DIR$/repository/repository.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zuul/zuul.iml" filepath="$PROJECT_DIR$/zuul/zuul.iml" />
+    </modules>
+  </component>
+</project>

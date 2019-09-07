@@ -32,6 +32,8 @@ spring:
             - StripPrefix=2
             - name: RequestRateLimiter
               args:
+                # 令牌桶示例可见
+                # https://api.github.com/
                 key-resolver: "#{@gatewayKeyResolver}"
                 redis-rate-limiter.replenishRate: 2
                 redis-rate-limiter.burstCapacity: 10
@@ -45,6 +47,8 @@ spring:
             - StripPrefix=2
             - name: RequestRateLimiter
               args:
+                # 令牌桶示例可见
+                # https://api.github.com/
                 key-resolver: "#{@gatewayKeyResolver}"
                 redis-rate-limiter.replenishRate: 2
                 redis-rate-limiter.burstCapacity: 10
@@ -58,6 +62,8 @@ spring:
             - StripPrefix=2
             - name: RequestRateLimiter
               args:
+                # 令牌桶示例可见
+                # https://api.github.com/
                 key-resolver: "#{@gatewayKeyResolver}"
                 redis-rate-limiter.replenishRate: 2
                 redis-rate-limiter.burstCapacity: 10
@@ -71,6 +77,8 @@ spring:
             - StripPrefix=2
             - name: RequestRateLimiter
               args:
+                # 令牌桶示例可见
+                # https://api.github.com/
                 key-resolver: "#{@gatewayKeyResolver}"
                 redis-rate-limiter.replenishRate: 2
                 redis-rate-limiter.burstCapacity: 10
@@ -84,6 +92,8 @@ spring:
             - StripPrefix=2
             - name: RequestRateLimiter
               args:
+                # 令牌桶示例可见
+                # https://api.github.com/
                 key-resolver: "#{@gatewayKeyResolver}"
                 redis-rate-limiter.replenishRate: 2
                 redis-rate-limiter.burstCapacity: 10
@@ -97,6 +107,8 @@ spring:
             - StripPrefix=2
             - name: RequestRateLimiter
               args:
+                # 令牌桶示例可见
+                # https://api.github.com/
                 key-resolver: "#{@gatewayKeyResolver}"
                 redis-rate-limiter.replenishRate: 2
                 redis-rate-limiter.burstCapacity: 10
@@ -110,6 +122,8 @@ spring:
             - StripPrefix=2
             - name: RequestRateLimiter
               args:
+                # 令牌桶示例可见
+                # https://api.github.com/
                 key-resolver: "#{@gatewayKeyResolver}"
                 redis-rate-limiter.replenishRate: 2
                 redis-rate-limiter.burstCapacity: 10
@@ -123,6 +137,8 @@ spring:
             - StripPrefix=2
             - name: RequestRateLimiter
               args:
+                # 令牌桶示例可见
+                # https://api.github.com/
                 key-resolver: "#{@gatewayKeyResolver}"
                 redis-rate-limiter.replenishRate: 2
                 redis-rate-limiter.burstCapacity: 10
@@ -130,6 +146,8 @@ spring:
           default-filters:
             - name: gatewayKeyResolver
               args:
+                # 令牌桶示例可见
+                # https://api.github.com/
                 key-resolver: "#{@gatewayKeyResolver}"
             - name: Hystrix
               args:
@@ -227,10 +245,12 @@ management:
 
 #ribbon
 ribbon:
-  eureka:
+  eager-load:
     enabled: true
+    clients: product,dealer,order,manager,call-center,user
   ReadTimeout: 120000
   ConnectTimeout: 30000
+
 
 
 #feign

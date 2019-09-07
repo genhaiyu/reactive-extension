@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" addBOMForNewFiles="with NO BOM">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common-auth" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/config" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cqrs" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/customer" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/domain-event" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eureka" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gateway" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/goods-stock" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/monitor" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/product" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/repository" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zuul" charset="UTF-8" />
+  </component>
+</project>

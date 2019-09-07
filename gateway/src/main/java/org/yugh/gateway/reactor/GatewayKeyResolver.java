@@ -17,6 +17,9 @@ import reactor.core.publisher.Mono;
  * <p>
  * See application-dev.yml
  *
+ * # 令牌桶示例可见
+ * # https://api.github.com/
+ *
  * @author 余根海
  * @creation 2019-07-05 15:52
  * @Copyright © 2019 yugenhai. All rights reserved.
@@ -44,5 +47,10 @@ public class GatewayKeyResolver implements KeyResolver {
      *
      * FIXME
      */
+
+
+    //令牌桶示例可见
+    //https://api.github.com/
+
 
 }

@@ -36,8 +36,13 @@ import java.util.Date;
 @Component
 public class SysLogAspect {
 
+
+    private final AuthService authService;
+
     @Autowired
-    private AuthService authService;
+    public SysLogAspect(AuthService authService) {
+        this.authService = authService;
+    }
 
     @Pointcut("@annotation(org.yugh.auth.annotation.Operation)")
     public void pointMethod() {
@@ -85,7 +90,7 @@ public class SysLogAspect {
         sysLogBO.setParams(params);
         sysLogBO.setCreateDate(new Date());
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        if(StringUtils.isEmpty(servletRequestAttributes)){
+        if (StringUtils.isEmpty(servletRequestAttributes)) {
             throw new RuntimeException(ResultEnum.BAD_REQUEST.getValue());
         }
         HttpServletRequest request = servletRequestAttributes.getRequest();

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.linecorp.armeria:armeria-zipkin:0.83.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/develop/maven-repository/com/linecorp/armeria/armeria-zipkin/0.83.0/armeria-zipkin-0.83.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/develop/maven-repository/com/linecorp/armeria/armeria-zipkin/0.83.0/armeria-zipkin-0.83.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/develop/maven-repository/com/linecorp/armeria/armeria-zipkin/0.83.0/armeria-zipkin-0.83.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

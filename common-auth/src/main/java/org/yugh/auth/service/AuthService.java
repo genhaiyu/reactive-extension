@@ -30,12 +30,16 @@ import java.util.*;
 @Component
 public class AuthService {
 
+    private final AuthCookieUtils authCookieUtils;
+    private final AuthConfig authConfig;
+    private final JwtHelper jwtHelper;
+
     @Autowired
-    private AuthCookieUtils authCookieUtils;
-    @Autowired
-    private AuthConfig authConfig;
-    @Autowired
-    private JwtHelper jwtHelper;
+    public AuthService(AuthCookieUtils authCookieUtils, AuthConfig authConfig, JwtHelper jwtHelper) {
+        this.authCookieUtils = authCookieUtils;
+        this.authConfig = authConfig;
+        this.jwtHelper = jwtHelper;
+    }
 
 
     /**
@@ -111,7 +115,6 @@ public class AuthService {
         }
         return null;
     }
-
 
 
     /**

@@ -1,9 +1,7 @@
 package org.yugh.auth.context;
 
 import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-import org.yugh.auth.common.constants.Constant;
 import org.yugh.auth.util.SnowFlakeUtil;
 import org.yugh.auth.util.StringPool;
 import org.yugh.auth.util.WebUtils;
@@ -19,7 +17,6 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author yugenhai
  */
-@Order(1)
 @Component
 public class PreAuthContext implements ServletRequestListener {
 

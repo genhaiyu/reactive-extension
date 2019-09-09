@@ -30,10 +30,11 @@ spring:
             - Path= /api/habo/**
           filters:
             - StripPrefix=2
+            # see {@link GatewayCorsConfig} and {@link CorsFilter}
             - name: RequestRateLimiter
               args:
-                # 令牌桶示例可见
-                # https://api.github.com/
+                # X-RateLimit-Remaining -> Token bucket, Current Remaining = burstCapacity-replenishRate
+                # See {@link GatewayKeyResolver}
                 key-resolver: "#{@gatewayKeyResolver}"
                 redis-rate-limiter.replenishRate: 2
                 redis-rate-limiter.burstCapacity: 10
@@ -45,10 +46,11 @@ spring:
             - Path= /api/datasource/**
           filters:
             - StripPrefix=2
+            # see {@link GatewayCorsConfig} and {@link CorsFilter}
             - name: RequestRateLimiter
               args:
-                # 令牌桶示例可见
-                # https://api.github.com/
+                # X-RateLimit-Remaining -> Token bucket, Current Remaining = burstCapacity-replenishRate
+                # See {@link GatewayKeyResolver}
                 key-resolver: "#{@gatewayKeyResolver}"
                 redis-rate-limiter.replenishRate: 2
                 redis-rate-limiter.burstCapacity: 10
@@ -60,10 +62,11 @@ spring:
             - Path= /api/lineage/**
           filters:
             - StripPrefix=2
+            # see {@link GatewayCorsConfig} and {@link CorsFilter}
             - name: RequestRateLimiter
               args:
-                # 令牌桶示例可见
-                # https://api.github.com/
+                # X-RateLimit-Remaining -> Token bucket, Current Remaining = burstCapacity-replenishRate
+                # See {@link GatewayKeyResolver}
                 key-resolver: "#{@gatewayKeyResolver}"
                 redis-rate-limiter.replenishRate: 2
                 redis-rate-limiter.burstCapacity: 10
@@ -75,10 +78,11 @@ spring:
             - Path= /api/quotamanage/**
           filters:
             - StripPrefix=2
+            # see {@link GatewayCorsConfig} and {@link CorsFilter}
             - name: RequestRateLimiter
               args:
-                # 令牌桶示例可见
-                # https://api.github.com/
+                # X-RateLimit-Remaining -> Token bucket, Current Remaining = burstCapacity-replenishRate
+                # See {@link GatewayKeyResolver}
                 key-resolver: "#{@gatewayKeyResolver}"
                 redis-rate-limiter.replenishRate: 2
                 redis-rate-limiter.burstCapacity: 10
@@ -90,10 +94,11 @@ spring:
             - Path= /api/table/**
           filters:
             - StripPrefix=2
+            # see {@link GatewayCorsConfig} and {@link CorsFilter}
             - name: RequestRateLimiter
               args:
-                # 令牌桶示例可见
-                # https://api.github.com/
+                # X-RateLimit-Remaining -> Token bucket, Current Remaining = burstCapacity-replenishRate
+                # See {@link GatewayKeyResolver}
                 key-resolver: "#{@gatewayKeyResolver}"
                 redis-rate-limiter.replenishRate: 2
                 redis-rate-limiter.burstCapacity: 10
@@ -105,10 +110,12 @@ spring:
             - Path= /api/luban-dashboard/**
           filters:
             - StripPrefix=2
+            # see {@link GatewayCorsConfig} and {@link CorsFilter}
+            #- AddResponseHeader=Access-Control-Allow-Credentials,true Access-Control-Allow-Headers,Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With, xx, DEVICEID
             - name: RequestRateLimiter
               args:
-                # 令牌桶示例可见
-                # https://api.github.com/
+                # X-RateLimit-Remaining -> Token bucket, Current Remaining = burstCapacity-replenishRate
+                # See {@link GatewayKeyResolver}
                 key-resolver: "#{@gatewayKeyResolver}"
                 redis-rate-limiter.replenishRate: 2
                 redis-rate-limiter.burstCapacity: 10
@@ -120,10 +127,11 @@ spring:
             - Path= /api/submission/**
           filters:
             - StripPrefix=2
+            # see {@link GatewayCorsConfig} and {@link CorsFilter}
             - name: RequestRateLimiter
               args:
-                # 令牌桶示例可见
-                # https://api.github.com/
+                # X-RateLimit-Remaining -> Token bucket, Current Remaining = burstCapacity-replenishRate
+                # See {@link GatewayKeyResolver}
                 key-resolver: "#{@gatewayKeyResolver}"
                 redis-rate-limiter.replenishRate: 2
                 redis-rate-limiter.burstCapacity: 10
@@ -135,19 +143,20 @@ spring:
             - Path= /api/luban-backend/**
           filters:
             - StripPrefix=2
+            # see {@link GatewayCorsConfig} and {@link CorsFilter}
             - name: RequestRateLimiter
               args:
-                # 令牌桶示例可见
-                # https://api.github.com/
+                # X-RateLimit-Remaining -> Token bucket, Current Remaining = burstCapacity-replenishRate
+                # See {@link GatewayKeyResolver}
                 key-resolver: "#{@gatewayKeyResolver}"
                 redis-rate-limiter.replenishRate: 2
                 redis-rate-limiter.burstCapacity: 10
           #default
           default-filters:
+            # see {@link GatewayCorsConfig} and {@link CorsFilter}
+            #- AddResponseHeader=Access-Control-Allow-Credentials,true Access-Control-Allow-Headers,Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With, xx, DEVICEID
             - name: gatewayKeyResolver
               args:
-                # 令牌桶示例可见
-                # https://api.github.com/
                 key-resolver: "#{@gatewayKeyResolver}"
             - name: Hystrix
               args:
@@ -245,12 +254,10 @@ management:
 
 #ribbon
 ribbon:
-  eager-load:
+  eureka:
     enabled: true
-    clients: product,dealer,order,manager,call-center,user
   ReadTimeout: 120000
   ConnectTimeout: 30000
-
 
 
 #feign
@@ -267,4 +274,3 @@ hystrix:
           strategy: SEMAPHORE
           thread:
             timeoutInMilliseconds: 20000
-

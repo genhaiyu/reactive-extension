@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a782aa77-71c7-4800-81e7-9a99bb2f4a53" name="Default Changelist" comment="修改用户获取的方式">
-      <change beforePath="$PROJECT_DIR$/cqrs/cqrs.iml" beforeDir="false" afterPath="$PROJECT_DIR$/cqrs/cqrs.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eureka/eureka.iml" beforeDir="false" afterPath="$PROJECT_DIR$/eureka/eureka.iml" afterDir="false" />
+    <list default="true" id="a782aa77-71c7-4800-81e7-9a99bb2f4a53" name="Default Changelist" comment="上传配置文件">
+      <change beforePath="$PROJECT_DIR$/cqrs/cqrs.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain-event/domain-event.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/eureka/eureka.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/goods-stock/goods-stock.iml" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/zuul/target/" />
@@ -37,16 +39,14 @@
         <entry file="file://$PROJECT_DIR$/gateway/src/main/java/org/yugh/gateway/config/GatewayCorsConfig.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="352">
-              <caret line="37" column="97" lean-forward="true" selection-start-line="37" selection-start-column="97" selection-end-line="37" selection-end-column="97" />
+              <caret line="37" column="97" selection-start-line="37" selection-start-column="97" selection-end-line="37" selection-end-column="97" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/product/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-730" />
-          </provider>
+          <provider selected="true" editor-type-id="text-editor" />
           <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
         </entry>
       </file>
@@ -63,8 +63,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cqrs/src/main/java/org/yugh/cqrs/goods/business/AddGoodsCommandHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="20" selection-start-line="20" selection-end-line="20" />
+            <state relative-caret-position="272">
+              <caret line="22" column="42" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -73,7 +73,7 @@
         <entry file="file://$PROJECT_DIR$/cqrs/src/main/java/org/yugh/cqrs/goods/business/AddOrderCommandHandler.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="208">
-              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
             </state>
           </provider>
         </entry>
@@ -191,11 +191,6 @@
               <item name="framework-applications" type="b2602c69:ProjectViewProjectNode" />
               <item name="framework-applications" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="framework-applications" type="b2602c69:ProjectViewProjectNode" />
-              <item name="framework-applications" type="462c0819:PsiDirectoryNode" />
-              <item name="cqrs" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -258,7 +253,7 @@
     </option>
     <option name="contentProportion" value="0.2080292" />
   </component>
-  <component name="RunManager" selected="JUnit.Test.test">
+  <component name="RunManager" selected="Spring Boot.ZuulApplication">
     <configuration name="AbstractCacheHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.yugh.auth.base.AbstractCacheHandler" />
       <module name="common-auth" />
@@ -315,13 +310,6 @@
       <option name="MAIN_CLASS_NAME" value="org.yugh.cqrs.Test" />
       <option name="METHOD_NAME" value="test" />
       <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CommonApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="common" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="org.yugh.common.CommonApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -417,6 +405,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.AbstractCacheHandler" />
+      <item itemvalue="JUnit.OptimisticLockTest" />
+      <item itemvalue="JUnit.Test.test" />
+      <item itemvalue="JUnit.Test.test (1)" />
+      <item itemvalue="Spring Boot.ConfigApplication" />
+      <item itemvalue="Spring Boot.CqrsApplication" />
+      <item itemvalue="Spring Boot.CustomerApplication" />
+      <item itemvalue="Spring Boot.DataWorksGatewayApplication" />
+      <item itemvalue="Spring Boot.EurekaApplication" />
+      <item itemvalue="Spring Boot.GoodsStockApplication" />
+      <item itemvalue="Spring Boot.MonitorApplication" />
+      <item itemvalue="Spring Boot.ProductApplication" />
+      <item itemvalue="Spring Boot.RepositoryApplication" />
+      <item itemvalue="Spring Boot.ZipkinRequestApplication" />
+      <item itemvalue="Spring Boot.ZipkinResponseApplication" />
+      <item itemvalue="Spring Boot.ZipkinServerApplication" />
+      <item itemvalue="Spring Boot.ZuulApplication" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.Test.test" />
@@ -446,6 +453,7 @@
       <workItem from="1567752348972" duration="139000" />
       <workItem from="1567752740409" duration="13016000" />
       <workItem from="1567780892988" duration="3007000" />
+      <workItem from="1567996928149" duration="278000" />
     </task>
     <task id="LOCAL-00001" summary="del">
       <created>1567494719034</created>
@@ -532,13 +540,12 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45167000" />
+    <option name="totallyTimeSpent" value="45445000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="817" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2825465" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28612304" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -565,7 +572,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Maven" order="3" weight="0.13733906" />
+      <window_info active="true" anchor="right" id="Maven" order="3" visible="true" weight="0.13733906" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="right" id="Codota" order="5" />
       <window_info anchor="right" id="Database" order="6" />
@@ -760,34 +767,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cqrs/src/main/java/org/yugh/cqrs/goods/pojo/package-info.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16">
-          <caret line="3" column="33" lean-forward="true" selection-start-line="3" selection-start-column="33" selection-end-line="3" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cqrs/src/main/java/org/yugh/cqrs/exception/CustomerException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="17" column="48" lean-forward="true" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cqrs/src/main/java/org/yugh/cqrs/exception/DefaultExceptionHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="21" column="14" lean-forward="true" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cqrs/src/main/java/org/yugh/cqrs/goods/pojo/GoodsDTO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="12" column="24" lean-forward="true" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/cqrs/src/main/java/org/yugh/cqrs/goods/pojo/package-info.java" />
+    <entry file="file://$PROJECT_DIR$/cqrs/src/main/java/org/yugh/cqrs/exception/CustomerException.java" />
+    <entry file="file://$PROJECT_DIR$/cqrs/src/main/java/org/yugh/cqrs/exception/DefaultExceptionHandler.java" />
+    <entry file="file://$PROJECT_DIR$/cqrs/src/main/java/org/yugh/cqrs/goods/pojo/GoodsDTO.java" />
     <entry file="jar://$USER_HOME$/develop/maven-repository/org/springframework/spring-beans/5.1.7.RELEASE/spring-beans-5.1.7.RELEASE-sources.jar!/org/springframework/beans/BeanUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -812,20 +795,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cqrs/src/main/java/org/yugh/cqrs/command/package-info.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16">
-          <caret line="3" column="36" lean-forward="true" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cqrs/src/main/java/org/yugh/cqrs/command/handler/CommandHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/cqrs/src/main/java/org/yugh/cqrs/command/package-info.java" />
+    <entry file="file://$PROJECT_DIR$/cqrs/src/main/java/org/yugh/cqrs/command/handler/CommandHandler.java" />
     <entry file="file://$PROJECT_DIR$/cqrs/src/main/java/org/yugh/cqrs/jpa/ddd/InstantLongConverter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
@@ -843,23 +814,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cqrs/src/main/java/org/yugh/cqrs/bus/CommandBus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="22" column="7" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cqrs/src/main/java/org/yugh/cqrs/annotations/CommandHandlerAnnotation.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cqrs/src/main/java/org/yugh/cqrs/annotations/Command.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="25" column="7" selection-start-line="25" selection-start-column="7" selection-end-line="25" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/cqrs/src/main/java/org/yugh/cqrs/bus/CommandBus.java" />
+    <entry file="file://$PROJECT_DIR$/cqrs/src/main/java/org/yugh/cqrs/annotations/CommandHandlerAnnotation.java" />
+    <entry file="file://$PROJECT_DIR$/cqrs/src/main/java/org/yugh/cqrs/annotations/Command.java" />
     <entry file="jar://$USER_HOME$/develop/maven-repository/org/springframework/cloud/spring-cloud-netflix-eureka-client/2.1.1.RELEASE/spring-cloud-netflix-eureka-client-2.1.1.RELEASE.jar!/META-INF/spring-configuration-metadata.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="457">
@@ -879,20 +836,6 @@
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/product/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-730" />
-      </provider>
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/monitor/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="45" column="60" selection-start-line="45" selection-start-column="53" selection-end-line="45" selection-end-column="60" />
-        </state>
-      </provider>
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
     </entry>
     <entry file="jar://$USER_HOME$/develop/maven-repository/org/springframework/cloud/spring-cloud-gateway-core/2.1.1.RELEASE/spring-cloud-gateway-core-2.1.1.RELEASE-sources.jar!/org/springframework/cloud/gateway/support/StatefulConfigurable.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1019,21 +962,33 @@
     <entry file="file://$PROJECT_DIR$/gateway/src/main/java/org/yugh/gateway/config/GatewayCorsConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
-          <caret line="37" column="97" lean-forward="true" selection-start-line="37" selection-start-column="97" selection-end-line="37" selection-end-column="97" />
+          <caret line="37" column="97" selection-start-line="37" selection-start-column="97" selection-end-line="37" selection-end-column="97" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/product/pom.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
     </entry>
     <entry file="file://$PROJECT_DIR$/cqrs/src/main/java/org/yugh/cqrs/goods/business/AddOrderCommandHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/monitor/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="445">
+          <caret line="45" column="60" selection-start-line="45" selection-start-column="53" selection-end-line="45" selection-end-column="60" />
+        </state>
+      </provider>
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/cqrs/src/main/java/org/yugh/cqrs/goods/business/AddGoodsCommandHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        <state relative-caret-position="272">
+          <caret line="22" column="42" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
         </state>
       </provider>
     </entry>

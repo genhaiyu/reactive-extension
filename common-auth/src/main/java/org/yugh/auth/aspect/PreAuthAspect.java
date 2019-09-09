@@ -30,8 +30,13 @@ import java.lang.reflect.Method;
 @Component
 public class PreAuthAspect {
 
+
+    private final AuthService authService;
+
     @Autowired
-    private AuthService authService;
+    public PreAuthAspect(AuthService authService) {
+        this.authService = authService;
+    }
 
 
     @Pointcut("@within(org.yugh.auth.annotation.PreAuth)")
@@ -107,7 +112,7 @@ public class PreAuthAspect {
             return joinPoint.proceed();
         }
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        if(null == servletRequestAttributes){
+        if (null == servletRequestAttributes) {
             throw new RuntimeException(ResultEnum.BAD_REQUEST.getValue());
         }
         HttpServletRequest request = servletRequestAttributes.getRequest();

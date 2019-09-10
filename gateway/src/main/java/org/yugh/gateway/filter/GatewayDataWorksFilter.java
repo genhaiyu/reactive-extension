@@ -101,6 +101,8 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
      * 这里逻辑是从网关的用户有效后，直接加密用户token透传到微服务中
      * <p>
      * 接口调用默认不验证用户的SSO，auth组件直接解密token拿到用户信息
+     * <p>
+     * 若要监听接口调用的权限和时效性则查看 {@link org.yugh.auth.interceptor.PreFeignInterceptor}
      *
      * @param context
      * @param request

@@ -2,6 +2,7 @@ package org.yugh.gateway.filter;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
@@ -28,6 +29,7 @@ import reactor.core.publisher.Mono;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
 import java.util.regex.Matcher;
 
 /**
@@ -51,6 +53,9 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
     private CacheProcessAdapter cacheProcessAdapter;
     @Autowired
     private JwtHelper jwtHelper;
+    @Autowired(required = false)
+    @Qualifier(value = "gatewayQueueThreadPool")
+    private ExecutorService buildGatewayQueueThreadPool;
 
 
     /**

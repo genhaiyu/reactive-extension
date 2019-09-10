@@ -17,7 +17,7 @@ public interface IGatewayFallBackService {
 
     /**
      * The method test case to HystrixCommand
-     * And test case PreFeignAspect {@link org.yugh.auth.interceptor.PreFeignInterceptor}
+     * And test case PreFeignAspect {@link PreFeignInterceptor}
      * See http://cwiki.xxxxx.com/pages/viewpage.action?pageId=113329378
      *
      * @return

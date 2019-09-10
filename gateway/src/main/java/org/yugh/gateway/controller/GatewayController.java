@@ -8,7 +8,6 @@ import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.yugh.auth.adapter.CacheProcessAdapter;
 import org.yugh.auth.annotation.PreSkipAuth;
 import org.yugh.auth.common.enums.ResultEnum;
 import org.yugh.auth.service.AuthService;
@@ -59,15 +58,17 @@ public class GatewayController {
      * @return
      */
     @Synchronized
-    @GetMapping("logout")
+    @GetMapping("/logout")
     public ResultJson logout(ServerHttpRequest request, ServerHttpResponse response) {
         try {
-            authService.logoutByGateway(request, response);
-            log.info("Logout Success!");
-            return ResultJson.ok("Logout Success!");
+            boolean isLogout = authService.logoutByGateway(request, response);
+            if (isLogout) {
+                log.info("Logout Success!");
+                return ResultJson.ok("Logout Success!");
+            }
         } catch (Exception e) {
             log.info("Logout Failed!");
-            return ResultJson.ok("Logout Failed!");
         }
+        return ResultJson.failure(ResultEnum.GATEWAY_SERVER_ERROR, "Logout Failed!");
     }
 }

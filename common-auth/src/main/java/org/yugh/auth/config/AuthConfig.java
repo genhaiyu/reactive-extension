@@ -1,6 +1,8 @@
 package org.yugh.auth.config;
 
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,6 +24,7 @@ import org.yugh.auth.util.JwtHelper;
 @Data
 @Component
 @Configuration
+@Setter(AccessLevel.PRIVATE)
 public class AuthConfig {
 
     /**

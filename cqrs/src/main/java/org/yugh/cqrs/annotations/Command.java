@@ -21,15 +21,16 @@ public @interface Command {
     boolean asynchronous() default false;
 
     /**
-     * Suggestion for a Server that this command should checked if the same command is sent again.<br>
-     * If true than command class must implement equals and hashCode
+     * 重复请求需要加此注解
+     * true必须重写 equals 和 hashCode
      *
      * @return
      */
     boolean unique() default false;
 
     /**
-     * If unique is true than this property may specify maximum timeout in miliseconds before same command can be executed
+     * unique属性为true
+     * 则使用此注解设置超时时间，单位毫秒
      *
      * @return
      */

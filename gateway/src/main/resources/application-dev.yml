@@ -263,7 +263,7 @@ ribbon:
 #feign
 feign:
   hystrix:
-    enabled: true
+    enabled: false
 
 #hystrix
 hystrix:

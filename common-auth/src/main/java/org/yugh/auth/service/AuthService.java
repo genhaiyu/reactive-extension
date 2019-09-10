@@ -172,6 +172,30 @@ public class AuthService {
     }
 
 
+
+    /**
+     * Mock get token
+     *
+     * @param token
+     * @return
+     */
+    public boolean isLoginByMock(String token) {
+        if (StringUtils.isEmpty(token)) {
+            return false;
+        }
+        try {
+            UserDTO user = this.getUserByToken(token);
+            if (StringUtils.isEmpty(user)) {
+                return false;
+            }
+        } catch (RuntimeException e) {
+            log.error("getUserByToken Failed !!!", e);
+            return false;
+        }
+        return true;
+    }
+
+
     /**
      * Gateway Get user
      *
@@ -197,19 +221,45 @@ public class AuthService {
 
 
     /**
+     * Mock get user
+     *
+     * @param token
+     * @return
+     */
+    public UserDTO getUserByMock(String token) {
+        if (StringUtils.isEmpty(token)) {
+            return null;
+        }
+        try {
+            UserDTO user = this.getUserByToken(token);
+            if (StringUtils.isEmpty(user)) {
+                return null;
+            }
+            return user;
+        } catch (RuntimeException e) {
+            log.error("getUserByToken Failed !!!", e);
+            return null;
+        }
+    }
+
+    /**
      * Gateway logout User
      *
      * @param request
      * @param response
      */
-    public void logoutByGateway(ServerHttpRequest request, ServerHttpResponse response) {
+    public boolean logoutByGateway(ServerHttpRequest request, ServerHttpResponse response) {
         String token = authCookieUtils.getCookieByNameByReactive(request, Constant.SESSION_TOKEN);
         if (StringUtils.isEmpty(token)) {
-            return;
+            return false;
         } else {
             try {
-                this.logoutByToken(token);
-                //this.removeCookieByGateway(response);
+                boolean logout = logoutByToken(token);
+                if(!logout){
+                    return false;
+                }
+                this.removeCookieByGateway(response);
+                return true;
             } catch (Exception e) {
                 log.error("logoutByToken Failed !!!", e);
                 throw new RuntimeException("logoutByToken Failed !!!" + e.getMessage());
@@ -338,7 +388,6 @@ public class AuthService {
      *
      * @param response
      */
-    @Deprecated
     private void removeCookieByGateway(ServerHttpResponse response) {
         this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_TOKEN, null, authConfig.getGatewayCloud());
         this.authCookieUtils.removeCookieByReactive(response, Constant.SESSION_TOKEN, null, authConfig.getGatewayApps());

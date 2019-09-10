@@ -174,29 +174,6 @@ public class AuthService {
 
 
     /**
-     * Mock get token
-     *
-     * @param token
-     * @return
-     */
-    public boolean isLoginByMock(String token) {
-        if (StringUtils.isEmpty(token)) {
-            return false;
-        }
-        try {
-            UserDTO user = this.getUserByToken(token);
-            if (StringUtils.isEmpty(user)) {
-                return false;
-            }
-        } catch (RuntimeException e) {
-            log.error("getUserByToken Failed !!!", e);
-            return false;
-        }
-        return true;
-    }
-
-
-    /**
      * Gateway Get user
      *
      * @param request
@@ -220,27 +197,6 @@ public class AuthService {
     }
 
 
-    /**
-     * Mock get user
-     *
-     * @param token
-     * @return
-     */
-    public UserDTO getUserByMock(String token) {
-        if (StringUtils.isEmpty(token)) {
-            return null;
-        }
-        try {
-            UserDTO user = this.getUserByToken(token);
-            if (StringUtils.isEmpty(user)) {
-                return null;
-            }
-            return user;
-        } catch (RuntimeException e) {
-            log.error("getUserByToken Failed !!!", e);
-            return null;
-        }
-    }
 
     /**
      * Gateway logout User

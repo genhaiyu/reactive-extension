@@ -29,13 +29,13 @@ public class Constant {
     /**
      * dataworks allow headers
      */
-    public final static String DATAWORKS_ALLOW_HEADERS = "X-Requested-with,Cache-Control,Pragma,Content-Type,token,token,DEVICEID,Authorization-DataWorks-Gateway";
+    public final static String DATAWORKS_ALLOW_HEADERS = "X-Requested-with,Cache-Control,Pragma,Content-Type,dataworks_token";
 
     /**
      * datworks allow headers by creek
      */
     @Deprecated
-    public final static String DATAWORKS_ALLOW_HEADERS_NEW = "X-Requested-with,If-Modified-Since,Last-Modified,Cache-Control,Expires,Content-Type,token,DEVICEID,Authorization-DataWorks-Gateway,X-Requested-ID";
+    public final static String DATAWORKS_ALLOW_HEADERS_NEW = "X-Requested-with,If-Modified-Since,Last-Modified,Cache-Control,Expires,Content-Type,dataworks_token,X-Requested-ID";
 
 
     /**

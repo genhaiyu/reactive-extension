@@ -25,10 +25,14 @@
 ```
 使用方式：
 
-1：`common-auth`无侵入式拦截验证用户合法性，请将`PreAuthAspect`的包拦截修改为自己的项目包路径。
+1：`common-auth`无侵入式监听验证用户合法性，`PreAuthAspect`可拦截 org.yugh.** 可替换为公司规范包下所有需要监听的控制器。
 </br>
-2：启动自己的项目后，从Gateway网关访问验证通过后会生成用户信息的token并转发到自己的项目中。
+2：`gateway`Spring Cloud Gateway实际应用实现，包括最新的WebFlux，Reactive，以及需要自定义RateLimiter令牌桶限流实现。
 </br>
-3：auth拦截器解析从Gateway组件通过的用户token判定是否用的当前加密方式和用户有效期。
+3：启动自己的项目后，从Gateway网关访问验证通过后会生成用户信息的token并转发到自己的项目中。
+</br>
+4：`common-auth`拦截器解析从`gateway`组件通过的用户token判定是否用的当前加密方式和用户有效期。
+</br>
+5：实现参考于gateway-auth.png
 
 ***

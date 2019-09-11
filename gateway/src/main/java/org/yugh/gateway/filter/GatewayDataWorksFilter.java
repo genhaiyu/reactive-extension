@@ -8,6 +8,7 @@ import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.util.Assert;
@@ -64,6 +65,10 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
      * see {@link GlobalFilter}
      * <p>
      *
+     *  失败的请求会格式 response.getHeaders().setContentType(MediaType.APPLICATION_JSON_UTF8);
+     *  成功的请求会通过各个微服务自行转发的json格式
+     *
+     *
      * @param exchange
      * @param chain
      * @return
@@ -78,6 +83,7 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
             response.setStatusCode(HttpStatus.FORBIDDEN);
             byte[] failureInfo = ResultJson.failure(ResultEnum.BLACK_SERVER_FOUND).toString().getBytes(StandardCharsets.UTF_8);
             DataBuffer buffer = response.bufferFactory().wrap(failureInfo);
+            response.getHeaders().setContentType(MediaType.APPLICATION_JSON_UTF8);
             return response.writeWith(Flux.just(buffer));
         }
         if (whiteListCheck(context, exchange)) {
@@ -86,6 +92,7 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
                 byte[] failureInfo = ResultJson.failure(ResultEnum.LOGIN_ERROR_GATEWAY, context.getRedirectUrl()).toString().getBytes(StandardCharsets.UTF_8);
                 DataBuffer buffer = response.bufferFactory().wrap(failureInfo);
                 response.setStatusCode(HttpStatus.UNAUTHORIZED);
+                response.getHeaders().setContentType(MediaType.APPLICATION_JSON_UTF8);
                 return response.writeWith(Flux.just(buffer));
             }
             ServerHttpRequest mutateReq = exchange.getRequest().mutate().header(StringPool.DATAWORKS_TOKEN, context.getUserToken()).build();
@@ -95,6 +102,7 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
             response.setStatusCode(HttpStatus.FORBIDDEN);
             byte[] failureInfo = ResultJson.failure(ResultEnum.WHITE_NOT_FOUND).toString().getBytes(StandardCharsets.UTF_8);
             DataBuffer buffer = response.bufferFactory().wrap(failureInfo);
+            response.getHeaders().setContentType(MediaType.APPLICATION_JSON_UTF8);
             return response.writeWith(Flux.just(buffer));
         }
     }

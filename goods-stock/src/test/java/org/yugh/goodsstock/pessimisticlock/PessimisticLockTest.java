@@ -1,9 +1,7 @@
 package org.yugh.goodsstock.pessimisticlock;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.yugh.goodsstock.GoodsStockApplicationTests;
 import org.yugh.goodsstock.pessimisticlock.repository.PessimisticLockRepository;
 
 import javax.annotation.Resource;
@@ -14,9 +12,7 @@ import javax.annotation.Resource;
  * @creation: 2018/11/28 00:32
  * @notes: 悲观锁测试秒杀商品
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class PessimisticLockTest {
+public class PessimisticLockTest extends GoodsStockApplicationTests {
 
     @Resource
     PessimisticLockRepository pessimisticLockRepository;

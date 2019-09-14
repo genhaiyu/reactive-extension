@@ -1,9 +1,7 @@
 package org.yugh.goodsstock.optimisticlock;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.yugh.goodsstock.GoodsStockApplicationTests;
 import org.yugh.goodsstock.optimisticlock.repository.OptimisticLockRepository;
 import org.yugh.goodsstock.optimisticlock.vo.StockInfo;
 
@@ -16,9 +14,7 @@ import java.util.Date;
  * @creation: 2018/12/3 16:12
  * @notes: 乐观锁测试秒杀商品
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class OptimisticLockTest {
+public class OptimisticLockTest extends GoodsStockApplicationTests {
 
     @Resource
     OptimisticLockRepository optimisticLockRepository;

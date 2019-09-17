@@ -6,10 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
-import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import org.yugh.auth.common.constants.Constant;
 import org.yugh.auth.service.AuthService;
 import org.yugh.auth.util.StringPool;
 
@@ -51,10 +49,6 @@ public class PreFeignInterceptor implements RequestInterceptor {
         Assert.notNull(attributes.getRequest(), () -> "attributes.getRequest() '" + attributes.getRequest() + "' is null");
         HttpServletRequest request = attributes.getRequest();
         String token = authService.getTokenByHeader(request);
-        if (StringUtils.isEmpty(token)) {
-            log.info("Feign --> User not login SSO, please Login!");
-            throw new RuntimeException("User not login SSO, please Login To Gateway !");
-        }
-        requestTemplate.header(StringPool.DATAWORKS_TOKEN, token);
+        requestTemplate.header(StringPool.DATAWORKS_TOKEN, (null == token || "".equals(token)) ? "" : token);
     }
 }

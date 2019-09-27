@@ -33,9 +33,11 @@
 </br>
 4：`common-auth`拦截器解析从`gateway`组件通过的用户token判定是否用的当前加密方式和用户有效期。
 </br>
+***
 5：架构实际模型
 ![](https://github.com/yugenhai108/framework-applications/blob/master/Authentication-1.png)
 </br>
+***
 6：原始架构参考
 ![](https://github.com/yugenhai108/framework-applications/blob/master/gateway-auth.png)
 

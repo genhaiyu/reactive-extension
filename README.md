@@ -38,7 +38,3 @@
 ![](https://github.com/yugenhai108/framework-applications/blob/master/Authentication-1.png)
 </br>
 ***
-6：原始架构参考
-![](https://github.com/yugenhai108/framework-applications/blob/master/gateway-auth.png)
-
-***

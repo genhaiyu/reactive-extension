@@ -1,4 +1,4 @@
-# :sparkles: framework application learning(框架应用和学习)
+# :sparkles: framework application learning
 
 ![](https://img.shields.io/badge/build-success-green.svg) ![](https://img.shields.io/github/stars/yugenhai108/framework-applications) 
 

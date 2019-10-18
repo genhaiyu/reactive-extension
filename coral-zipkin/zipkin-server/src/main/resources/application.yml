@@ -1,0 +1,86 @@
+server:
+  port: 9411
+  use-forward-headers: true
+  compression:
+    enabled: true
+    # compresses any response over min-response-size (default is 2KiB)
+    # Includes dynamic json content and large static assets from zipkin-ui
+    mime-types: application/json,application/javascript,text/css,image/svg
+
+#eureka注册配置
+eureka:
+  instance:
+    #使用IP注册
+    prefer-ip-address: true
+    ##续约更新时间间隔设置5秒，m默认30s
+    lease-renewal-interval-in-seconds: 30
+    ##续约到期时间10秒，默认是90秒
+    lease-expiration-duration-in-seconds: 90
+  client:
+    service-url:
+      defaultZone: http://localhost:8700/eureka/
+
+
+spring.main.web-application-type: none
+
+
+# We are using Armeria instead of Tomcat. Have it inherit the default configuration from Spring
+armeria:
+  ports:
+    - port: ${server.port}
+      protocols:
+        - http
+  gracefulShutdownQuietPeriodMillis: -1
+  gracefulShutdownTimeoutMillis: -1
+
+spring:
+  jmx:
+    # reduce startup time by excluding unexposed JMX service
+    enabled: false
+  mvc:
+    favicon:
+      # zipkin has its own favicon
+      enabled: false
+  autoconfigure:
+    exclude:
+      # otherwise we might initialize even when not needed (ex when storage type is cassandra)
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  application:
+    name: zipkin-server
+info:
+  zipkin:
+    version: "@project.version@"
+
+logging:
+  pattern:
+    level: "%clr(%5p) %clr([%X{traceId}/%X{spanId}]){yellow}"
+  level:
+    # Silence Invalid method name: '__can__finagle__trace__v3__'
+    com.facebook.swift.service.ThriftServiceProcessor: 'OFF'
+#     # investigate /api/v2/dependencies
+#     zipkin2.internal.DependencyLinker: 'DEBUG'
+#     # log cassandra queries (DEBUG is without values)
+#     com.datastax.driver.core.QueryLogger: 'TRACE'
+#     # log cassandra trace propagation
+#     com.datastax.driver.core.Message: 'TRACE'
+#     # log reason behind http collector dropped messages
+#     zipkin2.server.ZipkinHttpCollector: 'DEBUG'
+#     zipkin2.collector.kafka.KafkaCollector: 'DEBUG'
+#     zipkin2.collector.kafka08.KafkaCollector: 'DEBUG'
+#     zipkin2.collector.rabbitmq.RabbitMQCollector: 'DEBUG'
+#     zipkin2.collector.scribe.ScribeCollector: 'DEBUG'
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+  # Disabling auto time http requests since it is added in Undertow HttpHandler in Zipkin autoconfigure
+  # Prometheus module. In Zipkin we use different naming for the http requests duration
+  metrics:
+    web:
+      server:
+        auto-time-requests: false

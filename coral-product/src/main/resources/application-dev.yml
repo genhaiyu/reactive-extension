@@ -1,0 +1,62 @@
+spring:
+  application:
+    name: product
+    #cloud:
+    #  config:
+    #   discovery:
+    #     enabled: true
+    #     service-id: config
+
+
+#eureka-gateway-monitor-config 每个端口+1
+server:
+  port: 8704
+
+#eureka注册配置
+eureka:
+  instance:
+    #使用IP注册
+    prefer-ip-address: true
+    ##续约更新时间间隔设置5秒，m默认30s
+    lease-renewal-interval-in-seconds: 30
+    ##续约到期时间10秒，默认是90秒
+    lease-expiration-duration-in-seconds: 90
+  client:
+    service-url:
+      defaultZone: http://localhost:8700/eureka/
+
+
+#health
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      base-path: /actuator
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: ALWAYS
+
+
+
+#ribbon
+ribbon:
+  eureka:
+    enabled: true
+  ReadTimeout: 120000
+  ConnectTimeout: 30000
+
+
+
+
+#hystrix
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: SEMAPHORE
+          thread:
+            timeoutInMilliseconds: 60000

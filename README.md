@@ -1,6 +1,6 @@
 # :sparkles: Coral (珊瑚)
 
-![](https://img.shields.io/badge/build-success-green.svg) ![](https://img.shields.io/github/stars/yugenhai108/coral) 
+![](https://img.shields.io/badge/build-success-green.svg) [![GitHub stars](https://img.shields.io/github/stars/yugenhai108/coral)](https://github.com/yugenhai108/coral/stargazers)
 
 ------
 

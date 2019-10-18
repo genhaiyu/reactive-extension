@@ -13,8 +13,8 @@ import org.springframework.web.cors.reactive.CorsUtils;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
-import org.yugh.auth.common.constants.Constant;
-import org.yugh.auth.util.StringPool;
+import org.yugh.coral.auth.common.constants.Constant;
+import org.yugh.coral.auth.util.StringPool;
 import reactor.core.publisher.Mono;
 
 /**

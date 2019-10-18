@@ -2,9 +2,9 @@ package org.yugh.coral.gateway.controller.mock;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
-import org.yugh.auth.annotation.PreSkipAuth;
-import org.yugh.auth.service.AuthService;
-import org.yugh.auth.util.JwtHelper;
+import org.yugh.coral.auth.annotation.PreSkipAuth;
+import org.yugh.coral.auth.service.AuthService;
+import org.yugh.coral.auth.util.JwtHelper;
 
 /**
  * 测试用例token获取

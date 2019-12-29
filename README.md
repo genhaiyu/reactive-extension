@@ -1,7 +1,8 @@
 # :sparkles: Coral (珊瑚) 
 
+[![Build Status](https://travis-ci.org/yugenhai108/coral.svg?branch=master)](https://travis-ci.org/yugenhai108/coral)
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/yugenhai108/coral/master)
-![](https://img.shields.io/badge/build-success-green.svg) [![GitHub stars](https://img.shields.io/github/stars/yugenhai108/coral)](https://github.com/yugenhai108/coral/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/yugenhai108/coral)](https://github.com/yugenhai108/coral/stargazers)
 
 ------
 
@@ -13,25 +14,7 @@
 | Spring Cloud | Greenwich |
 
 
-## parent
-`parent`，统一并简化依赖，避免重复 jar 包.
-
-### 1. 统一 parent 配置
-```xml
-<dependencyManagement>
-    <dependencies>
-        <dependency>
-            <groupId>org.yugh.coral</groupId>
-            <artifactId>parent</artifactId>
-            <version>${project.version}</version>
-            <type>pom</type>
-            <scope>import</scope>
-        </dependency>
-    </dependencies>
-</dependencyManagement>
-```
-
-### 2. 将以下基础组件 maven-install 后引用就可以使用
+# 1. 将以下基础组件 maven-install 后引用就可以使用
 
 ```html
 <dependency>
@@ -48,7 +31,7 @@
 
 ```
 
-### 3. 组件的功能
+## 2. 组件的功能
 `groupId`：
 ```text
 org.yugh.coral

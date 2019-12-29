@@ -1,0 +1,13 @@
+{
+  "groups": [
+  ],
+  "properties": [
+    {
+      "name": "xx.log.request.enabled",
+      "type": "java.lang.Boolean",
+      "description": "是否开启日志调试.",
+      "defaultValue": "true"
+    }
+  ]
+}
+

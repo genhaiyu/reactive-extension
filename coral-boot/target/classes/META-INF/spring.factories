@@ -1,0 +1,12 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  org.yugh.coral.boot.servlet.ServletContextRequestListener,\
+  org.yugh.coral.boot.servlet.interceptor.FeignRequestInterceptor,\
+  org.yugh.coral.boot.reactive.interceptor.ReactiveRequestInterceptor,\
+  org.yugh.coral.boot.reactive.ReactiveRequestContextHolder,\
+  org.yugh.coral.boot.rest.RestTemplateHolder,\
+  org.yugh.coral.boot.reactive.ReactiveRequestContextFilter,\
+  org.yugh.coral.boot.config.BootContextConfig,\
+  org.yugh.coral.boot.rest.CustomClientHttpRequestInterceptor,\
+  org.yugh.coral.boot.rest.CustomRestTemplateCustomizer,\
+  org.yugh.coral.boot.handler.RestTemplateResponseErrorHandler,\
+  org.yugh.coral.boot.reactive.LogHeaderFilter

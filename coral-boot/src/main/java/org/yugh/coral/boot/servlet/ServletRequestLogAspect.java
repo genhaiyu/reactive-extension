@@ -1,4 +1,19 @@
-package org.yugh.coral.core.config.aspect;
+/*
+ * Copyright (c) 2019-2029, yugenhai108@gmail.com.
+ *
+ * Licensed under the GNU LESSER GENERAL PUBLIC LICENSE 3.0;
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.gnu.org/licenses/lgpl.html
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.yugh.coral.boot.servlet;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -14,7 +29,6 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.yugh.coral.core.annotation.WebSessionLog;
 import org.yugh.coral.core.common.constant.StringPool;
-import org.yugh.coral.core.common.launcher.LogLevel;
 import org.yugh.coral.core.pojo.bo.WebSessionLogBO;
 import org.yugh.coral.core.utils.JsonUtils;
 import org.yugh.coral.core.utils.ObjectUtil;
@@ -31,9 +45,8 @@ import java.time.Instant;
 @Aspect
 @Component
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
-@ConditionalOnProperty(value = LogLevel.REQ_LOG_PROPS_PREFIX + ".enabled", havingValue = "true", matchIfMissing = true)
-public class RequestLogAspect {
-
+@ConditionalOnProperty(value = StringPool.REQ_LOG_PROPS_PREFIX + ".enabled", havingValue = "true", matchIfMissing = true)
+public class ServletRequestLogAspect {
 
     @Pointcut("@within(org.yugh.coral.core.annotation.WebSessionLog)")
     public void requestLogAspectAnnotationPointcutForType() {
@@ -45,34 +58,32 @@ public class RequestLogAspect {
         // method
     }
 
-    @Pointcut("execution(* org.yugh.coral.*.controller.*.*(..))")
+    @Pointcut("execution(public * org.yugh.coral.*.*.web.rest.*.*(..))")
     public void requestLogAspectAnnotationPointcut() {
         // aop check
     }
 
 
     /**
-     * // FIXME   invalid aspect
-     *
      * @param pjp
      * @return
      * @throws Throwable
      */
     @Around("requestLogAspectAnnotationPointcutForType() || requestLogAspectAnnotationPointcutForMethod()" +
             "|| requestLogAspectAnnotationPointcut()")
-    public Object invokeRequestLogWithAppCore(ProceedingJoinPoint pjp) throws Throwable {
+    public Object invokeRequestLog(ProceedingJoinPoint pjp) throws Throwable {
         WebSessionLogBO webSessionLogBO = new WebSessionLogBO();
         Method method = ((MethodSignature) pjp.getSignature()).getMethod();
         WebSessionLog webLog = method.getAnnotation(WebSessionLog.class);
         if (webLog != null) {
             String value = webLog.name();
             webSessionLogBO.setOperation(value);
-            log.info("invokeRequestLogWithAppCore WebSessionLog name's : {}", value);
+            log.info("invokeRequestLog WebSessionLog name's : {}", value);
         }
         String className = pjp.getTarget().getClass().getName();
         String methodName = method.getName();
         webSessionLogBO.setMethod(className + StringPool.DOT + methodName);
-        log.info("invokeRequestLogWithAppCore WebSessionLog className : {}, methodName : {}", className, methodName);
+        log.info("invokeRequestLog WebSessionLog className : {}, methodName : {}", className, methodName);
         Object[] args = pjp.getArgs();
         Object[] arguments = new Object[args.length];
         for (int i = 0; i < args.length; i++) {
@@ -86,18 +97,18 @@ public class RequestLogAspect {
         try {
             params = JsonUtils.paramToJson(arguments);
         } catch (Exception e) {
-            log.error("invokeRequestLogWithAppCore toJson exception : {}", e.getMessage());
+            log.error("invokeRequestLog toJson exception : {}", e.getMessage());
         }
         webSessionLogBO.setParams(params);
         webSessionLogBO.setCreateDate(Instant.now());
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         if (ObjectUtil.isEmpty(servletRequestAttributes)) {
-            throw new RuntimeException("temp msg");
+            throw new RuntimeException("exception msg");
         }
         webSessionLogBO.setUserName("yugenhai");
         webSessionLogBO.setUserNo(159499L);
         // save params To
-        log.error("invokeRequestLogWithAppCore end params : {}", webSessionLogBO);
+        log.info("invokeRequestLog end params : {}", webSessionLogBO);
         return pjp.proceed();
     }
 }

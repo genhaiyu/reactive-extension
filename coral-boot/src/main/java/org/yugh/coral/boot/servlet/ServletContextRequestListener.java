@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2019-2029, yugenhai108@gmail.com.
+ *
+ * Licensed under the GNU LESSER GENERAL PUBLIC LICENSE 3.0;
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.gnu.org/licenses/lgpl.html
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.yugh.coral.boot.servlet;
 
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +40,13 @@ public class ServletContextRequestListener implements ServletRequestListener {
     private static final String REQUEST_ATTRIBUTES_ATTRIBUTE =
             ServletContextRequestListener.class.getName() + ".REQUEST_ATTRIBUTES";
 
+    /**
+     * StringJoiner reactorId = new StringJoiner(StringPool.EMPTY);
+     * reactorId.add(StringPool.MDC_HEADER);
+     * reactorId.add(msgId);
+     *
+     * @param servletRequestEvent
+     */
     @Override
     public void requestInitialized(ServletRequestEvent servletRequestEvent) {
         if (!(servletRequestEvent.getServletRequest() instanceof HttpServletRequest)) {
@@ -36,9 +58,9 @@ public class ServletContextRequestListener implements ServletRequestListener {
         String msgId = String.valueOf(SnowFlakeGenerateUtils.snowFlakeGenerate());
         thread.setName(msgId);
         ServletRequestAttributes attributes = new ServletRequestAttributes(request);
-        request.setAttribute(StringPool.MSG_ID, msgId);
+        request.setAttribute(StringPool.CONTEXT_MAP, msgId);
         request.setAttribute(REQUEST_ATTRIBUTES_ATTRIBUTE, attributes);
-        log.debug("\n Start msgId:{}  ServletContextRequestListener", msgId);
+        log.info("Servlet Start : {}", msgId);
         LocaleContextHolder.setLocale(request.getLocale());
         RequestContextHolder.setRequestAttributes(attributes);
     }

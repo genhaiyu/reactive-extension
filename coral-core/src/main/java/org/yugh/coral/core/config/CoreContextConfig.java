@@ -11,8 +11,6 @@ import org.yugh.coral.core.config.cache.CustomKeyGenerator;
 import org.yugh.coral.core.config.distribute.SimpleDistributeConfig;
 
 /**
- * Auto Configuration container version, for client
- *
  * @author yugenhai
  */
 @Configuration

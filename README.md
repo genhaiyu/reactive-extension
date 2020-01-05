@@ -40,8 +40,8 @@ org.yugh.coral
 `artifactId`：
 ```text
 parent (统一管理的 SpringBoot/SpringCloud 版本)
-core (基础枚举/注解/缓存适配器/Fegin统一异常,待更新)
-boot (根据用户选择Servlet/Reactive自动加载拦截器和过滤器/restTemplate统一初始化,拦截,异常/Reactor LogHeaderFilter )
+core (基础枚举/注解/缓存适配器/Fegin统一工厂管理,待更新)
+boot (根据用户选择Servlet/Reactive自动加载拦截器和过滤器/Feign/restTemplate统一使用,请求拦截或日志,异常/reactor 全局透传 MDC  )
 
 接下来持续更新
 ...

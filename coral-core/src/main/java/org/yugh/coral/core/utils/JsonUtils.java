@@ -1,7 +1,6 @@
 package org.yugh.coral.core.utils;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.module.SimpleModule;
@@ -12,6 +11,7 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 @Slf4j
 public final class JsonUtils {
 
@@ -36,9 +36,7 @@ public final class JsonUtils {
 
         UNICODE_MAPPER.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
         SimpleModule module = new SimpleModule();
-        module.addSerializer(String.class, new StringUnicodeSerializer());
         UNICODE_MAPPER.registerModule(module);
-        //设置null值不参与序列化(字段不被显示)
         UNICODE_MAPPER.setSerializationInclusion(JsonInclude.Include.NON_NULL);
     }
 
@@ -75,13 +73,6 @@ public final class JsonUtils {
         return mapper.readValue(jsonString, typeReference);
     }
 
-//    public static <T> T deserializeFromJson(HttpClientResponse response, TypeReference<T> typeReference, boolean enableCamelCase) throws IOException {
-//        if (response.getHttpCode() != HttpStatus.SC_OK) {
-//            throw new RemoteServiceHttpStatusNotOkException("status " + response.getHttpCode());
-//        }
-//        return deserializeFromJson(response.getResponseBody(), typeReference, enableCamelCase);
-//    }
-
     public static JsonNode deserializeFromJson(String jsonString) throws IOException {
         if (jsonString == null) {
             return null;
@@ -101,23 +92,11 @@ public final class JsonUtils {
         return serializeToJson(object, false);
     }
 
-    /**
-     * 汉字转成unicode
-     */
-    public static String serializeToUniCodeJson(Object object) {
+
+    public static String paramToJson(Object object) {
         try {
-            return UNICODE_MAPPER.writeValueAsString(object);
-        } catch (JsonProcessingException e) {
-            log.info("catch exception when serializeToJson, object:{}, e:{}", object, e);
-            throw new IllegalArgumentException("Can't serialize object to json.");
-        }
-    }
-
-
-    public static String paramToJson(Object object){
-        try{
             return MAPPER.writeValueAsString(object);
-        }catch (Exception e){
+        } catch (Exception e) {
             log.error("JsonUtils | paramToJson exception : {}", e.getMessage());
         }
         return null;
@@ -140,9 +119,6 @@ public final class JsonUtils {
 
     public static JsonNode serializeToJsonNode(Object object) {
         try {
-     /*       if (object == null) {
-                return createObjectNode();
-            }*/
             return MAPPER.readTree(serializeToJson(object));
         } catch (IOException e) {
             log.info("catch exception when serializeToJsonNode, object:{}, e:{}", object, e);

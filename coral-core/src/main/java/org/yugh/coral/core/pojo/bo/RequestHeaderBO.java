@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author yugenhai
@@ -17,10 +19,6 @@ import java.io.Serializable;
 public class RequestHeaderBO implements Serializable {
 
     private static final long serialVersionUID = -738100944072955230L;
-    private String userAgent;
-    private String hideVersion;
-    private String hideType;
-    private String xCountryTag;
-    private String msgId;
-    private Boolean verify = false;
+    private List baseList;
+    private Map<String, Object> baseMap;
 }

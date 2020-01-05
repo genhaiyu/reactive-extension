@@ -8,12 +8,9 @@ import reactor.util.context.Context;
 /**
  * @author yugenhai
  */
-public class ReactiveRequestContextHolder {
+public class CustomRequestContextHolder {
 
     private static final Class<ServerHttpRequest> CONTEXT_KEY = ServerHttpRequest.class;
-
-    private static final ThreadLocal<RequestHeaderBO> REQUEST_HEADER_KEY = new InheritableThreadLocal<>();
-
     private static final Class<RequestHeaderBO> REQUEST_HEADER_KEY_REACTOR = RequestHeaderBO.class;
 
     /**
@@ -33,44 +30,15 @@ public class ReactiveRequestContextHolder {
      */
     public static Mono<RequestHeaderBO> getRequestHeaderReactor() {
         return Mono.subscriberContext()
-                .map(context -> context.get(REQUEST_HEADER_KEY_REACTOR));
+                .map(ctx -> ctx.get(REQUEST_HEADER_KEY_REACTOR));
     }
 
     /**
-     * SpringMVC
-     *
-     * @param requestHeaderBO
-     */
-    public static void setRequestHeader(RequestHeaderBO requestHeaderBO) {
-        REQUEST_HEADER_KEY.set(requestHeaderBO);
-    }
-
-    /**
-     * SpringMVC
-     *
-     * @return
-     */
-    public static RequestHeaderBO getRequestHeader() {
-        RequestHeaderBO requestHeaderBO = REQUEST_HEADER_KEY.get();
-        if(requestHeaderBO == null){
-            requestHeaderBO = new RequestHeaderBO();
-        }
-        return requestHeaderBO;
-    }
-
-    /**
-     * SpringMVC
-     */
-    public static void resetRequestHeader() {
-        REQUEST_HEADER_KEY.remove();
-    }
-
-    /**
-     * Header By Mono
+     * Put the {@code Mono<RequestHeaderBO>} to Reactor {@link Context}
      *
      * @param context
      * @param requestHeaderBO
-     * @return
+     * @return the Reactor {@link Context}
      */
     public static Context setRequestHeaderReactor(Context context, RequestHeaderBO requestHeaderBO) {
         return context.put(REQUEST_HEADER_KEY_REACTOR, requestHeaderBO);
@@ -80,9 +48,11 @@ public class ReactiveRequestContextHolder {
     /**
      * Put the {@code Mono<ServerHttpRequest>} to Reactor {@link Context}
      *
+     * @param context
+     * @param request
      * @return the Reactor {@link Context}
      */
-    public static Context put(Context context, ServerHttpRequest request) {
+    public static Context setServerHttpRequestReactor(Context context, ServerHttpRequest request) {
         return context.put(CONTEXT_KEY, request);
     }
 }

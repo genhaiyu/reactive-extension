@@ -77,7 +77,7 @@ public interface StringPool {
     String OPTIONS                      = "OPTIONS";
     String X_REQUEST_ID                 = "X-Request-Id";
     String SIX_ZEROS                    = "000000";
-    String MDC_HEADER                   = "X-MDC-ID";
+    String REQUEST_ID_KEY               = "REQUEST_ID";
     String CONTEXT_MAP                  = "context-map";
     String REQ_LOG_PROPS_PREFIX         = "xx.log.request";
     String CONSOLE_LOG_ENABLED_PROP     = "xx.log.console.enabled";

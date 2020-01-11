@@ -16,9 +16,9 @@ import java.util.Map;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RequestHeaderBO implements Serializable {
+public class RequestContextBO implements Serializable {
 
     private static final long serialVersionUID = -738100944072955230L;
-    private List baseList;
-    private Map<String, Object> baseMap;
+    private List contextList;
+    private Map<String, Object> contextMap;
 }

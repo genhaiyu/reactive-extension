@@ -8,11 +8,6 @@
     <version>1.0.0-SNAPSHOT</version>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
-
-
         <java.version>1.8</java.version>
         <maven.parent.version>33</maven.parent.version>
         <javax.validation.version>2.0.1.Final</javax.validation.version>
@@ -33,8 +28,14 @@
         <skywalking.version>6.0.0-GA</skywalking.version>
         <swagger2.version>2.9.2</swagger2.version>
         <tomcat-jdbc.version>9.0.27</tomcat-jdbc.version>
+        <reactor.netty.version>0.8.13.RELEASE</reactor.netty.version>
+        <jetty.reactive>1.1.0</jetty.reactive>
+        <eclipse.jetty>9.4.22.v20191022</eclipse.jetty>
+
+        <!-- spring boot -->
         <spring.boot>2.1.10.RELEASE</spring.boot>
         <spring-cloud.version>Greenwich.SR4</spring-cloud.version>
+        <!-- spring cloud -->
     </properties>
 
     <parent>
@@ -78,9 +79,22 @@
             <artifactId>spring-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.projectreactor</groupId>
-            <artifactId>reactor-core</artifactId>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-reactive-httpclient</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.eclipse.jetty.aggregate</groupId>
+            <artifactId>jetty-all</artifactId>
+            <version>${eclipse.jetty}</version>
+            <type>pom</type>
+        </dependency>
+
         <dependency>
             <groupId>io.projectreactor</groupId>
             <artifactId>reactor-test</artifactId>
@@ -115,10 +129,6 @@
             <artifactId>feign-httpclient</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-aop</artifactId>
-        </dependency>
-        <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
             <version>${swagger2.version}</version>
@@ -144,8 +154,8 @@
         <dependency>
             <groupId>net.sf.json-lib</groupId>
             <artifactId>json-lib</artifactId>
-            <version>${net.sf.json.version}</version>
             <classifier>jdk15</classifier>
+            <version>${net.sf.json.version}</version>
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -159,23 +169,16 @@
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
-            <version>0.9.1</version>
+            <version>${json.webtoken.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.squareup.okhttp3</groupId>
-            <artifactId>okhttp</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpmime</artifactId>
         </dependency>
     </dependencies>
     <build>

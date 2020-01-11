@@ -1,17 +1,19 @@
 package org.yugh.coral.boot.reactive;
 
 import org.springframework.http.server.reactive.ServerHttpRequest;
-import org.yugh.coral.core.pojo.bo.RequestHeaderBO;
+import org.yugh.coral.core.pojo.bo.RequestContextBO;
 import reactor.core.publisher.Mono;
 import reactor.util.context.Context;
 
 /**
+ * ${@link ServerHttpRequest} ${@link RequestContextBO} 透传并发布到 Context 中 {@link Context}
+ *
  * @author yugenhai
  */
 public class CustomRequestContextHolder {
 
     private static final Class<ServerHttpRequest> CONTEXT_KEY = ServerHttpRequest.class;
-    private static final Class<RequestHeaderBO> REQUEST_HEADER_KEY_REACTOR = RequestHeaderBO.class;
+    private static final Class<RequestContextBO> REQUEST_CONTEXT_REACTOR = RequestContextBO.class;
 
     /**
      * Gets the {@code Mono<ServerHttpRequest>} from Reactor {@link Context}
@@ -28,20 +30,20 @@ public class CustomRequestContextHolder {
      *
      * @return the Mono<RequestHeaderBO>
      */
-    public static Mono<RequestHeaderBO> getRequestHeaderReactor() {
+    public static Mono<RequestContextBO> getRequestHeaderReactor() {
         return Mono.subscriberContext()
-                .map(ctx -> ctx.get(REQUEST_HEADER_KEY_REACTOR));
+                .map(ctx -> ctx.get(REQUEST_CONTEXT_REACTOR));
     }
 
     /**
      * Put the {@code Mono<RequestHeaderBO>} to Reactor {@link Context}
      *
      * @param context
-     * @param requestHeaderBO
+     * @param requestContextBO
      * @return the Reactor {@link Context}
      */
-    public static Context setRequestHeaderReactor(Context context, RequestHeaderBO requestHeaderBO) {
-        return context.put(REQUEST_HEADER_KEY_REACTOR, requestHeaderBO);
+    public static Context setRequestHeaderReactor(Context context, RequestContextBO requestContextBO) {
+        return context.put(REQUEST_CONTEXT_REACTOR, requestContextBO);
     }
 
 

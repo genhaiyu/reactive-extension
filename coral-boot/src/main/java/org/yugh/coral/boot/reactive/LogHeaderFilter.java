@@ -1,6 +1,7 @@
 package org.yugh.coral.boot.reactive;
 
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.MDC;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpHeaders;
@@ -42,12 +43,13 @@ public class LogHeaderFilter implements WebFilter {
     private Context addRequestHeadersToContext(final ServerHttpRequest request, final Context context) {
         final Map<String, String> contextMap = request.getHeaders().toSingleValueMap().entrySet()
                 .stream()
-                .filter(x -> x.getKey().startsWith(StringPool.MDC_HEADER))
+                .filter(x -> x.getKey().startsWith(StringPool.REQUEST_ID_KEY))
                 .collect(toMap(
-                        v -> v.getKey().substring(StringPool.MDC_HEADER.length()),
+                        v -> v.getKey().substring(StringPool.REQUEST_ID_KEY.length()),
                         Map.Entry::getValue
                         )
                 );
+        MDC.put(StringPool.REQUEST_ID_KEY, contextMap.get(StringPool.EMPTY));
         return context.put(StringPool.CONTEXT_MAP, contextMap);
     }
 
@@ -58,8 +60,9 @@ public class LogHeaderFilter implements WebFilter {
             }
             final HttpHeaders headers = res.getHeaders();
             ctx.<Map<String, String>>get(StringPool.CONTEXT_MAP).forEach(
-                    (key, value) -> headers.add(StringPool.MDC_HEADER + key, value)
+                    (key, value) -> headers.add(StringPool.REQUEST_ID_KEY + key, value)
             );
+            MDC.clear();
         }).then();
     }
 }

@@ -10,7 +10,7 @@ import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
 import org.yugh.coral.core.common.constant.StringPool;
-import org.yugh.coral.core.pojo.bo.RequestHeaderBO;
+import org.yugh.coral.core.pojo.bo.RequestContextBO;
 import org.yugh.coral.core.utils.SnowFlakeGenerateUtils;
 import reactor.core.publisher.Mono;
 import reactor.util.annotation.Nullable;
@@ -32,10 +32,10 @@ public class CustomRequestContextFilter implements WebFilter {
         Assert.notNull(exchange, () -> "ServerWebExchange '" + exchange + "' must not be null");
         Assert.notNull(chain, () -> "WebFilterChain '" + chain + "' must not be null");
         ServerHttpRequest request = exchange.getRequest();
-        Thread thread = Thread.currentThread();
+        /* Thread thread = Thread.currentThread(); */
         String msgId = String.valueOf(SnowFlakeGenerateUtils.snowFlakeGenerate());
-        thread.setName(msgId);
-        exchange.getRequest().mutate().headers(httpHeaders -> httpHeaders.add(StringPool.MDC_HEADER, msgId));
+        /* thread.setName(msgId); */
+        exchange.getRequest().mutate().headers(httpHeaders -> httpHeaders.add(StringPool.REQUEST_ID_KEY, msgId));
         Map<String, Object> contextMap = Maps.newConcurrentMap();
         contextMap.put(StringPool.CONTEXT_MAP, msgId);
         log.info("Reactive Start : {}", msgId);
@@ -43,6 +43,8 @@ public class CustomRequestContextFilter implements WebFilter {
                 ctx -> CustomRequestContextHolder.setServerHttpRequestReactor(ctx, request)
         ).subscriberContext(
                 ctx -> CustomRequestContextHolder.setRequestHeaderReactor(ctx,
-                        RequestHeaderBO.builder().baseList(Arrays.asList(msgId, request.getId())).baseMap(contextMap).build()));
+                        RequestContextBO.builder()
+                                .contextList(Arrays.asList(msgId, request.getId()))
+                                .contextMap(contextMap).build()));
     }
 }

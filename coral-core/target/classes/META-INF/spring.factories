@@ -1,5 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  org.yugh.coral.core.config.handler.ApplicationContextHelper,\
-  org.yugh.coral.core.config.distribute.SimpleDistributeConfig,\
-  org.yugh.coral.core.config.cache.CustomKeyGenerator,\
-  org.yugh.coral.core.config.CoreContextConfig

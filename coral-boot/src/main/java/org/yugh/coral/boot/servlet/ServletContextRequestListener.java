@@ -42,7 +42,7 @@ public class ServletContextRequestListener implements ServletRequestListener {
 
     /**
      * StringJoiner reactorId = new StringJoiner(StringPool.EMPTY);
-     * reactorId.add(StringPool.MDC_HEADER);
+     * reactorId.add(StringPool.REQUEST_ID_KEY);
      * reactorId.add(msgId);
      *
      * @param servletRequestEvent
@@ -54,9 +54,9 @@ public class ServletContextRequestListener implements ServletRequestListener {
                     "Request is not an HttpServletRequest: " + servletRequestEvent.getServletRequest());
         }
         HttpServletRequest request = (HttpServletRequest) servletRequestEvent.getServletRequest();
-        Thread thread = Thread.currentThread();
+        /* Thread thread = Thread.currentThread(); */
         String msgId = String.valueOf(SnowFlakeGenerateUtils.snowFlakeGenerate());
-        thread.setName(msgId);
+        /* thread.setName(msgId); */
         ServletRequestAttributes attributes = new ServletRequestAttributes(request);
         request.setAttribute(StringPool.CONTEXT_MAP, msgId);
         request.setAttribute(REQUEST_ATTRIBUTES_ATTRIBUTE, attributes);

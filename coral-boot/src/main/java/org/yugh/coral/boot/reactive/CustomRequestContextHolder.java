@@ -7,6 +7,8 @@ import reactor.util.context.Context;
 
 /**
  * ${@link ServerHttpRequest} ${@link RequestContextBO} 透传并发布到 Context 中 {@link Context}
+ * <p>
+ * 可以在微服务线程隔离下透传当前会话
  *
  * @author yugenhai
  */

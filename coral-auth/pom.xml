@@ -26,6 +26,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <eclipse.jetty>9.4.22.v20191022</eclipse.jetty>
         <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
     </properties>
     <dependencies>
@@ -80,7 +81,7 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>23.0</version>
+            <version>28.1-jre</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -103,8 +104,10 @@
             <version>0.9.1</version>
         </dependency>
         <dependency>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-server</artifactId>
+            <groupId>org.eclipse.jetty.aggregate</groupId>
+            <artifactId>jetty-all</artifactId>
+            <version>${eclipse.jetty}</version>
+            <type>pom</type>
         </dependency>
     </dependencies>
     <build>

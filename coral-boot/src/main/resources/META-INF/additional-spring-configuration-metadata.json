@@ -5,7 +5,13 @@
     {
       "name": "xx.log.request.enabled",
       "type": "java.lang.Boolean",
-      "description": "是否开启日志调试.",
+      "description": "In Servlet Container Open Log.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "xx.pickup.container.enable",
+      "type": "java.lang.Boolean",
+      "description": "Select Jetty on-off.",
       "defaultValue": "true"
     }
   ]

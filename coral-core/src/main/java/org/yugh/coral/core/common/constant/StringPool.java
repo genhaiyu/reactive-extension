@@ -81,5 +81,5 @@ public interface StringPool {
     String CONTEXT_MAP                  = "context-map";
     String REQ_LOG_PROPS_PREFIX         = "xx.log.request";
     String CONSOLE_LOG_ENABLED_PROP     = "xx.log.console.enabled";
-    String PICKUP_CONTAINER_TYPE        = "xx.pickup.container.enable";
+    String SELECT_CONTAINER_TYPE        = "xx.select.container.enable";
 }

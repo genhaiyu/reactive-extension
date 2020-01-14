@@ -1,6 +1,5 @@
 package org.yugh.coral.core.result;
 
-import lombok.experimental.UtilityClass;
 import org.yugh.coral.core.common.constant.StringPool;
 import org.yugh.coral.core.common.exception.GlobalException;
 
@@ -9,7 +8,6 @@ import java.util.Objects;
 /**
  * @author yugenhai
  */
-@UtilityClass
 public class ResponseUtil {
 
 

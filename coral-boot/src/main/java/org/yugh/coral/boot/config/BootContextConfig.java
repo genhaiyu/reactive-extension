@@ -16,22 +16,27 @@
 package org.yugh.coral.boot.config;
 
 import org.eclipse.jetty.client.HttpClient;
+import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
+import org.eclipse.jetty.util.thread.QueuedThreadPool;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.boot.web.embedded.jetty.JettyServerCustomizer;
+import org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Role;
-import org.springframework.http.client.reactive.ClientHttpConnector;
-import org.springframework.http.client.reactive.JettyClientHttpConnector;
-import org.springframework.http.client.reactive.JettyResourceFactory;
+import org.springframework.http.client.reactive.*;
 import org.yugh.coral.boot.rest.CustomRestTemplateCustomizer;
 import org.yugh.coral.core.common.constant.StringPool;
+
+import java.util.function.Function;
 
 /**
  * @author yugenhai
@@ -39,6 +44,19 @@ import org.yugh.coral.core.common.constant.StringPool;
 @Configuration
 @Role(BeanDefinition.ROLE_INFRASTRUCTURE)
 public class BootContextConfig {
+
+    /**
+     * default Max Con Thread 200
+     */
+    @Value("${server.jetty.max-thread:200}")
+    private int maxThreads;
+
+    /**
+     * default Min Con Thread 8
+     */
+    @Value("${server.jetty.min-thread:20}")
+    private int minThreads;
+
 
     @Bean
     @Qualifier("customRestTemplateCustomizer")
@@ -54,18 +72,28 @@ public class BootContextConfig {
 
 
     /**
-     * 在压测下 Jetty 性能最好最稳定, 在微服务中声明如下
-     * # enable select Jetty
+     * 默认强制加载 Jetty , 取消 Jetty  使用 Netty 则在 Webflux 引用去注释下面的排除
+     *
+     *              <exclusions>
+     *                 <exclusion>
+     *                     <groupId>org.springframework.boot</groupId>
+     *                     <artifactId>spring-boot-starter-netty</artifactId>
+     *                 </exclusion>
+     *             </exclusions>
+     *
+     * SpringBoot 2.X Jetty / netty-reactor / Undertow
+     *
+     * # enable select jetty-http or reactor-http
+     * # <artifactId>spring-boot-starter-undertow</artifactId>
      * xx:
-     *   pickup:
-     *     container:
-     *       enable: true
-     * 自定义加载 jetty 和 netty
+     *  select:
+     *      container:
+     *          enable: true
      */
     @Configuration
     @ConditionalOnMissingBean(ClientHttpConnector.class)
     @ConditionalOnClass(org.eclipse.jetty.reactive.client.ReactiveRequest.class)
-    @ConditionalOnProperty(value = StringPool.PICKUP_CONTAINER_TYPE, havingValue = "true", matchIfMissing = true)
+    @ConditionalOnProperty(value = StringPool.SELECT_CONTAINER_TYPE, havingValue = "true", matchIfMissing = true)
     protected static class PickupContainerAutoConfiguration {
 
         @Bean
@@ -83,5 +111,48 @@ public class BootContextConfig {
             httpClient.setScheduler(jettyResourceFactory.getScheduler());
             return new JettyClientHttpConnector(httpClient);
         }
+    }
+
+
+    @Configuration
+    @ConditionalOnMissingBean(ClientHttpConnector.class)
+    @ConditionalOnClass(reactor.netty.http.client.HttpClient.class)
+    @ConditionalOnProperty(value = StringPool.SELECT_CONTAINER_TYPE, havingValue = "false", matchIfMissing = true)
+    protected static class SelectContainerReactorAutoConfiguration {
+
+        @Bean
+        @ConditionalOnMissingBean
+        public ReactorResourceFactory reactorClientResourceFactory() {
+            return new ReactorResourceFactory();
+        }
+
+        @Bean
+        public ReactorClientHttpConnector reactorClientHttpConnector(ReactorResourceFactory reactorResourceFactory) {
+            return new ReactorClientHttpConnector(reactorResourceFactory, Function.identity());
+        }
+    }
+
+
+    @Bean
+    public JettyServletWebServerFactory jettyServletWebServerFactory(JettyServerCustomizer jettyServerCustomizer) {
+        JettyServletWebServerFactory jettyServletWebServerFactory = new JettyServletWebServerFactory();
+        jettyServletWebServerFactory.addServerCustomizers(jettyServerCustomizer);
+        return jettyServletWebServerFactory;
+    }
+
+    @Bean
+    public JettyServerCustomizer jettyServerCustomizer() {
+        return this::threadPool;
+    }
+
+    private void threadPool(Server server) {
+        // Tweak the connection config used by Jetty to handle incoming HTTP
+        final QueuedThreadPool threadPool = server.getBean(QueuedThreadPool.class);
+        // Jetty default Max Con Thread 200
+        threadPool.setMaxThreads(maxThreads);
+        // Jetty default Min Con Thread 8
+        threadPool.setMinThreads(minThreads);
+        // Jetty default Max IdleTimeout 60000ms
+        threadPool.setIdleTimeout(60000);
     }
 }

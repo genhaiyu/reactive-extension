@@ -9,11 +9,10 @@
       "defaultValue": "true"
     },
     {
-      "name": "xx.pickup.container.enable",
+      "name": "xx.select.container.enable",
       "type": "java.lang.Boolean",
       "description": "Select Jetty on-off.",
       "defaultValue": "true"
     }
   ]
 }
-

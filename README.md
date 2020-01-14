@@ -41,7 +41,9 @@ org.yugh.coral
 ```text
 parent (统一管理的 SpringBoot/SpringCloud 版本)
 core (基础枚举/注解/缓存适配器/Fegin统一工厂管理,待更新)
-boot (根据用户选择Servlet/Reactive自动加载拦截器和过滤器/Feign/restTemplate统一使用,请求拦截或日志,异常/reactor 全局透传 MDC  )
+boot (根据用户选择Servlet/Reactive自动加载拦截器和过滤器/Feign/restTemplate统一使用,
+请求拦截或日志, WebFlux 全局透传 MDC, SpringBoot 2.X 下 Jetty/Reactor Netty/ Undertow 生产环境选择 )
+gateway (Spring Cloud Gateway 基础建设, 如 鉴权/转发/跨域统一设置)
 
 接下来持续更新
 ...

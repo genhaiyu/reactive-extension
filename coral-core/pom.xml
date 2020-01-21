@@ -27,10 +27,12 @@
         <lombok.version>1.18.10</lombok.version>
         <skywalking.version>6.0.0-GA</skywalking.version>
         <swagger2.version>2.9.2</swagger2.version>
-        <tomcat-jdbc.version>9.0.27</tomcat-jdbc.version>
-        <reactor.netty.version>0.8.13.RELEASE</reactor.netty.version>
-        <jetty.reactive>1.1.0</jetty.reactive>
+        <tomcat.version>9.0.27</tomcat.version>
+
+
+        <javax.security.auth>1.1.1</javax.security.auth>
         <eclipse.jetty>9.4.22.v20191022</eclipse.jetty>
+        <geronimo-jaspi>2.0.0</geronimo-jaspi>
 
         <!-- spring boot -->
         <spring.boot>2.1.10.RELEASE</spring.boot>
@@ -83,6 +85,10 @@
             <artifactId>spring-aop</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-reactive-httpclient</artifactId>
         </dependency>
@@ -91,6 +97,19 @@
             <artifactId>jetty-all</artifactId>
             <version>${eclipse.jetty}</version>
             <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.geronimo.components</groupId>
+            <artifactId>geronimo-jaspi</artifactId>
+            <version>${geronimo-jaspi}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.undertow</groupId>
+            <artifactId>undertow-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.undertow</groupId>
+            <artifactId>undertow-servlet</artifactId>
         </dependency>
         <dependency>
             <groupId>io.projectreactor</groupId>
@@ -126,8 +145,8 @@
             <artifactId>jackson-annotations</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-hystrix</artifactId>
         </dependency>
         <dependency>
             <groupId>io.github.openfeign</groupId>
@@ -142,10 +161,6 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
             <version>${swagger2.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -175,11 +190,6 @@
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
             <version>${json.webtoken.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>

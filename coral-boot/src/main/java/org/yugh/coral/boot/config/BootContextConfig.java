@@ -28,6 +28,8 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.boot.web.embedded.jetty.JettyServerCustomizer;
 import org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory;
+import org.springframework.boot.web.embedded.netty.NettyReactiveWebServerFactory;
+import org.springframework.boot.web.reactive.server.ReactiveWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
@@ -35,6 +37,7 @@ import org.springframework.context.annotation.Role;
 import org.springframework.http.client.reactive.*;
 import org.yugh.coral.boot.rest.CustomRestTemplateCustomizer;
 import org.yugh.coral.core.common.constant.StringPool;
+import reactor.netty.http.server.HttpServer;
 
 import java.util.function.Function;
 
@@ -44,6 +47,7 @@ import java.util.function.Function;
 @Configuration
 @Role(BeanDefinition.ROLE_INFRASTRUCTURE)
 public class BootContextConfig {
+
 
     /**
      * default Max Con Thread 200
@@ -71,30 +75,11 @@ public class BootContextConfig {
     }
 
 
-    /**
-     * 默认强制加载 Jetty , 取消 Jetty  使用 Netty 则在 Webflux 引用去注释下面的排除
-     *
-     *              <exclusions>
-     *                 <exclusion>
-     *                     <groupId>org.springframework.boot</groupId>
-     *                     <artifactId>spring-boot-starter-netty</artifactId>
-     *                 </exclusion>
-     *             </exclusions>
-     *
-     * SpringBoot 2.X Jetty / netty-reactor / Undertow
-     *
-     * # enable select jetty-http or reactor-http
-     * # <artifactId>spring-boot-starter-undertow</artifactId>
-     * xx:
-     *  select:
-     *      container:
-     *          enable: true
-     */
     @Configuration
     @ConditionalOnMissingBean(ClientHttpConnector.class)
     @ConditionalOnClass(org.eclipse.jetty.reactive.client.ReactiveRequest.class)
     @ConditionalOnProperty(value = StringPool.SELECT_CONTAINER_TYPE, havingValue = "true", matchIfMissing = true)
-    protected static class PickupContainerAutoConfiguration {
+    public static class SelectContainerJettyAutoConfiguration {
 
         @Bean
         @ConditionalOnMissingBean
@@ -118,7 +103,7 @@ public class BootContextConfig {
     @ConditionalOnMissingBean(ClientHttpConnector.class)
     @ConditionalOnClass(reactor.netty.http.client.HttpClient.class)
     @ConditionalOnProperty(value = StringPool.SELECT_CONTAINER_TYPE, havingValue = "false", matchIfMissing = true)
-    protected static class SelectContainerReactorAutoConfiguration {
+    public static class SelectContainerReactorAutoConfiguration {
 
         @Bean
         @ConditionalOnMissingBean
@@ -155,4 +140,42 @@ public class BootContextConfig {
         // Jetty default Max IdleTimeout 60000ms
         threadPool.setIdleTimeout(60000);
     }
+
+
+    @Configuration
+    @ConditionalOnMissingBean(ReactiveWebServerFactory.class)
+    @ConditionalOnClass({ HttpServer.class })
+    @ConditionalOnProperty(value = StringPool.SELECT_CONTAINER_TYPE, havingValue = "false", matchIfMissing = true)
+    public static class SelectContainerNettyAutoConfiguration {
+
+        @Bean
+        @ConditionalOnMissingBean
+        public ReactorResourceFactory reactorServerResourceFactory() {
+            return new ReactorResourceFactory();
+        }
+
+        @Bean
+        public NettyReactiveWebServerFactory nettyReactiveWebServerFactory(ReactorResourceFactory resourceFactory) {
+            NettyReactiveWebServerFactory serverFactory = new NettyReactiveWebServerFactory();
+            serverFactory.setResourceFactory(resourceFactory);
+            return serverFactory;
+        }
+
+    }
+
+
+    /*1**************************************** Business **********************************************************/
+
+    /**
+     * Check Custom Setting Properties
+     *
+     * @return
+     */
+//    @Bean
+//    @ConditionalOnProperty("proxy.enable")
+//    @ConfigurationProperties("proxy")
+//    public ProxyProperties proxyProperties() {
+//        return new ProxyProperties();
+//    }
+    /*2**************************************** Business **********************************************************/
 }

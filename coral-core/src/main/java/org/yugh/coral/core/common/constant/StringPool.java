@@ -79,7 +79,7 @@ public interface StringPool {
     String SIX_ZEROS                    = "000000";
     String REQUEST_ID_KEY               = "REQUEST_ID";
     String CONTEXT_MAP                  = "context-map";
-    String REQ_LOG_PROPS_PREFIX         = "xx.log.request";
-    String CONSOLE_LOG_ENABLED_PROP     = "xx.log.console.enabled";
-    String SELECT_CONTAINER_TYPE        = "xx.select.container.enable";
+    String REQ_LOG_PROPS_PREFIX         = "coral.log.request";
+    String CONSOLE_LOG_ENABLED_PROP     = "coral.log.console.enabled";
+    String SELECT_CONTAINER_TYPE        = "coral.select.container.enable";
 }

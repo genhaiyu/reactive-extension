@@ -1,8 +1,8 @@
 # :sparkles: Coral (珊瑚) 
 
-[![Build Status](https://travis-ci.org/yugenhai108/coral.svg?branch=master)](https://travis-ci.org/yugenhai108/coral)
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/yugenhai108/coral/master)
-[![GitHub stars](https://img.shields.io/github/stars/yugenhai108/coral)](https://github.com/yugenhai108/coral/stargazers)
+[![Build Status](https://travis-ci.org/yugenhai/coral.svg?branch=master)](https://travis-ci.org/yugenhai/coral)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/yugenhai/coral.git/master)
+[![GitHub stars](https://img.shields.io/github/stars/yugenhai/coral)](https://github.com/yugenhai/coral/stargazers)
 
 ------
 

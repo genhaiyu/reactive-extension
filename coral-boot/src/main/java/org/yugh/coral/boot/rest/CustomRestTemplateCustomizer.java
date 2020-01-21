@@ -24,6 +24,7 @@ import org.springframework.web.client.RestTemplate;
 public class CustomRestTemplateCustomizer implements RestTemplateCustomizer {
 
     /**
+     *
      * @param restTemplate
      */
     @Override

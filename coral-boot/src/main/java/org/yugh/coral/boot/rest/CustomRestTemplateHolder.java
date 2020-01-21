@@ -27,7 +27,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 import org.yugh.coral.boot.handler.CustomRestTemplateResponseErrorHandler;
 import org.yugh.coral.core.utils.JsonUtils;
 
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author yugenhai
@@ -38,6 +40,10 @@ public class CustomRestTemplateHolder extends RestTemplate {
     private final RestTemplate restTemplate;
 
     public CustomRestTemplateHolder(RestTemplateBuilder restTemplateBuilder) {
+
+//        if(null != proxyProperties && proxyProperties.getEnable()){
+//            // create ResetTemplate
+//        }
         this.restTemplate = restTemplateBuilder.errorHandler(new CustomRestTemplateResponseErrorHandler()).build();
     }
 
@@ -77,4 +83,21 @@ public class CustomRestTemplateHolder extends RestTemplate {
         ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, new HttpEntity<>(params, headers), String.class);
         return responseEntity;
     }
+
+
+    /****************** Business *********************************************************/
+    /****************** Business *********************************************************/
+    private String proxyBaseURL;
+    private Set<String> ignoreDomains;
+    private static final String PROXY_HEADER = "target-domain";
+    private static final String REQUEST_ID_HEADER = "x-request-id";
+    private static final String CLIENT_IP_SOURCE_HEADER = "X-Real-IP";
+    private static final String CLIENT_IP_TARGET_HEADER = "x-client-ip";
+    private static final Set<String> ADD_USER_IP_DOMAINS = new HashSet<>();
+
+
+    /****************** Business *********************************************************/
+    /****************** Business *********************************************************/
+
+
 }

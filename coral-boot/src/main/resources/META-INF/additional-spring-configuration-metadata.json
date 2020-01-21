@@ -3,15 +3,15 @@
   ],
   "properties": [
     {
-      "name": "xx.log.request.enabled",
+      "name": "coral.log.request.enabled",
       "type": "java.lang.Boolean",
       "description": "In Servlet Container Open Log.",
       "defaultValue": "true"
     },
     {
-      "name": "xx.select.container.enable",
+      "name": "coral.select.container.enable",
       "type": "java.lang.Boolean",
-      "description": "Select Jetty on-off.",
+      "description": "Select Jetty/Netty/Tomcat on-off.",
       "defaultValue": "true"
     }
   ]

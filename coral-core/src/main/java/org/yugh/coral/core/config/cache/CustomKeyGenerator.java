@@ -8,6 +8,7 @@ import java.lang.reflect.Method;
 /**
  * @author yugenhai
  */
+@Deprecated
 public class CustomKeyGenerator implements KeyGenerator {
 
     @Override

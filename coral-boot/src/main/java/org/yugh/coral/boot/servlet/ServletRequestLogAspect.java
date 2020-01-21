@@ -31,14 +31,16 @@ import org.yugh.coral.core.annotation.WebSessionLog;
 import org.yugh.coral.core.common.constant.StringPool;
 import org.yugh.coral.core.pojo.bo.WebSessionLogBO;
 import org.yugh.coral.core.utils.JsonUtils;
-import org.yugh.coral.core.utils.ObjectUtil;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import java.lang.reflect.Method;
 import java.time.Instant;
+import java.util.Objects;
 
 /**
+ * for servlet
+ *
  * @author yugenhai
  */
 @Slf4j
@@ -65,25 +67,27 @@ public class ServletRequestLogAspect {
 
 
     /**
+     * If you used starter-web, auto loadClass
+     *
      * @param pjp
      * @return
      * @throws Throwable
      */
     @Around("requestLogAspectAnnotationPointcutForType() || requestLogAspectAnnotationPointcutForMethod()" +
             "|| requestLogAspectAnnotationPointcut()")
-    public Object invokeRequestLog(ProceedingJoinPoint pjp) throws Throwable {
+    public Object invokeRequestLogWithXesAppCore(ProceedingJoinPoint pjp) throws Throwable {
         WebSessionLogBO webSessionLogBO = new WebSessionLogBO();
         Method method = ((MethodSignature) pjp.getSignature()).getMethod();
         WebSessionLog webLog = method.getAnnotation(WebSessionLog.class);
         if (webLog != null) {
             String value = webLog.name();
             webSessionLogBO.setOperation(value);
-            log.info("invokeRequestLog WebSessionLog name's : {}", value);
+            log.info("invokeRequestLogWithXesAppCore WebSessionLog name's : {}", value);
         }
         String className = pjp.getTarget().getClass().getName();
         String methodName = method.getName();
         webSessionLogBO.setMethod(className + StringPool.DOT + methodName);
-        log.info("invokeRequestLog WebSessionLog className : {}, methodName : {}", className, methodName);
+        log.info("invokeRequestLogWithXesAppCore WebSessionLog className : {}, methodName : {}", className, methodName);
         Object[] args = pjp.getArgs();
         Object[] arguments = new Object[args.length];
         for (int i = 0; i < args.length; i++) {
@@ -97,18 +101,18 @@ public class ServletRequestLogAspect {
         try {
             params = JsonUtils.paramToJson(arguments);
         } catch (Exception e) {
-            log.error("invokeRequestLog toJson exception : {}", e.getMessage());
+            log.error("invokeRequestLogWithXesAppCore toJson exception : {}", e.getMessage());
         }
         webSessionLogBO.setParams(params);
         webSessionLogBO.setCreateDate(Instant.now());
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        if (ObjectUtil.isEmpty(servletRequestAttributes)) {
-            throw new RuntimeException("exception msg");
+        if (Objects.isNull(servletRequestAttributes)) {
+            throw new RuntimeException("invokeRequestLogWithXesAppCore ServletRequestAttributes must not null");
         }
         webSessionLogBO.setUserName("yugenhai");
         webSessionLogBO.setUserNo(159499L);
         // save params To
-        log.info("invokeRequestLog end params : {}", webSessionLogBO);
+        log.info("invokeRequestLogWithXesAppCore end params : {}", webSessionLogBO);
         return pjp.proceed();
     }
 }

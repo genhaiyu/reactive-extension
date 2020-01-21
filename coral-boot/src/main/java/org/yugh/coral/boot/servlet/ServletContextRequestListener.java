@@ -16,6 +16,7 @@
 package org.yugh.coral.boot.servlet;
 
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.MDC;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.core.annotation.Order;
@@ -42,7 +43,7 @@ public class ServletContextRequestListener implements ServletRequestListener {
 
     /**
      * StringJoiner reactorId = new StringJoiner(StringPool.EMPTY);
-     * reactorId.add(StringPool.REQUEST_ID_KEY);
+     * reactorId.add(StringPool.MDC_HEADER);
      * reactorId.add(msgId);
      *
      * @param servletRequestEvent
@@ -60,7 +61,8 @@ public class ServletContextRequestListener implements ServletRequestListener {
         ServletRequestAttributes attributes = new ServletRequestAttributes(request);
         request.setAttribute(StringPool.CONTEXT_MAP, msgId);
         request.setAttribute(REQUEST_ATTRIBUTES_ATTRIBUTE, attributes);
-        log.info("Servlet Start : {}", msgId);
+        MDC.put(StringPool.REQUEST_ID_KEY, msgId);
+        log.info("Servlet Request Start : {}", msgId);
         LocaleContextHolder.setLocale(request.getLocale());
         RequestContextHolder.setRequestAttributes(attributes);
     }
@@ -82,6 +84,7 @@ public class ServletContextRequestListener implements ServletRequestListener {
             }
         }
         if (attributes != null) {
+            MDC.clear();
             attributes.requestCompleted();
         }
     }

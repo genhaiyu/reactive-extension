@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 package org.yugh.coral.boot.rest;
-
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;

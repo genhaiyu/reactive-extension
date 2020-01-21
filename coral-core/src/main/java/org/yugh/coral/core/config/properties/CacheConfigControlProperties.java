@@ -12,9 +12,9 @@ public class CacheConfigControlProperties {
 //    private int expire;
 //
 //    /**
-//     * Default key-prefix: xx:discovery
+//     * Default key-prefix: coral:discovery
 //     */
-//    @Value("${spring.redis.key-prefix:xx:discovery}")
+//    @Value("${spring.redis.key-prefix:coral:discovery}")
 //    private String keyPrefix;
 
 //    /**

@@ -1,0 +1,25 @@
+{
+  "groups": [
+  ],
+  "properties": [
+    {
+      "name": "spring.redis.expire",
+      "type": "java.lang.Integer",
+      "description": "Custom Redis Expire Value.",
+      "defaultValue": 30
+    },
+    {
+      "name": "spring.redis.key-prefix",
+      "type": "java.lang.String",
+      "description": "Custom Redis Key-prefix Value.",
+      "defaultValue": "coral:unknown"
+    },
+    {
+      "name": "spring.redis.open",
+      "type": "java.lang.Boolean",
+      "description": "Custom Redis Switch Value.",
+      "defaultValue": true
+    }
+  ]
+}
+

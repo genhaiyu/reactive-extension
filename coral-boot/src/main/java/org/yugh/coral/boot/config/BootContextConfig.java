@@ -52,13 +52,13 @@ public class BootContextConfig {
     /**
      * default Max Con Thread 200
      */
-    @Value("${server.jetty.max-thread:200}")
+    @Value("${coral.jetty.initial-value.max-thread:200}")
     private int maxThreads;
 
     /**
      * default Min Con Thread 8
      */
-    @Value("${server.jetty.min-thread:20}")
+    @Value("${coral.jetty.initial-value.min-thread:20}")
     private int minThreads;
 
 

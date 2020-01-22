@@ -13,6 +13,19 @@
       "type": "java.lang.Boolean",
       "description": "Select Jetty/Netty/Tomcat on-off.",
       "defaultValue": "true"
+    },
+    {
+      "name": "coral.jetty.initial-value.max-thread",
+      "type": "java.lang.Integer",
+      "description": "Init Custom optimize max-thread value.",
+      "defaultValue": 200
+    },
+    {
+      "name": "coral.jetty.initial-value.min-thread",
+      "type": "java.lang.Integer",
+      "description": "Init Custom optimize min-thread value.",
+      "defaultValue": 20
     }
   ]
 }
+

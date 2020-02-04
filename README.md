@@ -14,19 +14,21 @@
 | Spring Cloud | Greenwich |
 
 
-# 1. 将以下基础组件 maven-install 后引用就可以使用
+## 1. 将以下基础组件 maven-install 后引用就可以使用
+
+#### mvn clean install -Dmaven.test.skip=true
 
 ```html
 <dependency>
     <groupId>org.yugh.coral</groupId>
     <artifactId>core</artifactId>
-    <version>${project.version}</version>
+    <version>1.0.0-SNAPSHOT</version>
 </dependency>
 
  <dependency>
     <groupId>org.yugh.coral</groupId>
     <artifactId>boot</artifactId>
-    <version>${project.version}</version>
+    <version>1.0.0-SNAPSHOT</version>
  </dependency>
 
 ```
@@ -39,26 +41,29 @@ org.yugh.coral
 
 `artifactId`：
 ```text
-parent (统一管理的 SpringBoot/SpringCloud 版本)
-core (基础枚举/注解/缓存适配器/Fegin统一工厂管理,待更新)
-boot (根据用户选择Servlet/Reactive自动加载拦截器和过滤器/Feign/restTemplate统一使用,
-请求拦截或日志, WebFlux 全局透传 MDC, SpringBoot 2.X 下 Jetty/Reactor Netty/ Undertow 生产环境选择 )
-gateway (Spring Cloud Gateway 基础建设, 如 鉴权/转发/跨域统一设置)
+core 
+① 公用的基础枚举/注解, 缓存适配器, 请求管理的工厂统一配置;
 
-接下来持续更新
+boot 
+① 自动适配用户选择的容器 Servlet/Reactive 加载拦截器和过滤器;
+② WebFlux 下的 RequestContextHolder, 见 `CustomRequestContextHolder`;
+③ WebFlux 下全局 traceId/MDC, 见 `CustomRequestContextFilter`;
+④ SpringBoot 2.X 下 Jetty/Reactor Netty/ Undertow 生产环境选择, 见 `BootContextConfig`, 微服务通过 metadata 选择容器;
+
+gateway
+① Spring Cloud Gateway 入门配置, 如 鉴权/转发/跨域统一设置, 已停更/废弃;
+
 ...
 
 ```
 
 ------
-------
-------
 
-## 以下代码不再更新 :stuck_out_tongue:
+~~## 以下代码不再更新 :stuck_out_tongue:~~
 
 ***
 
-coral-customer 和 coral-product 模拟熔断的简单微服务，启动后互相调用，一方设定 hystrix 熔断参数来控制。
+~~coral-customer 和 coral-product 模拟熔断的简单微服务，启动后互相调用，一方设定 hystrix 熔断参数来控制。~~
 
 ~~## 网关权限会话的使用~~
 ```html
@@ -68,7 +73,7 @@ coral-customer 和 coral-product 模拟熔断的简单微服务，启动后互�
         <version>1.0.0</version>
     </dependency>
 ```
-使用方式：
+~~使用方式：~~
 
 * ~~coral-auth 微服务切面编程应用，"aspect" 包下 PreAuthAspect 追踪Web和接口请求的权限和会话有效期，支持服务端和客户端同时生效。~~
 </br>

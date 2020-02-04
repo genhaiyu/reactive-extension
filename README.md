@@ -42,7 +42,7 @@
     * 自动适配用户选择的容器 Servlet/Reactive 加载拦截器和过滤器;
     * WebFlux 下的 RequestContextHolder, 见 `CustomRequestContextHolder`;
     * WebFlux 下全局 traceId/MDC, 见 `CustomRequestContextFilter`;
-    * SpringBoot 2.X 下 Jetty/Reactor Netty/ Undertow 生产环境选择, 见 `BootContextConfig`, 微服务通过 metadata 选择容器;
+    * SpringBoot 2.X 下 Jetty/Reactor Netty/Undertow 切换及配置值, 见 `BootContextConfig`, 微服务通过 metadata 选择容器和配置初始值;
 
 * **gateway** 
     * Spring Cloud Gateway 入门配置, 如 鉴权/转发/跨域统一设置, 已停更/废弃;

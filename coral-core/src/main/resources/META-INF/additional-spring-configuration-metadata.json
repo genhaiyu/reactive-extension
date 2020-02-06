@@ -12,13 +12,25 @@
       "name": "spring.redis.key-prefix",
       "type": "java.lang.String",
       "description": "Custom Redis Key-prefix Value.",
-      "defaultValue": "coral:unknown"
+      "defaultValue": "coral:unspecified"
     },
     {
       "name": "spring.redis.open",
       "type": "java.lang.Boolean",
       "description": "Custom Redis Switch Value.",
       "defaultValue": true
+    },
+    {
+      "name": "distribute.sequences.work.work-id",
+      "type": "java.lang.Integer",
+      "description": "Configuration work-id.",
+      "defaultValue": 0
+    },
+    {
+      "name": "distribute.sequences.datacenter.datacenter-id",
+      "type": "java.lang.Integer",
+      "description": "Configuration datacenter.",
+      "defaultValue": 0
     }
   ]
 }

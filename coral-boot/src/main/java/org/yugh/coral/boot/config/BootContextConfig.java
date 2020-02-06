@@ -36,7 +36,7 @@ import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Role;
 import org.springframework.http.client.reactive.*;
 import org.yugh.coral.boot.rest.CustomRestTemplateCustomizer;
-import org.yugh.coral.core.common.constant.StringPool;
+import org.yugh.coral.core.common.constant.ClientMessageInfo;
 import reactor.netty.http.server.HttpServer;
 
 import java.util.function.Function;
@@ -78,7 +78,7 @@ public class BootContextConfig {
     @Configuration
     @ConditionalOnMissingBean(ClientHttpConnector.class)
     @ConditionalOnClass(org.eclipse.jetty.reactive.client.ReactiveRequest.class)
-    @ConditionalOnProperty(value = StringPool.SELECT_CONTAINER_TYPE, havingValue = "true", matchIfMissing = true)
+    @ConditionalOnProperty(value = ClientMessageInfo.CONTAINER_AUTO_CONFIG, havingValue = "true", matchIfMissing = true)
     public static class SelectContainerJettyAutoConfiguration {
 
         @Bean
@@ -102,7 +102,7 @@ public class BootContextConfig {
     @Configuration
     @ConditionalOnMissingBean(ClientHttpConnector.class)
     @ConditionalOnClass(reactor.netty.http.client.HttpClient.class)
-    @ConditionalOnProperty(value = StringPool.SELECT_CONTAINER_TYPE, havingValue = "false", matchIfMissing = true)
+    @ConditionalOnProperty(value = ClientMessageInfo.CONTAINER_AUTO_CONFIG, havingValue = "false", matchIfMissing = true)
     public static class SelectContainerReactorAutoConfiguration {
 
         @Bean
@@ -145,7 +145,7 @@ public class BootContextConfig {
     @Configuration
     @ConditionalOnMissingBean(ReactiveWebServerFactory.class)
     @ConditionalOnClass({ HttpServer.class })
-    @ConditionalOnProperty(value = StringPool.SELECT_CONTAINER_TYPE, havingValue = "false", matchIfMissing = true)
+    @ConditionalOnProperty(value = ClientMessageInfo.CONTAINER_AUTO_CONFIG, havingValue = "false", matchIfMissing = true)
     public static class SelectContainerNettyAutoConfiguration {
 
         @Bean
@@ -160,22 +160,5 @@ public class BootContextConfig {
             serverFactory.setResourceFactory(resourceFactory);
             return serverFactory;
         }
-
     }
-
-
-    /*1**************************************** Business **********************************************************/
-
-    /**
-     * Check Custom Setting Properties
-     *
-     * @return
-     */
-//    @Bean
-//    @ConditionalOnProperty("proxy.enable")
-//    @ConfigurationProperties("proxy")
-//    public ProxyProperties proxyProperties() {
-//        return new ProxyProperties();
-//    }
-    /*2**************************************** Business **********************************************************/
 }

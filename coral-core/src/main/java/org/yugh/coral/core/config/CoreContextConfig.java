@@ -24,8 +24,4 @@ public class CoreContextConfig {
         return new SimpleDistributeConfig();
     }
 
-//    @Override
-//    public KeyGenerator keyGenerator() {
-//        return new CustomKeyGenerator();
-//    }
 }

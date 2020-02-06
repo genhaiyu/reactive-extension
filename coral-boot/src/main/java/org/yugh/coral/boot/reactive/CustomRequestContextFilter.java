@@ -24,7 +24,7 @@ import org.springframework.util.Assert;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
-import org.yugh.coral.core.common.constant.StringPool;
+import org.yugh.coral.core.common.constant.LogMessageInfo;
 import org.yugh.coral.core.pojo.bo.RequestHeaderBO;
 import org.yugh.coral.core.utils.SnowFlakeGenerateUtils;
 import reactor.core.publisher.Mono;
@@ -48,13 +48,17 @@ public class CustomRequestContextFilter implements WebFilter {
         Assert.notNull(chain, () -> "WebFilterChain '" + chain + "' must not be null");
         ServerHttpRequest request = exchange.getRequest();
         String msgId = String.valueOf(SnowFlakeGenerateUtils.snowFlakeGenerate());
-        exchange.getRequest().mutate().headers(httpHeaders -> httpHeaders.add(StringPool.REQUEST_ID_KEY, msgId));
+        exchange.getRequest().mutate().headers(httpHeaders -> httpHeaders.add(LogMessageInfo.REQUEST_ID_KEY, msgId));
         Map<String, Object> contextMap = Maps.newConcurrentMap();
-        contextMap.put(StringPool.CONTEXT_MAP, msgId);
+        contextMap.put(LogMessageInfo.CONTEXT_MAP, msgId);
         log.info("Reactive Request Started  : {}", msgId);
         return chain.filter(exchange).subscriberContext(ctx ->
-                CustomRequestContextHolder.setServerHttpRequestReactor(ctx, request)).subscriberContext(ctx ->
-                CustomRequestContextHolder.setRequestHeaderReactor(ctx, RequestHeaderBO.builder().baseList(Arrays.asList(msgId, request.getId())).baseMap(contextMap).build()));
+                CustomRequestContextHolder.setServerHttpRequestReactor(ctx, request))
+                .subscriberContext(ctx ->
+                        CustomRequestContextHolder
+                                .setRequestHeaderReactor(ctx, RequestHeaderBO.builder()
+                                        .baseList(Arrays.asList(msgId, request.getId()))
+                                        .baseMap(contextMap).build()));
 
     }
 }

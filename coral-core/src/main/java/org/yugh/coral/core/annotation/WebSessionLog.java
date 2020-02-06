@@ -12,16 +12,12 @@ import java.lang.annotation.*;
 public @interface WebSessionLog {
 
     /**
-     * 接口名
-     *
-     * @return
+     * method name
      */
     String name();
 
     /**
-     * 是否持久
-     *
-     * @return
+     * into db
      */
     boolean intoDb() default false;
 }

@@ -10,6 +10,7 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.springframework.util.Assert;
 
 /**
  * @author yugenhai
@@ -24,14 +25,21 @@ public class CoreRedisConfig {
     private int expire;
 
     /**
-     * Default key-prefix: xx:discovery
+     * Default key-prefix: coral:xx
      */
-    @Value("${spring.redis.key-prefix:xx:discovery}")
+    @Value("${spring.redis.key-prefix:coral:unspecified}")
     private String keyPrefix;
+
+    /**
+     * Redis Switch, default true
+     */
+    @Value("${spring.redis.open:false}")
+    private boolean open;
 
 
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
+        Assert.isTrue(open, () -> "redis switch '" + open + "' not initialized");
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(factory);
         Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);

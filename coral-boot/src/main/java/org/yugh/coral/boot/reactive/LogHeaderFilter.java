@@ -26,7 +26,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
-import org.yugh.coral.core.common.constant.StringPool;
+import org.yugh.coral.core.common.constant.LogMessageInfo;
 import reactor.core.publisher.Mono;
 import reactor.util.context.Context;
 
@@ -57,25 +57,26 @@ public class LogHeaderFilter implements WebFilter {
 
 
     private Context addRequestHeadersToContext(final ServerHttpRequest request, final Context context) {
-        MDC.put(StringPool.REQUEST_ID_KEY, request.getHeaders().toSingleValueMap().get(StringPool.REQUEST_ID_KEY));
+        MDC.put(LogMessageInfo.REQUEST_ID_KEY, request.getHeaders().toSingleValueMap().get(LogMessageInfo.REQUEST_ID_KEY));
         final Map<String, String> contextMap = request.getHeaders().toSingleValueMap().entrySet()
                 .stream()
-                .filter(req -> req.getKey().startsWith(StringPool.REQUEST_ID_KEY))
+                .filter(req -> req.getKey().startsWith(LogMessageInfo.REQUEST_ID_KEY))
                 .collect(toMap(
-                        v -> v.getKey().substring(StringPool.REQUEST_ID_KEY.length()), Map.Entry::getValue));
-        return context.put(StringPool.CONTEXT_MAP, contextMap);
+                        v -> v.getKey().substring(LogMessageInfo.REQUEST_ID_KEY.length()), Map.Entry::getValue));
+        return context.put(LogMessageInfo.CONTEXT_MAP, contextMap);
     }
 
     private Mono<Void> addContextToHttpResponseHeaders(final ServerHttpResponse res) {
         return Mono.subscriberContext().doOnNext(ctx -> {
-            if (!ctx.hasKey(StringPool.CONTEXT_MAP)) {
+            if (!ctx.hasKey(LogMessageInfo.CONTEXT_MAP)) {
                 return;
             }
             final HttpHeaders headers = res.getHeaders();
-            ctx.<Map<String, String>>get(StringPool.CONTEXT_MAP).forEach(
-                    (key, value) -> headers.add(StringPool.REQUEST_ID_KEY + key, value)
+            ctx.<Map<String, String>>get(LogMessageInfo.CONTEXT_MAP).forEach(
+                    (key, value) -> headers.add(LogMessageInfo.REQUEST_ID_KEY + key, value)
             );
-            MDC.clear();
+            log.info("Reactive Request Destroyed  : {}", headers.getFirst(LogMessageInfo.REQUEST_ID_KEY));
+            headers.keySet().forEach(MDC::remove);
         }).then();
     }
 }

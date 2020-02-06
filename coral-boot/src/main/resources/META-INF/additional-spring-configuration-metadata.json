@@ -3,27 +3,39 @@
   ],
   "properties": [
     {
-      "name": "coral.log.request.enabled",
+      "name": "coral.servlet.request.enabled",
       "type": "java.lang.Boolean",
-      "description": "In Servlet Container Open Log.",
-      "defaultValue": "true"
+      "description": "Servlet request log on-off.",
+      "defaultValue": false
     },
     {
-      "name": "coral.select.container.enable",
+      "name": "coral.reactive.request.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Reactive request log on-off.",
+      "defaultValue": true
+    },
+    {
+      "name": "coral.container.config.enabled",
       "type": "java.lang.Boolean",
       "description": "Select Jetty/Netty/Tomcat on-off.",
-      "defaultValue": "true"
+      "defaultValue": true
+    },
+    {
+      "name": "coral.container.config.unspecified",
+      "type": "java.lang.Boolean",
+      "description": "Autoload container config.",
+      "defaultValue": false
     },
     {
       "name": "coral.jetty.initial-value.max-thread",
       "type": "java.lang.Integer",
-      "description": "Init Custom optimize max-thread value.",
+      "description": "Initialization optimize max-thread value.",
       "defaultValue": 200
     },
     {
       "name": "coral.jetty.initial-value.min-thread",
       "type": "java.lang.Integer",
-      "description": "Init Custom optimize min-thread value.",
+      "description": "Initialization optimize min-thread value.",
       "defaultValue": 20
     }
   ]

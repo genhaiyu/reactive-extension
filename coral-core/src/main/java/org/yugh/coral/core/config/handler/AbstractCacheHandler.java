@@ -10,6 +10,20 @@ import org.yugh.coral.core.config.cache.IRedisCacheService;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * SpringBoot 2.1 替换原来 Guava 声明式缓存, 改为 Spring 自动加载缓存类型
+ *
+ * 自身缓存 -> Redis 缓存
+ *
+ * ${@link org.yugh.coral.core.config.cache.CoreRedisConfig}
+ *
+ * spring:
+ *  # caffeine
+ *   cache:
+ *     type: CAFFEINE
+ *     caffeine:
+ *       # with this {@link AbstractCacheHandler}
+ *       spec: initialCapacity=100,maximumSize=5000,expireAfterWrite=30s
+ *
  * @author yugenhai
  */
 public abstract class AbstractCacheHandler implements ICacheLocalService, IRedisCacheService {

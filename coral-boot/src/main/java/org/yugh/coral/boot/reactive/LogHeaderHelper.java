@@ -3,7 +3,7 @@ package org.yugh.coral.boot.reactive;
 import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
-import org.yugh.coral.core.common.constant.StringPool;
+import org.yugh.coral.core.common.constant.LogMessageInfo;
 import reactor.core.publisher.Signal;
 import reactor.core.publisher.SignalType;
 import reactor.util.context.Context;
@@ -24,7 +24,7 @@ public class LogHeaderHelper {
             if (signal.getType() != SignalType.ON_NEXT) {
                 return;
             }
-            Optional<Map<String, String>> contextMap = signal.getContext().getOrEmpty(StringPool.CONTEXT_MAP);
+            Optional<Map<String, String>> contextMap = signal.getContext().getOrEmpty(LogMessageInfo.CONTEXT_MAP);
             if (contextMap.isPresent()) {
                 consumer.accept(signal.get());
             } else {
@@ -43,7 +43,7 @@ public class LogHeaderHelper {
             if (!signal.isOnError()) {
                 return;
             }
-            Optional<Map<String, String>> contextMap = signal.getContext().getOrEmpty(StringPool.CONTEXT_MAP);
+            Optional<Map<String, String>> contextMap = signal.getContext().getOrEmpty(LogMessageInfo.CONTEXT_MAP);
             if (contextMap.isPresent()) {
                 consumer.accept(signal.getThrowable());
             } else {
@@ -59,14 +59,14 @@ public class LogHeaderHelper {
 
     public static Function<Context, Context> setContext(String key, String value) {
         return ctx -> {
-            Optional<Map<String, String>> contextMap = ctx.getOrEmpty(StringPool.CONTEXT_MAP);
+            Optional<Map<String, String>> contextMap = ctx.getOrEmpty(LogMessageInfo.CONTEXT_MAP);
             if (contextMap.isPresent()) {
                 contextMap.get().put(key, value);
                 return ctx;
             } else {
                 Map<String, String> ctxMap = Maps.newHashMap();
                 ctxMap.put(key, value);
-                return ctx.put(StringPool.CONTEXT_MAP, ctxMap);
+                return ctx.put(LogMessageInfo.CONTEXT_MAP, ctxMap);
             }
         };
     }

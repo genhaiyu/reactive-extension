@@ -23,7 +23,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import org.yugh.coral.core.common.constant.StringPool;
+import org.yugh.coral.core.common.constant.LogMessageInfo;
 import org.yugh.coral.core.utils.SnowFlakeGenerateUtils;
 
 import javax.servlet.ServletRequestEvent;
@@ -59,9 +59,9 @@ public class ServletContextRequestListener implements ServletRequestListener {
         String msgId = String.valueOf(SnowFlakeGenerateUtils.snowFlakeGenerate());
         /* thread.setName(msgId); */
         ServletRequestAttributes attributes = new ServletRequestAttributes(request);
-        request.setAttribute(StringPool.CONTEXT_MAP, msgId);
+        request.setAttribute(LogMessageInfo.CONTEXT_MAP, msgId);
         request.setAttribute(REQUEST_ATTRIBUTES_ATTRIBUTE, attributes);
-        MDC.put(StringPool.REQUEST_ID_KEY, msgId);
+        MDC.put(LogMessageInfo.REQUEST_ID_KEY, msgId);
         log.info("Servlet Request Start : {}", msgId);
         LocaleContextHolder.setLocale(request.getLocale());
         RequestContextHolder.setRequestAttributes(attributes);

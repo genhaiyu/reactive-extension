@@ -28,6 +28,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.yugh.coral.core.annotation.WebSessionLog;
+import org.yugh.coral.core.common.constant.ClientMessageInfo;
 import org.yugh.coral.core.common.constant.StringPool;
 import org.yugh.coral.core.pojo.bo.WebSessionLogBO;
 import org.yugh.coral.core.utils.JsonUtils;
@@ -47,7 +48,7 @@ import java.util.Objects;
 @Aspect
 @Component
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
-@ConditionalOnProperty(value = StringPool.REQ_LOG_PROPS_PREFIX + ".enabled", havingValue = "true", matchIfMissing = true)
+@ConditionalOnProperty(value = ClientMessageInfo.SERVLET_REQUEST_ENABLE, havingValue = "true", matchIfMissing = true)
 public class ServletRequestLogAspect {
 
     @Pointcut("@within(org.yugh.coral.core.annotation.WebSessionLog)")

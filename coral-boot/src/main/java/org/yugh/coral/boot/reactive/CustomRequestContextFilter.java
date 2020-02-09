@@ -25,8 +25,8 @@ import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
 import org.yugh.coral.core.common.constant.LogMessageInfo;
+import org.yugh.coral.core.config.distribute.SimpleSnowFlakeGenerated;
 import org.yugh.coral.core.pojo.bo.RequestHeaderBO;
-import org.yugh.coral.core.utils.SnowFlakeGenerateUtils;
 import reactor.core.publisher.Mono;
 import reactor.util.annotation.Nullable;
 
@@ -47,7 +47,7 @@ public class CustomRequestContextFilter implements WebFilter {
         Assert.notNull(exchange, () -> "ServerWebExchange '" + exchange + "' must not be null");
         Assert.notNull(chain, () -> "WebFilterChain '" + chain + "' must not be null");
         ServerHttpRequest request = exchange.getRequest();
-        String msgId = String.valueOf(SnowFlakeGenerateUtils.snowFlakeGenerate());
+        String msgId = String.valueOf(SimpleSnowFlakeGenerated.snowFlakeGenerate());
         exchange.getRequest().mutate().headers(httpHeaders -> httpHeaders.add(LogMessageInfo.REQUEST_ID_KEY, msgId));
         Map<String, Object> contextMap = Maps.newConcurrentMap();
         contextMap.put(LogMessageInfo.CONTEXT_MAP, msgId);

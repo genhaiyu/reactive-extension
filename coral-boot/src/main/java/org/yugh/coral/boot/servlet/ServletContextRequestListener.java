@@ -24,7 +24,7 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.yugh.coral.core.common.constant.LogMessageInfo;
-import org.yugh.coral.core.utils.SnowFlakeGenerateUtils;
+import org.yugh.coral.core.config.distribute.SimpleSnowFlakeGenerated;
 
 import javax.servlet.ServletRequestEvent;
 import javax.servlet.ServletRequestListener;
@@ -56,7 +56,7 @@ public class ServletContextRequestListener implements ServletRequestListener {
         }
         HttpServletRequest request = (HttpServletRequest) servletRequestEvent.getServletRequest();
         /* Thread thread = Thread.currentThread(); */
-        String msgId = String.valueOf(SnowFlakeGenerateUtils.snowFlakeGenerate());
+        String msgId = String.valueOf(SimpleSnowFlakeGenerated.snowFlakeGenerate());
         /* thread.setName(msgId); */
         ServletRequestAttributes attributes = new ServletRequestAttributes(request);
         request.setAttribute(LogMessageInfo.CONTEXT_MAP, msgId);

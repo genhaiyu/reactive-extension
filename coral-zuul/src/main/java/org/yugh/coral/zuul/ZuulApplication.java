@@ -9,7 +9,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.yugh.coral.zuul.filter.PreAuthFilter;
 
 /**
- * //Spring Cloud 体系第一代 zuul 路由器
  * 现迁移到 coral-gateway
  *
  * @author: 余根海

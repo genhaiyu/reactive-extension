@@ -15,9 +15,6 @@ import reactor.core.publisher.Mono;
 import javax.validation.Valid;
 
 /**
- * // 项目引用了common-auth，加上@RestControllerAdvice，错误则不需要在业务层抛
- * //新增mono语法
- *
  * @author: 余根海
  * @creation: 2019-07-10 14:41
  * @Copyright © 2019 yugenhai. All rights reserved.

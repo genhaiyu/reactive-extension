@@ -14,10 +14,6 @@ import org.yugh.coral.auth.service.AuthService;
 import org.yugh.coral.auth.util.ResultJson;
 
 /**
- * Gateway default RuntimeException It's been here
- * <p>
- * see application-dev.yml fallbackUri
- *
  * @author 余根海
  * @creation 2019-07-12 14:34
  * @Copyright © 2019 yugenhai. All rights reserved.
@@ -28,20 +24,14 @@ import org.yugh.coral.auth.util.ResultJson;
 public class GatewayController {
 
 
-    @Autowired
-    private AuthService authService;
+    private final AuthService authService;
 
-    /**
-     * Gateway default exception
-     * <p>
-     * It's configured in the see application-dev.yml fallbackUri
-     * <p>
-     * It's a must configuration
-     * <p>
-     * And it's no Http Type
-     *
-     * @return
-     */
+    @Autowired
+    private GatewayController(AuthService authService) {
+        this.authService = authService;
+    }
+
+
     @Synchronized
     @RequestMapping({"/fallbackController"})
     public String fallBackController() {
@@ -50,13 +40,6 @@ public class GatewayController {
     }
 
 
-    /**
-     * Gateway logout
-     *
-     * @param request
-     * @param response
-     * @return
-     */
     @Synchronized
     @GetMapping("/logout")
     public ResultJson logout(ServerHttpRequest request, ServerHttpResponse response) {

@@ -19,13 +19,6 @@
     </properties>
 
     <dependencies>
-        <!-- global auth -->
-        <dependency>
-            <groupId>org.yugh.coral</groupId>
-            <artifactId>auth</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        <!-- gateway -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
@@ -34,7 +27,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
-        <!-- feign -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>

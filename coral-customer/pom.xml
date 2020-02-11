@@ -24,13 +24,6 @@
              <artifactId>moss-client-2.x</artifactId>
              <version>1.0.0.RELEASE</version>
          </dependency>-->
-
-        <!-- global auth-->
-        <dependency>
-            <groupId>org.yugh.coral</groupId>
-            <artifactId>auth</artifactId>
-            <version>1.0.0</version>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>

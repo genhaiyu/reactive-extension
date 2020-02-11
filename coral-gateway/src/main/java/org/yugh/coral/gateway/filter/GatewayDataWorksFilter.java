@@ -34,9 +34,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.regex.Matcher;
 
 /**
- * This Component use gateway-core
- * And Webflux , since 5.0 reactive by HTTP, see reactor ${@link org.reactivestreams.Publisher}
- *
  * @author 余根海
  * @creation 2019-07-09 10:52
  * @Copyright © 2019 yugenhai. All rights reserved.
@@ -60,19 +57,12 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
 
 
     /**
-     * Core Filter
-     * <p>
-     * see {@link GlobalFilter}
-     * <p>
-     *
-     *  失败的请求会格式 response.getHeaders().setContentType(MediaType.APPLICATION_JSON_UTF8);
-     *  成功的请求会通过各个微服务自行转发的json格式
-     *
+     * 失败的请求会格式 response.getHeaders().setContentType(MediaType.APPLICATION_JSON_UTF8);
+     * 成功的请求会通过各个微服务自行转发的json格式
      *
      * @param exchange
      * @param chain
      * @return
-     * @author yugenhai
      */
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
@@ -108,20 +98,6 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
     }
 
 
-    /**
-     * Check SSO Return Token
-     * <p>
-     * 这里逻辑是从网关的用户有效后，直接加密用户token透传到微服务中
-     * <p>
-     * 接口调用默认不验证用户的SSO，auth组件直接解密token拿到用户信息
-     * <p>
-     * 若要监听接口调用的权限和时效性则查看 {@link org.yugh.coral.auth.interceptor.PreFeignInterceptor}
-     *
-     * @param context
-     * @param request
-     * @return
-     * @author yugenhai
-     */
     private void authToken(GatewayContext context, ServerHttpRequest request) {
         try {
             boolean isLogin = authService.isLoginByReactive(request);
@@ -148,9 +124,6 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
 
     /**
      * + "?returnUrl=" + request.getURI()
-     *
-     * @param context
-     * @author yugenhai
      */
     private void unLogin(GatewayContext context) {
         context.setRedirectUrl(getSsoUrl());
@@ -180,13 +153,6 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
     }
 
 
-    /**
-     * Request for Instance Id
-     *
-     * @param context
-     * @param exchange
-     * @return
-     */
     private boolean blackServersCheck(GatewayContext context, ServerWebExchange exchange) {
         //See whiteListCheck() is Check
         String instanceId = exchange.getRequest().getURI().getPath().substring(1, exchange.getRequest().getURI().getPath().indexOf('/', 1));
@@ -203,13 +169,6 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
     }
 
 
-    /**
-     * Return New Url Page
-     * <p>
-     * {@link AuthConfig}
-     *
-     * @return
-     */
     private String getSsoUrl() {
         String env = authConfig.getEnvSwitch();
         Assert.hasText(env, "envSwitch is Empty");
@@ -225,13 +184,6 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
         }
     }
 
-    /**
-     * Useful constant for the highest precedence value.
-     * see {@link Integer MIN_VALUE}
-     *
-     * @return
-     * @author yugenhai
-     */
     @Override
     public int getOrder() {
         return Ordered.HIGHEST_PRECEDENCE;

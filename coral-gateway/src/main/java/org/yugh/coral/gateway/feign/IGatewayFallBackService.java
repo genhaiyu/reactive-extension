@@ -15,13 +15,6 @@ import org.yugh.coral.gateway.feign.impl.GatewayFallBackServiceServiceImpl;
 @FeignClient(value = "BASE-SQL-SUBMISSION-SERVICE", fallbackFactory = GatewayFallBackServiceServiceImpl.class, configuration = PreFeignInterceptor.class)
 public interface IGatewayFallBackService {
 
-    /**
-     * The method test case to HystrixCommand
-     * And test case PreFeignAspect {@link org.yugh.coral.auth.interceptor.PreFeignInterceptor}
-     * See http://cwiki.xxxxx.com/pages/viewpage.action?pageId=113329378
-     *
-     * @return
-     */
     @GetMapping(value = "/v1/metadata/connection")
     ResultJson loadConnectionSourceByUser();
 }

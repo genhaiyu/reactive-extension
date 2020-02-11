@@ -12,12 +12,6 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 /**
- * Configuration yml skip url, and black Instance Id
- * <p>
- * if you request Instance Id to Gateway ,is failed
- * <p>
- * see application-dev.yml
- *
  * @author 余根海
  * @creation 2019-07-05 15:52
  * @Copyright © 2019 yugenhai. All rights reserved.

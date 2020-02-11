@@ -29,11 +29,6 @@
         </dependencies>
     </dependencyManagement>
     <dependencies>
-        <dependency>
-            <groupId>org.yugh.coral</groupId>
-            <artifactId>auth</artifactId>
-            <version>1.0.0</version>
-        </dependency>
         <!-- jpa -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

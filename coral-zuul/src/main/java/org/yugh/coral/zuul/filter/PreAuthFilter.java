@@ -12,7 +12,6 @@ import org.yugh.coral.auth.common.enums.HttpStatusEnum;
 import org.yugh.coral.auth.common.enums.ResultEnum;
 import org.yugh.coral.auth.util.ResultJson;
 import org.yugh.coral.auth.util.StringPool;
-import org.yugh.coral.zuul.config.RedisClient;
 import org.yugh.coral.zuul.config.ZuulPropConfig;
 
 import javax.servlet.http.Cookie;
@@ -39,8 +38,6 @@ public class PreAuthFilter extends ZuulFilter {
     private String activeType;
     @Autowired
     private ZuulPropConfig zuulPropConfig;
-    @Autowired
-    private RedisClient redisClient;
 
     @Override
     public String filterType() {
@@ -53,13 +50,6 @@ public class PreAuthFilter extends ZuulFilter {
     }
 
 
-    /**
-     * 部署级别可调控
-     *
-     * @return
-     * @author yugenhai
-     * @creation: 2019-06-26 17:50
-     */
     @Override
     public boolean shouldFilter() {
         RequestContext context = RequestContext.getCurrentContext();
@@ -78,13 +68,6 @@ public class PreAuthFilter extends ZuulFilter {
     }
 
 
-    /**
-     * 路由拦截转发
-     *
-     * @return
-     * @author yugenhai
-     * @creation: 2019-06-26 17:50
-     */
     @Override
     public Object run() {
         RequestContext context = RequestContext.getCurrentContext();
@@ -120,8 +103,6 @@ public class PreAuthFilter extends ZuulFilter {
         }
         return null;
 
-        /******************************以下代码可能会复用，勿删，若使用Gateway整个路由项目将不使用 add by - yugenhai 2019-0704********************************************/
-
         /*String readUrl = request.getServletPath().substring(1, request.getServletPath().indexOf('/', 1));
         try {
             if (request.getServletPath().length() <= Constant.PATH_LENGTH || zuulPropConfig.getRoutes().size() == 0) {
@@ -156,14 +137,6 @@ public class PreAuthFilter extends ZuulFilter {
     }
 
 
-    /**
-     * 检查用户
-     *
-     * @param context
-     * @return
-     * @author yugenhai
-     * @creation: 2019-06-26 17:50
-     */
     private Object authToken(RequestContext context) {
         HttpServletRequest request = context.getRequest();
         HttpServletResponse response = context.getResponse();
@@ -193,11 +166,6 @@ public class PreAuthFilter extends ZuulFilter {
     }
 
 
-    /**
-     * 未登录不路由
-     *
-     * @param request
-     */
     private void unLogin(HttpServletRequest request, RequestContext context) {
         String requestURL = request.getRequestURL().toString();
         String loginUrl = getSsoUrl(request) + "?returnUrl=" + requestURL;
@@ -213,24 +181,10 @@ public class PreAuthFilter extends ZuulFilter {
     }
 
 
-    /**
-     * 判断是否忽略对请求的校验
-     *
-     * @param request
-     * @param functions
-     * @return
-     */
     private boolean isIgnore(HttpServletRequest request, Function<HttpServletRequest, Boolean>... functions) {
         return Arrays.stream(functions).anyMatch(f -> f.apply(request));
     }
 
-
-    /**
-     * 判断是否存在地址
-     *
-     * @param request
-     * @return
-     */
     private boolean exclude(HttpServletRequest request) {
         String servletPath = request.getServletPath();
         if (!CollectionUtils.isEmpty(zuulPropConfig.getExcludeUrls())) {
@@ -242,36 +196,17 @@ public class PreAuthFilter extends ZuulFilter {
     }
 
 
-    /**
-     * 校验请求连接是否合法
-     *
-     * @param request
-     * @return
-     */
     private boolean checkLength(HttpServletRequest request) {
         return request.getServletPath().length() <= StringPool.YES.length() || CollectionUtils.isEmpty(zuulPropConfig.getApiUrlMap());
     }
 
 
-    /**
-     * 会话存在则跨域发送
-     *
-     * @param request
-     * @return
-     */
     private String getCookieBySso(HttpServletRequest request) {
         Cookie cookie = this.getCookieByName(request, "");
         return cookie != null ? cookie.getValue() : null;
     }
 
 
-    /**
-     * 不路由直接返回
-     *
-     * @param ctx
-     * @param code
-     * @param msg
-     */
     private void unauthorized(RequestContext ctx, int code, String msg) {
         assemblyCross(ctx);
         ctx.getResponse().setContentType("application/json;charset=UTF-8");
@@ -282,13 +217,6 @@ public class PreAuthFilter extends ZuulFilter {
     }
 
 
-    /**
-     * 获取会话里的token
-     *
-     * @param request
-     * @param name
-     * @return
-     */
     private Cookie getCookieByName(HttpServletRequest request, String name) {
         Map<String, Cookie> cookieMap = new HashMap(16);
         Cookie[] cookies = request.getCookies();
@@ -310,24 +238,15 @@ public class PreAuthFilter extends ZuulFilter {
     }
 
 
-    /**
-     * 重定向前缀拼接
-     *
-     * @param request
-     * @return
-     */
     private String getSsoUrl(HttpServletRequest request) {
         String serverName = request.getServerName();
         if (StringUtils.isEmpty(serverName)) {
-            return "https://github.com/yugenhai108";
+            return "https://github.com/yugenhai";
         }
-        return "https://github.com/yugenhai108";
+        return "https://github.com/yugenhai";
 
     }
 
-    /**
-     * 拼装跨域处理
-     */
     private void assemblyCross(RequestContext ctx) {
         HttpServletResponse response = ctx.getResponse();
         response.setHeader("Access-Control-Allow-Origin", "*");

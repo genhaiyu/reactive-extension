@@ -6,17 +6,6 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 /**
- * Token bucket
- * <p>
- * Is Traffic Shaping and Rate Limiting algorithm
- * <p>
- * Use Redis Reactor, is must
- * <p>
- * # X-RateLimit-Remaining -> Token bucket, Current Remaining = burstCapacity-replenishRate
- * # See {@link GatewayKeyResolver}
- * <p>
- * See application-dev.yml
- *
  * # 令牌桶示例可见
  * # https://api.github.com/
  *
@@ -28,11 +17,7 @@ import reactor.core.publisher.Mono;
 public class GatewayKeyResolver implements KeyResolver {
 
     /**
-     * since 5.0  HTTP request-response
-     * <p>
-     * When session is generated, happen request info
-     * <p>
-     * See application-dev.yml
+     * 当前是 Ip 限流
      *
      * @param exchange
      * @return

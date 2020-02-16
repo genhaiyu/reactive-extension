@@ -75,7 +75,6 @@ public class LogHeaderFilter implements WebFilter {
             ctx.<Map<String, String>>get(LogMessageInfo.CONTEXT_MAP).forEach(
                     (key, value) -> headers.add(LogMessageInfo.REQUEST_ID_KEY + key, value)
             );
-            log.info("Reactive Request Destroyed  : {}", headers.getFirst(LogMessageInfo.REQUEST_ID_KEY));
             headers.keySet().forEach(MDC::remove);
         }).then();
     }

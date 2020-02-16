@@ -55,4 +55,15 @@ public class CoreRedisConfig {
         redisTemplate.afterPropertiesSet();
         return redisTemplate;
     }
+
+    /**
+     *  final PolymorphicTypeValidator ptv =
+     * BasicPolymorphicTypeValidator.builder()
+     *                 .allowIfBaseType(BaseValue.class)
+     *                 .build();
+     *         // Note: 2.10 adds `SmileMapper` for type-safe construction
+     *         ObjectMapper mapper = SmileMapper.builder()
+     *                 .activateDefaultTyping(ptv, DefaultTyping.NON_FINAL)
+     *                 .build();
+     */
 }

@@ -68,8 +68,6 @@ public class ServletRequestLogAspect {
 
 
     /**
-     * If you used starter-web, auto loadClass
-     *
      * @param pjp
      * @return
      * @throws Throwable

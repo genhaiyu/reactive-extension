@@ -1,3 +1,4 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   org.yugh.coral.core.config.handler.ApplicationContextHelper,\
+  org.yugh.coral.core.config.cache.CoreProcessCache,\
   org.yugh.coral.core.config.CoreContextConfig

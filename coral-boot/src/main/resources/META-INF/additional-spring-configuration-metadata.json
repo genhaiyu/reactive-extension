@@ -15,15 +15,15 @@
       "defaultValue": true
     },
     {
-      "name": "coral.container.config.enabled",
+      "name": "coral.jetty.config.enabled",
       "type": "java.lang.Boolean",
-      "description": "Select Jetty/Netty/Tomcat on-off.",
+      "description": "Select the on-off for Jetty to Container.",
       "defaultValue": true
     },
     {
-      "name": "coral.container.config.unspecified",
+      "name": "coral.undertow.config.enabled",
       "type": "java.lang.Boolean",
-      "description": "Autoload container config.",
+      "description": "Select the on-off for Undertow to Container.",
       "defaultValue": false
     },
     {

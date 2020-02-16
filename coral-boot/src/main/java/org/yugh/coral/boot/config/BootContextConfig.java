@@ -34,12 +34,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Role;
-import org.springframework.http.client.reactive.*;
+import org.springframework.http.client.reactive.ClientHttpConnector;
+import org.springframework.http.client.reactive.JettyClientHttpConnector;
+import org.springframework.http.client.reactive.JettyResourceFactory;
+import org.springframework.http.client.reactive.ReactorResourceFactory;
 import org.yugh.coral.boot.rest.CustomRestTemplateCustomizer;
 import org.yugh.coral.core.common.constant.ClientMessageInfo;
 import reactor.netty.http.server.HttpServer;
-
-import java.util.function.Function;
 
 /**
  * @author yugenhai
@@ -78,7 +79,7 @@ public class BootContextConfig {
     @Configuration
     @ConditionalOnMissingBean(ClientHttpConnector.class)
     @ConditionalOnClass(org.eclipse.jetty.reactive.client.ReactiveRequest.class)
-    @ConditionalOnProperty(value = ClientMessageInfo.CONTAINER_AUTO_CONFIG, havingValue = "true", matchIfMissing = true)
+    @ConditionalOnProperty(value = ClientMessageInfo.JETTY_CONTAINER_CONFIG, havingValue = "true", matchIfMissing = true)
     public static class SelectContainerJettyAutoConfiguration {
 
         @Bean
@@ -97,26 +98,6 @@ public class BootContextConfig {
             return new JettyClientHttpConnector(httpClient);
         }
     }
-
-
-    @Configuration
-    @ConditionalOnMissingBean(ClientHttpConnector.class)
-    @ConditionalOnClass(reactor.netty.http.client.HttpClient.class)
-    @ConditionalOnProperty(value = ClientMessageInfo.CONTAINER_AUTO_CONFIG, havingValue = "false", matchIfMissing = true)
-    public static class SelectContainerReactorAutoConfiguration {
-
-        @Bean
-        @ConditionalOnMissingBean
-        public ReactorResourceFactory reactorClientResourceFactory() {
-            return new ReactorResourceFactory();
-        }
-
-        @Bean
-        public ReactorClientHttpConnector reactorClientHttpConnector(ReactorResourceFactory reactorResourceFactory) {
-            return new ReactorClientHttpConnector(reactorResourceFactory, Function.identity());
-        }
-    }
-
 
     @Bean
     public JettyServletWebServerFactory jettyServletWebServerFactory(JettyServerCustomizer jettyServerCustomizer) {
@@ -145,7 +126,7 @@ public class BootContextConfig {
     @Configuration
     @ConditionalOnMissingBean(ReactiveWebServerFactory.class)
     @ConditionalOnClass({ HttpServer.class })
-    @ConditionalOnProperty(value = ClientMessageInfo.CONTAINER_AUTO_CONFIG, havingValue = "false", matchIfMissing = true)
+    @ConditionalOnProperty(value = ClientMessageInfo.JETTY_CONTAINER_CONFIG, havingValue = "false", matchIfMissing = true)
     public static class SelectContainerNettyAutoConfiguration {
 
         @Bean

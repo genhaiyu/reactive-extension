@@ -3,9 +3,6 @@ package org.yugh.coral.core.result;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author yugenhai
- */
 public enum ResultCode {
 
     /**

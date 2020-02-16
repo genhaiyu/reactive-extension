@@ -4,11 +4,6 @@ import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-/**
- * 系统内置 code
- *
- * @author yugenhai
- */
 @Getter
 @AllArgsConstructor
 @ApiModel(description = "系统内置 code")

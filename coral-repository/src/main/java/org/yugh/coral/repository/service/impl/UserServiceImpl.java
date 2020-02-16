@@ -1,7 +1,6 @@
 package org.yugh.coral.repository.service.impl;
 
 import com.querydsl.jpa.impl.JPAQuery;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +22,6 @@ import javax.transaction.Transactional;
  * @creation: 2019-07-10 14:20
  * @Copyright © 2019 yugenhai. All rights reserved.
  */
-@Slf4j
 @Service
 @Transactional(rollbackOn = Exception.class)
 public class UserServiceImpl implements IUserService {

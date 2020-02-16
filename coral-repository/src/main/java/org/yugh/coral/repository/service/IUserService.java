@@ -33,7 +33,7 @@ public interface IUserService {
     /**
      * 更新用户
      *
-     * @param userDo
+     * @param userDTO
      */
     void update(UserDTO userDTO);
 

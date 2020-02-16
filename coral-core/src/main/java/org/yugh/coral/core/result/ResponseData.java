@@ -7,10 +7,6 @@ import org.yugh.coral.core.common.exception.GlobalException;
 
 import java.io.Serializable;
 
-/**
- * @param <T>
- * @author yugenhai
- */
 @Slf4j
 public final class ResponseData<T> implements Serializable {
 

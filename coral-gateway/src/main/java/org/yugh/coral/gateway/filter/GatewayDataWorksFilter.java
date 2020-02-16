@@ -14,22 +14,17 @@ import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.server.ServerWebExchange;
-import org.yugh.coral.auth.adapter.CacheProcessAdapter;
-import org.yugh.coral.auth.common.enums.ResultEnum;
-import org.yugh.coral.auth.config.AuthConfig;
-import org.yugh.coral.auth.pojo.dto.UserDTO;
-import org.yugh.coral.auth.service.AuthService;
-import org.yugh.coral.auth.util.JwtHelper;
-import org.yugh.coral.auth.util.ResultJson;
-import org.yugh.coral.auth.util.StringPool;
-import org.yugh.coral.gateway.properties.AuthSkipUrlsProperties;
+import org.yugh.coral.core.common.constant.ClientMessageInfo;
+import org.yugh.coral.core.common.constant.StringPool;
+import org.yugh.coral.core.result.ResponseData;
+import org.yugh.coral.core.result.ResultEnum;
+import org.yugh.coral.core.result.ResultJson;
 import org.yugh.coral.gateway.context.GatewayContext;
+import org.yugh.coral.gateway.properties.AuthSkipUrlsProperties;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.regex.Matcher;
 
@@ -43,14 +38,14 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
 
     @Autowired
     private AuthSkipUrlsProperties authSkipUrlsProperties;
-    @Autowired
-    private AuthService authService;
-    @Autowired
-    private AuthConfig authConfig;
-    @Autowired
-    private CacheProcessAdapter cacheProcessAdapter;
-    @Autowired
-    private JwtHelper jwtHelper;
+//    @Autowired
+//    private AuthService authService;
+//    @Autowired
+//    private AuthConfig authConfig;
+//    @Autowired
+//    private CacheProcessAdapter cacheProcessAdapter;
+//    @Autowired
+//    private JwtHelper jwtHelper;
     @Autowired(required = false)
     @Qualifier(value = "gatewayQueueThreadPool")
     private ExecutorService buildGatewayQueueThreadPool;
@@ -71,6 +66,7 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
         ServerHttpResponse response = exchange.getResponse();
         if (blackServersCheck(context, exchange)) {
             response.setStatusCode(HttpStatus.FORBIDDEN);
+            ResponseData.build(()-> null);
             byte[] failureInfo = ResultJson.failure(ResultEnum.BLACK_SERVER_FOUND).toString().getBytes(StandardCharsets.UTF_8);
             DataBuffer buffer = response.bufferFactory().wrap(failureInfo);
             response.getHeaders().setContentType(MediaType.APPLICATION_JSON_UTF8);
@@ -85,7 +81,7 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
                 response.getHeaders().setContentType(MediaType.APPLICATION_JSON_UTF8);
                 return response.writeWith(Flux.just(buffer));
             }
-            ServerHttpRequest mutateReq = exchange.getRequest().mutate().header(StringPool.DATAWORKS_TOKEN, context.getUserToken()).build();
+            ServerHttpRequest mutateReq = exchange.getRequest().mutate().header(ClientMessageInfo.AUTHORIZATION, context.getUserToken()).build();
             ServerWebExchange mutableExchange = exchange.mutate().request(mutateReq).build();
             return chain.filter(mutableExchange);
         } else {
@@ -100,18 +96,11 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
 
     private void authToken(GatewayContext context, ServerHttpRequest request) {
         try {
-            boolean isLogin = authService.isLoginByReactive(request);
+            // boolean isLogin = "success";
+            boolean isLogin = true;
             if (isLogin) {
-                UserDTO user = authService.getUserByReactive(request);
-                try {
-                    cacheProcessAdapter.sAdd(StringPool.DATAWORKS_USER_INFO, user.toString());
-                } catch (Exception e) {
-                    log.error("Redis Exception : {}", e.getMessage());
-                }
-                Map<String, Object> userMap = new HashMap(16);
-                String dataWorksUserInfo = StringPool.DATAWORKS_USER_INFO;
-                userMap.put(dataWorksUserInfo, user);
-                String token = jwtHelper.generateToken(dataWorksUserInfo, userMap);
+                // String token = getToken;
+                String token = "";
                 context.setUserToken(token);
             } else {
                 unLogin(context);
@@ -170,17 +159,18 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
 
 
     private String getSsoUrl() {
-        String env = authConfig.getEnvSwitch();
+       // String env = "test";
+        String env = "test/prod/dev/pre";
         Assert.hasText(env, "envSwitch is Empty");
         switch (env) {
             case StringPool
                     .TEST:
-                return authConfig.getSsoTestUrl();
+                return "/test";
             case StringPool
                     .PROD:
-                return authConfig.getSsoProdUrl();
+                return "/prod";
             default:
-                return authConfig.getSsoProdUrl();
+                return "pre";
         }
     }
 

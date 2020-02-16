@@ -5,13 +5,13 @@ import com.netflix.zuul.context.RequestContext;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.yugh.coral.auth.common.enums.DeployEnum;
-import org.yugh.coral.auth.common.enums.HttpStatusEnum;
-import org.yugh.coral.auth.common.enums.ResultEnum;
-import org.yugh.coral.auth.util.ResultJson;
-import org.yugh.coral.auth.util.StringPool;
+import org.yugh.coral.core.common.constant.StringPool;
+import org.yugh.coral.core.result.ResultEnum;
+import org.yugh.coral.core.result.ResultJson;
 import org.yugh.coral.zuul.config.ZuulPropConfig;
 
 import javax.servlet.http.Cookie;
@@ -38,6 +38,8 @@ public class PreAuthFilter extends ZuulFilter {
     private String activeType;
     @Autowired
     private ZuulPropConfig zuulPropConfig;
+
+    private static final String OPTIONS = "OPTIONS";
 
     @Override
     public String filterType() {
@@ -74,10 +76,10 @@ public class PreAuthFilter extends ZuulFilter {
         HttpServletRequest request = context.getRequest();
         String requestMethod = context.getRequest().getMethod();
         //判断请求方式
-        if (StringPool.OPTIONS.equals(requestMethod)) {
+        if (OPTIONS.equals(requestMethod)) {
             log.info("请求的跨域的地址 : {}   跨域的方法", request.getServletPath(), requestMethod);
             assemblyCross(context);
-            context.setResponseStatusCode(HttpStatusEnum.OK.code());
+            context.setResponseStatusCode(HttpStatus.OK.value());
             context.setSendZuulResponse(false);
             return null;
         }
@@ -99,7 +101,7 @@ public class PreAuthFilter extends ZuulFilter {
         } else {
             //下线前删除配置的实例名
             log.info("实例服务: {}  不允许访问", serverName);
-            unauthorized(context, HttpStatusEnum.FORBIDDEN.code(), "请求的服务已经作废,不可访问");
+            unauthorized(context, HttpStatus.FORBIDDEN.value(), "请求的服务已经作废,不可访问");
         }
         return null;
 
@@ -177,7 +179,7 @@ public class PreAuthFilter extends ZuulFilter {
         context.set("isSuccess", false);
         context.setSendZuulResponse(false);
         //context.setResponseBody(ResultJson.failure(map, "This User Not Found, Please Check Token").toString());
-        context.setResponseStatusCode(HttpStatusEnum.OK.code());
+        context.setResponseStatusCode(HttpStatus.OK.value());
     }
 
 
@@ -213,7 +215,7 @@ public class PreAuthFilter extends ZuulFilter {
         ctx.setSendZuulResponse(false);
         ctx.setResponseBody(ResultJson.failure(ResultEnum.UNAUTHORIZED, msg).toString());
         ctx.set("isSuccess", false);
-        ctx.setResponseStatusCode(HttpStatusEnum.OK.code());
+        ctx.setResponseStatusCode(HttpStatus.OK.value());
     }
 
 

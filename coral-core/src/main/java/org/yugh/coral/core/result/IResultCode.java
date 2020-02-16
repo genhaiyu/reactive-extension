@@ -2,11 +2,6 @@ package org.yugh.coral.core.result;
 
 import java.io.Serializable;
 
-/**
- * 状态码接口
- *
- * @author yugenhai
- */
 public interface IResultCode extends Serializable {
 
     /**

@@ -13,8 +13,7 @@ import org.springframework.web.cors.reactive.CorsUtils;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
-import org.yugh.coral.auth.common.constants.Constant;
-import org.yugh.coral.auth.util.StringPool;
+import org.yugh.coral.core.common.constant.StringPool;
 import reactor.core.publisher.Mono;
 
 /**
@@ -26,6 +25,8 @@ import reactor.core.publisher.Mono;
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class GatewayCorsConfig implements WebFilter {
+
+    private static final String ALLOW_HEADERS = "X-Requested-with,REQUEST_ID,Cache-Control,Expires,Content-Type,Authorization,X-Requested-ID";
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
@@ -41,8 +42,8 @@ public class GatewayCorsConfig implements WebFilter {
             }
             response.getHeaders().add(HttpHeaders.ACCESS_CONTROL_ALLOW_CREDENTIALS, StringPool.TRUE);
             response.getHeaders().add(HttpHeaders.ACCESS_CONTROL_ALLOW_METHODS, StringPool.ASTERISK);
-            response.getHeaders().add(HttpHeaders.ACCESS_CONTROL_MAX_AGE, String.valueOf(Constant.COOKIE_TIME_OUT));
-            response.getHeaders().add(HttpHeaders.ACCESS_CONTROL_ALLOW_HEADERS, Constant.DATAWORKS_ALLOW_HEADERS);
+            response.getHeaders().add(HttpHeaders.ACCESS_CONTROL_MAX_AGE, String.valueOf(30));
+            response.getHeaders().add(HttpHeaders.ACCESS_CONTROL_ALLOW_HEADERS, ALLOW_HEADERS);
         }
         return chain.filter(exchange);
     }

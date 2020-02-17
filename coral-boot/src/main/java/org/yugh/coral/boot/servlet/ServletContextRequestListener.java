@@ -24,7 +24,7 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.yugh.coral.core.common.constant.LogMessageInfo;
-import org.yugh.coral.core.config.distribute.SimpleSnowFlakeGenerated;
+import org.yugh.coral.core.config.SimpleSnowFlakeGenerated;
 
 import javax.servlet.ServletRequestEvent;
 import javax.servlet.ServletRequestListener;
@@ -37,6 +37,12 @@ import javax.servlet.http.HttpServletRequest;
 @Order(Integer.MIN_VALUE)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class ServletContextRequestListener implements ServletRequestListener {
+
+    private final SimpleSnowFlakeGenerated simpleSnowFlakeGenerated;
+
+    private ServletContextRequestListener(SimpleSnowFlakeGenerated simpleSnowFlakeGenerated) {
+        this.simpleSnowFlakeGenerated = simpleSnowFlakeGenerated;
+    }
 
     private static final String REQUEST_ATTRIBUTES_ATTRIBUTE =
             ServletContextRequestListener.class.getName() + ".REQUEST_ATTRIBUTES";
@@ -56,7 +62,7 @@ public class ServletContextRequestListener implements ServletRequestListener {
         }
         HttpServletRequest request = (HttpServletRequest) servletRequestEvent.getServletRequest();
         /* Thread thread = Thread.currentThread(); */
-        String msgId = String.valueOf(SimpleSnowFlakeGenerated.snowFlakeGenerate());
+        String msgId = String.valueOf(simpleSnowFlakeGenerated.simpleSnowFlakeGenerated());
         /* thread.setName(msgId); */
         ServletRequestAttributes attributes = new ServletRequestAttributes(request);
         request.setAttribute(LogMessageInfo.CONTEXT_MAP, msgId);

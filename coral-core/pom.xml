@@ -6,6 +6,7 @@
     <groupId>org.yugh.coral</groupId>
     <artifactId>core</artifactId>
     <version>1.0.0-SNAPSHOT</version>
+    <name>Coral :: Core Common</name>
 
     <properties>
         <java.version>1.8</java.version>

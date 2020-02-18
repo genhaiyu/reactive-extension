@@ -11,6 +11,7 @@
     <groupId>org.yugh.coral</groupId>
     <artifactId>zuul</artifactId>
     <version>1.0.0</version>
+    <name>Coral :: Sample Zuul</name>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>

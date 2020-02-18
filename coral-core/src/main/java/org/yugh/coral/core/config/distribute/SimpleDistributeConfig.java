@@ -16,7 +16,7 @@ public class SimpleDistributeConfig {
     private int datacenterId;
 
     /**
-     * 数据中心 ID (0~31)
+     * 机器 ID (0~31)
      */
     @Value("${distribute.sequences.machine.machine-id:0}")
     private int machineId;

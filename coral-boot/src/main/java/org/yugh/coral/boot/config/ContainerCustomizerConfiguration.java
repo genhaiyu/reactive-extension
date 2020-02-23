@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2029, yugenhai108@gmail.com.
+ * Copyright (c) 2014-2020, yugenhai108@gmail.com.
  *
  * Licensed under the GNU LESSER GENERAL PUBLIC LICENSE 3.0;
  * you may not use this file except in compliance with the License.
@@ -19,26 +19,22 @@ import org.eclipse.jetty.client.HttpClient;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
 import org.eclipse.jetty.util.thread.QueuedThreadPool;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.boot.web.embedded.jetty.JettyServerCustomizer;
 import org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory;
 import org.springframework.boot.web.embedded.netty.NettyReactiveWebServerFactory;
 import org.springframework.boot.web.reactive.server.ReactiveWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Role;
 import org.springframework.http.client.reactive.ClientHttpConnector;
 import org.springframework.http.client.reactive.JettyClientHttpConnector;
 import org.springframework.http.client.reactive.JettyResourceFactory;
 import org.springframework.http.client.reactive.ReactorResourceFactory;
-import org.yugh.coral.boot.rest.CustomRestTemplateCustomizer;
 import org.yugh.coral.core.common.constant.ClientMessageInfo;
 import reactor.netty.http.server.HttpServer;
 
@@ -47,8 +43,7 @@ import reactor.netty.http.server.HttpServer;
  */
 @Configuration
 @Role(BeanDefinition.ROLE_INFRASTRUCTURE)
-public class BootContextConfig {
-
+public class ContainerCustomizerConfiguration {
 
     /**
      * default Max Con Thread 200
@@ -63,19 +58,6 @@ public class BootContextConfig {
     private int minThreads;
 
 
-    @Bean
-    @Qualifier("customRestTemplateCustomizer")
-    public CustomRestTemplateCustomizer customRestTemplateCustomizer() {
-        return new CustomRestTemplateCustomizer();
-    }
-
-    @Bean
-    @DependsOn(value = {"customRestTemplateCustomizer"})
-    public RestTemplateBuilder restTemplateBuilder() {
-        return new RestTemplateBuilder(customRestTemplateCustomizer());
-    }
-
-
     @Configuration
     @ConditionalOnMissingBean(ClientHttpConnector.class)
     @ConditionalOnClass(org.eclipse.jetty.reactive.client.ReactiveRequest.class)
@@ -87,6 +69,7 @@ public class BootContextConfig {
         public JettyResourceFactory jettyClientResourceFactory() {
             return new JettyResourceFactory();
         }
+
 
         @Bean
         public JettyClientHttpConnector jettyClientHttpConnector(JettyResourceFactory jettyResourceFactory) {

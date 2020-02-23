@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.yugh.coral.auth.util.SnowFlakeUtil;
+import org.yugh.coral.core.config.SimpleSnowFlakeGenerated;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -22,6 +22,10 @@ import javax.servlet.http.HttpServletRequest;
 //@DefaultProperties(defaultFallback = "defaultFallback")
 public class IndexController {
 
+    private final SimpleSnowFlakeGenerated simpleSnowFlakeGenerated;
+    private IndexController(SimpleSnowFlakeGenerated simpleSnowFlakeGenerated){
+        this.simpleSnowFlakeGenerated = simpleSnowFlakeGenerated;
+    }
 
     @GetMapping(value = "getRandomId/{randomId}")
     public Object getCustomerById(@PathVariable("randomId") Long randomId, HttpServletRequest request) {
@@ -36,7 +40,7 @@ public class IndexController {
 
         }
 
-        Object random = SnowFlakeUtil.nextWaterFlow();
+        Object random = simpleSnowFlakeGenerated.simpleSnowFlakeGenerated();
         return random;
     }
 

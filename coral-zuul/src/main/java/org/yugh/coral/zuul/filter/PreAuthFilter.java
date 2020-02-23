@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
-import org.yugh.coral.auth.common.enums.DeployEnum;
+import org.yugh.coral.core.common.constant.DeployEnum;
 import org.yugh.coral.core.common.constant.StringPool;
 import org.yugh.coral.core.result.ResultEnum;
 import org.yugh.coral.core.result.ResultJson;

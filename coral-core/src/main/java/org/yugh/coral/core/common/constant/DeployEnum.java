@@ -1,4 +1,4 @@
-package org.yugh.coral.auth.common.enums;
+package org.yugh.coral.core.common.constant;
 
 /**
  * //按照部署级别进行管理

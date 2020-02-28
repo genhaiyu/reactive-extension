@@ -29,7 +29,7 @@
  * }
  * }
  */
-package org.yugh.coral.core.factory.feign;
+package org.yugh.coral.core.config.proxy;
 
 import feign.hystrix.FallbackFactory;
 import lombok.extern.slf4j.Slf4j;

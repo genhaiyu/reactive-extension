@@ -1,6 +1,8 @@
 package org.yugh.coral.core.result;
 
 import com.netflix.hystrix.exception.HystrixRuntimeException;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.math.NumberUtils;
 import org.yugh.coral.core.common.exception.GlobalException;
@@ -8,6 +10,8 @@ import org.yugh.coral.core.common.exception.GlobalException;
 import java.io.Serializable;
 
 @Slf4j
+@Getter
+@Setter
 public final class ResponseData<T> implements Serializable {
 
     private static final long serialVersionUID = 2053742054576495115L;
@@ -75,16 +79,14 @@ public final class ResponseData<T> implements Serializable {
             ResponseData.setCode(re.getCode() == null ? ResultCode.ERROR.code : re.getCode().code);
             ResponseData.setStatus(re.getCode() == null ? Integer.valueOf(ResultCode.ERROR.code) : NumberUtils.isNumber(re.getCode().code) ? Integer.valueOf(re.getCode().code) : -1);
             ResponseData.setMessage(re.getMessage());
-            //修改showMessageApp
             ResponseData.setShowMessageApp(re.getMessage() == null ? ResultCode.getResultCodeByCode(ResponseData.getCode()).getMessage() : re.getMessage());
             ResponseData.setMsg(re.getMessage() == null ? ResultCode.getResultCodeByCode(ResponseData.getCode()).getMessage() : re.getMessage());
             if (re.getShowMessage() != null) {
-                //指示客户都是否显示异常 message 信息
                 ResponseData.setShowMessage(re.getShowMessage());
             }
             ResponseData.setStatus(999999);
         } catch (HystrixRuntimeException re) {
-            log.error("\n ResponseBody HystrixRuntimeException :", re.getMessage());
+            log.error("\n ResponseData HystrixRuntimeException :", re.getMessage());
             ResponseData.setCode(ResultCode.ERROR_MICROSERVICES.code);
             ResponseData.setStatus(Integer.valueOf(ResultCode.ERROR_MICROSERVICES.code));
             ResponseData.setMessage(ResultCode.ERROR_MICROSERVICES.getMessage());
@@ -92,7 +94,7 @@ public final class ResponseData<T> implements Serializable {
             ResponseData.setMsg(ResultCode.ERROR_APP_COMMON.message);
             ResponseData.setStatus(999999);
         } catch (Exception e) {
-            log.error("\n ResponseBody RuntimeException:", e);
+            log.error("\n ResponseData RuntimeException:", e);
             ResponseData.putResultCode(ResultCode.ERROR);
             ResponseData.setMessage(e.getMessage());
             ResponseData.setShowMessageApp(ResultCode.ERROR_APP_COMMON.message);
@@ -104,62 +106,6 @@ public final class ResponseData<T> implements Serializable {
 
     public ResponseData() {
         this.putResultCode(ResultCode.SUCCESS);
-    }
-
-    public String getShowMessageApp() {
-        return showMessageApp;
-    }
-
-    public void setShowMessageApp(String showMessageApp) {
-        this.showMessageApp = showMessageApp;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
-    }
-
-    public Boolean getShowMessage() {
-        return showMessage;
-    }
-
-    public void setShowMessage(Boolean showMessage) {
-        this.showMessage = showMessage;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
     }
 
     public void putResultCode(ResultCode resultCode) {

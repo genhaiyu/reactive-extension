@@ -37,6 +37,18 @@
       "type": "java.lang.Integer",
       "description": "Initialization optimize min-thread value.",
       "defaultValue": 20
+    },
+    {
+      "name": "coral.jetty.initial-value.idle-timeout",
+      "type": "java.lang.Integer",
+      "description": "Initialization optimize idle-timeout value.",
+      "defaultValue": 60000
+    },
+    {
+      "name": "coral.jetty.initial-value.shutdown-wait-time",
+      "type": "java.lang.Integer",
+      "description": "Initialization optimize shutdown-wait-time value.",
+      "defaultValue": 30000
     }
   ]
 }

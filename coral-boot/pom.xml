@@ -54,6 +54,11 @@
             <artifactId>core</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webflux</artifactId>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -74,64 +79,6 @@
                     <skipTests>true</skipTests>
                 </configuration>
             </plugin>
-            <!--<plugin>-->
-            <!--<groupId>org.apache.maven.plugins</groupId>-->
-            <!--<artifactId>maven-source-plugin</artifactId>-->
-            <!--<version>3.1.0</version>-->
-            <!--<executions>-->
-            <!--<execution>-->
-            <!--<id>attach-sources</id>-->
-            <!--<phase>verify</phase>-->
-            <!--<goals>-->
-            <!--<goal>jar-no-fork</goal>-->
-            <!--</goals>-->
-            <!--</execution>-->
-            <!--</executions>-->
-            <!--</plugin>-->
         </plugins>
     </build>
-
-
-
-
-    <!--<repositories>-->
-        <!--<repository>-->
-            <!--<id>xx-nexus</id>-->
-            <!--<name>maven-central</name>-->
-            <!--<url>xx/nexus/content/groups/public</url>-->
-            <!--<snapshots>-->
-                <!--<enabled>true</enabled>-->
-                <!--<updatePolicy>always</updatePolicy>-->
-            <!--</snapshots>-->
-            <!--<releases>-->
-                <!--<enabled>true</enabled>-->
-            <!--</releases>-->
-        <!--</repository>-->
-    <!--</repositories>-->
-    <!--<pluginRepositories>-->
-        <!--<pluginRepository>-->
-            <!--<id>xx-nexus</id>-->
-            <!--<name>maven-central</name>-->
-            <!--<url>xx/nexus/content/groups/public</url>-->
-            <!--<releases>-->
-                <!--<enabled>true</enabled>-->
-            <!--</releases>-->
-            <!--<snapshots>-->
-                <!--<enabled>true</enabled>-->
-                <!--<updatePolicy>always</updatePolicy>-->
-            <!--</snapshots>-->
-        <!--</pluginRepository>-->
-    <!--</pluginRepositories>-->
-    <!--<distributionManagement>-->
-        <!--<repository>-->
-            <!--<id>releases</id>-->
-            <!--<name>Nexus Repository</name>-->
-            <!--<url>xx/nexus/content/repositories/releases/</url>-->
-        <!--</repository>-->
-        <!--<snapshotRepository>-->
-            <!--<id>snapshots</id>-->
-            <!--<name>Nexus snapshots Repository</name>-->
-            <!--<url>xx/nexus/content/repositories/snapshots/</url>-->
-        <!--</snapshotRepository>-->
-    <!--</distributionManagement>-->
 </project>

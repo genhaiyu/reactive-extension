@@ -1,4 +1,4 @@
-package org.yugh.coral.core.factory.feign;
+package org.yugh.coral.core.config.proxy;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

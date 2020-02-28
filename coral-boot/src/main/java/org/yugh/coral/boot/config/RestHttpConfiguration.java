@@ -22,6 +22,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Role;
+import org.yugh.coral.boot.config.jetty.GracefulShutdownJettyServer;
 import org.yugh.coral.boot.rest.CustomRestTemplateCustomizer;
 
 /**
@@ -43,4 +44,8 @@ public class RestHttpConfiguration {
         return new RestTemplateBuilder(customRestTemplateCustomizer());
     }
 
+    @Bean
+    public GracefulShutdownJettyServer gracefulShutdownJettyServer() {
+        return new GracefulShutdownJettyServer();
+    }
 }

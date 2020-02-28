@@ -4,7 +4,6 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -22,7 +21,6 @@ import java.util.regex.Pattern;
 @Data
 @Slf4j
 @Component
-@Configuration
 @ConfigurationProperties(prefix = "auth-props")
 public class ZuulPropConfig implements InitializingBean {
 

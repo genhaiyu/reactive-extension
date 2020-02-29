@@ -107,10 +107,10 @@ public class ContainerCustomizerConfiguration {
      */
     @Bean
     public JettyServletWebServerFactory jettyServletWebServerFactory(
-            @Value("${xesapp.jetty.initial-value.max-thread:200}") int maxThreads,
-            @Value("${xesapp.jetty.initial-value.min-thread:20}") int minThreads,
-            @Value("${xesapp.jetty.initial-value.idle-timeout:60000}") int idleTimeout,
-            @Value("${xesapp.jetty.initial-value.shutdown-wait-time:30000}") int shutdownWaitTime
+            @Value("${coral.jetty.initial-value.max-thread:200}") int maxThreads,
+            @Value("${coral.jetty.initial-value.min-thread:20}") int minThreads,
+            @Value("${coral.jetty.initial-value.idle-timeout:60000}") int idleTimeout,
+            @Value("${coral.jetty.initial-value.shutdown-wait-time:30000}") int shutdownWaitTime
 
     ) {
         JettyServletWebServerFactory jettyServletWebServerFactory = new JettyServletWebServerFactory();

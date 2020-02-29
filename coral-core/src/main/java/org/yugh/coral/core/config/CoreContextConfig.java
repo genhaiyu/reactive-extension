@@ -34,6 +34,7 @@ public class CoreContextConfig {
     }
 
     @Bean
+    // @Order(Integer.MIN_VALUE)
     @ConditionalOnMissingBean(SimpleDistributeConfig.class)
     public SimpleDistributeConfig simpleDistributeConfig() {
         return new SimpleDistributeConfig();

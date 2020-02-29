@@ -19,6 +19,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.SmartInitializingSingleton;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.data.redis.core.*;
 import org.springframework.util.Assert;
 
@@ -32,8 +33,9 @@ import java.util.concurrent.TimeUnit;
  */
 @Slf4j
 @Getter
-@RequiredArgsConstructor
 @SuppressWarnings("unchecked")
+@RequiredArgsConstructor
+@ConditionalOnClass(CoreRedisConfig.class)
 public class CoreProcessCache implements SmartInitializingSingleton {
 
     private final CoreRedisConfig coreRedisConfig;

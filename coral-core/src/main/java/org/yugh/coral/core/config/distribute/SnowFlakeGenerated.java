@@ -16,6 +16,8 @@
 package org.yugh.coral.core.config.distribute;
 
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.util.Assert;
 import org.yugh.coral.core.config.SimpleSnowFlakeGenerated;
 import org.yugh.coral.core.config.handler.ApplicationContextHelper;
@@ -23,6 +25,8 @@ import org.yugh.coral.core.config.handler.ApplicationContextHelper;
 /**
  * @author yugenhai
  */
+@ConditionalOnClass(SnowFlake.class)
+@ConditionalOnBean(SimpleDistributeConfig.class)
 public class SnowFlakeGenerated implements SimpleSnowFlakeGenerated {
 
     private static final String SIMPLE_DISTRIBUTE_CONFIG_NAME = "simpleDistributeConfig";

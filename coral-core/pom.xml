@@ -10,27 +10,12 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <maven.parent.version>33</maven.parent.version>
-        <javax.validation.version>2.0.1.Final</javax.validation.version>
-        <io.shardingjdbc.version>2.0.3</io.shardingjdbc.version>
-        <mapstruct.version>1.2.0.Final</mapstruct.version>
-        <mybatis.spring.boot>2.1.1</mybatis.spring.boot>
-        <mysql-version>6.0.6</mysql-version>
         <fastjson.version>1.2.58</fastjson.version>
         <net.sf.json.version>2.4</net.sf.json.version>
         <guava.version>28.1-jre</guava.version>
-        <commons.io.version>2.6</commons.io.version>
-        <commons.collections.version>3.2.2</commons.collections.version>
-        <commons.beanutils.version>1.9.4</commons.beanutils.version>
-        <json.webtoken.version>0.9.1</json.webtoken.version>
-        <commons.jexl.version>2.1.1</commons.jexl.version>
-        <commons.pool2.version>2.7.0</commons.pool2.version>
         <lombok.version>1.18.10</lombok.version>
-        <swagger2.version>2.9.2</swagger2.version>
-        <tomcat.version>9.0.27</tomcat.version>
 
 
-        <javax.security.auth>1.1.1</javax.security.auth>
         <eclipse.jetty>9.4.22.v20191022</eclipse.jetty>
         <geronimo-jaspi>2.0.0</geronimo-jaspi>
 
@@ -76,13 +61,10 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.retry</groupId>
-            <artifactId>spring-retry</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -144,16 +126,6 @@
             <artifactId>feign-httpclient</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>${swagger2.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>${swagger2.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
@@ -192,11 +164,6 @@
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt</artifactId>
-            <version>${json.webtoken.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
         </dependency>
@@ -220,60 +187,6 @@
                     <skipTests>true</skipTests>
                 </configuration>
             </plugin>
-            <!--<plugin>-->
-                <!--<groupId>org.apache.maven.plugins</groupId>-->
-                <!--<artifactId>maven-source-plugin</artifactId>-->
-                <!--<version>3.1.0</version>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<id>attach-sources</id>-->
-                        <!--<phase>verify</phase>-->
-                        <!--<goals>-->
-                            <!--<goal>jar-no-fork</goal>-->
-                        <!--</goals>-->
-                    <!--</execution>-->
-                <!--</executions>-->
-            <!--</plugin>-->
         </plugins>
     </build>
-    <!--<repositories>-->
-        <!--<repository>-->
-            <!--<id>xx-nexus</id>-->
-            <!--<name>maven-central</name>-->
-            <!--<url>xx/nexus/content/groups/public</url>-->
-            <!--<snapshots>-->
-                <!--<enabled>true</enabled>-->
-                <!--<updatePolicy>always</updatePolicy>-->
-            <!--</snapshots>-->
-            <!--<releases>-->
-                <!--<enabled>true</enabled>-->
-            <!--</releases>-->
-        <!--</repository>-->
-    <!--</repositories>-->
-    <!--<pluginRepositories>-->
-        <!--<pluginRepository>-->
-            <!--<id>xx-nexus</id>-->
-            <!--<name>maven-central</name>-->
-            <!--<url>xx/nexus/content/groups/public</url>-->
-            <!--<releases>-->
-                <!--<enabled>true</enabled>-->
-            <!--</releases>-->
-            <!--<snapshots>-->
-                <!--<enabled>true</enabled>-->
-                <!--<updatePolicy>always</updatePolicy>-->
-            <!--</snapshots>-->
-        <!--</pluginRepository>-->
-    <!--</pluginRepositories>-->
-    <!--<distributionManagement>-->
-        <!--<repository>-->
-            <!--<id>releases</id>-->
-            <!--<name>Nexus Repository</name>-->
-            <!--<url>xx/nexus/content/repositories/releases/</url>-->
-        <!--</repository>-->
-        <!--<snapshotRepository>-->
-            <!--<id>snapshots</id>-->
-            <!--<name>Nexus snapshots Repository</name>-->
-            <!--<url>xx/nexus/content/repositories/snapshots/</url>-->
-        <!--</snapshotRepository>-->
-    <!--</distributionManagement>-->
 </project>

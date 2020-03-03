@@ -36,7 +36,7 @@ import org.springframework.http.client.reactive.JettyClientHttpConnector;
 import org.springframework.http.client.reactive.JettyResourceFactory;
 import org.springframework.http.client.reactive.ReactorResourceFactory;
 import org.yugh.coral.boot.config.jetty.GracefulShutdownJettyServer;
-import org.yugh.coral.core.common.constant.ClientMessageInfo;
+import org.yugh.coral.core.config.ClientMessageInfo;
 import reactor.netty.http.server.HttpServer;
 
 /**
@@ -62,6 +62,7 @@ public class ContainerCustomizerConfiguration {
         }
 
         /**
+         * WebClient 配置
          * 同时支持  Jetty Reactive Streams HttpClient.
          *
          * @param jettyResourceFactory
@@ -69,7 +70,7 @@ public class ContainerCustomizerConfiguration {
          */
         @Bean
         public JettyClientHttpConnector jettyClientHttpConnector(JettyResourceFactory jettyResourceFactory
-                                                                 ) {
+        ) {
             SslContextFactory sslContextFactory = new SslContextFactory.Client();
             HttpClient httpClient = new HttpClient(sslContextFactory);
             httpClient.setExecutor(jettyResourceFactory.getExecutor());
@@ -93,7 +94,7 @@ public class ContainerCustomizerConfiguration {
 
     /**
      * Jetty 容器必须加载, 不区分 reactor-http , jetty-http
-     *
+     * <p>
      * Jetty shutdown wait time 30000ms
      * Jetty default Max IdleTimeout 60000ms
      * Jetty default Min Con Thread 8

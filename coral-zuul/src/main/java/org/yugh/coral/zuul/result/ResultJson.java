@@ -1,11 +1,13 @@
-package org.yugh.coral.core.result;
+package org.yugh.coral.zuul.result;
 
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.yugh.coral.core.result.ResultEnum;
 
 import java.io.Serializable;
+
 @Data
 @NoArgsConstructor
 public final class ResultJson<T> implements Serializable {

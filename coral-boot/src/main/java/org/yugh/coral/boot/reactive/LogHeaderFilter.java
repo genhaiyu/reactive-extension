@@ -26,7 +26,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
-import org.yugh.coral.core.common.constant.LogMessageInfo;
+import org.yugh.coral.core.config.LogMessageInfo;
 import reactor.core.publisher.Mono;
 import reactor.util.context.Context;
 
@@ -57,6 +57,7 @@ public class LogHeaderFilter implements WebFilter {
 
 
     private Context addRequestHeadersToContext(final ServerHttpRequest request, final Context context) {
+        // MDC 在 reactive 下已经废弃, 单线程无法满足流式处理
         MDC.put(LogMessageInfo.REQUEST_ID_KEY, request.getHeaders().toSingleValueMap().get(LogMessageInfo.REQUEST_ID_KEY));
         final Map<String, String> contextMap = request.getHeaders().toSingleValueMap().entrySet()
                 .stream()
@@ -75,6 +76,7 @@ public class LogHeaderFilter implements WebFilter {
             ctx.<Map<String, String>>get(LogMessageInfo.CONTEXT_MAP).forEach(
                     (key, value) -> headers.add(LogMessageInfo.REQUEST_ID_KEY + key, value)
             );
+            // MDC 在 reactive 下已经废弃, 单线程无法满足流式处理
             headers.keySet().forEach(MDC::remove);
         }).then();
     }

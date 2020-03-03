@@ -16,7 +16,7 @@
 package org.yugh.coral.boot.reactive;
 
 import org.springframework.http.server.reactive.ServerHttpRequest;
-import org.yugh.coral.core.pojo.bo.RequestHeaderBO;
+import org.yugh.coral.core.beans.RequestHeader;
 import reactor.core.publisher.Mono;
 import reactor.util.context.Context;
 
@@ -26,7 +26,7 @@ import reactor.util.context.Context;
 public class CustomRequestContextHolder {
 
     private static final Class<ServerHttpRequest> SERVER_HTTP_REQUEST_CLASS = ServerHttpRequest.class;
-    private static final Class<RequestHeaderBO> REQUEST_HEADER_BO_CLASS = RequestHeaderBO.class;
+    private static final Class<RequestHeader> REQUEST_HEADER_BO_CLASS = RequestHeader.class;
 
     /**
      * Gets the {@code Mono<ServerHttpRequest>} from Reactor {@link Context}
@@ -43,7 +43,7 @@ public class CustomRequestContextHolder {
      *
      * @return the Mono<RequestHeaderBO>
      */
-    public static Mono<RequestHeaderBO> getRequestHeaderReactor() {
+    public static Mono<RequestHeader> getRequestHeaderReactor() {
         return Mono.subscriberContext()
                 .map(ctx -> ctx.get(REQUEST_HEADER_BO_CLASS));
     }
@@ -55,7 +55,7 @@ public class CustomRequestContextHolder {
      * @param requestHeaderBO
      * @return the Reactor {@link Context}
      */
-    public static Context setRequestHeaderReactor(Context context, RequestHeaderBO requestHeaderBO) {
+    public static Context setRequestHeaderReactor(Context context, RequestHeader requestHeaderBO) {
         return context.put(REQUEST_HEADER_BO_CLASS, requestHeaderBO);
     }
 

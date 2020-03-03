@@ -21,13 +21,13 @@
       "defaultValue": true
     },
     {
-      "name": "distribute.sequences.datacenter.datacenter-id",
+      "name": "coral.distribute.sequences.datacenter.datacenter-id",
       "type": "java.lang.Integer",
       "description": "Configuration DataNode identification.",
       "defaultValue": 0
     },
     {
-      "name": "distribute.sequences.machine.machine-id",
+      "name": "coral.distribute.sequences.machine.machine-id",
       "type": "java.lang.Integer",
       "description": "Configuration Machine identification.",
       "defaultValue": 0

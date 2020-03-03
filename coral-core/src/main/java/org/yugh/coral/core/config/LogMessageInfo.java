@@ -13,26 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.yugh.coral.core.config.distribute;
-
-import lombok.Data;
-import org.springframework.beans.factory.annotation.Value;
+package org.yugh.coral.core.config;
 
 /**
  * @author yugenhai
  */
-@Data
-public class SimpleDistributeConfig {
+public interface LogMessageInfo {
 
-    /**
-     * 工作 ID (0~31)
-     */
-    @Value("${coral.distribute.sequences.datacenter.datacenter-id:0}")
-    private int datacenterId;
-
-    /**
-     * 机器 ID (0~31)
-     */
-    @Value("${coral.distribute.sequences.machine.machine-id:0}")
-    private int machineId;
+    String REQUEST_ID_KEY           = "REQUEST_ID";
+    String CLIENT_HEADER            = "X-CLIENT-ID";
+    String CONTEXT_MAP              = "context-map";
 }

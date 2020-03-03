@@ -1,4 +1,4 @@
-package org.yugh.coral.core.common.constant;
+package org.yugh.coral.zuul.result;
 
 /**
  * //按照部署级别进行管理
@@ -17,9 +17,9 @@ public enum DeployEnum {
     PROD("prod", 3);
 
     private String type;
-    private int code ;
+    private int code;
 
-    DeployEnum(String type, int code){
+    DeployEnum(String type, int code) {
         this.type = type;
         this.code = code;
     }
@@ -30,4 +30,5 @@ public enum DeployEnum {
 
     public String getType() {
         return type;
-    }}
+    }
+}

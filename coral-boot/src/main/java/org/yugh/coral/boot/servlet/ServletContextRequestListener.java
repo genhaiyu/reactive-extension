@@ -23,7 +23,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import org.yugh.coral.core.common.constant.LogMessageInfo;
+import org.yugh.coral.core.config.LogMessageInfo;
 import org.yugh.coral.core.config.SimpleSnowFlakeGenerated;
 
 import javax.servlet.ServletRequestEvent;
@@ -48,10 +48,6 @@ public class ServletContextRequestListener implements ServletRequestListener {
             ServletContextRequestListener.class.getName() + ".REQUEST_ATTRIBUTES";
 
     /**
-     * StringJoiner reactorId = new StringJoiner(StringPool.EMPTY);
-     * reactorId.add(StringPool.MDC_HEADER);
-     * reactorId.add(msgId);
-     *
      * @param servletRequestEvent
      */
     @Override

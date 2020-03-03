@@ -14,13 +14,12 @@ import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.server.ServerWebExchange;
-import org.yugh.coral.core.common.constant.ClientMessageInfo;
-import org.yugh.coral.core.common.constant.StringPool;
-import org.yugh.coral.core.result.ResponseData;
-import org.yugh.coral.core.result.ResultEnum;
-import org.yugh.coral.core.result.ResultJson;
+import org.yugh.coral.core.config.ClientMessageInfo;
+import org.yugh.coral.core.config.StringPool;
 import org.yugh.coral.gateway.context.GatewayContext;
 import org.yugh.coral.gateway.properties.AuthSkipUrlsProperties;
+import org.yugh.coral.gateway.result.ResultEnum;
+import org.yugh.coral.gateway.result.ResultJson;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -66,7 +65,6 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
         ServerHttpResponse response = exchange.getResponse();
         if (blackServersCheck(context, exchange)) {
             response.setStatusCode(HttpStatus.FORBIDDEN);
-            ResponseData.build(()-> null);
             byte[] failureInfo = ResultJson.failure(ResultEnum.BLACK_SERVER_FOUND).toString().getBytes(StandardCharsets.UTF_8);
             DataBuffer buffer = response.bufferFactory().wrap(failureInfo);
             response.getHeaders().setContentType(MediaType.APPLICATION_JSON_UTF8);
@@ -161,7 +159,6 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
     private String getSsoUrl() {
        // String env = "test";
         String env = "test/prod/dev/pre";
-        Assert.hasText(env, "envSwitch is Empty");
         switch (env) {
             case StringPool
                     .TEST:

@@ -15,7 +15,6 @@
  */
 package org.yugh.coral.core.config;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.yugh.coral.core.config.cache.CoreRedisConfig;
@@ -28,14 +27,14 @@ import org.yugh.coral.core.config.distribute.SimpleDistributeConfig;
 public class CoreContextConfig {
 
     @Bean
-    @ConditionalOnMissingBean(CoreRedisConfig.class)
+    // @ConditionalOnMissingBean(CoreRedisConfig.class)
     public CoreRedisConfig simpleRedisConfig() {
         return new CoreRedisConfig();
     }
 
     @Bean
     // @Order(Integer.MIN_VALUE)
-    @ConditionalOnMissingBean(SimpleDistributeConfig.class)
+    // @ConditionalOnMissingBean(SimpleDistributeConfig.class)
     public SimpleDistributeConfig simpleDistributeConfig() {
         return new SimpleDistributeConfig();
     }

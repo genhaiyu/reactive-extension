@@ -1,6 +1,10 @@
 spring:
   application:
     name: zuul
+  redis:
+    expire: 30
+    key-prefix: coral:zuul
+    open: true
 
 server:
   port: 8702
@@ -17,6 +21,7 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8700/eureka/
+    enabled: false
 
 # route connection
 zuul:

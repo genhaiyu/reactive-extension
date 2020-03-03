@@ -19,8 +19,25 @@
 #### 使用 maven 命令并编译
 
 ```html
-cd /coral/coral-boot
+cd /coral
 mvn clean install -Dmaven.test.skip=true
+
+```
+
+#### 微服务中使用
+
+```html
+<dependency>
+    <groupId>org.yugh.coral</groupId>
+    <artifactId>core</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+</dependency>
+
+<dependency>
+    <groupId>org.yugh.coral</groupId>
+    <artifactId>boot</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+</dependency>
 
 ```
 
@@ -33,7 +50,7 @@ mvn clean install -Dmaven.test.skip=true
     * SpringBoot 2.X Jetty/Reactor Netty/Undertow 请求容器统一激活切换.
 
 * **gateway** 
-    * Spring Cloud Gateway 入门配置, 如 鉴权/转发/跨域统一设置, 已停更/废弃;
+    * Spring Cloud Gateway 入门配置, 如 鉴权/转发/跨域统一设置, 已停更;
 
 
 ------

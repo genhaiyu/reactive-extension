@@ -21,10 +21,13 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.yugh.coral.core.config.ClientMessageInfo;
 
 import javax.servlet.http.HttpServletRequest;
 
 /**
+ * For Servlet
+ *
  * @author yugenhai
  */
 public class FeignRequestInterceptor implements RequestInterceptor {
@@ -35,7 +38,7 @@ public class FeignRequestInterceptor implements RequestInterceptor {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         Assert.notNull(attributes, () -> "FeignRequestInterceptor attributes.getRequest() '" + attributes + "' must not null");
         HttpServletRequest request = attributes.getRequest();
-        String token = request.getHeader("Authorization");
+        String token = request.getHeader(ClientMessageInfo.AUTHORIZATION);
         requestTemplate.header(token);
     }
 }

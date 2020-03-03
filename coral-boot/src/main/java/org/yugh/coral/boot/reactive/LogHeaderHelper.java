@@ -3,7 +3,7 @@ package org.yugh.coral.boot.reactive;
 import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
-import org.yugh.coral.core.common.constant.LogMessageInfo;
+import org.yugh.coral.core.config.LogMessageInfo;
 import reactor.core.publisher.Signal;
 import reactor.core.publisher.SignalType;
 import reactor.util.context.Context;

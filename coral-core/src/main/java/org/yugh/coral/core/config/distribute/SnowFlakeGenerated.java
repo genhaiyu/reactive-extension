@@ -42,10 +42,10 @@ public class SnowFlakeGenerated implements SimpleSnowFlakeGenerated {
      * @return Long
      */
     private Long snowFlakeGenerated() {
-        SimpleDistributeConfig simpleDistributeConfig = ApplicationContextHelper.getBean(SIMPLE_DISTRIBUTE_CONFIG_NAME);
-        Assert.notNull(simpleDistributeConfig, () -> "simpleDistributeConfig '" + simpleDistributeConfig + "' failed to load");
-        if (simpleDistributeConfig.getDatacenterId() > 0x00 && simpleDistributeConfig.getMachineId() > 0x00) {
-            return new SnowFlake(simpleDistributeConfig.getDatacenterId(), simpleDistributeConfig.getMachineId()).nextId();
+        SimpleDistributeConfig config = ApplicationContextHelper.getBean(SIMPLE_DISTRIBUTE_CONFIG_NAME);
+        Assert.notNull(config, () -> "simpleDistributeConfig '" + config + "' failed to load");
+        if ((config.getDatacenterId() > 0x00 && config.getDatacenterId() <= 31) && (config.getMachineId() > 0x00 && config.getMachineId() <= 31)) {
+            return new SnowFlake(config.getDatacenterId(), config.getMachineId()).nextId();
         }
         return new SnowFlake(0x00, 0x00).nextId();
     }

@@ -1,4 +1,4 @@
-package org.yugh.coral.core.result;
+package org.yugh.coral.zuul.result;
 
 public enum ResultEnum {
 

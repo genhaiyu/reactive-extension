@@ -15,6 +15,7 @@
  */
 package org.yugh.coral.boot.rest;
 
+import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
@@ -25,11 +26,8 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import org.yugh.coral.boot.handler.CustomRestTemplateResponseErrorHandler;
-import org.yugh.coral.core.utils.JsonUtils;
 
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * @author yugenhai
@@ -66,7 +64,7 @@ public class CustomRestTemplateHolder extends RestTemplate {
         } else {
             responseEntity = restTemplate.exchange(url, HttpMethod.GET, requestEntity, String.class);
         }
-        log.info("\n getForHeaderParams | url is {},header:{}, request:{}, response:{}", url, JsonUtils.serializeToJson(requestEntity), JsonUtils.serializeToJson(params), JsonUtils.serializeToJson(responseEntity));
+        log.info("\n getForHeaderParams | url is {},header:{}, request:{}, response:{}", url, JSON.toJSONString(headers), JSON.toJSONString(requestEntity), JSON.toJSONString(responseEntity));
         return responseEntity;
     }
 
@@ -83,21 +81,4 @@ public class CustomRestTemplateHolder extends RestTemplate {
         ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, new HttpEntity<>(params, headers), String.class);
         return responseEntity;
     }
-
-
-    /****************** Business *********************************************************/
-    /****************** Business *********************************************************/
-    private String proxyBaseURL;
-    private Set<String> ignoreDomains;
-    private static final String PROXY_HEADER = "target-domain";
-    private static final String REQUEST_ID_HEADER = "x-request-id";
-    private static final String CLIENT_IP_SOURCE_HEADER = "X-Real-IP";
-    private static final String CLIENT_IP_TARGET_HEADER = "x-client-ip";
-    private static final Set<String> ADD_USER_IP_DOMAINS = new HashSet<>();
-
-
-    /****************** Business *********************************************************/
-    /****************** Business *********************************************************/
-
-
 }

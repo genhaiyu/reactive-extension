@@ -24,9 +24,9 @@ import org.springframework.util.Assert;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
-import org.yugh.coral.core.common.constant.LogMessageInfo;
+import org.yugh.coral.core.beans.RequestHeader;
+import org.yugh.coral.core.config.LogMessageInfo;
 import org.yugh.coral.core.config.SimpleSnowFlakeGenerated;
-import org.yugh.coral.core.pojo.bo.RequestHeaderBO;
 import reactor.core.publisher.Mono;
 import reactor.util.annotation.Nullable;
 
@@ -61,9 +61,9 @@ public class CustomRequestContextFilter implements WebFilter {
                 CustomRequestContextHolder.setServerHttpRequestReactor(ctx, request))
                 .subscriberContext(ctx ->
                         CustomRequestContextHolder
-                                .setRequestHeaderReactor(ctx, RequestHeaderBO.builder()
-                                        .baseList(Arrays.asList(msgId, request.getId()))
-                                        .baseMap(contextMap).build()));
+                                .setRequestHeaderReactor(ctx, RequestHeader.builder()
+                                        .ids(Arrays.asList(msgId, request.getId()))
+                                        .contextMap(contextMap).build()));
 
     }
 }

@@ -1,4 +1,4 @@
-package org.yugh.coral.core.result;
+package org.yugh.coral.gateway.result;
 
 import java.util.HashMap;
 import java.util.Map;

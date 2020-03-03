@@ -45,9 +45,8 @@ mvn clean install -Dmaven.test.skip=true
 
 * **boot** 
     * 自动适配用户选择的容器 Servlet/Reactive 加载拦截器和过滤器;
-    * WebFlux 会话信息获取, 在线程隔离情况下获取当前线程信息;
-    * WebFlux 全局 TraceId/MDC;
-    * SpringBoot 2.X Jetty/Reactor Netty/Undertow 请求容器统一激活切换.
+    * WebFlux 会话信息获取并透传 TraceId, 在线程隔离情况下获取当前线程信息;
+    * SpringBoot 2.X Jetty/Reactor Netty/Undertow 容器切换对比切换.
 
 * **gateway** 
     * Spring Cloud Gateway 入门配置, 如 鉴权/转发/跨域统一设置, 已停更;

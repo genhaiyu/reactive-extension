@@ -2,16 +2,10 @@ package org.yugh.coral.gateway.controller;
 
 import lombok.Synchronized;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.server.reactive.ServerHttpRequest;
-import org.springframework.http.server.reactive.ServerHttpResponse;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.yugh.coral.auth.annotation.PreSkipAuth;
-import org.yugh.coral.auth.common.enums.ResultEnum;
-import org.yugh.coral.auth.service.AuthService;
-import org.yugh.coral.auth.util.ResultJson;
+import org.yugh.coral.gateway.result.ResultEnum;
+import org.yugh.coral.gateway.result.ResultJson;
 
 /**
  * @author 余根海
@@ -19,17 +13,17 @@ import org.yugh.coral.auth.util.ResultJson;
  * @Copyright © 2019 yugenhai. All rights reserved.
  */
 @Slf4j
-@PreSkipAuth
+// @PreSkipAuth
 @RestController
 public class GatewayController {
 
 
-    private final AuthService authService;
-
-    @Autowired
-    private GatewayController(AuthService authService) {
-        this.authService = authService;
-    }
+//    private final AuthService authService;
+//
+//    @Autowired
+//    private GatewayController(AuthService authService) {
+//        this.authService = authService;
+//    }
 
 
     @Synchronized
@@ -40,18 +34,18 @@ public class GatewayController {
     }
 
 
-    @Synchronized
-    @GetMapping("/logout")
-    public ResultJson logout(ServerHttpRequest request, ServerHttpResponse response) {
-        try {
-            boolean isLogout = authService.logoutByGateway(request, response);
-            if (isLogout) {
-                log.info("Logout Success!");
-                return ResultJson.ok("Logout Success!");
-            }
-        } catch (Exception e) {
-            log.info("Logout Failed!");
-        }
-        return ResultJson.failure(ResultEnum.GATEWAY_SERVER_ERROR, "Logout Failed!");
-    }
+//    @Synchronized
+//    @GetMapping("/logout")
+//    public ResultJson logout(ServerHttpRequest request, ServerHttpResponse response) {
+//        try {
+//            boolean isLogout = authService.logoutByGateway(request, response);
+//            if (isLogout) {
+//                log.info("Logout Success!");
+//                return ResultJson.ok("Logout Success!");
+//            }
+//        } catch (Exception e) {
+//            log.info("Logout Failed!");
+//        }
+//        return ResultJson.failure(ResultEnum.GATEWAY_SERVER_ERROR, "Logout Failed!");
+//    }
 }

@@ -28,7 +28,7 @@ public class CoreContextConfig {
 
     @Bean
     // @ConditionalOnMissingBean(CoreRedisConfig.class)
-    public CoreRedisConfig simpleRedisConfig() {
+    public CoreRedisConfig coreRedisConfig() {
         return new CoreRedisConfig();
     }
 

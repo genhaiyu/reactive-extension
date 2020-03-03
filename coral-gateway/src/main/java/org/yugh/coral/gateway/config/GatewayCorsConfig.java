@@ -13,7 +13,7 @@ import org.springframework.web.cors.reactive.CorsUtils;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
-import org.yugh.coral.core.common.constant.StringPool;
+import org.yugh.coral.core.config.StringPool;
 import reactor.core.publisher.Mono;
 
 /**

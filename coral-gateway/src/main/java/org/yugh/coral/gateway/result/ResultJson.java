@@ -4,7 +4,6 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.yugh.coral.core.result.ResultEnum;
 
 import java.io.Serializable;
 

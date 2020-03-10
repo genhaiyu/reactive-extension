@@ -1,3 +1,15 @@
 spring:
   profiles:
     active: dev
+
+# Jetty / Reactive
+coral:
+  jetty:
+    config:
+      enabled: true
+    initial-value:
+      max-thread: 500
+      min-thread: 20
+  reactive:
+    request:
+      enabled: true

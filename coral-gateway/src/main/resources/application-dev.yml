@@ -12,6 +12,7 @@ spring:
     port: 6379
     open: true
     key-prefix: coral:gateway
+    expire: 30
   #overriding name
   main:
     allow-bean-definition-overriding: true

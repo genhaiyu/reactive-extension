@@ -18,6 +18,9 @@ package org.yugh.coral.core.config.cache;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.databind.jsontype.BasicPolymorphicTypeValidator;
+import com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -26,6 +29,9 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.util.Assert;
+
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author yugenhai
@@ -56,22 +62,28 @@ public class CoreRedisConfig {
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
         Assert.isTrue(open, () -> "redis switch '" + open + "' not initialized");
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
-        redisTemplate.setConnectionFactory(factory);
         Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
-        ObjectMapper om = new ObjectMapper();
-        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
-        jackson2JsonRedisSerializer.setObjectMapper(om);
-        StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
-        redisTemplate.setKeySerializer(stringRedisSerializer);
-        redisTemplate.setHashKeySerializer(stringRedisSerializer);
+        // Jackson 2.10 Redis 序列化
+        PolymorphicTypeValidator polymorphicTypeValidator = BasicPolymorphicTypeValidator
+                .builder()
+                .allowIfBaseType(List.class)
+                .allowIfSubType(Object.class)
+                .allowIfSubType(Date.class)
+                .build();
+        ObjectMapper mapper = JsonMapper.builder()
+                .visibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY)
+                .activateDefaultTyping(polymorphicTypeValidator, ObjectMapper.DefaultTyping.NON_FINAL)
+                .build();
+        jackson2JsonRedisSerializer.setObjectMapper(mapper);
+        redisTemplate.setEnableDefaultSerializer(false);
+        redisTemplate.setEnableTransactionSupport(true);
+        redisTemplate.setKeySerializer(new StringRedisSerializer());
         redisTemplate.setValueSerializer(jackson2JsonRedisSerializer);
-        redisTemplate.setHashValueSerializer(jackson2JsonRedisSerializer);
-        redisTemplate.afterPropertiesSet();
+        redisTemplate.setConnectionFactory(factory);
         return redisTemplate;
     }
 
-    /**
+    /*
      *  final PolymorphicTypeValidator ptv =
      * BasicPolymorphicTypeValidator.builder()
      *                 .allowIfBaseType(BaseValue.class)

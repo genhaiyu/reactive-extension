@@ -6,6 +6,7 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.StatisticsHandler;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextClosedEvent;
+import org.springframework.lang.NonNull;
 
 /**
  * see https://github.com/spring-projects/spring-boot/issues/4657
@@ -19,7 +20,7 @@ public class GracefulShutdownJettyServer implements ApplicationListener<ContextC
     private static Server server;
 
     @Override
-    public void onApplicationEvent(ContextClosedEvent event) {
+    public void onApplicationEvent(@NonNull ContextClosedEvent event) {
         if (server == null) {
             log.error("Jetty server variable is null, this should not happen!");
             return;

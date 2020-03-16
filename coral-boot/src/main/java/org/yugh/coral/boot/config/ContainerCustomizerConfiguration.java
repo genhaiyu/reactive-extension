@@ -116,7 +116,7 @@ public class ContainerCustomizerConfiguration {
     ) {
         JettyServletWebServerFactory jettyServletWebServerFactory = new JettyServletWebServerFactory();
         jettyServletWebServerFactory.addServerCustomizers(server -> {
-            // Tweak the connection config used by Jetty to handle incoming HTTP
+            // tweak the connection config used by jetty to handle incoming http
             QueuedThreadPool threadPool = server.getBean(QueuedThreadPool.class);
             threadPool.setMaxThreads(maxThreads);
             threadPool.setMinThreads(minThreads);

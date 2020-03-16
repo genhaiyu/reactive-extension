@@ -10,44 +10,20 @@
 
 
     <properties>
+        <compiler.source>11</compiler.source>
+        <compiler.target>11</compiler.target>
+        <compiler.release>11</compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
-        <spring.boot>2.1.10.RELEASE</spring.boot>
-        <spring-cloud.version>Greenwich.SR4</spring-cloud.version>
     </properties>
 
 
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.10.RELEASE</version>
-        <relativePath/>
+        <groupId>org.yugh</groupId>
+        <artifactId>coral</artifactId>
+        <version>1.0.2-SNAPSHOT</version>
     </parent>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
-    <!--<dependencyManagement>-->
-        <!--<dependencies>-->
-            <!--<dependency>-->
-                <!--<groupId>org.yugh.coral</groupId>-->
-                <!--<artifactId>parent</artifactId>-->
-                <!--<version>${project.version}</version>-->
-                <!--<type>pom</type>-->
-                <!--<scope>import</scope>-->
-            <!--</dependency>-->
-        <!--</dependencies>-->
-    <!--</dependencyManagement>-->
 
     <dependencies>
         <dependency>
@@ -61,15 +37,15 @@
             <optional>true</optional>
         </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.5</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>11</source>
+                    <target>11</target>
                     <encoding>utf8</encoding>
                 </configuration>
             </plugin>

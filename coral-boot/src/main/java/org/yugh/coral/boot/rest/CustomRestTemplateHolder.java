@@ -15,7 +15,6 @@
  */
 package org.yugh.coral.boot.rest;
 
-import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
@@ -26,6 +25,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import org.yugh.coral.boot.handler.CustomRestTemplateResponseErrorHandler;
+import org.yugh.coral.core.config.properties.JsonUtils;
 
 import java.util.Map;
 
@@ -64,7 +64,7 @@ public class CustomRestTemplateHolder extends RestTemplate {
         } else {
             responseEntity = restTemplate.exchange(url, HttpMethod.GET, requestEntity, String.class);
         }
-        log.info("\n getForHeaderParams | url is {},header:{}, request:{}, response:{}", url, JSON.toJSONString(headers), JSON.toJSONString(requestEntity), JSON.toJSONString(responseEntity));
+        log.info("\n getForHeaderParams | url is {},header:{}, request:{}, response:{}", url, JsonUtils.serializeToJson(headers), JsonUtils.serializeToJson(requestEntity), JsonUtils.serializeToJson(responseEntity));
         return responseEntity;
     }
 

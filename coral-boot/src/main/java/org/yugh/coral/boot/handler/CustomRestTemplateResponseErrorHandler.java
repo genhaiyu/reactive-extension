@@ -15,12 +15,12 @@
  */
 package org.yugh.coral.boot.handler;
 
-import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.web.client.ResponseErrorHandler;
+import org.yugh.coral.core.config.properties.JsonUtils;
 
 import java.io.IOException;
 import java.net.URI;
@@ -39,14 +39,14 @@ public class CustomRestTemplateResponseErrorHandler implements ResponseErrorHand
 
     @Override
     public void handleError(ClientHttpResponse clientHttpResponse) throws IOException {
-        String responseAsString = JSON.toJSONString(clientHttpResponse.getBody());
+        String responseAsString = JsonUtils.serializeToJson(clientHttpResponse.getBody());
         log.error("handleError: {}", responseAsString);
         throw new CustomException(responseAsString);
     }
 
     @Override
     public void handleError(URI url, HttpMethod method, ClientHttpResponse clientHttpResponse) throws IOException {
-        String responseAsString = JSON.toJSONString(clientHttpResponse.getBody());
+        String responseAsString = JsonUtils.serializeToJson(clientHttpResponse.getBody());
         log.error("handleError URL: {}, HttpMethod: {}, ResponseBody: {}", url, method, responseAsString);
         throw new CustomException(responseAsString);
     }

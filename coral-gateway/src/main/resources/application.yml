@@ -2,6 +2,12 @@ spring:
   profiles:
     active: dev
 
+  # As Spring Cloud Ribbon is in maintenance mode
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
+
 # Jetty / Reactive
 coral:
   jetty:

@@ -9,9 +9,10 @@
 | 框架         | 版本      |
 | ------------ | --------- |
 | Servlet      | 4.0.x     |
-| Spring       | 5.x       |
-| SpringBoot   | 2.1.x     |
-| Spring Cloud | Greenwich |
+| Spring       | 5.2.x     |
+| SpringBoot   | 2.2.2     |
+| Spring Cloud | Hoxton.SR3|
+| Jackson      | 2.10.2    |
 
 
 ## 1. 组件使用
@@ -46,6 +47,8 @@ mvn clean install -Dmaven.test.skip=true
 * **boot** 
     * 自动适配用户选择的容器 Servlet/Reactive 加载拦截器和过滤器;
     * WebFlux 会话信息获取并透传 TraceId, 在线程隔离情况下获取当前线程信息;
+    * Jackson 2.10.2 Redis RedisSerializer, Redis 最新序列化器;
+    * Jetty Reactive Streams HttpClient, WebClient 流式适配器 (待更新);
     * SpringBoot 2.X Jetty/Reactor Netty/Undertow 容器切换对比切换.
 
 * **gateway** 

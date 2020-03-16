@@ -12,7 +12,6 @@
         <groupId>org.yugh</groupId>
         <artifactId>coral</artifactId>
         <version>1.0.2-SNAPSHOT</version>
-        <relativePath/>
     </parent>
 
     <properties>

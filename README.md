@@ -24,6 +24,7 @@ cd /coral
 mvn clean install -Dmaven.test.skip=true
 
 ```
+* 编译报错, 检查 <compiler.source> 是否与本机的 jdk 版本一致或调至 1.8
 
 #### 微服务中使用
 
@@ -44,7 +45,7 @@ mvn clean install -Dmaven.test.skip=true
 
 ## 2. 组件功能
 
-* **boot** 
+* **core/boot** 
     * 自动适配用户选择的容器 Servlet/Reactive 加载拦截器和过滤器;
     * WebFlux 会话信息获取并透传 TraceId, 在线程隔离情况下获取当前线程信息;
     * Jackson 2.10.2 Redis RedisSerializer, Redis 最新序列化器;

@@ -10,7 +10,7 @@
 | ------------ | --------- |
 | Servlet      | 4.0.x     |
 | Spring       | 5.2.x     |
-| SpringBoot   | 2.2.2     |
+| SpringBoot   | 2.2.5     |
 | Spring Cloud | Hoxton.SR3|
 | Jackson      | 2.10.2    |
 

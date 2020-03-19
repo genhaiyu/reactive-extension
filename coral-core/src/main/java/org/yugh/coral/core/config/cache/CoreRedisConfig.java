@@ -62,13 +62,14 @@ public class CoreRedisConfig {
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
         Assert.isTrue(open, () -> "redis switch '" + open + "' not initialized");
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
-        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
+        Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
         // Jackson 2.10 Redis 序列化
-        PolymorphicTypeValidator polymorphicTypeValidator = BasicPolymorphicTypeValidator
+        final PolymorphicTypeValidator polymorphicTypeValidator = BasicPolymorphicTypeValidator
                 .builder()
                 .allowIfBaseType(List.class)
                 .allowIfSubType(Object.class)
                 .allowIfSubType(Date.class)
+                // .allowIfSubType(Set.class)
                 .build();
         ObjectMapper mapper = JsonMapper.builder()
                 .visibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY)

@@ -8,6 +8,11 @@ spring:
       ribbon:
         enabled: false
 
+#ribbon:
+#  eager-load:
+#    enabled: true
+#    clients: core, boot
+
 # Jetty / Reactive
 coral:
   jetty:

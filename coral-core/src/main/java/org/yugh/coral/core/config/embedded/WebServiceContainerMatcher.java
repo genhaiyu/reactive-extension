@@ -20,20 +20,18 @@ import org.springframework.core.Ordered;
 import org.springframework.util.ClassUtils;
 
 /**
- * Exclude tomcat
+ * Not support the Tomcat.
  *
  * @author yugenhai
  */
 public class WebServiceContainerMatcher implements Ordered {
 
     private static final String STARTUP_TOMCAT = "org.apache.catalina.startup.Tomcat";
-    private static final String CORAL_JETTY_CONFIG = "coral.jetty.config";
     private int order = Ordered.HIGHEST_PRECEDENCE + 1;
 
     public static void embeddedContainerMatcher() {
         if (ClassUtils.isPresent(STARTUP_TOMCAT, null)) {
-           // Boolean enabled = environment.getProperty(CORAL_JETTY_CONFIG, Boolean.class);
-            throw new ExceptionInInitializerError("Please remove Tomcat support Jar !");
+            throw new IllegalArgumentException("The project does not support the Tomcat, Please remove Tomcat Jar !");
         }
     }
 

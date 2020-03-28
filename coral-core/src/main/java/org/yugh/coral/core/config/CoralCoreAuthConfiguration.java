@@ -23,18 +23,16 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.yugh.coral.core.cache.RedisOperationProperties;
 import org.yugh.coral.core.cache.RedisProcessSupport;
-import org.yugh.coral.core.config.distribute.DistributeRequestProvider;
 import org.yugh.coral.core.config.distribute.DistributeRequestProperties;
+import org.yugh.coral.core.config.distribute.DistributeRequestProvider;
 
 /**
  * @author yugenhai
  */
 @Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties({CoralJettyProperties.class, CoralJettyValueProperties.class,
-        DistributeRequestProperties.class, RedisOperationProperties.class, CoralServletProperties.class,
-        CoralReactiveProperties.class})
+        DistributeRequestProperties.class, RedisOperationProperties.class, CoralReactiveProperties.class})
 public class CoralCoreAuthConfiguration {
-
 
     @Bean
     @ConditionalOnMissingBean

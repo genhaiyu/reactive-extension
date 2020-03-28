@@ -14,7 +14,7 @@
  */
 
 
-package org.yugh.coral.core.config.hystrix;
+package org.yugh.coral.boot.config.feign;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

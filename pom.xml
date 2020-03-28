@@ -130,11 +130,6 @@
                 <artifactId>maven-deploy-plugin</artifactId>
                 <version>${maven.deploy.plugin.version}</version>
             </dependency>
-            <!--<dependency>-->
-                <!--<groupId>org.apache.maven.plugins</groupId>-->
-                <!--<artifactId>maven-site-plugin</artifactId>-->
-                <!--<version>${maven.site.version}</version>-->
-            <!--</dependency>-->
         </dependencies>
     </dependencyManagement>
 

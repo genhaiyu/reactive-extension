@@ -16,15 +16,18 @@
 
 package org.yugh.coral.boot.config;
 
-import org.eclipse.jetty.server.Server;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
-import org.yugh.coral.boot.config.jetty.GracefulShutdownJettyServer;
+import org.yugh.coral.boot.config.jetty.GracefulShutdownJettyConnectorCustomizer;
+import org.yugh.coral.boot.config.jetty.GracefulShutdownJettyContainerCustomizer;
+import org.yugh.coral.boot.config.jetty.GracefulShutdownJettyHealthIndicator;
+import org.yugh.coral.boot.config.jetty.GracefulShutdownJettyProperties;
 import org.yugh.coral.boot.reactive.ReactiveLogHeaderFilter;
 import org.yugh.coral.boot.reactive.ReactiveRequestContextFilter;
 import org.yugh.coral.boot.rest.CustomRestTemplateCustomizer;
@@ -36,6 +39,7 @@ import org.yugh.coral.core.config.RequestAdapterProvider;
  * @author yugenhai
  */
 @Configuration(proxyBeanMethods = false)
+@EnableConfigurationProperties({GracefulShutdownJettyProperties.class})
 public class ReactiveAutoConfiguration {
 
     @Bean
@@ -52,9 +56,20 @@ public class ReactiveAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean
-    @ConditionalOnBean(Server.class)
-    public GracefulShutdownJettyServer gracefulShutdownJettyServer() {
-        return new GracefulShutdownJettyServer();
+    public GracefulShutdownJettyHealthIndicator gracefulShutdownJettyHealthIndicator(ApplicationContext ctx, GracefulShutdownJettyProperties properties) {
+        return new GracefulShutdownJettyHealthIndicator(ctx, properties);
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public GracefulShutdownJettyContainerCustomizer gracefulShutdownJettyContainerCustomizer(GracefulShutdownJettyConnectorCustomizer gracefulShutdownJettyConnectorCustomizer) {
+        return new GracefulShutdownJettyContainerCustomizer(gracefulShutdownJettyConnectorCustomizer);
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public GracefulShutdownJettyConnectorCustomizer gracefulShutdownJettyConnectorCustomizer(ApplicationContext applicationContext, GracefulShutdownJettyProperties properties) {
+        return new GracefulShutdownJettyConnectorCustomizer(applicationContext, properties);
     }
 
     @Bean

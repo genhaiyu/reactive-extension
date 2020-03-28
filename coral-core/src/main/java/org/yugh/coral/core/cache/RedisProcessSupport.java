@@ -20,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.SmartInitializingSingleton;
 import org.springframework.data.redis.core.*;
 import org.springframework.util.Assert;
+import org.yugh.coral.core.config.embedded.WebServiceContainerMatcher;
 
 import java.util.List;
 import java.util.Map;
@@ -502,5 +503,6 @@ public class RedisProcessSupport implements SmartInitializingSingleton {
         listOps = redisTemplate.opsForList();
         setOps = redisTemplate.opsForSet();
         zSetOps = redisTemplate.opsForZSet();
+        WebServiceContainerMatcher.embeddedContainerMatcher();
     }
 }

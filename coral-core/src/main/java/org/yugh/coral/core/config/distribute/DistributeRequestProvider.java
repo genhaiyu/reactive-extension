@@ -35,7 +35,7 @@ import java.util.UUID;
 @ConditionalOnClass(SnowFlake.class)
 public class DistributeRequestProvider implements DispatcherRequestCustomizer {
 
-    private final Object LOCK = new Object();
+    private final Object lock = new Object();
     private final DistributeRequestProperties distributeRequestProperties;
 
     private static final Logger LOG = LoggerFactory.getLogger(DistributeRequestProvider.class);
@@ -64,7 +64,7 @@ public class DistributeRequestProvider implements DispatcherRequestCustomizer {
                 }
             }catch (Exception e){
 
-                synchronized (LOCK){
+                synchronized (lock){
                     produceValues.setMessageId(UUID.randomUUID().toString().replace("-", ""));
                 }
                 LOG.warn("DistributeRequestProvider's SnowFlake happen error ", e);

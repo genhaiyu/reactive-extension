@@ -1,8 +1,8 @@
 package org.yugh.coral.gateway.filter;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
@@ -14,9 +14,7 @@ import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.server.ServerWebExchange;
-import org.yugh.coral.core.config.ClientMessageInfo;
-import org.yugh.coral.core.config.StringPool;
-import org.yugh.coral.gateway.context.GatewayContext;
+import org.yugh.coral.gateway.config.GatewayContext;
 import org.yugh.coral.gateway.properties.AuthSkipUrlsProperties;
 import org.yugh.coral.gateway.result.ResultEnum;
 import org.yugh.coral.gateway.result.ResultJson;
@@ -32,12 +30,14 @@ import java.util.regex.Matcher;
  * @creation 2019-07-09 10:52
  * @Copyright © 2019 yugenhai. All rights reserved.
  */
-@Slf4j
 public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
+
+
+    private static final Logger LOG = LoggerFactory.getLogger(GatewayDataWorksFilter.class);
 
     @Autowired
     private AuthSkipUrlsProperties authSkipUrlsProperties;
-//    @Autowired
+    //    @Autowired
 //    private AuthService authService;
 //    @Autowired
 //    private AuthConfig authConfig;
@@ -46,8 +46,9 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
 //    @Autowired
 //    private JwtHelper jwtHelper;
     @Autowired(required = false)
-    @Qualifier(value = "gatewayQueueThreadPool")
     private ExecutorService buildGatewayQueueThreadPool;
+
+    private final static String AUTHORIZATION = "Authorization";
 
 
     /**
@@ -79,7 +80,7 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
                 response.getHeaders().setContentType(MediaType.APPLICATION_JSON_UTF8);
                 return response.writeWith(Flux.just(buffer));
             }
-            ServerHttpRequest mutateReq = exchange.getRequest().mutate().header(ClientMessageInfo.AUTHORIZATION, context.getUserToken()).build();
+            ServerHttpRequest mutateReq = exchange.getRequest().mutate().header(AUTHORIZATION, context.getUserToken()).build();
             ServerWebExchange mutableExchange = exchange.mutate().request(mutateReq).build();
             return chain.filter(mutableExchange);
         } else {
@@ -104,7 +105,7 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
                 unLogin(context);
             }
         } catch (Exception e) {
-            log.error("Invoke SSO Exception :{}", e.getMessage());
+            LOG.error("Invoke SSO Exception :{}", e.getMessage());
             context.setDoNext(false);
         }
     }
@@ -115,7 +116,7 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
     private void unLogin(GatewayContext context) {
         context.setRedirectUrl(getSsoUrl());
         context.setDoNext(false);
-        log.info("Check Current Session is No Login, Return New Url Page : {} ", getSsoUrl());
+        LOG.info("Check Current Session is No Login, Return New Url Page : {} ", getSsoUrl());
     }
 
 
@@ -156,15 +157,15 @@ public class GatewayDataWorksFilter implements GlobalFilter, Ordered {
     }
 
 
+    @Deprecated
     private String getSsoUrl() {
-       // String env = "test";
+        // String env = "test";
         String env = "test/prod/dev/pre";
         switch (env) {
-            case StringPool
-                    .TEST:
+            // delete StringPool.TEST
+            case "test":
                 return "/test";
-            case StringPool
-                    .PROD:
+            case "prod":
                 return "/prod";
             default:
                 return "pre";

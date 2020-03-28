@@ -19,8 +19,15 @@ coral:
     config:
       enabled: true
     initial-value:
-      max-thread: 500
+      max-thread: 1000
       min-thread: 20
-  reactive:
-    request:
-      enabled: true
+#  reactive:
+#    request:
+#      enabled: true
+#  distribute:
+#    data-center-id: 1
+#    machine-id: 1
+server:
+  jetty:
+    min-threads: 20
+    max-threads: 1000

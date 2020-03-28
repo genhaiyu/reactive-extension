@@ -1,24 +1,37 @@
 package org.yugh.coral.gateway.result;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import java.io.Serializable;
 
-@Data
-@NoArgsConstructor
 public final class ResultJson<T> implements Serializable {
 
     private static final long serialVersionUID = 2053742054576495115L;
-    @Setter(AccessLevel.PRIVATE)
     private Integer code;
-    @Setter(AccessLevel.PRIVATE)
     private String msg;
-    @Setter(AccessLevel.PRIVATE)
     private T result;
 
+    public Integer getCode() {
+        return code;
+    }
+
+    public void setCode(Integer code) {
+        this.code = code;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public T getResult() {
+        return result;
+    }
+
+    public void setResult(T result) {
+        this.result = result;
+    }
 
     public static ResultJson ok() {
         return ok("");

@@ -1,44 +1,45 @@
 /*
- * Copyright (c) 2019-2029, yugenhai108@gmail.com.
  *
- * Licensed under the GNU LESSER GENERAL PUBLIC LICENSE 3.0;
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Copyright (c) 2014-2020, yugenhai108@gmail.com.
  *
- * http://www.gnu.org/licenses/lgpl.html
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  */
+
+
 package org.yugh.coral.boot.servlet.interceptor;
 
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
-import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import org.yugh.coral.core.config.ClientMessageInfo;
 
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * For Servlet
+ * Feign Interceptor, For Servlet
  *
  * @author yugenhai
  */
+@Deprecated
 public class FeignRequestInterceptor implements RequestInterceptor {
 
+    private final static String AUTHORIZATION = "AUTHORIZATION";
+
     @Override
-    @Nullable
-    public void apply(@Nullable RequestTemplate requestTemplate) {
+    public void apply(RequestTemplate requestTemplate) {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        Assert.notNull(attributes, () -> "FeignRequestInterceptor attributes.getRequest() '" + attributes + "' must not null");
+        Assert.notNull(attributes, () -> "FeignRequestInterceptor '" + attributes + "' must not null");
         HttpServletRequest request = attributes.getRequest();
-        String token = request.getHeader(ClientMessageInfo.AUTHORIZATION);
+        String token = request.getHeader(AUTHORIZATION);
         requestTemplate.header(token);
     }
 }

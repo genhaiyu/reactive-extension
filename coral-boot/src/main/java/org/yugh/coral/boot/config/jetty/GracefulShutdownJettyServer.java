@@ -1,26 +1,31 @@
 package org.yugh.coral.boot.config.jetty;
 
-import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.StatisticsHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextClosedEvent;
-import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable;
 
 /**
- * see https://github.com/spring-projects/spring-boot/issues/4657
+ * <a href="https://github.com/spring-projects/spring-boot/issues/4657</a>.
  *
  * @author yugenhai
  */
-@Slf4j
+@Deprecated
 public class GracefulShutdownJettyServer implements ApplicationListener<ContextClosedEvent> {
 
-    @Setter
+    private static final Logger log = LoggerFactory.getLogger(GracefulShutdownJettyServer.class);
+
     private static Server server;
 
+    public static void setServer(Server server) {
+        GracefulShutdownJettyServer.server = server;
+    }
+
     @Override
-    public void onApplicationEvent(@NonNull ContextClosedEvent event) {
+    public void onApplicationEvent(@Nullable ContextClosedEvent event) {
         if (server == null) {
             log.error("Jetty server variable is null, this should not happen!");
             return;

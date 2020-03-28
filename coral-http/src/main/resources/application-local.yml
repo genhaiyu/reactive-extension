@@ -1,0 +1,39 @@
+# log
+logging:
+  level:
+    reactor.ipc.netty.http: DEBUG
+    reactor.ipc.netty.channel: DEBUG
+    org.springframework.http.server.reactive: INFO
+    org.springframework.web.reactive: INFO
+
+spring:
+ # caffeine
+  cache:
+    type: CAFFEINE
+    caffeine:
+      spec: initialCapacity=100,maximumSize=1000,expireAfterWrite=30s
+  # redis
+  redis:
+    port: 6379
+    host: 127.0.0.1
+    lettuce:
+      pool:
+        max-active: 1000
+        max-wait: -1ms
+        max-idle: 10
+        min-idle: 5
+    coral-cache:
+      key-prefix: coral:http
+      expire: 30
+      enabled: true
+
+
+  # datasource -local
+  datasource:
+    username: root
+    password: mac12345
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/test_order?characterEncoding=utf-8&useSSL=false
+    hikari:
+      connection-timeout: 60000
+      maximum-pool-size: 5

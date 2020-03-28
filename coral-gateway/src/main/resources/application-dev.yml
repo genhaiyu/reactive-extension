@@ -4,15 +4,17 @@ server:
 #setting
 spring:
   application:
-    name: dataworks-gateway-service
+    name: coral-gateway
   #redis
   redis:
     database: 0
     host: 127.0.0.1
     port: 6379
-    open: true
-    key-prefix: coral:gateway
-    expire: 30
+    # customizer
+    coral-cache:
+      enabled: true
+      expire: 20
+      key-prefix: coral:gateway
   #overriding name
   main:
     allow-bean-definition-overriding: true
@@ -260,8 +262,6 @@ management:
 ribbon:
   eureka:
     enabled: true
-  ReadTimeout: 120000
-  ConnectTimeout: 30000
 
 
 #feign

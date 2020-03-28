@@ -1,0 +1,59 @@
+# server
+server:
+  port: 7071
+  jetty:
+    max-threads: 1000
+    min-threads: 20
+
+# application
+spring:
+  application:
+    name: coral-http
+  # profiles
+  profiles:
+    active: local
+  # overriding
+  main:
+    allow-bean-definition-overriding: true
+  # As Spring Cloud Ribbon is in maintenance mode
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
+
+# enable select jetty-http or reactor-http-nio
+coral:
+  # Jetty default Max/Min/IdleTimeout Con Thread 200/8/60000ms
+  jetty:
+    config:
+      enabled: true
+    initial-value:
+      max-thread: 500
+      min-thread: 20
+
+
+# inner project should be open this
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+
+# hystrix
+
+# ribbon
+
+
+# eureka
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka/
+    enabled: false

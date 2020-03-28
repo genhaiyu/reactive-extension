@@ -6,34 +6,44 @@
     <name>Coral :: Sample Gateway</name>
     <groupId>org.yugh.coral</groupId>
     <artifactId>gateway</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.2-SNAPSHOT</version>
 
     <parent>
         <groupId>org.yugh</groupId>
         <artifactId>coral</artifactId>
-        <version>1.0.2-SNAPSHOT</version>
+        <version>1.0.3-SNAPSHOT</version>
     </parent>
-
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.yugh</groupId>
+                <artifactId>coral</artifactId>
+                <version>1.0.3-SNAPSHOT</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <properties>
-        <compiler.source>11</compiler.source>
-        <compiler.target>11</compiler.target>
-        <compiler.release>11</compiler.release>
+        <!--<compiler.source>11</compiler.source>-->
+        <!--<compiler.target>11</compiler.target>-->
+        <!--<compiler.release>11</compiler.release>-->
+        <compiler.source>1.8</compiler.source>
+        <compiler.target>1.8</compiler.target>
+        <compiler.release>1.8</compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
 
     <dependencies>
-
         <dependency>
             <groupId>org.yugh.coral</groupId>
             <artifactId>core</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>1.0.2-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.yugh.coral</groupId>
             <artifactId>boot</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>1.0.2-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -74,8 +84,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>11</source>
-                    <target>11</target>
                     <encoding>utf8</encoding>
                 </configuration>
             </plugin>
@@ -92,7 +100,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>org.yugh.coral.gateway.DataWorksGatewayApplication</mainClass>
+                            <mainClass>org.yugh.coral.gateway.GatewayApplication</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

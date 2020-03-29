@@ -55,8 +55,6 @@ mvn clean install -Dmaven.test.skip=true
     * SpringWebFlux 默认加载 Netty, 会有性能问题, 大流量项目要切换到 Jetty, Undertow, Tomcat.
     * Jetty 和 WebFlux(Reactor) 已经用在生产环境, GracefulShutdownJetty 正常停止 Jetty 容器待验证.
 
-* **Spring WebFlux**
-![WebFlux](https://github.com/yugenhai/coral/blob/master/about/spring-webflux.png)
 
 * **Gateway** 
     * Spring Cloud Gateway 入门 Demo, 如 鉴权/转发/跨域统一设置, 已停更.

@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  org.yugh.coral.core.config.CoralCoreAuthConfiguration
+  org.yugh.coral.core.config.CoralCoreAutoConfiguration

@@ -27,7 +27,7 @@ import java.util.UUID;
 
 /**
  * Request ID generation.
- *
+ * <p>
  * Type is {@link RequestAdapterProvider.ProduceValues}
  *
  * @author yugenhai
@@ -49,22 +49,22 @@ public class DistributeRequestProvider implements DispatcherRequestCustomizer {
     public void customize(Object object) {
         if (object instanceof RequestAdapterProvider.ProduceValues) {
             RequestAdapterProvider.ProduceValues produceValues = (RequestAdapterProvider.ProduceValues) object;
-            try{
-                if((distributeRequestProperties.getDataCenterId() > 0x00 && distributeRequestProperties.getDataCenterId() <= 31)
-                        && (distributeRequestProperties.getMachineId() > 0x00 && distributeRequestProperties.getMachineId() <= 31)){
+            try {
+                if ((distributeRequestProperties.getDataCenterId() > 0x00 && distributeRequestProperties.getDataCenterId() <= 31)
+                        && (distributeRequestProperties.getMachineId() > 0x00 && distributeRequestProperties.getMachineId() <= 31)) {
                     produceValues.setMessageId(
                             String.valueOf(new SnowFlake(distributeRequestProperties.getDataCenterId(),
                                     distributeRequestProperties.getMachineId()).nextId())
                     );
 
-                }else {
+                } else {
                     produceValues.setMessageId(
                             String.valueOf(new SnowFlake(0x00, 0x00).nextId())
                     );
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
 
-                synchronized (lock){
+                synchronized (lock) {
                     produceValues.setMessageId(UUID.randomUUID().toString().replace("-", ""));
                 }
                 LOG.warn("DistributeRequestProvider's SnowFlake happen error ", e);

@@ -32,7 +32,7 @@ import org.yugh.coral.core.config.distribute.DistributeRequestProvider;
 @Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties({CoralJettyProperties.class, CoralJettyValueProperties.class,
         DistributeRequestProperties.class, RedisOperationProperties.class, CoralReactiveProperties.class})
-public class CoralCoreAuthConfiguration {
+public class CoralCoreAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean

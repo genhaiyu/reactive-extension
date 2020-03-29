@@ -25,14 +25,14 @@ public class RequestAdapterProvider {
 
     private final DispatcherRequestCustomizer<ProduceValues> dispatcherRequestCustomizer;
 
-    public RequestAdapterProvider(DispatcherRequestCustomizer<ProduceValues> dispatcherRequestCustomizer){
+    public RequestAdapterProvider(DispatcherRequestCustomizer<ProduceValues> dispatcherRequestCustomizer) {
         this.dispatcherRequestCustomizer = dispatcherRequestCustomizer;
     }
 
 
     public void requestInitialization(ProduceValues produceValues) {
 
-        if(produceValues == null){
+        if (produceValues == null) {
             produceValues = new ProduceValues();
         }
         dispatcherRequestCustomizer.customize(produceValues);

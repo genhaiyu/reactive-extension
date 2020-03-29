@@ -50,7 +50,7 @@ public class ServletRequestContextListener implements ServletRequestListener, Or
 
     private final DispatcherRequestCustomizer<RequestAdapterProvider.ProduceValues> dispatcherRequestCustomizer;
 
-    public ServletRequestContextListener(DispatcherRequestCustomizer<RequestAdapterProvider.ProduceValues> dispatcherRequestCustomizer){
+    public ServletRequestContextListener(DispatcherRequestCustomizer<RequestAdapterProvider.ProduceValues> dispatcherRequestCustomizer) {
         this.dispatcherRequestCustomizer = dispatcherRequestCustomizer;
     }
 

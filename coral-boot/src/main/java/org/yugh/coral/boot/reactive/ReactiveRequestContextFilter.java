@@ -77,11 +77,11 @@ public class ReactiveRequestContextFilter implements WebFilter, Ordered {
         Assert.notNull(chain, () -> "WebFilterChain '" + chain + "' must not be null");
         ServerHttpRequest request = exchange.getRequest();
         dispatcherRequestCustomizer.customize(produceValues);
-        String idProvider = produceValues.getMessageId();
 
-        if (idProvider == null) {
+        if (produceValues.getMessageId() == null) {
             throw new IllegalArgumentException("idProvider initialization failed");
         }
+        String idProvider = produceValues.getMessageId();
         exchange.getRequest().mutate().headers(httpHeaders -> httpHeaders.add(RequestHeaderProvider.REQUEST_ID_KEY, idProvider));
         contextMap.put(RequestHeaderProvider.CONTEXT_MAP, idProvider);
         beanDefinitionHeader.setIds(Arrays.asList(idProvider, request.getId()));

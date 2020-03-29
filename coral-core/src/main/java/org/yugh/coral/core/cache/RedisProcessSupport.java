@@ -42,7 +42,7 @@ public class RedisProcessSupport implements SmartInitializingSingleton {
 
     private final RedisOperationProperties redisOperationProperties;
     private final RedisTemplate<String, Object> redisTemplate;
-    private volatile String value;
+    private volatile String assembleCacheKey;
     private ValueOperations valueOps;
     private HashOperations hashOps;
     private ListOperations listOps;
@@ -56,7 +56,7 @@ public class RedisProcessSupport implements SmartInitializingSingleton {
 
     private void keyPrefix(RedisOperationProperties redisOperationProperties, final String key) {
         StringJoiner joiner = new StringJoiner(":");
-        value = joiner.add(redisOperationProperties.getCoralCache().getKeyPrefix())
+        assembleCacheKey = joiner.add(redisOperationProperties.getCoralCache().getKeyPrefix())
                 .add(key).toString();
     }
 
@@ -111,7 +111,7 @@ public class RedisProcessSupport implements SmartInitializingSingleton {
 
     private String getKeyPrefix(String key) {
         keyPrefix(redisOperationProperties, key);
-        return value;
+        return assembleCacheKey;
     }
 
 

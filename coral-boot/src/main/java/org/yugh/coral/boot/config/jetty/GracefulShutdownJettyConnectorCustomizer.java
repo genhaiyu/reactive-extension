@@ -70,15 +70,14 @@ public class GracefulShutdownJettyConnectorCustomizer implements JettyServerCust
     }
 
     private void stopAcceptingNewRequests() {
-       // graceful.shutdown();
+        // graceful.shutdown();
 
-       try
-       {
-           server.stop();
-       }catch (Exception e){
-           //
-           LOG.warn("Jetty server stop error ", e);
-       }
+        try {
+            server.stop();
+        } catch (Exception e) {
+            //
+            LOG.warn("Jetty server stop error ", e);
+        }
 
         LOG.info("Paused {} to stop accepting new requests", server);
     }

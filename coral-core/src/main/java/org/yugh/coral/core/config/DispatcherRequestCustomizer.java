@@ -17,7 +17,7 @@
 package org.yugh.coral.core.config;
 
 /**
- *  To be expanded
+ * To be expanded
  *
  * @author yugenhai
  */

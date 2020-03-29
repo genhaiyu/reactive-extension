@@ -30,7 +30,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Coral RedisProcessSupport
- * <p>
+ *
  * {@link RedisOperationProperties}.
  *
  * @author yugenhai

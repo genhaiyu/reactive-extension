@@ -89,10 +89,4 @@ public class ReactiveAutoConfiguration {
     public ServletRequestContextListener servletRequestContextListener(DispatcherRequestCustomizer<RequestAdapterProvider.ProduceValues> dispatcherRequestCustomizer) {
         return new ServletRequestContextListener(dispatcherRequestCustomizer);
     }
-
-    @Bean
-    @ConditionalOnMissingBean
-    public ClientRequestAutoConfiguration clientRequestAutoConfiguration() {
-        return new ClientRequestAutoConfiguration();
-    }
 }

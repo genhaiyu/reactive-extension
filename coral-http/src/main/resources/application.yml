@@ -1,6 +1,7 @@
 # server
 server:
   port: 7071
+  #
   jetty:
     max-threads: 1000
     min-threads: 20
@@ -21,18 +22,18 @@ spring:
       ribbon:
         enabled: false
 
-# enable select jetty-http or reactor-http-nio
-coral:
-  # Jetty default Max/Min/IdleTimeout Con Thread 200/8/60000ms
-  jetty:
-    config:
-      enabled: true
-    initial-value:
-      max-thread: 500
-      min-thread: 20
+## disable
+#coral:
+#  # Jetty default Max/Min/IdleTimeout Con Thread 200/8/60000ms
+#  jetty:
+#    config:
+#      enabled: true
+#    initial-value:
+#      max-thread: 500
+#      min-thread: 20
 
 
-# inner project should be open this
+# management
 management:
   endpoints:
     web:

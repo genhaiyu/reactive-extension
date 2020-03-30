@@ -8,7 +8,7 @@
     <!-- 控制台输出 -->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>%d [%thread] [%X{REQUEST_ID}] %-5level %logger{36} - %msg%n</pattern>
+            <pattern>%d [%thread] [%X{REQUEST_ID}] %-5level %logger{36} {%line} - %msg%n</pattern>
             <charset>UTF-8</charset>
         </encoder>
     </appender>

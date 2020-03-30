@@ -3,8 +3,8 @@ logging:
   level:
     reactor.ipc.netty.http: DEBUG
     reactor.ipc.netty.channel: DEBUG
-    org.springframework.http.server.reactive: INFO
-    org.springframework.web.reactive: INFO
+    org.springframework.web.reactive: DEBUG
+    org.springframework.http.server.reactive: DEBUG
 
 spring:
  # caffeine

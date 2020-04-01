@@ -11,6 +11,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
+ *
  */
 
 
@@ -45,11 +46,11 @@ import javax.servlet.http.HttpServletRequest;
 public class ServletRequestContextListener implements ServletRequestListener, Ordered {
 
     private static final Logger LOG = LoggerFactory.getLogger(ServletRequestContextListener.class);
-    // custom order, every filter should be set
+    // filter should be set
     private int order = Ordered.HIGHEST_PRECEDENCE + 10;
 
     private final DispatcherRequestCustomizer<RequestAdapterProvider.ProduceValues> dispatcherRequestCustomizer;
-
+    private final RequestAdapterProvider.ProduceValues produceValues = new RequestAdapterProvider.ProduceValues();
     public ServletRequestContextListener(DispatcherRequestCustomizer<RequestAdapterProvider.ProduceValues> dispatcherRequestCustomizer) {
         this.dispatcherRequestCustomizer = dispatcherRequestCustomizer;
     }
@@ -78,7 +79,6 @@ public class ServletRequestContextListener implements ServletRequestListener, Or
         }
 
         HttpServletRequest request = (HttpServletRequest) servletRequestEvent.getServletRequest();
-        RequestAdapterProvider.ProduceValues produceValues = new RequestAdapterProvider.ProduceValues();
         dispatcherRequestCustomizer.customize(produceValues);
         String idProvider = produceValues.getMessageId();
         ServletRequestAttributes attributes = new ServletRequestAttributes(request);

@@ -33,7 +33,7 @@ import java.util.UUID;
  * @author yugenhai
  */
 @ConditionalOnClass(SnowFlake.class)
-public class DistributeRequestProvider implements DispatcherRequestCustomizer {
+public class DistributeRequestProvider implements DispatcherRequestCustomizer<RequestAdapterProvider.ProduceValues> {
 
     private final Object lock = new Object();
     private final DistributeRequestProperties distributeRequestProperties;
@@ -44,32 +44,35 @@ public class DistributeRequestProvider implements DispatcherRequestCustomizer {
         this.distributeRequestProperties = distributeRequestProperties;
     }
 
-
     @Override
-    public void customize(Object object) {
-        if (object instanceof RequestAdapterProvider.ProduceValues) {
-            RequestAdapterProvider.ProduceValues produceValues = (RequestAdapterProvider.ProduceValues) object;
-            try {
-                if ((distributeRequestProperties.getDataCenterId() > 0x00 && distributeRequestProperties.getDataCenterId() <= 31)
-                        && (distributeRequestProperties.getMachineId() > 0x00 && distributeRequestProperties.getMachineId() <= 31)) {
-                    produceValues.setMessageId(
-                            String.valueOf(new SnowFlake(distributeRequestProperties.getDataCenterId(),
-                                    distributeRequestProperties.getMachineId()).nextId())
-                    );
+    public void customize(final RequestAdapterProvider.ProduceValues produceValues) {
 
-                } else {
-                    produceValues.setMessageId(
-                            String.valueOf(new SnowFlake(0x00, 0x00).nextId())
-                    );
-                }
-            } catch (Exception e) {
+        // if (object instanceof RequestAdapterProvider.ProduceValues) {
+        //    final RequestAdapterProvider.ProduceValues produceValues = (RequestAdapterProvider.ProduceValues) object;
 
-                synchronized (lock) {
-                    produceValues.setMessageId(UUID.randomUUID().toString().replace("-", ""));
-                }
-                LOG.warn("DistributeRequestProvider's SnowFlake happen error ", e);
-            }
+        if (produceValues == null) {
+            throw new IllegalArgumentException("produceValues not initialized ");
         }
-        // else throw new IllegalArgumentException("");
+        try {
+
+            if ((distributeRequestProperties.getDataCenterId() > 0x00 && distributeRequestProperties.getDataCenterId() <= 31)
+                    && (distributeRequestProperties.getMachineId() > 0x00 && distributeRequestProperties.getMachineId() <= 31)) {
+                produceValues.setMessageId(
+                        String.valueOf(new SnowFlake(distributeRequestProperties.getDataCenterId(),
+                                distributeRequestProperties.getMachineId()).nextId())
+                );
+
+            } else {
+                produceValues.setMessageId(
+                        String.valueOf(new SnowFlake(0x00, 0x00).nextId())
+                );
+            }
+        } catch (Exception e) {
+
+            synchronized (lock) {
+                produceValues.setMessageId(UUID.randomUUID().toString().replace("-", ""));
+            }
+            LOG.warn("The Http idProvider Support Invalid ", e);
+        }
     }
 }

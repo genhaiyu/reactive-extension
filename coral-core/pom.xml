@@ -12,7 +12,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <metrics.health>3.0.2</metrics.health>
-        <openfeign>10.9</openfeign>
+        <jmustache.version>1.15</jmustache.version>
+        <openfeign.version>10.9</openfeign.version>
     </properties>
 
     <parent>
@@ -48,24 +49,35 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-actuator</artifactId>
         </dependency>
+
+        <!-- feign -->
         <dependency>
             <groupId>io.github.openfeign</groupId>
             <artifactId>feign-hystrix</artifactId>
-            <version>${openfeign}</version>
+            <version>${openfeign.version}</version>
         </dependency>
         <dependency>
             <groupId>io.github.openfeign</groupId>
             <artifactId>feign-httpclient</artifactId>
-            <version>${openfeign}</version>
+            <version>${openfeign.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
         </dependency>
+
+        <!-- io.lettuce.core.support. -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-pool2</artifactId>
         </dependency>
+        <!-- Template view -->
+        <dependency>
+            <groupId>com.samskivert</groupId>
+            <artifactId>jmustache</artifactId>
+            <version>${jmustache.version}</version>
+        </dependency>
+
         <!-- HikariCP start -->
         <dependency>
             <groupId>com.zaxxer</groupId>
@@ -77,6 +89,7 @@
             <version>${metrics.health}</version>
         </dependency>
         <!-- HikariCP end -->
+
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-redis</artifactId>

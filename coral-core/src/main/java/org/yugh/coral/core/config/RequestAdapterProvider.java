@@ -40,7 +40,7 @@ public class RequestAdapterProvider {
 
 
     public static class ProduceValues {
-        private volatile String messageId;
+        private String messageId;
 
         public String getMessageId() {
             return messageId;

@@ -11,6 +11,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
+ *
  */
 
 
@@ -38,8 +39,8 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Load when Reactive application.
- * <p>
+ * Reactive application.
+ *
  * Servlet, {@link org.yugh.coral.boot.servlet.ServletRequestContextListener}.
  *
  * @author yugenhai
@@ -51,7 +52,7 @@ public class ReactiveRequestContextFilter implements WebFilter, Ordered {
     private final Map<String, Object> contextMap = new ConcurrentHashMap<>(16);
     private final RequestAdapterProvider.ProduceValues produceValues = new RequestAdapterProvider.ProduceValues();
     private final BeanDefinitionHeader<Map<String, Object>, List<String>> beanDefinitionHeader = new BeanDefinitionHeader<>();
-    // Custom order, every filter should be set
+    // filter should be set
     private int order = Ordered.HIGHEST_PRECEDENCE + 1;
     private final DispatcherRequestCustomizer<RequestAdapterProvider.ProduceValues> dispatcherRequestCustomizer;
 

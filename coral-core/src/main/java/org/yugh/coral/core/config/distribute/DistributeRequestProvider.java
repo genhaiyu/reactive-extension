@@ -36,12 +36,12 @@ import java.util.UUID;
 public class DistributeRequestProvider implements DispatcherRequestCustomizer<RequestAdapterProvider.ProduceValues> {
 
     private final Object lock = new Object();
-    private final DistributeRequestProperties distributeRequestProperties;
+    private final DistributeRequestProperties drp;
 
     private static final Logger LOG = LoggerFactory.getLogger(DistributeRequestProvider.class);
 
     public DistributeRequestProvider(DistributeRequestProperties distributeRequestProperties) {
-        this.distributeRequestProperties = distributeRequestProperties;
+        this.drp = distributeRequestProperties;
     }
 
     @Override
@@ -55,11 +55,9 @@ public class DistributeRequestProvider implements DispatcherRequestCustomizer<Re
         }
         try {
 
-            if ((distributeRequestProperties.getDataCenterId() > 0x00 && distributeRequestProperties.getDataCenterId() <= 31)
-                    && (distributeRequestProperties.getMachineId() > 0x00 && distributeRequestProperties.getMachineId() <= 31)) {
+            if ((drp.getDataCenterId() > 0x00 && drp.getDataCenterId() <= 31) && (drp.getMachineId() > 0x00 && drp.getMachineId() <= 31)) {
                 produceValues.setMessageId(
-                        String.valueOf(new SnowFlake(distributeRequestProperties.getDataCenterId(),
-                                distributeRequestProperties.getMachineId()).nextId())
+                        String.valueOf(new SnowFlake(drp.getDataCenterId(), drp.getMachineId()).nextId())
                 );
 
             } else {

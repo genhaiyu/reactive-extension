@@ -59,9 +59,10 @@ public class GracefulShutdownJettyConnectorCustomizer implements JettyServerCust
     @EventListener(ContextClosedEvent.class)
     @Order(Ordered.HIGHEST_PRECEDENCE + 1)
     public void contextClosed(ContextClosedEvent event) throws InterruptedException {
-//        if (server == null) {
-//            return;
-//        }
+        // If initialization error, server is null
+        if (server == null) {
+            return;
+        }
 
         if (isEventFromLocalContext(event)) {
             stopAcceptingNewRequests();
@@ -122,5 +123,4 @@ public class GracefulShutdownJettyConnectorCustomizer implements JettyServerCust
     private boolean isEventFromLocalContext(ContextClosedEvent event) {
         return event.getApplicationContext().equals(applicationContext);
     }
-
 }

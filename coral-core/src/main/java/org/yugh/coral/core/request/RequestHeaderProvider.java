@@ -14,18 +14,14 @@
  */
 
 
-package org.yugh.coral.boot.rest;
-
-import org.springframework.boot.web.client.RestTemplateCustomizer;
-import org.springframework.web.client.RestTemplate;
+package org.yugh.coral.core.request;
 
 /**
  * @author yugenhai
  */
-public class CustomRestTemplateCustomizer implements RestTemplateCustomizer {
+public interface RequestHeaderProvider {
 
-    @Override
-    public void customize(RestTemplate restTemplate) {
-        restTemplate.getInterceptors().add(new HttpRequestInterceptor());
-    }
+    String REQUEST_ID_KEY           = "Request-Id";
+    String CONTEXT_MAP              = "context-map";
+    String TIMESTAMP                = "Time-Stamp";
 }

@@ -93,8 +93,8 @@ public class RedisOperationProperties {
 
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
-        Assert.isTrue(coralCache.enabled, () -> "redis switch '" + coralCache.enabled + "' not initialized");
-        Assert.hasText(coralCache.keyPrefix, () -> "redis keyPrefix '" + coralCache.keyPrefix + "' must not empty");
+        Assert.isTrue(coralCache.enabled, () -> "redis coralCache enabled '" + coralCache.enabled + "' not initialized");
+        Assert.hasText(coralCache.keyPrefix, () -> "redis coralCache keyPrefix '" + coralCache.keyPrefix + "' must not empty or null");
         if (redisConnectionFactory == null) {
             throw new IllegalArgumentException("redisConnectionFactory should be initialized " + RedisConnectionFactory.class);
         }

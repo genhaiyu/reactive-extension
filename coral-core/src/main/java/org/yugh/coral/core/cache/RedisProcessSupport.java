@@ -30,7 +30,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Coral RedisProcessSupport
- *
+ * <p>
  * {@link RedisOperationProperties}.
  *
  * @author yugenhai
@@ -59,55 +59,6 @@ public class RedisProcessSupport implements SmartInitializingSingleton {
         assembleCacheKey = joiner.add(redisOperationProperties.getCoralCache().getKeyPrefix())
                 .add(key).toString();
     }
-
-    public RedisOperationProperties getRedisOperationProperties() {
-        return redisOperationProperties;
-    }
-
-    public RedisTemplate<String, Object> getRedisTemplate() {
-        return redisTemplate;
-    }
-
-    public ValueOperations getValueOps() {
-        return valueOps;
-    }
-
-    public void setValueOps(ValueOperations valueOps) {
-        this.valueOps = valueOps;
-    }
-
-    public HashOperations getHashOps() {
-        return hashOps;
-    }
-
-    public void setHashOps(HashOperations hashOps) {
-        this.hashOps = hashOps;
-    }
-
-    public ListOperations getListOps() {
-        return listOps;
-    }
-
-    public void setListOps(ListOperations listOps) {
-        this.listOps = listOps;
-    }
-
-    public SetOperations getSetOps() {
-        return setOps;
-    }
-
-    public void setSetOps(SetOperations setOps) {
-        this.setOps = setOps;
-    }
-
-    public ZSetOperations getzSetOps() {
-        return zSetOps;
-    }
-
-    public void setzSetOps(ZSetOperations zSetOps) {
-        this.zSetOps = zSetOps;
-    }
-
 
     private String getKeyPrefix(String key) {
         keyPrefix(redisOperationProperties, key);
@@ -495,6 +446,66 @@ public class RedisProcessSupport implements SmartInitializingSingleton {
             return null;
         }
     }
+
+
+    // ===============================get set=================================
+
+    public RedisOperationProperties getRedisOperationProperties() {
+        return redisOperationProperties;
+    }
+
+    public RedisTemplate<String, Object> getRedisTemplate() {
+        return redisTemplate;
+    }
+
+    public String getAssembleCacheKey() {
+        return assembleCacheKey;
+    }
+
+    public void setAssembleCacheKey(String assembleCacheKey) {
+        this.assembleCacheKey = assembleCacheKey;
+    }
+
+    public ValueOperations getValueOps() {
+        return valueOps;
+    }
+
+    public void setValueOps(ValueOperations valueOps) {
+        this.valueOps = valueOps;
+    }
+
+    public HashOperations getHashOps() {
+        return hashOps;
+    }
+
+    public void setHashOps(HashOperations hashOps) {
+        this.hashOps = hashOps;
+    }
+
+    public ListOperations getListOps() {
+        return listOps;
+    }
+
+    public void setListOps(ListOperations listOps) {
+        this.listOps = listOps;
+    }
+
+    public SetOperations getSetOps() {
+        return setOps;
+    }
+
+    public void setSetOps(SetOperations setOps) {
+        this.setOps = setOps;
+    }
+
+    public ZSetOperations getzSetOps() {
+        return zSetOps;
+    }
+
+    public void setzSetOps(ZSetOperations zSetOps) {
+        this.zSetOps = zSetOps;
+    }
+
 
     public void afterSingletonsInstantiated() {
         Assert.notNull(redisTemplate, () -> "redisTemplate '" + redisTemplate + "' must not null");

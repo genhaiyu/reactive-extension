@@ -21,7 +21,7 @@ package org.yugh.coral.core.config;
  */
 public interface RequestHeaderProvider {
 
-    String REQUEST_ID_KEY           = "REQUEST_ID";
+    String REQUEST_ID_KEY           = "Request-Id";
     String CONTEXT_MAP              = "context-map";
-    String TIMESTAMP                = "TIMESTAMP";
+    String TIMESTAMP                = "Time-Stamp";
 }

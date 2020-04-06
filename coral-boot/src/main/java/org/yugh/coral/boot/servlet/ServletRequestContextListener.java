@@ -29,7 +29,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import org.yugh.coral.boot.reactive.ReactiveRequestContextFilter;
 import org.yugh.coral.core.config.DispatcherRequestCustomizer;
 import org.yugh.coral.core.config.RequestAdapterProvider;
-import org.yugh.coral.core.config.RequestHeaderProvider;
+import org.yugh.coral.core.request.RequestHeaderProvider;
 
 import javax.servlet.ServletRequestEvent;
 import javax.servlet.ServletRequestListener;
@@ -42,6 +42,7 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author yugenhai
  */
+@Deprecated
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class ServletRequestContextListener implements ServletRequestListener, Ordered {
 

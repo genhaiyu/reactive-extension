@@ -87,6 +87,7 @@ public class ReactiveLogHeaderFilter implements WebFilter, Ordered {
             ctx.<Map<String, String>>get(RequestHeaderProvider.CONTEXT_MAP).forEach(
                     (key, value) -> headers.add(RequestHeaderProvider.REQUEST_ID_KEY + key, value)
             );
+            headers.add(RequestHeaderProvider.TIMESTAMP, String.valueOf(System.currentTimeMillis()));
             headers.keySet().forEach(MDC::remove);
         }).then();
     }

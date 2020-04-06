@@ -16,21 +16,17 @@
 
 package org.yugh.coral.boot.config;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
 import org.yugh.coral.boot.config.jetty.GracefulShutdownJettyConnectorCustomizer;
 import org.yugh.coral.boot.config.jetty.GracefulShutdownJettyContainerCustomizer;
 import org.yugh.coral.boot.config.jetty.GracefulShutdownJettyHealthIndicator;
 import org.yugh.coral.boot.config.jetty.GracefulShutdownJettyProperties;
 import org.yugh.coral.boot.reactive.ReactiveLogHeaderFilter;
 import org.yugh.coral.boot.reactive.ReactiveRequestContextFilter;
-import org.yugh.coral.boot.rest.CustomRestTemplateCustomizer;
 import org.yugh.coral.boot.servlet.ServletRequestContextListener;
 import org.yugh.coral.core.config.DispatcherRequestCustomizer;
 import org.yugh.coral.core.config.RequestAdapterProvider;
@@ -41,18 +37,6 @@ import org.yugh.coral.core.config.RequestAdapterProvider;
 @Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties({GracefulShutdownJettyProperties.class})
 public class ReactiveAutoConfiguration {
-
-    @Bean
-    @Qualifier("customRestTemplateCustomizer")
-    public CustomRestTemplateCustomizer customRestTemplateCustomizer() {
-        return new CustomRestTemplateCustomizer();
-    }
-
-    @Bean
-    @DependsOn(value = {"customRestTemplateCustomizer"})
-    public RestTemplateBuilder restTemplateBuilder() {
-        return new RestTemplateBuilder(customRestTemplateCustomizer());
-    }
 
     @Bean
     @ConditionalOnMissingBean

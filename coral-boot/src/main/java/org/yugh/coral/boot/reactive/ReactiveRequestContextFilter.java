@@ -39,7 +39,9 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Reactive application.
+ * Reactive stream request filter.
+ *
+ * Thread Semaphore Support {@link ReactiveRequestContextHolder}
  *
  * Servlet, {@link org.yugh.coral.boot.servlet.ServletRequestContextListener}.
  *

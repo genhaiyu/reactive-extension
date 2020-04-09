@@ -20,7 +20,7 @@ import org.springframework.core.Ordered;
 import org.springframework.util.ClassUtils;
 
 /**
- * Not support the Tomcat.
+ * Tomcat container check, and to exclude
  *
  * @author yugenhai
  */
@@ -31,7 +31,7 @@ public class WebServiceContainerMatcher implements Ordered {
 
     public static void embeddedContainerMatcher() {
         if (ClassUtils.isPresent(STARTUP_TOMCAT, null)) {
-            throw new IllegalArgumentException("The project does not support the Tomcat, Please remove Tomcat Jar !");
+            throw new IllegalArgumentException("The project does not support the Tomcat.");
         }
     }
 

@@ -29,8 +29,7 @@ import java.util.StringJoiner;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Coral RedisProcessSupport
- * <p>
+ * Coral Core RedisProcessSupport
  * {@link RedisOperationProperties}.
  *
  * @author yugenhai

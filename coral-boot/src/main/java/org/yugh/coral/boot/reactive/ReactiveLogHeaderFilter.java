@@ -36,7 +36,7 @@ import java.util.Map;
 import static java.util.stream.Collectors.toMap;
 
 /**
- * Log Header Reactive application.
+ * Reactive stream request origin and destroy.
  *
  * @author yugenhai
  */

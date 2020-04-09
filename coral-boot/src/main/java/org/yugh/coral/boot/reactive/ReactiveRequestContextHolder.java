@@ -25,6 +25,8 @@ import reactor.util.context.Context;
 /**
  * Add and Get Context info, in Reactor
  *
+ * Origin see {@link ReactiveRequestContextFilter}
+ *
  * @author yugenhai
  */
 public class ReactiveRequestContextHolder {

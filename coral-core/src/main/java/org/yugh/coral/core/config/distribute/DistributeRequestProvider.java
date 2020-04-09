@@ -17,28 +17,23 @@
 package org.yugh.coral.core.config.distribute;
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.yugh.coral.core.config.DispatcherRequestCustomizer;
 import org.yugh.coral.core.config.RequestAdapterProvider;
 
-import java.util.UUID;
-
 /**
- * Request ID generation.
- * <p>
- * Type is {@link RequestAdapterProvider.ProduceValues}
+ * Request id generation.
+ *
+ * {@link org.yugh.coral.core.config.RequestAdapterProvider.ProduceValues}
+ * {@link SnowFlake}
  *
  * @author yugenhai
  */
 @ConditionalOnClass(SnowFlake.class)
 public class DistributeRequestProvider implements DispatcherRequestCustomizer<RequestAdapterProvider.ProduceValues> {
 
-    private final Object lock = new Object();
+    // private final Object lock = new Object();
     private final DistributeRequestProperties drp;
-
-    private static final Logger LOG = LoggerFactory.getLogger(DistributeRequestProvider.class);
 
     public DistributeRequestProvider(DistributeRequestProperties distributeRequestProperties) {
         this.drp = distributeRequestProperties;
@@ -47,14 +42,10 @@ public class DistributeRequestProvider implements DispatcherRequestCustomizer<Re
     @Override
     public void customize(final RequestAdapterProvider.ProduceValues produceValues) {
 
-        // if (object instanceof RequestAdapterProvider.ProduceValues) {
-        //    final RequestAdapterProvider.ProduceValues produceValues = (RequestAdapterProvider.ProduceValues) object;
-
         if (produceValues == null) {
-            throw new IllegalArgumentException("produceValues not initialized ");
+            throw new IllegalArgumentException("ProduceValues not initialized");
         }
         try {
-
             if ((drp.getDataCenterId() > 0x00 && drp.getDataCenterId() <= 31) && (drp.getMachineId() > 0x00 && drp.getMachineId() <= 31)) {
                 produceValues.setMessageId(
                         String.valueOf(new SnowFlake(drp.getDataCenterId(), drp.getMachineId()).nextId())
@@ -66,11 +57,7 @@ public class DistributeRequestProvider implements DispatcherRequestCustomizer<Re
                 );
             }
         } catch (Exception e) {
-
-            synchronized (lock) {
-                produceValues.setMessageId(UUID.randomUUID().toString().replace("-", ""));
-            }
-            LOG.warn("The Http idProvider Support Invalid ", e);
+            throw new IllegalArgumentException("The Http idProvider Support Invalid");
         }
     }
 }

@@ -137,7 +137,6 @@
     <modules>
         <module>coral-core</module>
         <module>coral-boot</module>
-        <module>coral-gateway</module>
         <module>coral-http</module>
     </modules>
 

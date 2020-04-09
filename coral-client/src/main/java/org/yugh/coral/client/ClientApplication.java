@@ -1,8 +1,10 @@
-package org.yugh.coral.http;
+package org.yugh.coral.client;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cloud.client.SpringCloudApplication;
+import org.yugh.coral.client.properties.ApplicationProperties;
 
 /**
  * 1. Jetty Reactive Streams HttpClient
@@ -14,9 +16,10 @@ import org.springframework.cloud.client.SpringCloudApplication;
  */
 @EnableCaching
 @SpringCloudApplication
-public class HttpApplication {
+@EnableConfigurationProperties(ApplicationProperties.class)
+public class ClientApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(HttpApplication.class, args);
+		SpringApplication.run(ClientApplication.class, args);
 	}
 }

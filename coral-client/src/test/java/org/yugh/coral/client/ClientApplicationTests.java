@@ -1,10 +1,10 @@
-package org.yugh.coral.http;
+package org.yugh.coral.client;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class HttpApplicationTests {
+class ClientApplicationTests {
 
 	@Test
 	void contextLoads() {

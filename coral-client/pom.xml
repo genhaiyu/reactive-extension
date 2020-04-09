@@ -4,9 +4,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.yugh.coral</groupId>
-    <artifactId>http</artifactId>
+    <artifactId>client</artifactId>
     <version>1.0.2-SNAPSHOT</version>
-    <name>Coral :: Http Reactive</name>
+    <name>Coral :: Reactive WebClient</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -159,7 +159,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>org.yugh.coral.http.HttpApplication</mainClass>
+                            <mainClass>org.yugh.coral.client.ClientApplication</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

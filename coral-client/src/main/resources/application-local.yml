@@ -23,7 +23,7 @@ spring:
         max-idle: 10
         min-idle: 5
     coral-cache:
-      key-prefix: coral:http
+      key-prefix: coral:client
       expire: 30
       enabled: true
 

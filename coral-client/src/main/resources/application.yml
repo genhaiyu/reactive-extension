@@ -9,7 +9,7 @@ server:
 # application
 spring:
   application:
-    name: coral-http
+    name: coral-client
   # profiles
   profiles:
     active: local
@@ -56,5 +56,5 @@ eureka:
     prefer-ip-address: true
   client:
     service-url:
-      defaultZone: http://127.0.0.1:8761/eureka/
+      defaultZone: client://127.0.0.1:8761/eureka/
     enabled: false

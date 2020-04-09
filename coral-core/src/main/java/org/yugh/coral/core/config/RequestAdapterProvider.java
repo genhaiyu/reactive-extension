@@ -31,10 +31,6 @@ public class RequestAdapterProvider {
 
 
     public void requestInitialization(ProduceValues produceValues) {
-
-        if (produceValues == null) {
-            produceValues = new ProduceValues();
-        }
         dispatcherRequestCustomizer.customize(produceValues);
     }
 

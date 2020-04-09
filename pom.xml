@@ -137,7 +137,7 @@
     <modules>
         <module>coral-core</module>
         <module>coral-boot</module>
-        <module>coral-http</module>
+        <module>coral-client</module>
     </modules>
 
     <build>

@@ -31,7 +31,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Shutdown Jetty Connector
+ * Shutdown Jetty Connector.
  *
  * @author yugenhai
  */

@@ -26,7 +26,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Feign Interceptor, For Servlet
+ * Feign Interceptor, For Servlet.
  *
  * @author yugenhai
  */

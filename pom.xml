@@ -8,7 +8,8 @@
     <version>1.0.3-SNAPSHOT</version>
     <name>Coral :: Project</name>
     <packaging>pom</packaging>
-    <url>https://github.com/yugenhai</url>
+
+    <url>https://github.com/yugenhai/coral</url>
     <inceptionYear>2019</inceptionYear>
 
     <parent>
@@ -140,6 +141,11 @@
         <module>coral-client</module>
     </modules>
 
+    <issueManagement>
+        <system>github</system>
+        <url>https://github.com/yugenhai/coral/issues</url>
+    </issueManagement>
+
     <build>
         <pluginManagement>
             <plugins>
@@ -227,8 +233,4 @@
         </repository>
     </repositories>
 
-    <issueManagement>
-        <system>github</system>
-        <url>https://github.com/yugenhai/coral/issues</url>
-    </issueManagement>
 </project>

@@ -18,7 +18,7 @@
 package org.yugh.coral.boot.reactive;
 
 import org.springframework.http.server.reactive.ServerHttpRequest;
-import org.yugh.coral.core.request.BeanDefinitionHeader;
+import org.yugh.coral.core.request.ReactiveContextHeader;
 import reactor.core.publisher.Mono;
 import reactor.util.context.Context;
 
@@ -32,7 +32,7 @@ import reactor.util.context.Context;
 public class ReactiveRequestContextHolder {
 
     private static final Class<ServerHttpRequest> SERVER_HTTP_REQUEST_CLASS = ServerHttpRequest.class;
-    private static final Class<BeanDefinitionHeader> BEAN_DEFINITION_HEADER_CLASS = BeanDefinitionHeader.class;
+    private static final Class<ReactiveContextHeader> REACTIVE_CONTEXT_HEADER_CLASS = ReactiveContextHeader.class;
 
     /**
      * Gets the {@code Mono<ServerHttpRequest>} from Reactor {@link Context}
@@ -45,24 +45,24 @@ public class ReactiveRequestContextHolder {
     }
 
     /**
-     * Gets the {@code Mono<RequestHeaderBO>} from Reactor {@link Context}
+     * Gets the {@code Mono<ReactiveContextHeader>} from Reactor {@link Context}
      *
-     * @return the Mono<RequestHeaderBO>
+     * @return the Mono<ReactiveContextHeader>
      */
-    public static Mono<BeanDefinitionHeader> getRequestHeaderReactor() {
+    public static Mono<ReactiveContextHeader> getReactiveContextHeader() {
         return Mono.subscriberContext()
-                .map(ctx -> ctx.get(BEAN_DEFINITION_HEADER_CLASS));
+                .map(ctx -> ctx.get(REACTIVE_CONTEXT_HEADER_CLASS));
     }
 
     /**
-     * Put the {@code Mono<RequestHeaderBO>} to Reactor {@link Context}
+     * Put the {@code Mono<ReactiveContextHeader>} to Reactor {@link Context}
      *
      * @param context
-     * @param beanDefinitionHeaderBO
+     * @param reactiveContextHeader
      * @return the Reactor {@link Context}
      */
-    public static Context setRequestHeaderReactor(Context context, BeanDefinitionHeader beanDefinitionHeaderBO) {
-        return context.put(BEAN_DEFINITION_HEADER_CLASS, beanDefinitionHeaderBO);
+    public static Context setReactiveContextHeader(Context context, ReactiveContextHeader reactiveContextHeader) {
+        return context.put(REACTIVE_CONTEXT_HEADER_CLASS, reactiveContextHeader);
     }
 
 

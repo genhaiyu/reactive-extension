@@ -17,7 +17,7 @@
 package org.yugh.coral.core.config;
 
 /**
- * Processor of Core request
+ * Processor of Core request.
  *
  * @author yugenhai
  */
@@ -25,7 +25,7 @@ package org.yugh.coral.core.config;
 public interface DispatcherRequestCustomizer<T> {
 
     /**
-     * Request id generation is available
+     * Request id generation is available.
      *
      * @param object
      */

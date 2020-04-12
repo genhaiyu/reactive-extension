@@ -25,7 +25,7 @@ import java.time.Duration;
 import java.util.StringJoiner;
 
 /**
- * Shutdown Jetty Properties
+ * Shutdown Jetty Properties.
  *
  * @author yugenhai
  */

@@ -17,7 +17,7 @@
 package org.yugh.coral.core.config;
 
 /**
- * Http idProvider Support
+ * Http idProvider Support.
  *
  * @author yugenhai
  */

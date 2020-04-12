@@ -20,9 +20,8 @@ package org.yugh.coral.core.request;
 import java.util.Objects;
 
 /**
- * Subscriber Context for WebFlux
- * <p>
- * Reactive 流式透传用户信息
+ * Subscriber Context for WebFlux.
+ * Reactive 流式透传用户信息.
  *
  * @author yugenhai
  */

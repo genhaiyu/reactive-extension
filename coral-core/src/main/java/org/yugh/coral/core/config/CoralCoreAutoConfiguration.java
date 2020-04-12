@@ -36,7 +36,7 @@ public class CoralCoreAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean
-    public DistributeRequestProvider distributeRequestCustomizer(DistributeRequestProperties distributeRequestProperties) {
+    public DistributeRequestProvider distributeRequestProvider(DistributeRequestProperties distributeRequestProperties) {
         return new DistributeRequestProvider(distributeRequestProperties);
     }
 

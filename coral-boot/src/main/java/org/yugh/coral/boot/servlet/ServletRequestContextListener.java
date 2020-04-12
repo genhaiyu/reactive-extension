@@ -36,9 +36,9 @@ import javax.servlet.ServletRequestListener;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Update not support Servlet
+ * Update not support Servlet.
  *
- * Reactive, {@link ReactiveRequestContextFilter}
+ * Reactive, {@link ReactiveRequestContextFilter}.
  *
  * @author yugenhai
  */

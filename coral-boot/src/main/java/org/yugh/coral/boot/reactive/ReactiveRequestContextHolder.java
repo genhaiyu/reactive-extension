@@ -23,7 +23,7 @@ import reactor.core.publisher.Mono;
 import reactor.util.context.Context;
 
 /**
- * Add and Get Context info, in Reactor
+ * Add and Get Context info, in Reactor.
  *
  * Origin see {@link ReactiveRequestContextFilter}
  *

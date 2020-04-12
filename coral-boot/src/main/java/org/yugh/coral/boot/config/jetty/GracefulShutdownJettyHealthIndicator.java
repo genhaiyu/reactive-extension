@@ -27,7 +27,7 @@ import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 
 /**
- * Shutdown health check
+ * Shutdown health check.
  *
  * @author yugenhai
  */

@@ -30,7 +30,7 @@ import org.springframework.web.server.WebFilterChain;
 import org.yugh.coral.core.config.DispatcherRequestCustomizer;
 import org.yugh.coral.core.config.RequestAdapterProvider;
 import org.yugh.coral.core.request.RequestHeaderProvider;
-import org.yugh.coral.core.request.BeanDefinitionHeader;
+import org.yugh.coral.core.request.ReactiveContextHeader;
 import reactor.core.publisher.Mono;
 
 import java.util.Arrays;
@@ -53,7 +53,7 @@ public class ReactiveRequestContextFilter implements WebFilter, Ordered {
     private static final Logger LOG = LoggerFactory.getLogger(ReactiveRequestContextFilter.class);
     private final Map<String, Object> contextMap = new ConcurrentHashMap<>(0);
     private final RequestAdapterProvider.ProduceValues produceValues = new RequestAdapterProvider.ProduceValues();
-    private final BeanDefinitionHeader<Map<String, Object>, List<String>> beanDefinitionHeader = new BeanDefinitionHeader<>();
+    private final ReactiveContextHeader<Map<String, Object>, List<String>> reactiveContextHeader = new ReactiveContextHeader<>();
     // filter should be set
     private int order = Ordered.HIGHEST_PRECEDENCE + 1;
     private final DispatcherRequestCustomizer<RequestAdapterProvider.ProduceValues> dispatcherRequestCustomizer;
@@ -87,13 +87,13 @@ public class ReactiveRequestContextFilter implements WebFilter, Ordered {
         String idProvider = produceValues.getMessageId();
         exchange.getRequest().mutate().headers(httpHeaders -> httpHeaders.add(RequestHeaderProvider.REQUEST_ID_KEY, idProvider));
         contextMap.put(RequestHeaderProvider.CONTEXT_MAP, idProvider);
-        beanDefinitionHeader.setIds(Arrays.asList(idProvider, request.getId()));
-        beanDefinitionHeader.setContextMap(contextMap);
+        reactiveContextHeader.setIds(Arrays.asList(idProvider, request.getId()));
+        reactiveContextHeader.setContextMap(contextMap);
         LOG.info("Reactive Request Started : {}", idProvider);
         return chain.filter(exchange).
                 subscriberContext(ctx ->
                         ReactiveRequestContextHolder.setServerHttpRequestReactor(ctx, request))
                 .subscriberContext(ctx ->
-                        ReactiveRequestContextHolder.setRequestHeaderReactor(ctx, beanDefinitionHeader));
+                        ReactiveRequestContextHolder.setReactiveContextHeader(ctx, reactiveContextHeader));
     }
 }

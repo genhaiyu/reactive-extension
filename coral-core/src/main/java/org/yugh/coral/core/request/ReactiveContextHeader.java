@@ -26,7 +26,7 @@ import java.util.Objects;
  *
  * @author yugenhai
  */
-public class BeanDefinitionHeader<H, I> {
+public class ReactiveContextHeader<H, I> {
 
     private I ids;
     private H contextMap;
@@ -58,8 +58,8 @@ public class BeanDefinitionHeader<H, I> {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof BeanDefinitionHeader)) return false;
-        BeanDefinitionHeader<?, ?> that = (BeanDefinitionHeader<?, ?>) o;
+        if (!(o instanceof ReactiveContextHeader)) return false;
+        ReactiveContextHeader<?, ?> that = (ReactiveContextHeader<?, ?>) o;
         return getIds().equals(that.getIds()) &&
                 getContextMap().equals(that.getContextMap());
     }

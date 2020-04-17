@@ -29,7 +29,6 @@ mvn clean install -Dmaven.test.skip=true
 
 ```java
 
-<!-- core boot -->
 <dependencies>
     <dependency>
         <groupId>org.yugh.coral</groupId>
@@ -52,7 +51,3 @@ mvn clean install -Dmaven.test.skip=true
     * WebFlux session entry exit information is passed through, and the current session container information can be obtained in the case of thread isolation.
     * Webflux loads netty by default. There will be performance problems. You need to use jetty or undertow.
     * Jetty and Webflux have used production environment, GracefulShutdownJetty Still under verification.
-
-
-* **Gateway** 
-    ~~* Spring Cloud Gateway(Sample) and Zuul have been removed.~~

@@ -2,7 +2,7 @@ language: java
 
 jdk:
   - openjdk8
-  - oraclejdk11
+  - openjdk11
 
 
 cache:
@@ -14,3 +14,8 @@ install:
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+
+notifications:
+  email:
+    on_success: change
+    on_failure: always

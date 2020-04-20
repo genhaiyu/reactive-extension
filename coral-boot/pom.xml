@@ -83,7 +83,16 @@
             <optional>true</optional>
         </dependency>
         <!-- Reactive Streams, Reactor, RxJava, WebFlux End -->
-
+        <!-- rsocket Start -->
+        <dependency>
+            <groupId>io.rsocket</groupId>
+            <artifactId>rsocket-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.rsocket</groupId>
+            <artifactId>rsocket-transport-netty</artifactId>
+        </dependency>
+        <!-- rsocket End -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-actuator-autoconfigure</artifactId>

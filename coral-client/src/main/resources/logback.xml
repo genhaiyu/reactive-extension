@@ -1,8 +1,8 @@
 <configuration scan="true" scanPeriod="300 seconds">
-    <property name="DISCOVERY_LOG_DIR" value="/Users/yuzhilin/logs/coral-http"/>
-    <property name="DISCOVERY_LOG_NAME" value="coral-http"/>
-    <property name="DISCOVERY_WARN_LOG_NAME" value="coral-http-warning"/>
-    <property name="DISCOVERY_ERROR_LOG_NAME" value="coral-http-error"/>
+    <property name="DISCOVERY_LOG_DIR" value="/Users/yuzhilin/logs/coral-client"/>
+    <property name="DISCOVERY_LOG_NAME" value="coral-client"/>
+    <property name="DISCOVERY_WARN_LOG_NAME" value="coral-client-warning"/>
+    <property name="DISCOVERY_ERROR_LOG_NAME" value="coral-client-error"/>
 
 
     <!-- 控制台输出 -->

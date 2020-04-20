@@ -41,10 +41,6 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Reactive stream request filter.
  *
- * Thread Semaphore Support {@link ReactiveRequestContextHolder}
- *
- * Servlet, {@link org.yugh.coral.boot.servlet.ServletRequestContextListener}.
- *
  * @author yugenhai
  */
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.REACTIVE)

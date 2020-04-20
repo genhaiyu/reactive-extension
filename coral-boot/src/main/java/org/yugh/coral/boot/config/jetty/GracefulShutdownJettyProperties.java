@@ -48,7 +48,7 @@ public class GracefulShutdownJettyProperties implements InitializingBean {
      * The number of seconds to wait before starting the graceful shutdown. During this time, the health checker returns
      * OUT_OF_SERVICE.
      */
-    private Duration wait = Duration.ofSeconds(10);
+    private Duration wait = Duration.ofSeconds(5);
 
     public boolean isEnabled() {
         return enabled;

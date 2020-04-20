@@ -9,15 +9,14 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import org.yugh.coral.client.ClientApplication;
 
 /**
  * @author yugenhai
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = ClientApplication.class)
+@SpringBootTest
 @TestPropertySource({
-        "classpath:/application.yml"
+        "classpath:/application-sample.yml"
 })
 public abstract class AbstractTest {
 

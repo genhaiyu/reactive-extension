@@ -29,6 +29,7 @@
     </dependencyManagement>
 
     <dependencies>
+        <!--###################### coral-core ###########################-->
         <dependency>
             <groupId>org.yugh.coral</groupId>
             <artifactId>core</artifactId>
@@ -39,13 +40,18 @@
             <artifactId>boot</artifactId>
             <version>1.0.2-SNAPSHOT</version>
         </dependency>
+        <!--###################### coral-boot ###########################-->
 
         <!-- webflux -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
-
+        <!-- rsocket -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-rsocket</artifactId>
+        </dependency>
         <!-- datasource -->
         <dependency>
             <groupId>mysql</groupId>
@@ -57,7 +63,12 @@
             <groupId>com.github.ben-manes.caffeine</groupId>
             <artifactId>caffeine</artifactId>
         </dependency>
-
+        <!-- reactor-test -->
+        <dependency>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-test</artifactId>
+            <scope>test</scope>
+        </dependency>
 
         <!-- redisson -->
         <!--<dependency>-->
@@ -66,36 +77,33 @@
         <!--<version>3.12.3</version>-->
         <!--</dependency>-->
 
-
-        <!-- feign -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>
+        <!-- health, monitor -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+        <!-- configuration -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
         </dependency>
 
         <!-- hystrix -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.cloud</groupId>-->
+            <!--<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>-->
+        <!--</dependency>-->
+
         <!-- ribbon -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.cloud</groupId>-->
+            <!--<artifactId>spring-cloud-starter-netflix-ribbon</artifactId>-->
+        <!--</dependency>-->
         <!-- eureka-client -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.cloud</groupId>-->
+            <!--<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>-->
+        <!--</dependency>-->
         <!-- hystrix metrics-->
         <!--<dependency>-->
             <!--<groupId>org.springframework.cloud</groupId>-->
@@ -115,11 +123,19 @@
         <!--			<artifactId>spring-cloud-starter-stream-rabbit</artifactId>-->
         <!--		</dependency>-->
         <!-- rabbitMQ end  -->
+
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -153,17 +169,17 @@
                     <skipTests>true</skipTests>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>org.yugh.coral.client.ClientApplication</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
-            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-jar-plugin</artifactId>-->
+                <!--<configuration>-->
+                    <!--<archive>-->
+                        <!--<manifest>-->
+                            <!--<mainClass>org.yugh.coral.client.ClientApplication</mainClass>-->
+                        <!--</manifest>-->
+                    <!--</archive>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
         </plugins>
     </build>
 

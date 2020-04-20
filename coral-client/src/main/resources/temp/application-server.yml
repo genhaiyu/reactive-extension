@@ -1,0 +1,31 @@
+server:
+  port: 8081
+
+# rsocket
+spring:
+#  rsocket:
+#    server:
+#      port: 7777
+
+  main:
+    allow-bean-definition-overriding: true
+
+  # caffeine
+  cache:
+    type: CAFFEINE
+    caffeine:
+      spec: initialCapacity=100,maximumSize=1000,expireAfterWrite=30s
+  # redis
+  redis:
+    port: 6379
+    host: 127.0.0.1
+    lettuce:
+      pool:
+        max-active: 1000
+        max-wait: -1ms
+        max-idle: 10
+        min-idle: 5
+    coral-cache:
+      key-prefix: coral:server
+      expire: 30
+      enabled: true

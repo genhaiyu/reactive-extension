@@ -1,4 +1,4 @@
-package org.yugh.coral.client.rsocket.server;
+package org.yugh.coral.client.rsocket.client;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -7,13 +7,13 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
  * @author yugenhai
  */
 @SpringBootApplication
-public class ServerApplication {
+public class MusicClientApplication {
 
     public static void main(String[] args) {
         new SpringApplicationBuilder()
-                .main(ServerApplication.class)
-                .sources(ServerApplication.class)
-                .profiles("server")
+                .main(MusicClientApplication.class)
+                .sources(MusicClientApplication.class)
+                .profiles("client")
                 .run(args);
     }
 }

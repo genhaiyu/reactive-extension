@@ -11,7 +11,7 @@ import org.springframework.messaging.rsocket.RSocketStrategies;
 import org.springframework.util.MimeTypeUtils;
 
 @Configuration
-public class ClientConfiguration {
+public class MusicClientConfiguration {
 
     @Bean
     public RSocket rSocket() {

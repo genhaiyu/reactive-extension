@@ -21,7 +21,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.TEXT_EVENT_STREAM;
 
 @RunWith(SpringRunner.class)
-@WebFluxTest(value = ClientApplication.class)
+@WebFluxTest(value = MusicClientApplication.class)
 public class MusicDataRSocketClientControllerTest {
 
     @Autowired

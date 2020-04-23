@@ -37,7 +37,7 @@ public class MusicDataRSocketClientControllerTest {
     public void whenInitiatesRequest_ThenGetsResponse() throws Exception {
         when(rSocketRequester.route("currentMusicData")).thenReturn(requestSpec);
         when(requestSpec.data(any())).thenReturn(requestSpec);
-        MusicData musicData = new MusicData("happyMusic", 1);
+        MusicData musicData = new MusicData("happyMusic", "author1");
         when(requestSpec.retrieveMono(MusicData.class)).thenReturn(Mono.just(musicData));
 
         testClient.get()
@@ -67,8 +67,8 @@ public class MusicDataRSocketClientControllerTest {
     public void whenInitiatesRequest_ThenGetsStream() throws Exception {
         when(rSocketRequester.route("allMusicData")).thenReturn(requestSpec);
         when(requestSpec.data(any())).thenReturn(requestSpec);
-        MusicData firstMusicData = new MusicData("happyMusic", 1);
-        MusicData secondMusicData = new MusicData("happyMusic", 2);
+        MusicData firstMusicData = new MusicData("happyMusic", "author1");
+        MusicData secondMusicData = new MusicData("happyMusic", "author2");
         when(requestSpec.retrieveFlux(MusicData.class)).thenReturn(Flux.just(firstMusicData, secondMusicData));
 
         FluxExchangeResult<MusicData> result = testClient.get()

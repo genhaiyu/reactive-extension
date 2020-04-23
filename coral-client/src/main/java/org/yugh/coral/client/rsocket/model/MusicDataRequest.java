@@ -12,5 +12,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MusicDataRequest {
 
-    private String song;
+    private String author;
 }

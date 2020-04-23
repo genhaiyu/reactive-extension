@@ -30,8 +30,7 @@ import org.yugh.coral.core.config.distribute.DistributeRequestProvider;
  * @author yugenhai
  */
 @Configuration(proxyBeanMethods = false)
-@EnableConfigurationProperties({CoralJettyProperties.class, CoralJettyValueProperties.class,
-        DistributeRequestProperties.class, RedisOperationProperties.class, CoralReactiveProperties.class})
+@EnableConfigurationProperties({DistributeRequestProperties.class, RedisOperationProperties.class, CoralReactiveProperties.class})
 public class CoralCoreAutoConfiguration {
 
     @Bean

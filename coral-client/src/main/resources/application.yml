@@ -1,15 +1,10 @@
-server:
-  port: 8081
-
-# rsocket
 spring:
-#  rsocket:
-#    server:
-#      port: 7777
-
+  # profiles
+  profiles:
+    active: local
+  # overriding
   main:
     allow-bean-definition-overriding: true
-
   # caffeine
   cache:
     type: CAFFEINE
@@ -26,6 +21,10 @@ spring:
         max-idle: 10
         min-idle: 5
     coral-cache:
-      key-prefix: coral:server
+      key-prefix: coral:client
       expire: 30
       enabled: true
+  rsocket:
+    server:
+      mapping-path: /
+      port: 8082

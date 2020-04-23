@@ -27,9 +27,7 @@ import static org.mockito.Mockito.verify;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
-@TestPropertySource(value = {
-        "classpath:/application-server.properties"
-}, properties = "spring.rsocket.server.port=7001")
+@TestPropertySource(properties = "spring.rsocket.server.port=7071")
 public class MusicDataRSocketControllerTest {
 
     @Autowired
@@ -40,7 +38,7 @@ public class MusicDataRSocketControllerTest {
 
     @Test
     public void whenGetsFireAndForget_ThenReturnsNoResponse() throws InterruptedException {
-        final MusicData musicData = new MusicData("happyMusic", 1);
+        final MusicData musicData = new MusicData("happyMusic", "author1");
         rSocketRequester.route("addMusicData")
                 .data(musicData)
                 .send()

@@ -47,7 +47,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ReactiveRequestContextFilter implements WebFilter, Ordered {
 
     private static final Logger LOG = LoggerFactory.getLogger(ReactiveRequestContextFilter.class);
-    private final Map<String, Object> contextMap = new ConcurrentHashMap<>(0);
+    private final Map<String, Object> contextMap = new ConcurrentHashMap<>();
     private final RequestAdapterProvider.ProduceValues produceValues = new RequestAdapterProvider.ProduceValues();
     private final ReactiveContextHeader<Map<String, Object>, List<String>> reactiveContextHeader = new ReactiveContextHeader<>();
     // filter should be set

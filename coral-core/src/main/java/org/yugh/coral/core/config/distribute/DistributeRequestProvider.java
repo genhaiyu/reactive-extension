@@ -32,7 +32,6 @@ import org.yugh.coral.core.config.RequestAdapterProvider;
 @ConditionalOnClass(SnowFlake.class)
 public class DistributeRequestProvider implements DispatcherRequestCustomizer<RequestAdapterProvider.ProduceValues> {
 
-    // private final Object lock = new Object();
     private final DistributeRequestProperties drp;
 
     public DistributeRequestProvider(DistributeRequestProperties distributeRequestProperties) {

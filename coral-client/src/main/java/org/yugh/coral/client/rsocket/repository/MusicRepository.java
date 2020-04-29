@@ -13,7 +13,7 @@ import reactor.core.publisher.Mono;
 public class MusicRepository {
 
 
-    private  ReactiveRedisOperations<String, MusicData> redisTemplate;
+    private final ReactiveRedisOperations<String, MusicData> redisTemplate;
 
     public MusicRepository(ReactiveRedisOperations<String, MusicData> redisTemplate){
         this.redisTemplate = redisTemplate;

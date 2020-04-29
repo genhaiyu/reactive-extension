@@ -5,6 +5,8 @@ spring:
   # overriding
   main:
     allow-bean-definition-overriding: true
+    # Spring Boot’s lazy initialization feature is switched on
+    # lazy-initialization: true
   # caffeine
   cache:
     type: CAFFEINE

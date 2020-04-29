@@ -10,12 +10,12 @@ import reactor.core.publisher.Flux;
 /**
  * @author yugenhai
  */
-@Controller
-public class MusicSocketController {
+// @Controller
+public class MusicRSocketController {
 
     private final MusicService musicService;
 
-    public MusicSocketController(MusicService musicService){
+    public MusicRSocketController(MusicService musicService){
         this.musicService = musicService;
     }
 

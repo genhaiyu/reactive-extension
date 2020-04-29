@@ -1,17 +1,15 @@
 package org.yugh.coral.client.rsocket.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.yugh.coral.client.rsocket.model.MusicData;
 import org.yugh.coral.client.rsocket.repository.MusicRepository;
 import reactor.core.publisher.Flux;
 
 import java.time.Duration;
 
-@Configuration
+// @Component
 public class MockDataConfiguration {
 
-    @Autowired
+    // @Autowired
     private MusicRepository repository;
 
     private static final MusicData[] musicData = new MusicData[] {
@@ -20,7 +18,7 @@ public class MockDataConfiguration {
             new MusicData("happy song3", "author3")
     };
 
-    //@EventListener(ApplicationReadyEvent.class)
+    // @EventListener(ApplicationReadyEvent.class)
     public void loadData() {
         Flux.interval(Duration.ofSeconds(5))
         .map(i -> musicData[(int) (i % musicData.length)])

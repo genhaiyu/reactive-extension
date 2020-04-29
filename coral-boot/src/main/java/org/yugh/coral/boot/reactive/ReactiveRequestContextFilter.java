@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.core.Ordered;
 import org.springframework.http.server.reactive.ServerHttpRequest;
-import org.springframework.lang.Nullable;
+import org.springframework.lang.NonNull;
 import org.springframework.util.Assert;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilter;
@@ -71,8 +71,7 @@ public class ReactiveRequestContextFilter implements WebFilter, Ordered {
 
 
     @Override
-    @Nullable
-    public Mono<Void> filter(@Nullable ServerWebExchange exchange, @Nullable WebFilterChain chain) {
+    public Mono<Void> filter(@NonNull ServerWebExchange exchange,@NonNull WebFilterChain chain) {
         Assert.notNull(exchange, () -> "ServerWebExchange '" + exchange + "' must not be null");
         Assert.notNull(chain, () -> "WebFilterChain '" + chain + "' must not be null");
         ServerHttpRequest request = exchange.getRequest();

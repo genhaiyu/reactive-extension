@@ -23,7 +23,6 @@ import org.springframework.core.Ordered;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
-import org.springframework.lang.Nullable;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
@@ -55,12 +54,13 @@ public class ReactiveLogHeaderFilter implements WebFilter, Ordered {
         this.order = order;
     }
 
-    @Nullable
     @Override
-    public Mono<Void> filter(@Nullable ServerWebExchange ex, @Nullable WebFilterChain chain) {
+    public Mono<Void> filter(ServerWebExchange ex, WebFilterChain chain) {
+        assert ex != null;
         ex.getResponse().beforeCommit(
                 () -> addContextToHttpResponseHeaders(ex.getResponse())
         );
+        assert chain != null;
         return chain.filter(ex)
                 .subscriberContext(
                         ctx -> addRequestHeadersToContext(ex.getRequest(), ctx)

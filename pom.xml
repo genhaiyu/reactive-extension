@@ -20,12 +20,9 @@
     </parent>
 
     <properties>
-        <!--<compiler.source>11</compiler.source>-->
-        <!--<compiler.target>11</compiler.target>-->
-        <!--<compiler.release>11</compiler.release>-->
-        <compiler.source>1.8</compiler.source>
-        <compiler.target>1.8</compiler.target>
-        <compiler.release>1.8</compiler.release>
+        <compiler.source>11</compiler.source>
+        <compiler.target>11</compiler.target>
+        <compiler.release>11</compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- plugin -->
@@ -151,17 +148,6 @@
             <plugins>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <configuration>
-                        <!--<source>11</source>-->
-                        <!--<target>11</target>-->
-                        <source>1.8</source>
-                        <target>1.8</target>
-                        <encoding>utf8</encoding>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-deploy-plugin</artifactId>
                     <version>${maven.deploy.plugin.version}</version>
                 </plugin>
@@ -174,13 +160,6 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-source-plugin</artifactId>
                     <version>${maven.source.plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <configuration>
-                        <skipTests>true</skipTests>
-                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -202,6 +181,14 @@
                     <artifactId>maven-site-plugin</artifactId>
                     <version>${maven.site.version}</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
@@ -214,7 +201,7 @@
                 <enabled>true</enabled>
             </releases>
             <snapshots>
-                <enabled>true</enabled>
+                <enabled>false</enabled>
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
@@ -228,7 +215,7 @@
                 <enabled>true</enabled>
             </releases>
             <snapshots>
-                <enabled>true</enabled>
+                <enabled>false</enabled>
             </snapshots>
         </repository>
     </repositories>

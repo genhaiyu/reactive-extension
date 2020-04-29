@@ -8,7 +8,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 // @SpringBootApplication
 public class MusicServerApplication {
 
-    public static void main(String[] args) {
+    public static void main1(String[] args) {
         new SpringApplicationBuilder()
                 .main(MusicServerApplication.class)
                 .sources(MusicServerApplication.class)

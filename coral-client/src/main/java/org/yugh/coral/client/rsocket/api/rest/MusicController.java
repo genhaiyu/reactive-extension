@@ -2,7 +2,6 @@ package org.yugh.coral.client.rsocket.api.rest;
 
 import org.springframework.http.MediaType;
 import org.springframework.messaging.rsocket.RSocketRequester;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.yugh.coral.client.rsocket.model.MusicData;
@@ -14,7 +13,7 @@ import reactor.core.publisher.Mono;
 /**
  * @author yugenhai
  */
-@Controller
+// @Controller
 public class MusicController {
 
 

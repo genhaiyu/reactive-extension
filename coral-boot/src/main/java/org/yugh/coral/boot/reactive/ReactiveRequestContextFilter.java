@@ -29,14 +29,15 @@ import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
 import org.yugh.coral.core.config.DispatcherRequestCustomizer;
 import org.yugh.coral.core.config.RequestAdapterProvider;
-import org.yugh.coral.core.request.RequestHeaderProvider;
 import org.yugh.coral.core.request.ReactiveContextHeader;
+import org.yugh.coral.core.request.RequestHeaderProvider;
 import reactor.core.publisher.Mono;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Reactive stream request filter.
@@ -49,7 +50,7 @@ public class ReactiveRequestContextFilter implements WebFilter, Ordered {
     private static final Logger LOG = LoggerFactory.getLogger(ReactiveRequestContextFilter.class);
     private final Map<String, Object> contextMap = new ConcurrentHashMap<>();
     private final RequestAdapterProvider.ProduceValues produceValues = new RequestAdapterProvider.ProduceValues();
-    private final ReactiveContextHeader<Map<String, Object>, List<String>> reactiveContextHeader = new ReactiveContextHeader<>();
+    private final ReactiveContextHeader<Map<String, Object>, Set<String>> reactiveContextHeader = new ReactiveContextHeader<>();
     // filter should be set
     private int order = Ordered.HIGHEST_PRECEDENCE + 1;
     private final DispatcherRequestCustomizer<RequestAdapterProvider.ProduceValues> dispatcherRequestCustomizer;
@@ -83,7 +84,7 @@ public class ReactiveRequestContextFilter implements WebFilter, Ordered {
         String idProvider = produceValues.getMessageId();
         exchange.getRequest().mutate().headers(httpHeaders -> httpHeaders.add(RequestHeaderProvider.REQUEST_ID_KEY, idProvider));
         contextMap.put(RequestHeaderProvider.CONTEXT_MAP, idProvider);
-        reactiveContextHeader.setIds(Arrays.asList(idProvider, request.getId()));
+        reactiveContextHeader.setIds(Stream.of(idProvider, request.getId()).collect(Collectors.toSet()));
         reactiveContextHeader.setContextMap(contextMap);
         LOG.info("Reactive Request Started : {}", idProvider);
         return chain.filter(exchange).

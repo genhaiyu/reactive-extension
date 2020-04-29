@@ -1,3 +1,6 @@
+server:
+  port: 8081
+
 spring:
   # profiles
   profiles:
@@ -26,7 +29,7 @@ spring:
       key-prefix: coral:client
       expire: 30
       enabled: true
-  rsocket:
-    server:
-      mapping-path: /
-      port: 8082
+#  rsocket:
+#    server:
+#      mapping-path: /
+#      port: 8082

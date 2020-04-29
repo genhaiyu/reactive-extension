@@ -2,6 +2,7 @@ package org.yugh.coral.client.rsocket.server;
 
 import org.springframework.messaging.handler.annotation.MessageExceptionHandler;
 import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.stereotype.Controller;
 import org.yugh.coral.client.rsocket.model.MusicData;
 import org.yugh.coral.client.rsocket.model.MusicDataRequest;
 import reactor.core.publisher.Flux;
@@ -12,7 +13,7 @@ import reactor.core.publisher.Mono;
  *
  * @author yugenhai
  */
-// @Controller
+@Controller
 public class MusicDataController {
 
 

@@ -50,5 +50,5 @@ mvn clean install -Dmaven.test.skip=true
 * Identify the user web server servlet or reactive and load the filter and listeners (适配用户 Web 容器 Servlet Reactive 加载过滤器。).
 * Base extension WebFilter of WebFlux (WebFlux 会话入口信息透传。).
 * (WebFlux 默认加载 Netty 容器, 会有性能问题, 本项目默认加载 Jetty 容器, 并且不支持 Tomcat 容器。).
-* (Jetty 和 WebFlux 部分已经用在生产环境, GracefulShutdownJetty 正常停止 Jetty 容器待验证。).
-* (增加 RSocket 异步响应式调用 2020-04-21)
+* (Jetty 和 WebFlux 部分已经用在生产环境, GracefulShutdownJetty 正常停止 Jetty 容器。).
+* (增加 RSocket 异步响应式调用。)

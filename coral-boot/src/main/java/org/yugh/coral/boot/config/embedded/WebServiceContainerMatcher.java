@@ -14,7 +14,7 @@
  */
 
 
-package org.yugh.coral.core.config.embedded;
+package org.yugh.coral.boot.config.embedded;
 
 import org.springframework.core.Ordered;
 import org.springframework.util.ClassUtils;

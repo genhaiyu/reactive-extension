@@ -2,7 +2,6 @@ package org.yugh.coral.client.rsocket.repository;
 
 import org.springframework.data.domain.Range;
 import org.springframework.data.redis.core.ReactiveRedisOperations;
-import org.springframework.stereotype.Repository;
 import org.yugh.coral.client.rsocket.model.MusicData;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -10,11 +9,11 @@ import reactor.core.publisher.Mono;
 /**
  * @author yugenhai
  */
-@Repository
+// @Repository
 public class MusicRepository {
 
 
-    private final ReactiveRedisOperations<String, MusicData> redisTemplate;
+    private  ReactiveRedisOperations<String, MusicData> redisTemplate;
 
     public MusicRepository(ReactiveRedisOperations<String, MusicData> redisTemplate){
         this.redisTemplate = redisTemplate;

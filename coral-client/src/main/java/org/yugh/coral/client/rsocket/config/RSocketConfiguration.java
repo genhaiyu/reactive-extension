@@ -3,14 +3,13 @@ package org.yugh.coral.client.rsocket.config;
 import org.springframework.boot.autoconfigure.rsocket.RSocketProperties;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.rsocket.RSocketRequester;
 import org.springframework.messaging.rsocket.RSocketStrategies;
 import reactor.core.publisher.Mono;
 
 import java.net.URI;
 
-@Configuration
+// @Configuration
 public class RSocketConfiguration {
 
     @Bean

@@ -72,10 +72,10 @@ management:
 
 
 # eureka
-eureka:
-  instance:
-    prefer-ip-address: true
-  client:
-    service-url:
-      defaultZone: localhost:8761/eureka/
-    enabled: false
+#eureka:
+#  instance:
+#    prefer-ip-address: true
+#  client:
+#    service-url:
+#      defaultZone: localhost:8761/eureka/
+#    enabled: false

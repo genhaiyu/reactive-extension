@@ -1,6 +1,5 @@
 package org.yugh.coral.client.rsocket.service;
 
-import org.springframework.stereotype.Service;
 import org.yugh.coral.client.rsocket.model.MusicData;
 import org.yugh.coral.client.rsocket.repository.MusicRepository;
 import org.yugh.coral.client.rsocket.server.MusicDataRepository;
@@ -11,7 +10,7 @@ import java.time.Duration;
 /**
  * @author yugenhai
  */
-@Service
+// @Service
 public class MusicService {
 
     private final MusicRepository musicRepository;

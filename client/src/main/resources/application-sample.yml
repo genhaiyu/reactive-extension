@@ -9,7 +9,7 @@ server:
 # application
 spring:
   application:
-    name: coral-client
+    name: plugin-client
   # profiles
 #  profiles:
 #    active: server
@@ -23,7 +23,7 @@ spring:
 #        enabled: false
 
 ## disable
-#coral:
+#plugin:
 #  # Jetty default Max/Min/IdleTimeout Con Thread 200/8/60000ms
 #  jetty:
 #    config:
@@ -48,8 +48,8 @@ spring:
         max-wait: -1ms
         max-idle: 10
         min-idle: 5
-    coral-cache:
-      key-prefix: coral:client
+    cache-plugin:
+      key-prefix: plugin:client
       expire: 30
       enabled: true
 

@@ -23,7 +23,7 @@
  *  @Configuration(proxyBeanMethods = false)
  *  @ConditionalOnMissingBean(ClientHttpConnector.class)
  *  @ConditionalOnClass(org.eclipse.jetty.reactive.client.ReactiveRequest.class)
- *  @ConditionalOnProperty(value = "coral.jetty.config", name = "enabled", havingValue = "true", matchIfMissing = true)
+ *  @ConditionalOnProperty(value = "plugin.jetty.config", name = "enabled", havingValue = "true", matchIfMissing = true)
  *  public static class JettyAutoConfiguration {
  *  @Bean
  *  @ConditionalOnMissingBean
@@ -52,21 +52,21 @@
  *  // Jetty default Max Con Thread 200
  *
  *  @Bean
- *  public JettyServletWebServerFactory jettyServletWebServerFactory(CoralJettyValueProperties coralJettyValueProperties) {
+ *  public JettyServletWebServerFactory jettyServletWebServerFactory(PluginJettyValueProperties pluginJettyValueProperties) {
  *  JettyServletWebServerFactory jettyServletWebServerFactory = new JettyServletWebServerFactory();
  *  jettyServletWebServerFactory.addServerCustomizers(server -> {
  *  // tweak the connection config used by jetty to handle incoming http
  *  QueuedThreadPool threadPool = server.getBean(QueuedThreadPool.class);
- *  threadPool.setMaxThreads(coralJettyValueProperties.getMaxThread());
- *  threadPool.setMinThreads(coralJettyValueProperties.getMinThread());
- *  threadPool.setIdleTimeout(coralJettyValueProperties.getIdleTimeout());
+ *  threadPool.setMaxThreads(pluginJettyValueProperties.getMaxThread());
+ *  threadPool.setMinThreads(pluginJettyValueProperties.getMinThread());
+ *  threadPool.setIdleTimeout(pluginJettyValueProperties.getIdleTimeout());
  *  GracefulShutdownJettyServer.setServer(server);
- *   if (coralJettyValueProperties.getShutdownWaitTime() > 0) {
+ *   if (pluginJettyValueProperties.getShutdownWaitTime() > 0) {
  *     StatisticsHandler handler = new StatisticsHandler();
  *     handler.setHandler(server.getHandler());
  *     server.setHandler(handler);
- *     LOG.info("Shutdown wait time: " + coralJettyValueProperties.getShutdownWaitTime() + " ms");
- *     server.setStopTimeout(coralJettyValueProperties.getShutdownWaitTime());
+ *     LOG.info("Shutdown wait time: " + pluginJettyValueProperties.getShutdownWaitTime() + " ms");
+ *     server.setStopTimeout(pluginJettyValueProperties.getShutdownWaitTime());
  *     // We will stop it through SimpleShutdownServer class.
  *     server.setStopAtShutdown(false);
  *               }
@@ -78,7 +78,7 @@
  *  @Configuration(proxyBeanMethods = false)
  *  @ConditionalOnMissingBean(ReactiveWebServerFactory.class)
  *  @ConditionalOnClass({HttpServer.class})
- *  @ConditionalOnProperty(value = "coral.jetty.config", name = "enabled", havingValue = "false", matchIfMissing = true)
+ *  @ConditionalOnProperty(value = "plugin.jetty.config", name = "enabled", havingValue = "false", matchIfMissing = true)
  *  public static class ReactorNettyAutoConfiguration {
  *
  *      @Bean

@@ -25,7 +25,7 @@ spring:
         max-wait: -1ms
         max-idle: 10
         min-idle: 5
-    coral-cache:
-      key-prefix: coral:server
+    cache-plugin:
+      key-prefix: plugin:server
       expire: 30
       enabled: true

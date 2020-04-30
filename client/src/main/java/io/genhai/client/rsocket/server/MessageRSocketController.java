@@ -23,7 +23,7 @@ public class MessageRSocketController {
     private static final String CHANNEL = "Channel";
 
     /**
-     * yuzhilindeMacBook-Pro:coral yuzhilin$ java -jar rsc.jar --debug --request --data "{\"origin\":\"Client\",\"interaction\":\"Request\"}" --route request-response tcp://localhost:8082
+     * yuzhilindeMacBook-Pro:plugins-project yuzhilin$ java -jar rsc.jar --debug --request --data "{\"origin\":\"Client\",\"interaction\":\"Request\"}" --route request-response tcp://localhost:8082
      * 2020-04-26 22:26:26.092 DEBUG --- [actor-tcp-nio-1] i.r.FrameLogger : sending ->
      * Frame => Stream ID: 1 Type: REQUEST_RESPONSE Flags: 0b100000000 Length: 69
      * Metadata:
@@ -66,7 +66,7 @@ public class MessageRSocketController {
 
 
     /**
-     * yuzhilindeMacBook-Pro:coral yuzhilin$ java -jar rsc.jar --debug --request --data "{\"origin\":\"Client\",\"interaction\":\"Request\"}" --route no-response tcp://localhost:8082
+     * yuzhilindeMacBook-Pro:plugins-project yuzhilin$ java -jar rsc.jar --debug --request --data "{\"origin\":\"Client\",\"interaction\":\"Request\"}" --route no-response tcp://localhost:8082
      * 2020-04-27 14:30:50.453 DEBUG --- [actor-tcp-nio-1] i.r.FrameLogger : sending ->
      * Frame => Stream ID: 1 Type: REQUEST_RESPONSE Flags: 0b100000000 Length: 64
      * Metadata:

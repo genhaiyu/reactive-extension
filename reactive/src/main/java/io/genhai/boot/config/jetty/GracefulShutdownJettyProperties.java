@@ -30,7 +30,7 @@ import java.util.StringJoiner;
  *
  * @author yugenhai
  */
-@ConfigurationProperties("coral.jetty.shutdown")
+@ConfigurationProperties("plugin.jetty.shutdown")
 public class GracefulShutdownJettyProperties implements InitializingBean {
 
     private static final Logger LOG = LoggerFactory.getLogger(GracefulShutdownJettyProperties.class);

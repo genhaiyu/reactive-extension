@@ -21,7 +21,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 /**
  * @author yugenhai
  */
-@ConfigurationProperties(prefix = "coral.reactive.request")
+@ConfigurationProperties(prefix = "plugin.reactive.request")
 public class ReactiveProperties {
 
     private boolean enabled;

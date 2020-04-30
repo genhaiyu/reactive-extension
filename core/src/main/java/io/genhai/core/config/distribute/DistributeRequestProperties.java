@@ -22,7 +22,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  *
  * @author yugenhai
  */
-@ConfigurationProperties(prefix = "coral.distribute")
+@ConfigurationProperties(prefix = "plugin.distribute")
 public class DistributeRequestProperties {
 
     /**

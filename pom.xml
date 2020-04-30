@@ -2,27 +2,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-    <groupId>org.yugh</groupId>
-    <artifactId>coral</artifactId>
+    <groupId>io.genhai.plugins</groupId>
+    <artifactId>plugins-project</artifactId>
     <version>1.0.3-SNAPSHOT</version>
-    <name>Coral :: Project</name>
+    <name>The Spring Boot Extended Plugins</name>
+    <description>The Spring Boot Extended Plugins</description>
     <packaging>pom</packaging>
-
-    <url>https://github.com/yugenhai/coral</url>
+    <url>https://github.com/yugenhai/plugins</url>
     <inceptionYear>2019</inceptionYear>
-
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.6.RELEASE</version>
-        <relativePath/>
-    </parent>
 
     <properties>
         <compiler.source>11</compiler.source>
         <compiler.target>11</compiler.target>
         <compiler.release>11</compiler.release>
+        <java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- plugin -->
@@ -133,15 +126,27 @@
 
 
     <modules>
-        <module>coral-core</module>
-        <module>coral-boot</module>
-        <module>coral-client</module>
+        <module>core</module>
+        <module>reactive</module>
+        <module>client</module>
     </modules>
 
     <issueManagement>
         <system>github</system>
         <url>https://github.com/yugenhai/coral/issues</url>
     </issueManagement>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.6.RELEASE</version>
+        <relativePath/>
+    </parent>
+
+    <organization>
+        <name>genhai</name>
+        <url>https://yugenhai.com</url>
+    </organization>
 
     <build>
         <pluginManagement>
@@ -192,6 +197,18 @@
             </plugins>
         </pluginManagement>
     </build>
+
+    <developers>
+        <developer>
+            <id>1</id>
+            <name>yugenhai</name>
+            <email>yugenhai108@gmail.com</email>
+            <organization>alone</organization>
+            <organizationUrl>https://yugenhai.com</organizationUrl>
+            <timezone>+8</timezone>
+        </developer>
+    </developers>
+
     <!-- plugin repository -->
     <pluginRepositories>
         <pluginRepository>
@@ -219,5 +236,4 @@
             </snapshots>
         </repository>
     </repositories>
-
 </project>

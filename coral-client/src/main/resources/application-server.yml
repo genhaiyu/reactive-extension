@@ -1,5 +1,0 @@
-spring:
-  rsocket:
-    server:
-      port: 8083
-      mapping-path: /

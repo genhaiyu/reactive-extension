@@ -25,8 +25,8 @@ spring:
         max-wait: -1ms
         max-idle: 10
         min-idle: 5
-    coral-cache:
-      key-prefix: coral:client
+    cache-plugin:
+      key-prefix: plugin:client
       expire: 30
       enabled: true
 #  rsocket:

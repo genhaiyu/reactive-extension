@@ -15,8 +15,6 @@
 		<compiler.target>11</compiler.target>
 		<metrics.health>3.0.2</metrics.health>
 		<google.jsr305>3.0.2</google.jsr305>
-		<jmustache.version>1.15</jmustache.version>
-		<openfeign.version>10.9</openfeign.version>
 	</properties>
 
 	<parent>
@@ -56,10 +54,6 @@
 			<artifactId>jsr305</artifactId>
 			<version>${google.jsr305}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-		</dependency>
 
 		<!-- io.lettuce.core.support. -->
 		<dependency>
@@ -78,6 +72,7 @@
 		</dependency>
 		<!-- HikariCP end -->
 
+		<!-- Redis operation client start -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-redis</artifactId>
@@ -92,6 +87,8 @@
 			<groupId>io.lettuce</groupId>
 			<artifactId>lettuce-core</artifactId>
 		</dependency>
+		<!-- Redis operation client end -->
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>

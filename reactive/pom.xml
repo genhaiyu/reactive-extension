@@ -41,6 +41,7 @@
 			<artifactId>core</artifactId>
 			<version>1.0.2-SNAPSHOT</version>
 		</dependency>
+		<!-- block container -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>

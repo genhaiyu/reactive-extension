@@ -33,7 +33,10 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Custom Redis Configuration.
+ * Custom redis extended properties.
+ * After the user has used and initialized the {@link RedisTemplate}
+ * This {@link RedisOperationProperties#redisTemplate(RedisConnectionFactory)}()} It may not work.
+ * Like {io.genhai.plugins.client -> RedisConfiguration}
  *
  * @author yugenhai
  */
@@ -95,9 +98,6 @@ public class RedisOperationProperties {
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
         Assert.isTrue(cachePlugin.enabled, () -> "redis cachePlugin enabled '" + cachePlugin.enabled + "' not initialized");
         Assert.hasText(cachePlugin.keyPrefix, () -> "redis cachePlugin keyPrefix '" + cachePlugin.keyPrefix + "' must not empty or null");
-        if (redisConnectionFactory == null) {
-            throw new IllegalArgumentException("redisConnectionFactory should be initialized " + RedisConnectionFactory.class);
-        }
 
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
         Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);

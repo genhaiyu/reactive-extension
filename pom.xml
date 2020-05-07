@@ -18,9 +18,14 @@
         <java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
         <!-- plugin -->
         <maven.version>3.6.3</maven.version>
+        <maven.javadoc.version>3.1.1</maven.javadoc.version>
+        <maven.jar.version>3.1.2</maven.jar.version>
+        <maven.compiler.version>3.8.1</maven.compiler.version>
         <maven.site.version>3.9.0</maven.site.version>
+        <maven.clean.version>3.1.0</maven.clean.version>
         <maven.enforcer.version>3.0.0-M3</maven.enforcer.version>
         <maven.failsafe.version>3.0.0-M4</maven.failsafe.version>
         <maven.deploy.plugin.version>3.0.0-M1</maven.deploy.plugin.version>
@@ -30,10 +35,10 @@
         <maven.dependency.plugin.version>3.1.2</maven.dependency.plugin.version>
 
         <!-- jackson -->
-        <fasterxml.jackson>2.10.3</fasterxml.jackson>
+        <fasterxml.jackson>2.11.0</fasterxml.jackson>
         <!-- reactor -->
-        <reactor.netty>0.9.6.RELEASE</reactor.netty>
-        <reactor.core>3.3.4.RELEASE</reactor.core>
+        <reactor.netty>0.9.7.RELEASE</reactor.netty>
+        <reactor.core>3.3.5.RELEASE</reactor.core>
 
         <!-- spring boot -->
         <spring.boot.version>2.2.6.RELEASE</spring.boot.version>
@@ -124,6 +129,14 @@
         </dependencies>
     </dependencyManagement>
 
+    <dependencies>
+        <!-- block container -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+        </dependency>
+    </dependencies>
 
     <modules>
         <module>core</module>
@@ -144,8 +157,8 @@
     </parent>
 
     <organization>
-        <name>genhai</name>
-        <url>https://yugenhai.com</url>
+        <name>yu genhai</name>
+        <url>https://github.com/yugenhai/</url>
     </organization>
 
     <build>
@@ -160,6 +173,11 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-install-plugin</artifactId>
                     <version>${maven.install.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>${maven.clean.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -189,13 +207,39 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven.compiler.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven.failsafe.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${maven.jar.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${maven.javadoc.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.version}</version>
+                <configuration>
+                    <showDeprecation>true</showDeprecation>
+                    <showWarnings>true</showWarnings>
+                    <source>${compiler.source}</source>
+                    <target>${compiler.target}</target>
+                    <release>${compiler.release}</release>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 
     <developers>
@@ -204,7 +248,7 @@
             <name>yugenhai</name>
             <email>yugenhai108@gmail.com</email>
             <organization>alone</organization>
-            <organizationUrl>https://yugenhai.com</organizationUrl>
+            <organizationUrl>https://github.com/yugenhai/</organizationUrl>
             <timezone>+8</timezone>
         </developer>
     </developers>

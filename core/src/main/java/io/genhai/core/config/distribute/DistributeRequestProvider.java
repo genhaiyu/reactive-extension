@@ -22,7 +22,7 @@ import io.genhai.core.config.RequestAdapterProvider;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 
 /**
- * Request id generation.
+ * Internal request id generation Or Database series number.
  *
  * {@link io.genhai.core.config.RequestAdapterProvider.ProduceValues}
  * {@link SnowFlake}

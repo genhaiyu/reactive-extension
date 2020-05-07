@@ -18,7 +18,7 @@ package io.genhai.core.config.distribute;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * Request ID properties.
+ * Internal request ID properties Or Database series number properties.
  *
  * @author yugenhai
  */

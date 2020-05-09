@@ -51,13 +51,13 @@ public class RedisProcessSupport implements SmartInitializingSingleton {
         this.redisTemplate = redisTemplate;
     }
 
-    private void keyPrefix(RedisOperationProperties redisOperationProperties, final String key) {
-        StringJoiner joiner = new StringJoiner(":");
+    private void keyPrefix(final RedisOperationProperties redisOperationProperties, final String key) {
+        final StringJoiner joiner = new StringJoiner(":");
         assembleCacheKey = joiner.add(redisOperationProperties.getCachePlugin().getKeyPrefix())
                 .add(key).toString();
     }
 
-    private String getKeyPrefix(String key) {
+    private String getKeyPrefix(final String key) {
         keyPrefix(redisOperationProperties, key);
         return assembleCacheKey;
     }

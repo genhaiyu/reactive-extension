@@ -71,7 +71,7 @@ public class ReactiveRequestContextFilter implements WebFilter, Ordered {
 
 
     @Override
-    public Mono<Void> filter(@NonNull ServerWebExchange exchange,@NonNull WebFilterChain chain) {
+    public Mono<Void> filter(@NonNull ServerWebExchange exchange, @NonNull WebFilterChain chain) {
         Assert.notNull(exchange, () -> "ServerWebExchange '" + exchange + "' must not be null");
         Assert.notNull(chain, () -> "WebFilterChain '" + chain + "' must not be null");
         ServerHttpRequest request = exchange.getRequest();

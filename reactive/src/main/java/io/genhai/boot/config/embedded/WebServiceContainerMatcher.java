@@ -31,7 +31,7 @@ public class WebServiceContainerMatcher implements Ordered {
 
     public static void embeddedContainerMatcher() {
         if (ClassUtils.isPresent(STARTUP_TOMCAT, null)) {
-            throw new IllegalArgumentException("The project does not support the Tomcat.");
+            throw new UnsupportedOperationException("The project does not support the Tomcat.");
         }
     }
 

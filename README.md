@@ -8,12 +8,12 @@
 
 | Framework    | Version   |
 | ------------ | --------- |
-| JDK          | 1.8+      |
+| JDK          | 11 +      |
 | Servlet      | 4.0.x     |
 | Spring       | 5.2.x     |
-| SpringBoot   | 2.2.x     |
+| Spring Boot  | 2.2.x     |
 | Spring Cloud | Hoxton.x  |
-| Jackson      | 2.10.x    |
+| Jackson      | 2.11.x    |
 
 
 ## 1. Using

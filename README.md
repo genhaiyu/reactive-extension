@@ -1,7 +1,7 @@
 # Reactive Extension Components
 
-[![Build Status](https://travis-ci.org/yugenhai/plugins-project.svg?branch=master)](https://travis-ci.org/yugenhai/plugins-project)
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/yugenhai/plugins-project.git/master)
+[![Build Status](https://travis-ci.org/yugenhai/reactive-extension.svg?branch=master)](https://travis-ci.org/yugenhai/reactive-extension)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/yugenhai/reactive-extension.git/master)
 
 ------
 

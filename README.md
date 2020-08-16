@@ -1,8 +1,7 @@
-# The Spring Boot Extended Plugins
+# Reactive Extension Components
 
 [![Build Status](https://travis-ci.org/yugenhai/plugins-project.svg?branch=master)](https://travis-ci.org/yugenhai/plugins-project)
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/yugenhai/plugins-project.git/master)
-[![GitHub stars](https://img.shields.io/github/stars/yugenhai/plugins-project)](https://github.com/yugenhai/plugins-project/stargazers)
 
 ------
 
@@ -13,40 +12,76 @@
 | Spring       | 5.2.x     |
 | Spring Boot  | 2.2.x     |
 | Spring Cloud | Hoxton.x  |
-| Jackson      | 2.11.x    |
 
 
-## 1. Using
+## 1. Functions
 
-#### Use maven compiler
+
+* Identify the user web server servlet or reactive and load the filter and listeners.
+* Reactive tracking, reactive publish and subscribe.
+* Jetty is used by default and does not support Tomcat.
+
+
+## 2. SubProject Using
+
+#### 1.1 Use maven compiler command
 
 ```html
-cd /plugins-project
+cd /reactive-extension
+
 mvn clean install -Dmaven.test.skip=true
 
 ```
-#### Use maven dependency
+
+#### 1.2 Parent
+
+```java
+
+<parent>
+    <groupId>io.shixinyangyy.reactive</groupId>
+    <artifactId>reactive-extension</artifactId>
+    <version>1.0.3-SNAPSHOT</version>
+</parent>
+
+```
+
+#### 1.3 DependencyManagement
+
+```java
+
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>io.shixinyangyy.reactive</groupId>
+            <artifactId>reactive-extension</artifactId>
+            <version>1.0.3-SNAPSHOT</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+
+```
+
+#### 1.4 Dependencies, Or just use one of them
 
 ```java
 
 <dependencies>
     <dependency>
-        <groupId>io.genhai.plugins</groupId>
+        <groupId>io.shixinyangyy.reactive</groupId>
         <artifactId>core</artifactId>
         <version>1.0.2-SNAPSHOT</version>
     </dependency>
     <dependency>
-       <groupId>io.genhai.plugins</groupId>
-       <artifactId>reactive</artifactId>
-       <version>1.0.2-SNAPSHOT</version>
-   </dependency>
+        <groupId>io.shixinyangyy.reactive</groupId>
+        <artifactId>reactive</artifactId>
+        <version>1.0.2-SNAPSHOT</version>
+    </dependency>
 </dependencies>
 
 ```
 
-## 2. Functions
+## 3. Changelog
 
-
-* Identify the user web server servlet or reactive and load the filter and listeners.
-* Base extension WebFilter of WebFlux.
-* Jetty is used by default and does not support tomcat.
+* Created in 2019

@@ -25,7 +25,7 @@ spring:
         max-wait: -1ms
         max-idle: 10
         min-idle: 5
-    cache-plugin:
-      key-prefix: plugin:server
+    extended-redis:
+      key-prefix: extension:client
       expire: 30
       enabled: true

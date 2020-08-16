@@ -2,37 +2,35 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>io.genhai.plugins</groupId>
-    <artifactId>plugins-project</artifactId>
+    <groupId>io.shixinyangyy.reactive</groupId>
+    <artifactId>reactive-extension</artifactId>
     <version>1.0.3-SNAPSHOT</version>
-    <name>The Spring Boot Extended Plugins</name>
-    <description>The Spring Boot Extended Plugins</description>
+
+    <description>The Spring Boot Reactive Extension Components</description>
     <packaging>pom</packaging>
-    <url>https://github.com/yugenhai/plugins-project</url>
+    <url>https://github.com/yugenhai/reactive-extension</url>
     <inceptionYear>2019</inceptionYear>
 
+
     <properties>
+        <!-- version -->
         <compiler.source>11</compiler.source>
         <compiler.target>11</compiler.target>
         <compiler.release>11</compiler.release>
         <java.version>11</java.version>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- plugin -->
-        <maven.version>3.6.3</maven.version>
-        <maven.javadoc.version>3.1.1</maven.javadoc.version>
         <maven.jar.version>3.1.2</maven.jar.version>
         <maven.compiler.version>3.8.1</maven.compiler.version>
         <maven.site.version>3.9.0</maven.site.version>
         <maven.clean.version>3.1.0</maven.clean.version>
-        <maven.enforcer.version>3.0.0-M3</maven.enforcer.version>
         <maven.failsafe.version>3.0.0-M4</maven.failsafe.version>
         <maven.deploy.plugin.version>3.0.0-M1</maven.deploy.plugin.version>
         <maven.install.plugin.version>2.5.2</maven.install.plugin.version>
-        <maven.source.plugin.version>3.2.1</maven.source.plugin.version>
         <maven.plugin-tools.version>3.6.0</maven.plugin-tools.version>
-        <maven.dependency.plugin.version>3.1.2</maven.dependency.plugin.version>
 
         <!-- jackson -->
         <fasterxml.jackson>2.11.0</fasterxml.jackson>
@@ -42,8 +40,8 @@
 
         <!-- spring boot -->
         <spring.boot.version>2.2.6.RELEASE</spring.boot.version>
-        <spring-cloud.version>Hoxton.SR3</spring-cloud.version>
         <!-- spring cloud -->
+        <spring.cloud.version>Hoxton.SR3</spring.cloud.version>
     </properties>
 
 
@@ -52,7 +50,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
+                <version>${spring.cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -88,34 +86,7 @@
                 <artifactId>reactor-netty</artifactId>
                 <version>${reactor.netty}</version>
             </dependency>
-
             <!-- plugin -->
-            <dependency>
-                <groupId>org.apache.maven</groupId>
-                <artifactId>maven-plugin-api</artifactId>
-                <version>${maven.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.maven</groupId>
-                <artifactId>maven-artifact</artifactId>
-                <version>${maven.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.maven</groupId>
-                <artifactId>maven-core</artifactId>
-                <version>${maven.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.maven.plugin-tools</groupId>
-                <artifactId>maven-plugin-tools-api</artifactId>
-                <version>${maven.plugin-tools.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.maven.plugin-tools</groupId>
-                <artifactId>maven-plugin-annotations</artifactId>
-                <version>${maven.plugin-tools.version}</version>
-                <scope>provided</scope>
-            </dependency>
             <dependency>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
@@ -130,7 +101,7 @@
     </dependencyManagement>
 
     <dependencies>
-        <!-- block container -->
+        <!-- blocking container -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -144,10 +115,15 @@
         <module>client</module>
     </modules>
 
-    <issueManagement>
-        <system>github</system>
-        <url>https://github.com/yugenhai/plugins-project/issues</url>
-    </issueManagement>
+    <developers>
+        <developer>
+            <id>1</id>
+            <name>Shixinyangyy</name>
+            <email>yugenhai108@gmail.com</email>
+            <organizationUrl>https://github.com/yugenhai/</organizationUrl>
+            <timezone>+8</timezone>
+        </developer>
+    </developers>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -156,10 +132,30 @@
         <relativePath/>
     </parent>
 
-    <organization>
-        <name>yu genhai</name>
-        <url>https://github.com/yugenhai/</url>
-    </organization>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>central</id>
+            <url>https://repo1.maven.org/maven2/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+    <repositories>
+        <repository>
+            <id>central</id>
+            <url>https://repo1.maven.org/maven2/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
     <build>
         <pluginManagement>
@@ -181,26 +177,6 @@
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-source-plugin</artifactId>
-                    <version>${maven.source.plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-dependency-plugin</artifactId>
-                    <version>${maven.dependency.plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-failsafe-plugin</artifactId>
-                    <version>${maven.failsafe.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-enforcer-plugin</artifactId>
-                    <version>${maven.enforcer.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-site-plugin</artifactId>
                     <version>${maven.site.version}</version>
                 </plugin>
@@ -219,11 +195,6 @@
                     <artifactId>maven-jar-plugin</artifactId>
                     <version>${maven.jar.version}</version>
                 </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>${maven.javadoc.version}</version>
-                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
@@ -241,43 +212,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <developers>
-        <developer>
-            <id>1</id>
-            <name>yugenhai</name>
-            <email>yugenhai108@gmail.com</email>
-            <organization>alone</organization>
-            <organizationUrl>https://github.com/yugenhai/</organizationUrl>
-            <timezone>+8</timezone>
-        </developer>
-    </developers>
-
-    <!-- plugin repository -->
-    <pluginRepositories>
-        <pluginRepository>
-            <id>central</id>
-            <url>https://repo1.maven.org/maven2/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
-
-    <!-- public central -->
-    <repositories>
-        <repository>
-            <id>central</id>
-            <url>https://repo1.maven.org/maven2/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
 </project>

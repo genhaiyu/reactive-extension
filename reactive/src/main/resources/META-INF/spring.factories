@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  io.genhai.boot.config.ReactiveBootAutoConfiguration
+  io.shixinyangyy.boot.config.configuration.ReactiveBootAutoConfiguration

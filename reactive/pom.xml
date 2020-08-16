@@ -2,11 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>io.genhai.plugins</groupId>
+    <groupId>io.shixinyangyy.reactive</groupId>
     <artifactId>reactive</artifactId>
     <version>1.0.2-SNAPSHOT</version>
-    <name>Plugin :: Reactive</name>
-    <description>Reactive container and filter management</description>
+
+    <name>Extension :: Reactive</name>
+    <description>Reactive application</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -18,16 +19,16 @@
     </properties>
 
     <parent>
-        <groupId>io.genhai.plugins</groupId>
-        <artifactId>plugins-project</artifactId>
+        <groupId>io.shixinyangyy.reactive</groupId>
+        <artifactId>reactive-extension</artifactId>
         <version>1.0.3-SNAPSHOT</version>
     </parent>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>io.genhai.plugins</groupId>
-                <artifactId>plugins-project</artifactId>
+                <groupId>io.shixinyangyy.reactive</groupId>
+                <artifactId>reactive-extension</artifactId>
                 <version>1.0.3-SNAPSHOT</version>
                 <scope>import</scope>
                 <type>pom</type>
@@ -37,11 +38,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.genhai.plugins</groupId>
+            <groupId>io.shixinyangyy.reactive</groupId>
             <artifactId>core</artifactId>
             <version>1.0.2-SNAPSHOT</version>
         </dependency>
-        <!-- block container -->
+
+        <!-- blocking container -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>

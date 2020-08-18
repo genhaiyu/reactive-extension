@@ -47,7 +47,7 @@ public class ReactiveContextHeader<H, I> {
 
     @Override
     public String toString() {
-        return "RequestHeader{" +
+        return "ReactiveContextHeader{" +
                 "ids=" + ids +
                 ", contextMap=" + contextMap +
                 '}';

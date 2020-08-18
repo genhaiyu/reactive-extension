@@ -22,9 +22,17 @@
 * Jetty is used by default and does not support Tomcat.
 
 
-## 2. SubProject Using
+## 2. SubProjects Using
 
-#### 1.1 Use maven compiler command
+#### 1.1 Git clone
+
+```html
+
+https://github.com/yugenhai/reactive-extension.git
+
+```
+
+#### 1.2 Use maven compiler
 
 ```html
 cd /reactive-extension
@@ -33,7 +41,7 @@ mvn clean install -Dmaven.test.skip=true
 
 ```
 
-#### 1.2 Parent
+#### 1.3 Parent
 
 ```java
 
@@ -45,7 +53,7 @@ mvn clean install -Dmaven.test.skip=true
 
 ```
 
-#### 1.3 DependencyManagement
+#### 1.4 DependencyManagement
 
 ```java
 
@@ -63,7 +71,7 @@ mvn clean install -Dmaven.test.skip=true
 
 ```
 
-#### 1.4 Dependencies, Or just use one of them
+#### 1.5 Dependencies, Or just use one of them
 
 ```java
 

@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
     <url>https://github.com/yugenhai/reactive-extension</url>
     <inceptionYear>2019</inceptionYear>
+	<archive>true</archive>
 
 
     <properties>

@@ -1,6 +1,6 @@
 # Reactive Extension Components
 
-[![Build Status](https://travis-ci.org/yugenhai/reactive-extension.svg?branch=master)](https://travis-ci.org/github/genhaiyu/reactive-extension)
+[![License](https://img.shields.io/github/license/genhaiyu/reactive-extension)](https://github.com/genhaiyu/reactive-extension/blob/master/LICENSE)
 
 ------
 

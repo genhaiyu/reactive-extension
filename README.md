@@ -1,6 +1,6 @@
 # Reactive Extension Components
 
-[![Build Status](https://travis-ci.org/yugenhai/reactive-extension.svg?branch=master)](https://travis-ci.org/github/genhaiyu/reactive-extension)
+[![License](https://img.shields.io/github/license/genhaiyu/reactive-extension)](https://github.com/genhaiyu/reactive-extension/blob/master/LICENSE)
 
 ------
 
@@ -26,7 +26,7 @@
 #### 1.1 Git clone
 
 ```html
-https://github.com/yugenhai/reactive-extension.git
+https://github.com/genhaiyu/reactive-extension.git
 ```
 
 #### 1.2 Compile
@@ -34,7 +34,7 @@ https://github.com/yugenhai/reactive-extension.git
 ```html
 cd /reactive-extension
 
-mvn clean install -Dmaven.test.skip=true
+mvn clean install
 ```
 
 #### 1.3 Use in Pom

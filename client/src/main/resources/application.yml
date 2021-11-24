@@ -26,7 +26,7 @@ spring:
         max-idle: 10
         min-idle: 5
     extended-redis:
-      key-prefix: extension:client
+      key-prefix: reactive-extension:client
       expire: 30
       enabled: true
 #  rsocket:

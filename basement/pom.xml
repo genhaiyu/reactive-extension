@@ -2,15 +2,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>reactive</artifactId>
+    <artifactId>basement</artifactId>
     <version>1.1.2-SNAPSHOT</version>
-    <name>Reactive-Extension :: Reactive</name>
+
+    <name>Reactive-Extension :: Basement</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <jetty.aggregate>9.4.27.v20200227</jetty.aggregate>
-        <minimal.json>0.9.5</minimal.json>
+        <metrics.health>3.0.2</metrics.health>
+        <google.jsr305>3.0.2</google.jsr305>
     </properties>
 
     <parent>
@@ -31,67 +32,64 @@
         </dependencies>
     </dependencyManagement>
 
+
     <dependencies>
         <dependency>
-            <groupId>genhaiyu</groupId>
-            <artifactId>basement</artifactId>
-            <version>1.1.2-SNAPSHOT</version>
-        </dependency>
-
-        <!-- blocking container -->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.projectreactor.netty</groupId>
-            <artifactId>reactor-netty</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.eclipsesource.minimal-json</groupId>
-            <artifactId>minimal-json</artifactId>
-            <version>${minimal.json}</version>
-        </dependency>
-
-        <!-- Reactive Streams, Reactor, RxJava, WebFlux Start -->
-        <dependency>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-reactive-httpclient</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.jetty.aggregate</groupId>
-            <artifactId>jetty-all</artifactId>
-            <version>${jetty.aggregate}</version>
-            <type>pom</type>
-        </dependency>
-        <dependency>
-            <groupId>org.reactivestreams</groupId>
-            <artifactId>reactive-streams</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.projectreactor</groupId>
-            <artifactId>reactor-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.reactivex.rxjava2</groupId>
-            <artifactId>rxjava</artifactId>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-webflux</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <!-- Reactive Streams, Reactor, RxJava, WebFlux End -->
-        <!-- rsocket Start -->
-        <dependency>
-            <groupId>io.rsocket</groupId>
-            <artifactId>rsocket-core</artifactId>
+            <artifactId>spring-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.rsocket</groupId>
-            <artifactId>rsocket-transport-netty</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-actuator</artifactId>
         </dependency>
-        <!-- rsocket End -->
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+            <version>${google.jsr305}</version>
+        </dependency>
+
+        <!-- io.lettuce.core.support. -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+        </dependency>
+        <!-- HikariCP start -->
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.codahale.metrics</groupId>
+            <artifactId>metrics-healthchecks</artifactId>
+            <version>${metrics.health}</version>
+        </dependency>
+        <!-- HikariCP end -->
+
+        <!-- Redis operation client start -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>jcl-over-slf4j</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>io.lettuce</groupId>
+            <artifactId>lettuce-core</artifactId>
+        </dependency>
+        <!-- Redis operation client end -->
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-actuator-autoconfigure</artifactId>
@@ -108,9 +106,9 @@
                 <configuration>
                     <showDeprecation>true</showDeprecation>
                     <showWarnings>true</showWarnings>
-                    <source>${compiler.source}</source>
-                    <target>${compiler.target}</target>
-                    <release>${compiler.release}</release>
+                    <source>11</source>
+                    <target>11</target>
+                    <release>11</release>
                 </configuration>
             </plugin>
         </plugins>

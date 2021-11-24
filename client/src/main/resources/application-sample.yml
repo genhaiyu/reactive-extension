@@ -49,7 +49,7 @@ spring:
         max-idle: 10
         min-idle: 5
     extended-redis:
-      key-prefix: extension:client
+      key-prefix: reactive-extension:client
       expire: 30
       enabled: true
 
@@ -65,17 +65,3 @@ management:
       enabled: true
     health:
       show-details: always
-
-# hystrix
-
-# ribbon
-
-
-# eureka
-#eureka:
-#  instance:
-#    prefer-ip-address: true
-#  client:
-#    service-url:
-#      defaultZone: localhost:8761/eureka/
-#    enabled: false

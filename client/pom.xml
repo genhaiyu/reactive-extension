@@ -2,11 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>io.shixinyangyy.reactive</groupId>
     <artifactId>client</artifactId>
-    <version>1.0.2-SNAPSHOT</version>
+    <version>1.1.2-SNAPSHOT</version>
 
-    <name>Extension :: Client</name>
+    <name>Reactive-Extension :: Client</name>
     <description>Reactive Stream WebClient, RSocket</description>
 
     <properties>
@@ -15,17 +14,17 @@
     </properties>
 
     <parent>
-        <groupId>io.shixinyangyy.reactive</groupId>
+        <groupId>genhaiyu</groupId>
         <artifactId>reactive-extension</artifactId>
-        <version>1.0.3-SNAPSHOT</version>
+        <version>1.1.3-SNAPSHOT</version>
     </parent>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>io.shixinyangyy.reactive</groupId>
+                <groupId>genhaiyu</groupId>
                 <artifactId>reactive-extension</artifactId>
-                <version>1.0.3-SNAPSHOT</version>
+                <version>1.1.3-SNAPSHOT</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
@@ -35,14 +34,14 @@
     <dependencies>
         <!--###################### sample ###########################-->
         <dependency>
-            <groupId>io.shixinyangyy.reactive</groupId>
-            <artifactId>core</artifactId>
-            <version>1.0.2-SNAPSHOT</version>
+            <groupId>genhaiyu</groupId>
+            <artifactId>basement</artifactId>
+            <version>1.1.2-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>io.shixinyangyy.reactive</groupId>
+            <groupId>genhaiyu</groupId>
             <artifactId>reactive</artifactId>
-            <version>1.0.2-SNAPSHOT</version>
+            <version>1.1.2-SNAPSHOT</version>
         </dependency>
         <!--###################### sample ###########################-->
 
@@ -56,13 +55,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-rsocket</artifactId>
         </dependency>
-
-        <!-- spring shell -->
-        <!--<dependency>-->
-        <!--<groupId>org.springframework.shell</groupId>-->
-        <!--<artifactId>spring-shell-starter</artifactId>-->
-        <!--<version>2.0.1.RELEASE</version>-->
-        <!--</dependency>-->
 
         <!-- datasource -->
         <dependency>
@@ -105,55 +97,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
-
-
-        <!-- redisson -->
-        <!--<dependency>-->
-        <!--<groupId>org.redisson</groupId>-->
-        <!--<artifactId>redisson</artifactId>-->
-        <!--<version>3.12.3</version>-->
-        <!--</dependency>-->
-
-        <!-- hystrix -->
-        <!--<dependency>-->
-        <!--<groupId>org.springframework.cloud</groupId>-->
-        <!--<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>-->
-        <!--</dependency>-->
-
-        <!-- ribbon -->
-        <!--<dependency>-->
-        <!--<groupId>org.springframework.cloud</groupId>-->
-        <!--<artifactId>spring-cloud-starter-netflix-ribbon</artifactId>-->
-        <!--</dependency>-->
-
-        <!-- eureka-client -->
-        <!--<dependency>-->
-        <!--<groupId>org.springframework.cloud</groupId>-->
-        <!--<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>-->
-        <!--</dependency>-->
-
-        <!-- hystrix metrics-->
-        <!--<dependency>-->
-        <!--<groupId>org.springframework.cloud</groupId>-->
-        <!--<artifactId>spring-cloud-starter-netflix-turbine</artifactId>-->
-        <!--</dependency>-->
-
-        <!-- bus -->
-        <!--<dependency>-->
-        <!--<groupId>org.springframework.cloud</groupId>-->
-        <!--<artifactId>spring-cloud-bus</artifactId>-->
-        <!--</dependency>-->
-        <!--		<dependency>-->
-        <!--			<groupId>org.springframework.cloud</groupId>-->
-        <!--			<artifactId>spring-cloud-netflix-hystrix-stream</artifactId>-->
-        <!--		</dependency>-->
-
-        <!--		<dependency>-->
-        <!--			<groupId>org.springframework.cloud</groupId>-->
-        <!--			<artifactId>spring-cloud-starter-stream-rabbit</artifactId>-->
-        <!--		</dependency>-->
-        <!-- rabbitMQ end  -->
-
     </dependencies>
 
     <build>
@@ -177,7 +120,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>io.shixinyangyy.client.MainClientApplication</mainClass>
+                            <mainClass>reactive.extension.client.MainClientApplication</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

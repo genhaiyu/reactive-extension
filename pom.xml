@@ -2,13 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>io.shixinyangyy.reactive</groupId>
+    <groupId>genhaiyu</groupId>
     <artifactId>reactive-extension</artifactId>
-    <version>1.0.3-SNAPSHOT</version>
+    <version>1.1.3-SNAPSHOT</version>
 
     <description>The Spring Boot Reactive Extension Components</description>
     <packaging>pom</packaging>
-    <url>https://github.com/yugenhai/reactive-extension</url>
+    <url>https://github.com/genhaiyu/reactive-extension</url>
     <inceptionYear>2019</inceptionYear>
 
 
@@ -110,18 +110,18 @@
     </dependencies>
 
     <modules>
-        <module>core</module>
+        <module>basement</module>
         <module>reactive</module>
         <module>client</module>
     </modules>
 
     <developers>
         <developer>
-            <id>1</id>
-            <name>Shixinyangyy</name>
-            <email>yugenhai108@gmail.com</email>
-            <organizationUrl>https://github.com/yugenhai/</organizationUrl>
-            <timezone>+8</timezone>
+            <id>...</id>
+            <name>Genhai Yu</name>
+            <email>genhaiyu@gmail.com</email>
+            <organizationUrl>https://github.com/genhaiyu/</organizationUrl>
+            <timezone>...</timezone>
         </developer>
     </developers>
 

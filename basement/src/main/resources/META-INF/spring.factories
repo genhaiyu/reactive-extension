@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  reactive.extension.reactor.config.ReactorConfiguration
+  reactive.extension.basement.config.BasementConfiguration

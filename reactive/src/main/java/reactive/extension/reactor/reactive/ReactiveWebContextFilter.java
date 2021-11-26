@@ -65,7 +65,7 @@ public class ReactiveWebContextFilter implements WebFilter, Ordered {
         String idProvider = produceValues.getMessageId();
         exchange.getRequest().mutate().headers(httpHeaders -> httpHeaders.add(RequestHeaderProvider.REQUEST_ID_KEY, idProvider));
         contextMap.put(RequestHeaderProvider.CONTEXT_MAP, idProvider);
-        reactiveWebContextHeader.initialReactContextHeader(Stream.of(idProvider, request.getId()).collect(Collectors.toSet()), contextMap);
+        reactiveWebContextHeader.initialReactWebContextHeader(Stream.of(idProvider, request.getId()).collect(Collectors.toSet()), contextMap);
         LOG.info("Reactive Request Started : {}", idProvider);
         return chain.filter(exchange).
                 subscriberContext(ctx ->

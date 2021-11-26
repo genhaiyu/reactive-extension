@@ -5,7 +5,7 @@
     {
       "name": "reactive.extension.jetty.config.enabled",
       "type": "java.lang.Boolean",
-      "description": "This is reference, server.jetty.xx is necessary.",
+      "description": "Reference metadata.",
       "defaultValue": true
     },
     {

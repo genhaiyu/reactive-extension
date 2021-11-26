@@ -26,14 +26,14 @@ public class ReactiveWebContextHeader<H, I> {
         this.contextMap = contextMap;
     }
 
-    public void initialReactContextHeader(I ids, H contextMap) {
+    public void initialReactWebContextHeader(I ids, H contextMap) {
         this.setContextMap(contextMap);
         this.setIds(ids);
     }
 
     @Override
     public String toString() {
-        return "ReactiveContextHeader{" +
+        return "ReactiveWebContextHeader{" +
                 "ids=" + ids +
                 ", contextMap=" + contextMap +
                 '}';

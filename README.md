@@ -37,26 +37,21 @@ cd /reactive-extension
 mvn clean install
 ```
 
-#### 1.3 Use in Pom
+#### 1.3 Use in the pom.xml
 
 ```html
-<parent>
-    <groupId>genhaiyu</groupId>
-    <artifactId>reactive-extension</artifactId>
-    <version>1.1.3-SNAPSHOT</version>
-</parent>
-
-<dependencyManagement>
     <dependencies>
         <dependency>
             <groupId>genhaiyu</groupId>
-            <artifactId>reactive-extension</artifactId>
-            <version>1.1.3-SNAPSHOT</version>
-            <scope>import</scope>
-            <type>pom</type>
+            <artifactId>basement</artifactId>
+            <version>1.1.2-SNAPSHOT</version>
         </dependency>
-    </dependencies>
-</dependencyManagement>
+        <dependency>
+            <groupId>genhaiyu</groupId>
+            <artifactId>reactive</artifactId>
+            <version>1.1.2-SNAPSHOT</version>
+        </dependency>
+    <dependencies>
 ```
 
 ## 3. Changelog

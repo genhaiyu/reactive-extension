@@ -33,7 +33,7 @@
         <maven.plugin-tools.version>3.6.0</maven.plugin-tools.version>
 
         <!-- jackson -->
-        <fasterxml.jackson>2.11.0</fasterxml.jackson>
+        <fasterxml.jackson>2.13.4.1</fasterxml.jackson>
         <!-- reactor -->
         <reactor.netty>0.9.7.RELEASE</reactor.netty>
         <reactor.core>3.3.5.RELEASE</reactor.core>
